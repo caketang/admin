@@ -1,0 +1,19 @@
+{
+    "columns":[
+        {	"prop":"id",
+            "label":""
+        },
+        {	"prop":"user_name",
+            "label":"用户名",
+            "sortable":true,
+            "disabled":true,
+            "width": 150
+        },
+        {	"prop":"date",
+            "label":"日期",
+            "disabled":true,
+            "width": 200
+        }
+    ]
+
+}

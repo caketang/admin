@@ -1,0 +1,15 @@
+{
+  "columns":[
+    { "prop":"playName",
+      "label":"玩法名称"
+    },
+    { "prop":"odds",
+      "label":"赔率",
+      "type":"number"
+    },
+    { "prop":"playOn",
+      "label":"玩法开启",
+      "type":"checkbox"
+    }
+  ]
+}

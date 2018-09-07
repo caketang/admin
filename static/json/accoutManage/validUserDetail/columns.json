@@ -1,0 +1,117 @@
+{
+  "columns":[
+    { "prop":"id",
+      "label":"ID"
+    },
+    {
+      "prop": "agent_name",
+      "label": "会员帐号",
+      "disabled": true,
+      "width":"100"
+    },
+    { "prop":"levels",
+      "label":"真实姓名",
+      "disabled":true,
+      "width":"100"
+    },
+    {
+      "prop":"type",
+      "label":"注册时间",
+      "disabled":true,
+      "width":"100"
+    },
+    {
+      "prop":"jianlishijian",
+      "label":"帐号管理",
+      "disabled":true,
+      "width":"100"
+    },
+    {
+      "prop":"loginNum",
+      "label":"线上",
+      "disabled":true,
+      "width":"100",
+      "type":"link",
+      "fn": "showUser"
+    },
+    {
+      "prop":"lastIP",
+      "label":"线下",
+      "disabled":true,
+      "width":"100"
+    },
+    {
+      "prop":"loginNum",
+      "label":"线上",
+      "disabled":true,
+      "width":"100",
+      "type":"link",
+      "fn": "showUser"
+    },
+    {
+      "prop":"lastIP",
+      "label":"线下",
+      "disabled":true,
+      "width":"100"
+    },
+    {
+      "prop":"loginNum",
+      "label":"线上",
+      "disabled":true,
+      "width":"100",
+      "type":"link",
+      "fn": "showUser"
+    },
+    {
+      "prop":"lastIP",
+      "label":"线下",
+      "disabled":true,
+      "width":"100"
+    },
+    {
+      "prop":"loginNum",
+      "label":"线上",
+      "disabled":true,
+      "width":"100",
+      "type":"link",
+      "fn": "showUser"
+    },
+    {
+      "prop":"lastIP",
+      "label":"线下",
+      "disabled":true,
+      "width":"100"
+    },
+    {
+      "prop":"lastIP",
+      "label":"时间",
+      "disabled":true,
+      "width":"100",
+      "type":"contentdate"
+    },
+    {
+      "prop":"lastIP",
+      "label":"电话",
+      "disabled":true,
+      "width":"100"
+    },
+    {
+      "prop":"lastIP",
+      "label":"邮箱",
+      "disabled":true,
+      "width":"100"
+    },
+    {
+      "prop":"lastIP",
+      "label":"QQ",
+      "disabled":true,
+      "width":"100"
+    },
+    {
+      "prop":"lastIP",
+      "label":"微信号",
+      "disabled":true,
+      "width":"100"
+    }
+    ]
+}

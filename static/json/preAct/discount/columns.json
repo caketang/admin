@@ -1,0 +1,57 @@
+{
+    "columns":[
+        {  "prop":"name",
+            "label":"活动名称",
+            "type":"link",
+            "width":"100",
+            "fn":"getActivity",
+            "sortable":true,
+            "disabled":true
+        },
+        {
+            "label":"有效时间",
+            "width":"200",
+            "sortable":true,
+            "disabled":true,
+            "delimiter":"至",
+            "prop": "start_time,end_time",
+            "type": "contentDate"
+        },
+        {
+            "label":"实际发放人数/实际发放金额",
+            "disabled":true,
+            "width":"100",
+            "delimiter":"/",
+            "prop": "total_people,total_coupon",
+            "type": "connect,twoDivisionMoney"
+        },
+        {	"prop":"created",
+            "label":"创建时间",
+            "width":"200",
+            "disabled":true
+        },
+        {	"prop":"created_uname",
+            "label":"创建人",
+            "width":"50",
+            "disabled":true
+        },
+       {   "prop":"withdraw_per",
+            "label":"打码量(%)",
+            "width":"100",
+            "disabled":true
+        },
+        {	"prop":"member_level",
+            "label":"层级",
+            "sortable":true,
+            "width":"100",
+            "disabled":true
+        },
+
+        {	"prop":"games",
+            "width":"100",
+            "label":"游戏类型",
+            "sortable":true,
+            "disabled":true
+        }
+    ]
+}

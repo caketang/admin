@@ -1,0 +1,30 @@
+{
+  "columns": [
+    {
+      "prop": "id",
+      "label": "ID"
+    },
+    {
+      "prop": "game_name",
+      "label": "游戏",
+      "disabled": true,
+       "width":"100"
+    },
+    {
+      "prop": "times",
+      "label": "总笔数",
+      "disabled": true,
+       "width":"150",
+      "type":"link",
+      "fn":"openGameClass"
+    },
+    {
+      "prop": "money",
+      "label": "总金额",
+      "disabled": true,
+       "width":"150",
+      "type":"linkDivisionMoney",
+      "fn":"openGameClass"
+    }
+  ]
+}

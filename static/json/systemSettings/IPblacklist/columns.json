@@ -1,0 +1,46 @@
+{
+  "columns":[
+    { "prop":"ip",
+      "label":"IP",
+      "sortable":true,
+      "disabled":true,
+      "width":"150"
+    },
+    { "prop":"status",
+      "label":"状态",
+      "sortable":true,
+      "width":"150",
+      "filters":[{ "text": "允许", "value": 0}, { "text": "禁止", "value": 1}],
+      "disabled":true,
+      "type":"ipBlack"
+    },
+    { "prop":"created",
+      "label":"建立时间",
+      "type": "date",
+      "width":"200",
+      "disabled":true
+    },
+    { "prop":"updated",
+      "label":"最后修改时间",
+      "type": "date",
+      "width":"200",
+      "disabled":true
+    },
+    { "prop":"memo",
+      "label":"备注",
+      "sortable":true,
+      "width":"200",
+      "disabled":true
+    },
+    {
+      "label":"操作",
+      "type":"button",
+      "width":"210px",
+      "disabled":true,
+      "width":"150",
+      "btnGroup":[{"btnType":"text","label":"允许","fn":"doAllow","prop":"status","val":"1"},
+        {"btnType":"text","label":"限制","fn":"doLimit","prop":"status","val":"0"},
+        {"btnType":"text","label":"删除","fn":"doDel"},
+        {"btnType":"text","label":"编辑","fn":"doEdit"}]
+    }]
+}

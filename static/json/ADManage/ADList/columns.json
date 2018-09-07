@@ -1,0 +1,75 @@
+{
+  "columns":[
+      {	"prop":"id",
+        "label":"ID"
+      },
+      {	"prop":"name",
+        "label":"广告名称",
+        "disabled":true,
+        "width":"100"
+      },
+      {	"prop":"position",
+        "label":"使用于",
+        "filters":[ 
+            {"text": "首页", "value": "home"},
+            {"text": "电子页", "value": "egame"},
+            {"text": "视讯页", "value": "live"},
+            {"text": "彩票页", "value": "lottery"},
+            {"text": "体育页", "value": "sport"},
+            {"text": "代理页", "value": "agent"},
+            {"text": "优惠页", "value": "coupon"}],
+        "width":"100",
+        "disabled":true
+
+      },
+      {	"prop":"picture",
+        "label":"缩略图",
+        "type":"img",
+        "disabled":true,
+        "width":"200"
+      },
+      {	"prop":"language_name",
+        "label":"语言",
+        "width":"100",
+        "disabled":true
+      },
+      {
+        "prop":"sort",
+        "label":"排序",
+        "disabled":true,
+        "width":"100",
+        "sortRemarks": "前台实际展示时数字大的排在前面"
+
+      },
+      {	"prop":"approve",
+        "label":"审核状态",
+        "filters":[{ "text": "已通过", "value": "pass"}, { "text": "待申请", "value": "pending" },{ "text": "已拒绝", "value": "rejected"},{"text": "申请中", "value": "applying"}],
+        "disabled":true,
+        "width":"100"
+      },
+      {	"prop":"status",
+        "label":"使用状态",
+        "filters":[{ "text": "启用", "value": "enabled"}, { "text": "停用", "value": "disabled" }],
+        "disabled":true,
+        "width":"100"
+      },
+      {"prop":"created",
+        "label":"生成时间",
+        "disabled":true,
+        "width":"200"
+      },
+      {	"label":"操作",
+        "type":"button",
+        "width":"210",
+        "disabled":true,
+        "btnGroup":[
+          {"btnType":"text","label":"查看","fn":"doDetails","prop":"approve","val":"pending","equal":false,"valNum":1},
+          {"btnType":"text","label":"申请","fn":"doApply","prop":"approve","val":"pending"},
+          {"btnType":"text","label":"启用","fn":"doStart","propOne":"status","valOne":"disabled","propTwo":"approve","valTwo":"pass"},
+          {"btnType":"text","label":"停用","fn":"doStop","propOne":"status","valOne":"enabled","propTwo":"approve","valTwo":"pass"},
+          {"btnType":"text","label":"编辑","fn":"doCompile","prop":"approve","val":"pending"},
+          {"btnType":"text","label":"删除","fn":"doDel" }
+        ]
+      }
+  ]
+}

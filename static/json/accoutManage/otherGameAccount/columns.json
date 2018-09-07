@@ -1,0 +1,66 @@
+{
+    "columns":[
+
+        {	"prop":"user_name",
+            "label":"用户名",
+
+            "disabled":true
+        },
+        {	"prop":"game_name",
+            "label":"第三方游戏",
+            "disabled":true
+        },
+        {	"prop":"game_username",
+            "label":"第三方帐户名称",
+            "disabled":true
+        },
+
+        {	"prop":"bet_times",
+            "label":"笔数",
+
+            "disabled":true,
+            "type":"object"
+
+        },
+        {	"prop":"bet_money",
+            "label":"金额",
+            "type":"object",
+            "disabled":true
+
+        },
+        {	"prop":"amount_avg",
+            "label":"平均额",
+            "type":"object",
+            "disabled":true
+        },
+        {	"prop":"lose_earn",
+            "label":"输赢",
+            "disabled":true,
+            "type":"object"
+
+        },
+        {	"prop":"in_money",
+            "label":"转入",
+            "disabled":true,
+            "type":"object"
+
+        },
+        {	"prop":"out_money",
+            "label":"转出",
+            "disabled":true,
+            "type":"object"
+
+        },
+        {	"prop":"in_out",
+            "label":"入-出",
+            "disabled":true,
+            "type":"object"
+
+        },
+        {	"prop":"date",
+            "label":"最后登录时间",
+            "type":"date",
+            "disabled":true
+        }
+    ]
+}

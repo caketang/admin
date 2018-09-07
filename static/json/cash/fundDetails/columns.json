@@ -1,0 +1,60 @@
+{
+    "columns":[
+        {	"prop":"id",
+            "label":"",
+            "sortable":true
+        },
+        {	"prop":"username",
+            "label":"用户名",
+            "fn":"openUserInformation",
+            "disabled":true,
+            "sortable":true,
+            "width":"100",
+            "type":"link"
+        },
+        {	"prop":"created",
+            "label":"交易时间",
+            "sortable":true,
+            "width":"200",
+            "disabled":true
+        },
+        {	"prop":"deal_number",
+            "label":"交易流水号码",
+            "width":"200",
+            "sortable":true,
+            "disabled":true
+        },
+        {   "prop":"deal_category",
+            "width":"100",
+            "label":"交易类别",
+            "sortable":true,
+            "filters":[{ "text": "收入", "value": "1"},{"text":"支出","value":"2"},{"text":"额度转换","value":"3"}],
+            "disabled":true
+        },
+        {	"prop":"deal_type_name",
+            "width":"100",
+            "label":"交易类型",
+            "disabled":true
+        },
+        {	"prop":"deal_money,coupon_money",
+            "width":"100",
+            "label":"交易金额",
+            "type":"filterAdddivisionMoney",
+            "sortable":true,
+            "disabled":true
+        },
+        {	"prop":"balance",
+            "label":"交易后余额",
+            "width":"150",
+            "disabled":true,
+             "type":"divisionMoney",
+            "sortable":true
+        },
+        {	"prop":"memo",
+            "label":"备注",
+            "width":"400",
+            "sortable":true,
+            "disabled":true
+        }
+    ]
+}

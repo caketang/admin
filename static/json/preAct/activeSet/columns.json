@@ -1,0 +1,68 @@
+{
+    "columns":[
+        {	"prop":"name",
+            "label":"优惠活动名称",
+            "disabled":true,
+            "width":"150"
+        },
+        {	"prop":"title",
+            "label":"优惠活动标题",
+            "disabled":true,
+            "width":"150"
+        },
+        {	"prop":"types",
+            "label":"所属优惠类型",
+            "type" : "connectArray",
+            "disabled":true,
+            "width":"150"
+        },
+        {	"prop":"template_name",
+          "label":"模板名称",
+          "disabled":true,
+          "width":"150"
+      },
+        {	"prop":"created",
+            "label":"创建时间",
+            "disabled":true,
+            "width":"200"
+        },{
+            "prop": "created_uname",
+            "label": "创建人",
+            "disabled": true,
+            "width":"100"
+        },
+        {
+          "prop": "member_level",
+          "label": "会员层级",
+          "disabled": true,
+          "width":"100"
+        },
+        {
+            "prop":"issue_mode",
+            "label":"发放方式",
+            "disabled":true,
+            "filters":[{ "text": "自动", "value": "auto"}, { "text": "手动", "value": "manual" }],
+            "width":"100"
+        },
+        {
+            "prop":"status",
+            "label":"状态",
+            "disabled":true,
+            "width":"100",
+            "filters":[{ "text": "启用", "value": "enabled"}, { "text": "停用", "value":"disabled"},{ "text": "已被删除", "value":"deleted"}]
+
+        },
+        {
+            "label":"操作",
+            "type":"button",
+            "disabled":true,
+            "width":"200",
+            "btnGroup":[
+                {"btnType":"text","label":"停用","fn":"doStop","prop":"status","val":"enabled"},
+                {"btnType":"text","label":"启用","fn":"doStart","prop":"status","val":"disabled"},
+                {"btnType":"text","label":"修改","fn":"domodification"},
+                {"btnType":"text","label":"删除","fn":"doDel", "prop":"status","val":"disabled"}
+            ]
+        }
+    ]
+}

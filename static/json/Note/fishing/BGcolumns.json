@@ -1,0 +1,73 @@
+{
+    "columns":[
+        {
+            "prop": "user_name",
+            "label": "用户名",
+            "disabled": true,
+            "type": "link",
+            "width": "100",
+            "fn": "openMember"
+        },
+        {
+            "prop": "agnet",
+            "label": "上级代理",
+            "disabled": true,
+            "type": "link",
+            "width": "100",
+            "fn": "openAgent"
+        },
+        {
+            "prop": "account",
+            "label": "第三方游戏帐号",
+            "width": "100",
+            "disabled": true
+        },
+
+        {
+            "prop": "date",
+            "label": "投注时间",
+            "width": "200",
+            "disabled": true
+        },
+        {
+            "prop": "order_number",
+            "label": "注单号",
+            "width": "100",
+            "disabled": true
+        },
+        {
+            "prop": "issue_id",
+            "label": "局号",
+            "width": "100",
+            "disabled": true
+        },{
+            "prop": "money",
+            "label": "投注金额",
+            "type": "divisionMoney",
+            "width": "100",
+            "disabled": true
+        },
+
+        {
+            "prop": "valid_money",
+            "label": "有效投注",
+            "type": "divisionMoney",
+            "width": "100",
+            "disabled": true
+        },
+        {
+            "prop": "prize",
+            "label": "JP彩金",
+            "width": "100",
+            "type": "divisionMoney",
+            "disabled": true
+        },
+        {
+            "prop": "win_loss",
+            "label": "输赢",
+            "type": "divisionMoney",
+            "width": "100",
+            "disabled": true
+        }
+    ]
+}

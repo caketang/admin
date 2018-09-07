@@ -1,0 +1,54 @@
+{
+  "columns": [
+    {
+      "prop": "id",
+      "label": "ID"
+    },
+    {
+      "prop": "title",
+      "label": "标题",
+      "disabled": true
+    },
+    {
+      "prop": "content",
+      "label": "内容",
+      "disabled": true
+    },
+    {
+      "prop": "created",
+      "label": "时间",
+      "disabled": true
+    },
+
+    {
+      "prop": "status",
+      "label": "状态",
+      "disabled": true,
+      "filters":[
+        {"text":"已查看","value": "1"},
+        {"text":"未查看","value": "0"}
+      ]
+    },
+
+    {
+      "label": "操作",
+      "type": "button",
+      "disabled": true,
+      "btnGroup": [
+        {
+          "btnType": "text",
+          "label": "详情",
+          "fn": "doDetail"
+        },
+        {
+          "btnType": "text",
+          "label": "删除",
+          "fn": "doDelete",
+          "prop":"status",
+          "val":1
+        }
+      ]
+    }
+
+  ]
+}

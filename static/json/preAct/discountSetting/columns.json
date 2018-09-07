@@ -1,0 +1,40 @@
+{
+  "columns":[
+    { "prop":"valid_bet",
+      "label":"有效总投注金额",
+      "sortable":true,
+      "width":"200",
+      "type":"divisionMoney",
+      "disabled":true
+    },
+    { "prop":"memo",
+      "label":"备注",
+       "width":"200",
+      "sortable":true,
+      "disabled":true
+    },
+    { "prop":"status",
+      "label":"状态",
+      "sortable":true,
+       "width":"100",
+      "filters":[{ "text": "启用", "value": "enabled"}, { "text": "停用", "value": "disabled"}],
+      "disabled":true
+    },
+    { "prop":"upper_limit",
+      "label":"优惠上限",
+      "width":"200",
+      "type":"divisionMoney",
+      "sortable":true,
+      "disabled":true
+    },
+    {
+      "label":"操作",
+      "type":"button",
+      "disabled":true,
+       "width":"150",
+      "btnGroup":[
+                    {"btnType":"text","label":"删除","fn":"doRefuse","prop":"default", "val": "0"},
+                    {"btnType":"text","label":"修改","fn":"doEdit"}
+                  ]
+    }]
+}
