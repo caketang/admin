@@ -1,0 +1,65 @@
+{
+  "columns":[
+    { "prop":"id",
+      "label":"ID"
+    },
+    { "prop":"username",
+      "label":"帐号",
+      "sortable":true,
+      "disabled":true
+    },
+    { "prop":"truename",
+      "label":"姓名",
+      "sortable":true,
+      "disabled":true
+    },
+    { "prop":"part",
+      "label":"部门",
+      "sortable":true,
+      "disabled":true
+    },
+    {
+      "prop":"job",
+      "label":"职位",
+      "sortable":true,
+      "disabled":true
+    },
+    {
+      "prop":"role",
+      "label":"角色",
+      "sortable":true,
+      "disabled":true
+    },
+    {
+      "prop":"loginip",
+      "label":"登录IP",
+      "sortable":true,
+      "disabled":true
+    },
+    {
+      "prop":"logintime",
+      "label":"最近登录时间",
+      "sortable":true,
+      "disabled":true
+    },
+    {
+      "prop":"status",
+      "label":"状态",
+      "sortable":true,
+      "filters":[{ "text": "启用", "value": "1"}, { "text": "停用", "value": "0" }],
+      "disabled":true
+    },
+    {
+      "label":"操作",
+      "type":"button",
+      "width":"210px",
+      "disabled":true,
+      "btnGroup":[{"btnType":"text","label":"停用","fn":"doDisable","prop":"status","val":"1"},
+                  {"btnType":"text","label":"启用","fn":"doEnable","prop":"status","val":"0"},
+                  {"btnType":"text","label":"修改","fn":"doEdit","prop":"can_modified","val":"1"},
+                  {"btnType":"text","label":"删除","fn":"doDelete","prop":"can_modified","val":"1"},
+                  {"btnType":"text","label":"改密","fn":"doUpdatePass","prop":"can_modified","val":"1"},
+                  {"btnType":"text","label":"解绑M令牌","fn":"doUnbind", "prop":"is_bind", "val":"1"}
+      ]
+    }]
+}

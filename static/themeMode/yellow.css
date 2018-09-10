@@ -1,0 +1,158 @@
+@charset "utf-8";
+/*蓝色皮肤*/
+/* CSS Document */
+.pcddMain .header{background: #f59275;color:#F9FAFC;}/*顶部header字体和背景颜色*/
+
+/*顶部角标样式*/
+.el-badge__content {background-color: #F7BA2A;  color: #fff;}
+.pcddMain .header a{color:#F9FAFC;}/*顶部a的颜色*/
+.pcddMain .header .logo{background: #e2795c;color:#F9FAFC;}/*logo背景颜色和字体颜色*/
+/*横版导航效果*/
+/*横版导航效果*/
+.top_menu .submenu li a{background-color: #646A83;color:#F9FAFC;}
+.top_menu .submenu li a:hover{background: #f59275;color:#F9FAFC;}
+.top_menu .submenu li .router-link-active{background: #f59275;color:#F9FAFC;}
+
+.top_menu .menu > li>a{color:#fff;}
+.top_menu .menu >li .parentMenu:hover{color: #f59275;background:#fff;}
+/*左侧菜单hover效果*/
+.pcddMain .main .navLeft #leftMenu .nav-ul li a:hover,
+.pcddMain .main .navLeft #leftMenu .nav-slide-o li a:hover{ background-color: #f59275;  color:#F9FAFC;}
+/*左侧菜单背景颜色*/
+.pcddMain .main .navLeft{ background-color: #4f546a;}
+/*二级菜单展开背景颜色*/
+.pcddMain .main .navLeft #leftMenu, .pcddMain .main .navLeft .nav-slide-o{background-color: #646A83;}
+/*before样式*/
+.pcddMain .main .navLeft .nav-ul li a:before{background-color: #f59275;}
+.pcddMain .main .navLeft .nav-slide-o li a:before{background-color: #f59275;}
+/*左侧菜单字体颜色*/
+.pcddMain .main .navLeft #leftMenu .nav-ul li a,
+.pcddMain .main .navLeft #leftMenu .nav-slide-o li a{ color: #F9FAFC;}
+/*菜单选中样式*/
+.pcddMain .main .navLeft #leftMenu .bgStyle { background:#f59275; }
+.fontStyle{color:#fff !important;background:#f59275;}
+/*强行覆盖掉原来组件字体的样式*/
+.router-link-active{background:#f59275;}
+/*按钮主题皮肤*/
+.el-button:focus,.el-button:hover{color:#f59275;}/*#475669*/
+
+.el-button--primary {
+    color: #fff;
+    background-color: #f59275;
+    border-color: #f59275
+}
+.el-button--primary:focus, .el-button--primary:hover {
+    background: #C1725D;
+    border-color: #C1725D;
+    color: #fff
+}
+.el-button--primary.is-active, .el-button--primary:active {
+    background: #9C5D4C;
+    border-color: #9C5D4C;
+    color: #fff
+}
+.el-button--primary.is-plain {
+    background: #fff;
+    border: 1px solid #BFC1D9;
+    color: #1F213D;
+}
+.el-button--primary.is-plain:focus, .el-button--primary.is-plain:hover {
+    background: #fff;
+    border-color: #f59275;
+    color: #f59275
+}
+.el-button--primary.is-plain:active {
+    background: #fff;
+    border-color: #A66253;
+    color: #A66253;
+}
+/*-----------分割线------------*/
+/*select下拉选中,以及hover颜色*/
+.el-select-dropdown__item.selected.hover {
+    background-color: #f59275;
+}
+.el-select-dropdown__item.selected {
+    color: #fff;
+    background-color: #f59275
+}
+/*下拉选择的input边框颜色*/
+.el-select .el-input__inner:focus {
+    border-color: #f59275;
+}
+.el-input__inner:focus {
+    border-color: #f59275;
+}
+/*时间下拉选项的选中时间背景色*/
+.el-date-table td.current:not(.disabled), .el-date-table td.end-date, .el-date-table td.start-date {
+    background-color: #f59275 !important;
+    color: #fff;
+}
+.el-date-table td.today:before {
+    border-top: .5em solid #f59275;
+}
+/*今天的背景角颜色*/
+.el-date-table td.today {
+    color: #f59275;
+}
+/*textarea 多行文本域选中颜色主题*/
+.el-textarea__inner:focus {
+    border-color: #f59275
+}
+/*页码的主题*/
+.el-pager li.active {
+    border-color: #f59275;
+    background-color: #f59275;
+    color: #fff;
+}
+/*弹出框主题/皮肤公用样式*/
+.el-dialog .el-dialog__header{
+    background-color: #f59275;
+}
+.el-dialog__header {
+    background-color: #f59275;
+}
+
+.el-dialog__header .el-dialog__title {
+    color: #fff;
+}
+
+.el-dialog__header .el-dialog__close {
+    color: #fff;
+}
+
+.el-dialog__footer {
+    border-top: 1px solid #D3DCE6;
+}
+/*弹窗中的按钮样式 hover*/
+.el-button:focus, .el-button:hover {
+    /*color: #f59275;*/
+    border-color: #f59275
+}
+.formCancel:hover{
+    color: #f59275;
+}
+/*单选/多选的主题,switch的开关主题*/
+.el-radio__input.is-checked .el-radio__inner,
+.el-checkbox__input.is-checked .el-checkbox__inner,
+.el-switch__input:checked+.el-switch__core,
+.el-checkbox__input.is-indeterminate .el-checkbox__inner{border-color:#f59275;background:#f59275;}
+
+/*checkbox 的hover主题*/
+.el-checkbox__inner:hover{border-color:#f59275;}
+/*默认模板主题颜色*/
+.defutFont{color:#f59275;}
+/*网站管理的pc 和 mobile 的选中样式*/
+#mobile .cardCheck,#pc .cardCheck{background: #f59275;color:#fff;}
+#mobile .active,#pc  .active{border:2px solid #f59275;}
+/*s时间组件select*/
+.vdp-datepicker__calendar .cell.selected{background:#f59275;color:#fff;}
+.vdp-datepicker__calendar .cell.selected:hover{color:#f59275;}
+.vdp-datepicker__calendar .cell:not(.blank):not(.disabled).day:hover, .vdp-datepicker__calendar .cell:not(.blank):not(.disabled).month:hover, .vdp-datepicker__calendar .cell:not(.blank):not(.disabled).year:hover {
+    background-color: #e4e8f1;
+}
+/*时间主题*/
+.time-picker .dropdown ul li.active,
+li.active:hover {
+    background: #f59275;color:#fff;
+}
+

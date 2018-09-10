@@ -1,0 +1,20 @@
+{
+  "columns":[
+    { "prop":"cytype",
+      "label":"货币代码",
+      "width":"100",
+      "disabled":true
+    },
+    { "prop":"ctype",
+      "label":"货币名称",
+        "width":"100",
+      "disabled":true
+    },
+    { "prop":"status",
+      "label":"当前状态",
+      "disabled":true,
+        "width":"100",
+      "filters":[{ "text": "启用", "value": "1"}, { "text": "停用", "value": "0" }]
+    }
+  ]
+}

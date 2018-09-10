@@ -1,0 +1,69 @@
+{
+  "columns": [
+    {
+      "prop": "user_name",
+      "label": "用户名",
+      "sortable": true,
+      "disabled": true
+    },
+    {
+      "prop": "type",
+      "label": "类型",
+      "filters":[{ "text": "用户", "value": "user"}, { "text": "代理", "value": "agent" }],
+      "disabled": true
+    },
+    {
+      "prop": "game_name",
+      "label": "游戏平台",
+      "sortable": true,
+      "disabled": true
+    },
+    {
+      "prop": "bet_times",
+      "label": "总投注笔数",
+      "sortable": true,
+      "disabled": true,
+      "type":"link",
+      "fn":"openUser"
+    },
+    {
+      "prop": "bet_money",
+      "label": "总投注金额",
+      "sortable": true,
+      "disabled": true,
+      "type":"linkDivisionMoney",
+      "fn":"openUser"
+    },
+    {
+      "prop": "valid_bet",
+      "label": "总有效投注",
+      "sortable": true,
+      "disabled": true,
+      "type":"divisionMoney"
+    },
+    {
+      "prop": "bonus",
+      "label": "彩金",
+      "sortable": true,
+      "disabled": true,
+      "width":"150",
+      "type":"divisionMoney,fours"
+    },
+    {
+      "prop": "contri",
+      "label": "贡献",
+      "sortable": true,
+      "disabled": true,
+      "width":"150",
+      "type":"divisionMoney,fours"
+    },
+    {
+      "prop": "lose_earn",
+      "label": "输赢",
+      "sortable": true,
+      "disabled": true,
+      "setred": true,
+      "type":"divisionMoney"
+    }
+  ]
+}

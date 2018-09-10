@@ -1,0 +1,23 @@
+{
+  "columns": [
+    {
+      "prop": "game_name",
+      "label": "期数",
+      "sortable": true,
+      "disabled": true
+    },
+    {
+      "prop": "bet_times",
+      "label": "应交收金额",
+      "sortable": true,
+      "disabled": true
+    },
+    {
+      "prop": "bet_money",
+      "label": "状态",
+      "sortable": true,
+      "disabled": true
+
+    }
+  ]
+}
