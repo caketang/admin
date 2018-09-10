@@ -1,0 +1,42 @@
+{
+  "columns":[
+    { "prop":"id",
+      "label":"ID"
+    },
+    { "prop":"period_name",
+      "label":"期数名称",
+      "disabled":true,
+      "width":"200"
+    },
+    {
+      "prop":"start",
+      "label":"起始日期",
+       "width":"200",
+      "disabled":true
+    },
+    {
+      "prop":"end",
+      "label":"结束日期",
+       "width":"200",
+      "disabled":true
+    },
+    {
+      "prop":"status",
+      "label":"状态",
+      "width":"200",
+      "filters":[{"text": "未统计","value": "0"},{"text": "已统计","value": "1"}],
+      "disabled":true
+    },
+    {
+      "disabled":true,
+      "label":"操作",
+      "type":"button",
+      "width":"230",
+      "btnGroup":[
+        {"btnType": "text", "label": "统计", "fn": "doStat", "prop":"status","val":"0"},
+        {"btnType": "text", "label": "修改", "fn": "doEdit", "prop":"status","val":"0"},
+          {"btnType": "text", "label": "删除", "fn": "doDelete", "prop":"status","val":"0"},
+          {"btnType": "text", "label": "解锁", "fn": "doLock", "prop":"status","val":"1"}
+      ]
+    }]
+}

@@ -1,0 +1,24 @@
+{
+    "columns":[
+        {	"prop":"id",
+            "label":"",
+            "sortable":true
+        },
+        {	"prop":"username",
+            "label":"存款笔数",
+            "disabled":true
+        },
+        {	"prop":"username",
+            "label":"累计存款金额",
+            "disabled":true
+        },
+        {	"prop":"username",
+            "label":"停用金额",
+            "disabled":true
+        },
+        {	"prop":"username",
+            "label":"最后存款时间",
+            "disabled":true
+        }
+    ]
+}

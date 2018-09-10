@@ -1,0 +1,40 @@
+{
+    "columns":[
+        {	"prop":"id",
+            "label":"ID"
+        },
+        {	"prop":"name",
+            "label":"玩法名称",
+            "sortable":true
+        },
+        {	"prop":"sex",
+            "label":"当前赔率",
+            "disabled":true
+        },
+        {	"prop":"age",
+            "label":"最高赔率",
+            "disabled":true
+        },
+        {	"prop":"birth",
+            "label":"玩法开启",
+            "disabled":true
+        },{
+            "prop":"state",
+            "label":"单注最小",
+            "disabled":true
+        },
+        {	"prop":"addr",
+            "label":"单注最大",
+            "disabled":true
+        },
+        {	"prop":"tag",
+            "label":"单项最大",
+            "sortable":true,
+            "disabled":true
+        },
+        {	"prop":"sta",
+            "label":"单注最高派奖",
+            "disabled":true
+        }
+    ]
+}

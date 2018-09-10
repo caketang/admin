@@ -1,0 +1,37 @@
+{
+    "columns":[
+        {	"prop":"date",
+            "label":"发放时间",
+            "sortable":true,
+            "disabled":true
+        },
+        {	"prop":"user_name",
+            "label":"用户名",
+            "disabled":true,
+            "type":"link",
+            "fn":"openUserSet",
+            "disabled":true
+        },
+        {	"prop":"ranting",
+            "label":"会员等级",
+            "sortable":true,
+            "disabled":true
+        },
+        {	"prop":"active_name",
+            "label":"优惠活动名称",
+            "sortable":true,
+            "disabled":true
+        },
+        {	"prop":"type_name",
+            "label":"优惠类型",
+            "sortable":true,
+            "disabled":true
+        },
+        {	"prop":"money",
+            "label":"优惠金额",
+            "sortable":true,
+            "disabled":true,
+            "type":"divisionMoney"
+        }
+    ]
+}

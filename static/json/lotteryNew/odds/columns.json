@@ -1,0 +1,41 @@
+{
+    "columns":[
+        {	"prop":"id",
+            "label":"ID"
+        },
+        {	"prop":"result",
+            "label":"玩法名称",
+            "disabled":true
+        },
+        {	"prop":"t_desc",
+            "label":"模板描述",
+            "disabled":true
+        },
+        {	"prop":"t_status",
+            "label":"状态",
+            "disabled":true,
+            "filters":[{ "text": "启用", "value": "1"}, { "text": "停用", "value": "0" }],
+            "disabled":true
+        },
+        {	"prop":"inserted_at",
+            "label":"建立时间",
+            "disabled":true
+        },
+        {	"prop":"updated_at",
+            "label":"最后修改时间",
+            "disabled":true
+        },
+        {	"label":"操作",
+            "type":"button",
+            "width":"230px",
+            "disabled":true,
+            "btnGroup":[
+                {"btnType":"text","label":"复制新增","fn":"doCopyAdd"},
+                {"btnType":"text","label":"编辑","fn":"doEdit"},
+                {"btnType":"text","label":"设置赔率","fn":"doSetOdds"},
+                {"btnType":"text","label":"删除","fn":"doDelDate"},
+                {"btnType":"text","label":"启用","fn":"doEnable","prop":"t_status","val":"0"},
+                {"btnType":"text","label":"停用","fn":"doDisable","prop":"t_status","val":"1"}]
+        }
+    ]
+}

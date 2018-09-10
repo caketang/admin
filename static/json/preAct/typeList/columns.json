@@ -1,0 +1,51 @@
+{
+    "columns":[
+        {	"prop":"id",
+            "label":"序号",
+            "width": "100",
+            "disabled":true
+        },
+        {	"prop":"name",
+            "label":"优惠类型",
+            "width": "100",
+            "disabled":true
+        },
+        {	"prop":"description",
+            "label":"优惠类型描述",
+            "width": "200",
+            "disabled":true
+        },{
+            "prop": "created_uname",
+            "label": "创建人",
+            "width": "100",
+            "disabled": true
+        },
+        {
+            "prop":"sort",
+            "label":"排序",
+            "width": "100",
+            "disabled":true
+        },{
+            "prop":"created",
+            "label":"创建时间",
+            "width": "200",
+            "disabled":true
+        },
+        {
+            "prop":"updated",
+            "label":"最后修改时间",
+            "width": "200",
+            "disabled":true
+        },
+        {
+            "label":"操作",
+            "type":"button",
+            "width":"210",
+            "disabled":true,
+            "btnGroup":[
+                {"btnType":"text","label":"编辑","fn":"doEdit"},
+                {"btnType":"text","label":"删除","fn":"doDelete"}
+
+            ]}
+    ]
+}
