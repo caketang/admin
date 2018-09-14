@@ -10,12 +10,7 @@
             "disabled":true,
             "width":"150"
         },
-        {	"prop":"types",
-            "label":"所属优惠类型",
-            "type" : "connectArray",
-            "disabled":true,
-            "width":"150"
-        },
+
         {	"prop":"template_name",
           "label":"模板名称",
           "disabled":true,
