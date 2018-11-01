@@ -84,7 +84,7 @@
       "class": "tCent",
       "width":"120",
       "disabled": true,
-      "filters":[{"text":"启用","value": "enabled"},{"text":"停用","value": "disabled"}]
+      "filters":[{"text":"启用","value": "1"},{"text":"停用","value": "0"}]
     },
     {
       "label": "操作",
