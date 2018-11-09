@@ -79,7 +79,7 @@
       "disabled": true
     },
     {
-      "prop": "receive_bank_info,accountname,receive_bank,card,bank",
+      "prop": "receive_bank_info,accountname,receive_bank,card,bank,name",
       "label": "存入银行账号",
       "disabled": true,
       "width":"200",
@@ -145,13 +145,13 @@
       "width":"80",
       "disabled": true
     },
-    { 
-     
+    {
+
       "prop": "status",
       "label": "状态",
       "width": "80",
       "filters": [
-        { 
+        {
           "text": "已存入",
           "value": "paid"
         },
@@ -191,7 +191,7 @@
           "label": "详情",
           "fn": "doDetail"
         }
-        
+
       ]
     },
     {
