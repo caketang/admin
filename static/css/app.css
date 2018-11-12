@@ -202,12 +202,12 @@ a {
 
 /*用于定制input的宽度*/
 .intW {
-    width: 120px !important;
+    width: 140px !important;
 }
 
 /*定制dataInput的长度*/
 .intDataW {
-    width: 130px !important;
+    width: 140px !important;
 }
 
 /*table样式*/
