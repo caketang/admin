@@ -1,0 +1,56 @@
+{
+  "columns":[
+    { "prop":"date",
+      "label":"交易时间",
+      "sortable":true,
+      "type":"date",
+      "width":"300",
+      "disabled":true
+    },
+    { "prop":"money",
+      "label":"存款金额",
+      "disabled":true,
+      "type":"divisionMoney"
+    },
+    { "prop":"coupon_money",
+      "label":"优惠金额",
+      "disabled":true,
+      "sortable":true,
+      "type":"divisionMoney"
+    },
+    {
+      "prop":"valid_bet",
+      "label":"有效投注额",
+      "type":"linkDivisionMoney",
+      "fn":"showCommissionProportion",
+      "disabled":true
+    },
+    {
+      "prop":"withdraw_bet_principal",
+      "label":"常态打码量",
+      "disabled":true
+    },
+    {
+      "prop":"withdraw_bet_coupon",
+      "label":"优惠打码量",
+      "disabled":true
+    },
+    { "prop":"is_pass",
+      "label":"是否达到投注",
+      "sortable":true,
+      "disabled":true,
+      "filters":[{ "text": "是", "value":true}, { "text": "否", "value": false }]
+    },
+    { "prop":"deduct_coupon",
+      "label":"扣优惠",
+      "disabled":true,
+      "sortable":true,
+      "type":"divisionMoney"
+    },
+    { "prop":"deduct_admin_fee",
+      "label":"扣除行政费",
+      "disabled":true,
+      "sortable":true,
+      "type":"divisionMoney"
+    }]
+}

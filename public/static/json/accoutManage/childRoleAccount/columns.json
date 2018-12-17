@@ -1,0 +1,31 @@
+{
+  "columns":[
+    { "prop":"id",
+      "label":"ID"
+    },
+    { "prop":"role",
+      "label":"角色",
+      "disabled":true
+    },
+    { "prop":"num",
+      "label":"人数",
+      "disabled":true
+    },
+    { "prop":"addtime",
+      "label":"修改时间",
+      "disabled":true
+    },
+    {
+      "prop":"operator",
+      "label":"操作者",
+      "disabled":true
+    },
+    {
+      "label":"操作",
+      "type":"button",
+      "disabled":true,
+      "btnGroup":[{
+        "btnType":"text","label":"编辑","fn":"doEdit", "prop":"id","equal":false,"val":"1","valNum":"1"
+      },{"btnType":"text","label":"删除","fn":"doDelete", "prop":"num","val":"0"}]
+    }]
+}

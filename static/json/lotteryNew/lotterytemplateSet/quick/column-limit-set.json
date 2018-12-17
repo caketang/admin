@@ -1,0 +1,27 @@
+{
+  "columns":[
+    { "prop":"gxks",
+      "label":"广西快三"
+    },
+    { "prop":"dxgb",
+      "label":"大小骰宝",
+      "number":true
+    },
+    { "prop":"wgqg",
+      "label":"围骰全骰",
+      "number":true
+    },
+    { "prop":"ds",
+      "label":"点数",
+      "number":true
+    },
+    { "prop":"cp",
+      "label":"长牌",
+      "number":true
+    },
+    { "prop":"dp",
+      "label":"短牌",
+      "number":true
+    }
+  ]
+}

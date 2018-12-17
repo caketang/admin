@@ -1,0 +1,356 @@
+{
+  "routes": [
+    {
+      "path": "index",
+      "name": "网站管理",
+      "children":[
+        {
+          "path": "mobile",
+          "name": "移动版"
+        },
+        {
+          "path": "pc",
+          "name": "电脑版"
+        },
+        {
+          "path": "ADList",
+          "name": "轮播广告"
+        },
+        {
+          "path": "ADHome",
+          "name": "说明文字管理"
+        },
+        {
+          "path": "proxyCopy",
+          "name": "代理文案"
+        },
+        {
+          "path": "depositCopy",
+          "name": "存款文案"
+        },
+        {
+          "path": "ckManage",
+          "name": "浮动图管理"
+        },
+        {
+          "path": "promotionalResources",
+          "name": "推广资源"
+        },
+        {
+          "path": "registerSet",
+          "name": "注册设置"
+        },
+        {
+          "path": "webSet",
+          "name": "站点设置"
+        },
+        {
+          "path": "sysMessage",
+          "name": "消息"
+        },
+        {
+          "path": "notice",
+          "name": "消息管理"
+        }
+      ]
+    },
+    {
+      "path": "index",
+      "name": "营销系统",
+      "children": [
+        {
+          "path": "apply",
+          "name": "申请审核"
+        },
+        {
+          "path": "typeList",
+          "name": "活动类型"
+        },
+        {
+          "path": "activeSet",
+          "name": "活动模板"
+        },
+        {
+          "path": "addActiveSet",
+          "name": "创建活动模板"
+        },
+        {
+          "path": "contentManagement",
+          "name": "活动列表"
+        },
+        {
+          "path": "discountQuery",
+          "name": "返水查询"
+        },
+        {
+          "path": "discountSetting",
+          "name": "返水设定"
+        }
+      ]
+    },
+    {
+      "path": "index",
+      "name": "游戏管理",
+      "children": [
+        {
+          "path": "lotteryModel",
+          "name": "彩票模板管理"
+        },
+        {
+          "path": "lotterModelSet",
+          "name": "彩票模板设置"
+        },
+        {
+          "path": "lotterInstantNote",
+          "name": "彩票即时注单"
+        },
+        {
+          "path": "lotterSingleNote",
+          "name": "彩票注单管理"
+        },
+        {
+          "path": "lotterPeriodManagement",
+          "name": "彩期管理"
+        },
+        {
+          "path": "lotteryResults",
+          "name": "开奖结果"
+        }
+      ]
+    },
+    {
+      "path": "index",
+      "name": "风险控制",
+      "children": [
+        {
+          "path": "strategy",
+          "name": "注单监控"
+        },
+        {
+          "path": "timeLimit",
+          "name": "实时限号"
+        },
+        {
+          "path": "autoDrop",
+          "name": "自动降赔"
+        },
+        {
+          "path": "autoPolice",
+          "name": "自动报警"
+        },
+        {
+          "path": "ipBlacklist",
+          "name": "自动报警"
+        }
+      ]
+    },
+    {
+      "path": "index",
+      "name": "用户管理",
+      "children": [
+        {
+          "path": "memberManagement",
+          "name": "会员管理"
+        },
+        {
+          "path": "memberHierarchy",
+          "name": "会员层级"
+        },
+        {
+          "path": "memberLabel",
+          "name": "会员标签"
+        },
+        {
+          "path": "idleAccount",
+          "name": "闲置帐号列表"
+        },
+        {
+          "path": "loginAccount",
+          "name": "登录查询"
+        },
+        {
+          "path": "otherGameAccount",
+          "name": "第三方游戏帐户"
+        },
+        {
+          "path": "agentAccount",
+          "name": "代理管理"
+        },
+        {
+          "path": "childAccount",
+          "name": "管理员列表"
+        },
+        {
+          "path": "childRoleAccount",
+          "name": "管理员权限"
+        },
+        {
+          "path": "duplicateAccount",
+          "name": "重复账号"
+        }
+      ]
+    },
+    {
+      "path": "index",
+      "name": "注单系统",
+      "children": [
+        {
+          "path": "noteManagement",
+          "name": "注单查询"
+        },
+        {
+          "path": "chaseNumber",
+          "name": "追号记录"
+        }
+      ]
+    },
+    {
+      "path": "index",
+      "name": "现金系统",
+      "children": [
+        {
+          "path": "bankManagement",
+          "name": "银行管理"
+        },
+        {
+          "path": "otherPayment",
+          "name": "第三方支付"
+        },
+        {
+          "path": "receivableBank",
+          "name": "收款帐户"
+        },
+        {
+          "path": "onLineReceipts",
+          "name": "线上充值"
+        },
+        {
+          "path": "offlineReceipts",
+          "name": "转帐汇款"
+        },
+        {
+          "path": "memberGetOut",
+          "name": "提现记录"
+        },
+        {
+          "path": "payment",
+          "name": "批量转款"
+        },
+        {
+          "path": "orderDate",
+          "name": "交易数据"
+        },
+        {
+          "path": "manual",
+          "name": "余额管理"
+        },
+        {
+          "path": "fundDetails",
+          "name": "流水记录"
+        },
+        {
+          "path": "transferRecord",
+          "name": "转帐记录"
+        }
+      ]
+    },
+    {
+      "path": "index",
+      "name": "佣金系统",
+      "children": [
+        {
+          "path": "commissionFeeset",
+          "name": "手续费"
+        },
+        {
+          "path": "commissionSet",
+          "name": "退佣比例"
+        },
+        {
+          "path": "agentSettlementSet",
+          "name": "下级抽成"
+        },
+        {
+          "path": "refundCommissionPeriod",
+          "name": "退佣期数"
+        },
+        {
+          "path": "commissionIncomeQuery",
+          "name": "退佣查询"
+        },
+        {
+          "path": "subAgentRebate",
+          "name": "下级佣金统计"
+        },
+        {
+          "path": "agencyStatistics",
+          "name": "流水统计"
+        },
+        {
+          "path": "agentDrawing",
+          "name": "提现审核"
+        }
+      ]
+    },
+    {
+      "path": "index",
+      "name": "数据统计",
+      "children": [
+        {
+          "path": "sumStatement",
+          "name": "总报表"
+        },
+        {
+          "path": "playerStatement",
+          "name": "玩家报表"
+        },
+        {
+          "path": "gameStatement",
+          "name": "游戏报表"
+        },
+        {
+          "path": "preActStatement",
+          "name": "优惠报表"
+        },
+        {
+          "path": "fundDetailsSummary",
+          "name": "出入款汇总"
+        },
+        {
+          "path": "memberBalance",
+          "name": "余额汇总"
+        }
+      ]
+    },
+    {
+      "path": "index",
+      "name": "系统管理",
+      "children": [
+        {
+          "path": "sysLog",
+          "name": "后台操作日志"
+        },
+        {
+          "path": "operationLog",
+          "name": "会员操作日志"
+        },
+        {
+          "path": "fieldSettings",
+          "name": "运行状态"
+        },
+        {
+          "path": "emailList",
+          "name": "系统邮件"
+        },
+        {
+          "path": "emailMode",
+          "name": "邮件"
+        },
+        {
+          "path": "currencySettings",
+          "name": "货币设定"
+        }
+      ]
+    }
+  ]
+}

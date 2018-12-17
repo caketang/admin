@@ -1,0 +1,53 @@
+{
+  "columns":[
+    { "prop":"username",
+      "label":"用户名",
+      "width":"100",
+      "disabled":true
+    },
+    { "prop":"truename",
+      "label":"真实姓名",
+      "width":"100",
+      "disabled":true
+    },
+    { "prop":"register_ip",
+      "label":"注册IP",
+       "width":"150",
+      "disabled":true
+    },
+    { "prop":"login_ip",
+      "label":"登录IP",
+       "width":"150",
+      "disabled":true
+    },
+    { "prop":"password",
+      "label":"密码",
+       "width":"150",
+      "disabled":true
+    },
+    { "prop":"email",
+      "label":"邮箱",
+       "width":"150",
+      "disabled":true
+    },
+    { "prop":"qq",
+      "label":"QQ",
+       "width":"150",
+      "disabled":true
+    },
+    { "prop":"wechat",
+      "label":"微信",
+       "width":"150",
+      "disabled":true
+    },
+    { "prop":"city",
+      "label":"城市",
+       "width":"150",
+      "disabled":true
+    },
+    { "prop":"score",
+      "label":"得分",
+      "disabled":true
+    }
+  ]
+}

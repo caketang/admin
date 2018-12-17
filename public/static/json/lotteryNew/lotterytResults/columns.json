@@ -1,0 +1,41 @@
+{
+    "columns":[
+        {
+            "prop":"id",
+            "label":"ID"
+        },
+        {	"prop":"lottery_name",
+            "label":"彩票名称",
+            "width":"200",
+            "disabled":true
+        },
+        {	"prop":"lottery_number",
+            "label":"期号",
+            "width":"200",
+            "sortable":"true",
+            "disabled":true
+        },
+        {	"prop":"catch_time",
+            "label":"抓取时间",
+            "width":"200",
+            "disabled":true
+        },
+        {
+            "prop":"period_code",
+            "label":"开奖号码",
+            "width":"200",
+            "fontweight":"true",
+            "disabled":true
+        },{
+            "prop":"state",
+            "label":"开奖状态",
+            "width":"200",
+            "filters":[{"value":"send","text":"已派奖"},
+                    {"value":"stop","text":"停售"},
+                    {"value":"open","text":"已开奖"},
+                    {"value":"valid","text":"有效"},
+                    {"value":"","text":"未开奖"}],
+            "disabled":true
+        }
+    ]
+}

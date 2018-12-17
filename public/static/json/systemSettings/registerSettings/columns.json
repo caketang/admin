@@ -1,0 +1,22 @@
+{
+  "columns":[
+    { "prop":"item",
+      "label":"注册内容",
+      "disabled":true
+    },
+    { "prop":"visibility",
+      "label":"是否显示",
+      "disabled":true,
+      "checkbox":true
+    },
+    { "prop":"necessity",
+      "label":"是否必填",
+      "disabled":true,
+      "checkbox":true
+    },
+    { "prop":"validate",
+      "label":"是否验证",
+      "disabled":true,
+      "checkbox":true
+    }]
+}

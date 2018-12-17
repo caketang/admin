@@ -1,0 +1,106 @@
+{
+    "columns":[
+        {	"prop":"username",
+            "label":"用户名",
+            "fn":"openUserInformation",
+            "disabled":true,
+            "sortable":true,
+            "type":"link",
+            "width": 150
+        },
+        {   "prop":"user_type",
+            "label":"体系",
+            "width":"120",
+            "filters":[{ "text": "用户", "value": "1"}, { "text": "代理", "value": "2"}],
+            "disabled":true
+        },
+        {	"prop":"wallet_type_name",
+            "label":"钱包类型",
+            "sortable":true,
+            "disabled":true,
+            "width": 150
+        },
+        {	"prop":"adjust_type",
+            "label":"调整类型",
+            "sortable":true,
+            "disabled":true,
+            "width": 180
+        },
+        {
+            "prop": "balance",
+            "label": "调整金额",
+            "sortable": true,
+            "type":"divisionMoney",
+            "disabled": true,
+            "width": 150
+        },
+        {
+            "prop": "coupon_money",
+            "label": "优惠/返水",
+            "sortable": true,
+            "type":"divisionMoney",
+            "disabled": true,
+            "width": 150
+        },
+        {
+            "prop":"balance_before",
+            "label":"调整前金额",
+             "type":"divisionMoney",
+            "sortable":true,
+            "disabled":true,
+            "width": 150
+        },{
+            "prop":"balance_after",
+            "label":"调整后金额",
+            "type":"divisionMoney",
+            "sortable":true,
+            "disabled":true,
+            "width": 150
+        },
+        {
+            "prop":"withdraw_bet_principal",
+            "label":"常态打码量",
+            "type":"linkConnectAdd",
+            "sortable":true,
+            "disabled":true,
+            "width": 150,
+            "fn": "updateNormality"
+        },
+        {
+            "prop":"withdraw_bet_coupon",
+            "label":"优惠打码量",
+            "type":"linkConnectAdd",
+            "sortable":true,
+            "disabled":true,
+            "width": 150,
+            "fn": "updateDiscount"
+        },
+        {
+            "prop":"admin_user",
+            "label":"操作人",
+            "sortable":true,
+            "disabled":true,
+            "width": 150
+        },
+        {
+            "prop":"operation_time",
+            "label":"操作时间",
+            "sortable":true,
+            "disabled":true,
+            "width": 200
+        },{
+            "prop":"memo",
+            "label":"备注",
+            "sortable":true,
+            "disabled":true,
+            "width": 200
+        },
+        {
+            "label":"操作",
+            "type":"button",
+            "width":"180",
+            "disabled":true,
+            "btnGroup":[{"btnType":"text","label":"写备注","fn":"doWriteRemarks"}]
+        }
+    ]
+}

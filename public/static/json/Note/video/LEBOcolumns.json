@@ -1,0 +1,55 @@
+{
+    "columns":[
+        {	"prop":"user_name",
+            "label":"会员帐号",
+            "disabled":true,
+            "type":"link",
+            "width":"100",
+            "fn":"openMember"
+        },
+        {	"prop":"agent_name",
+            "label":"上级代理",
+             "width":"100",
+            "disabled":true
+        },
+        {	"prop":"account",
+            "label":"第三方帐号",
+             "width":"100",
+            "disabled":true
+        },
+        {	"prop":"date",
+            "label":"投注时间",
+             "width":"200",
+            "disabled":true
+        },
+        {	"prop":"order_number",
+            "label":"注单号",
+             "width":"200",
+            "disabled":true
+        },
+        {
+            "prop":"game_name",
+            "label":"游戏名称",
+             "width":"100",
+            "disabled":true
+        },
+       {	"prop":"money",
+            "label":"投注金额",
+             "width":"150",
+            "type":"divisionMoney",
+            "disabled":true
+        },
+        {	"prop":"valid_money",
+            "label":"有效投注",
+             "width":"150",
+             "type":"divisionMoney",
+            "disabled":true
+        },
+        {	"prop":"win_loss",
+            "label":"输赢",
+             "width":"100",
+             "type":"divisionMoney",
+            "disabled":true
+        }
+    ]
+}

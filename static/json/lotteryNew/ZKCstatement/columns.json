@@ -1,0 +1,82 @@
+{
+    "columns": [
+        {
+            "prop": "id",
+            "label": "ID"
+        },
+        {
+            "prop": "lottery_number",
+            "label": "期号",
+            "width": "200",
+            "disabled": true
+        },
+        {
+            "prop": "start_time",
+            "label": "销售开始时间",
+            "width": "200",
+            "disabled": true
+        },
+        {
+            "prop": "end_time",
+            "label": "销售结束时间",
+            "width": "200",
+            "disabled": true
+        },
+        {
+            "prop": "lottery_open_type",
+            "label": "开奖方式",
+            "width": "200",
+            "disabled": true,
+            "filters":[{"text":"杀率控制", "value": "1"},{"text":"随机控制", "value": "2"}]
+
+        },
+        {
+            "prop": "user_id_count",
+            "label": "投注人数",
+            "width": "200",
+            "disabled": true
+        },
+        {
+            "prop": "bet_num_sum",
+            "label": "投注笔数",
+            "width": "200",
+            "disabled": true
+        },
+        {
+            "prop": "earn_money_count",
+            "label": "中奖笔数",
+            "width": "200",
+            "disabled": true
+        },
+        {
+            "prop": "pay_money_sum",
+            "label": "投注金额",
+            "width": "200",
+            "disabled": true
+        },
+        {
+            "prop": "valid_bet_sum",
+            "label": "有效投注",
+            "width": "200",
+            "disabled": true
+        },
+        {
+            "prop": "earn_money_sum",
+            "label": "中奖金额",
+            "width": "200",
+            "disabled": true
+        },
+        {
+            "prop": "winORfail",
+            "label": "输赢金额",
+            "width": "200",
+            "disabled": true
+        },
+        {
+            "prop": "refundRate",
+            "label": "反奖率（%）",
+            "width": "200",
+            "disabled": true
+        }
+    ]
+}

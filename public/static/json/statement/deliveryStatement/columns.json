@@ -1,0 +1,31 @@
+{
+  "columns": [
+    {
+      "prop": "id",
+      "label": "期数",
+      "disabled": false
+    },
+    {
+      "prop": "period_number",
+      "label": "期数",
+      "width":"200",
+      "disabled": true
+    },
+    {
+      "prop": "receivable",
+      "label": "总应缴纳金额",
+      "type":"linkDivisionMoney",
+      "width":"200",
+      "fn":"toDeliveDetail",
+      "disabled": true
+    },
+    {
+      "prop": "status",
+      "label": "状态",
+      "width":"200",
+      "filters":[{ "text": "未付款", "value": "pending"}, { "text": "已付款", "value": "paid"}],
+      "disabled": true
+
+    }
+  ]
+}

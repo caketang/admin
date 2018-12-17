@@ -1,0 +1,78 @@
+{
+  "columns":[
+    { "prop":"name",
+      "label":"层级名称"
+    },
+    { "prop":"memo",
+      "label":"描述",
+      "sortable":true
+    },
+    {
+      "prop":"register_stime,register_etime",
+      "label":"会员加入时间",
+      "sortable":true,
+      "type":"data,connect"
+    },
+    {
+      "prop":"deposit_stime,deposit_etime",
+      "label":"存款时间",
+      "sortable":true,
+      "type":"data,connect"
+    },
+    {
+      "prop":"deposit_min,deposit_max",
+      "label":"区间存款总额",
+      "sortable":true,
+      "type":"connect",
+      "delimiter":"-"
+    },
+    { "prop":"deposit_times",
+      "label":"存款次数",
+      "sortable":true
+    },
+    {
+      "prop":"deposit_money",
+      "label":"存款总额",
+      "sortable":true,
+      "type":"divisionMoney"
+    },
+    { "prop":"max_deposit_money",
+      "label":"最大存款额",
+      "disabled":true,
+      "type":"divisionMoney"
+    },
+    { "prop":"withdraw_times",
+      "label":"提款次数",
+      "disabled":true
+    },
+    { "prop":"withdraw_count",
+      "label":"提款总额",
+      "disabled":true,
+      "type":"divisionMoney"
+    },
+    { "prop":"num",
+      "label":"会员人数",
+      "type":"link",
+      "fn":"doSeatchMember",
+      "sortable":true,
+      "disabled":true,
+      "width": "100"
+    },
+    { "prop":"comment",
+      "label":"备注",
+      "sortable":true
+    },
+    {
+      "label":"操作",
+      "type":"button",
+      "width":"210px",
+      "class":"tCent",
+      "disabled":true,
+      "btnGroup":[{"btnType":"text","label":"分层","fn":"doReject","prop":"name","val":"未分层"},
+                  {"btnType":"text","label":"回归","fn":"doAudit","prop":"name","val":"未分层","config":"notEqual"},
+                  {"btnType":"text","label":"编辑","fn":"doEdit","prop":"name","val":"未分层"},
+                  {"btnType":"text","label":"设定","fn":"doSet"},
+                  {"btnType":"text","label":"删除","fn":"doDelete"},
+                  {"btnType":"text","label":"限额","fn":"doLimitLines"}]
+    }]
+}

@@ -1,0 +1,102 @@
+{
+  "columns":[
+    { "prop":"name",
+      "label":"代理帐号",
+      "width": "130",
+      "sortable":true,
+      "disabled":true
+    },
+    { "prop":"truename",
+      "label":"真实姓名",
+      "width": "100",
+      "sortable":true,
+      "disabled":true
+    },
+    { "prop":"type",
+      "label":"类型",
+      "width":"100",
+       "filters":[{ "text": "层级代理", "value": 1}, { "text": "直属代理", "value": 2}],
+      "sortable":true,
+      "disabled":true
+    },
+    { "prop":"pname",
+      "label":"上级代理",
+      "width":"100",
+      "disabled":true
+    },
+    { "prop":"level",
+      "label":"代理层级",
+      "width": "100",
+      "class":"tCent",
+      "sortable":true,
+      "disabled":true
+    },
+    { "prop":"inferisors_num",
+      "label":"下级代理数",
+      "disabled":true,
+      "width": "120",
+      "type":"link",
+      "fn":"openAgentInformation"
+    },
+    { "prop":"play_num",
+      "label":"会员数",
+      "disabled":true,
+      "width": "100",
+      "type":"link",
+      "fn":"openMember"
+    },
+    {
+      "prop":"balance",
+      "label":"帐户余额",
+      "width": "150",
+      "class":"tCent",
+      "type":"divisionMoney",
+      "sortable":true,
+      "disabled":true
+    },
+    {
+      "prop":"code",
+      "label":"推广码",
+      "width": "100",
+      "sortable":true,
+      "disabled":true
+    },
+    { "prop":"created",
+      "label":"注册时间",
+      "sortable":true,
+      "width":"190",
+      "type":"date",
+      "disabled":true
+    },
+    {
+      "prop":"channel",
+      "label":"注册来源",
+      "filters":[{ "text": "H5注册", "value": "1"}, { "text": "PC注册", "value": "2"},{"text":"厅主后台创建", "value": "3"},{"text": "代理后台创建", "value": "4"}],
+      "width": "150",
+      "disabled":true
+    },
+    { "prop":"online",
+      "label":"在线状态",
+      "sortable":true,
+      "width": "100",
+      "filters":[{ "text": "在线", "value": 1}, { "text": "离线", "value": 0}],
+      "disabled":true
+    },
+    { "prop":"status",
+      "label":"帐号状态",
+      "sortable":true,
+        "width": "100",
+      "filters":[{ "text": "未审核", "value": 0}, { "text": "启用", "value": 1 }, { "text": "拒绝", "value": 2 }, { "text": "停用", "value": 3 }],
+      "disabled":true
+    },
+    {
+      "label":"操作",
+      "type":"button",
+      "width":"150",
+      "disabled":true,
+      "btnGroup":[
+        {"btnType":"text","label":"资料","fn":"doDetial"},
+        {"btnType":"text","label":"启用","fn":"doEnable","prop":"status","val":3},
+        {"btnType":"text","label":"停用","fn":"doDisable","prop":"status","val":1}]
+    }]
+}

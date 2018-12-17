@@ -1,0 +1,54 @@
+{
+    "columns": [
+        {
+            "prop": "id",
+            "label": "ID"
+        },
+        {
+            "prop": "lottery_number",
+            "label": "期号",
+            "width": "200",
+            "disabled": true
+        },
+        {
+            "prop": "preset_code",
+            "label": "预设彩果",
+            "width": "200",
+            "disabled": true
+        },
+        {
+            "prop": "manual_code",
+            "label": "手动开奖号码",
+            "width": "200",
+            "disabled": true
+        },
+        {
+            "prop": "start_time,end_time",
+            "label": "开盘/封盘时间",
+            "width": "200",
+            "class": "tCent",
+            "delimiter":"/",
+            "type":"data",
+            "disabled": true
+        },
+        {
+            "prop": "official_time",
+            "label": "开奖时间",
+            "width": "200",
+            "disabled": true
+        },
+        {
+            "label": "操作",
+            "type": "button",
+            "width": "210",
+            "disabled": true,
+            "btnGroup": [
+                {
+                    "btnType": "text",
+                    "label": "预设彩果",
+                    "fn": "doEdit"
+                }
+            ]
+        }
+    ]
+}

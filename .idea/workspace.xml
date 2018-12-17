@@ -1,0 +1,1148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+<<<<<<< HEAD
+    <list default="true" id="efaac2d8-7c80-4af2-9cb7-2c914464777d" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/memberHierarSet.vue" afterPath="$PROJECT_DIR$/src/components/memberHierarSet.vue" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/memberHierarchy_table.vue" afterPath="$PROJECT_DIR$/src/components/memberHierarchy_table.vue" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/tableGrid.vue" afterPath="$PROJECT_DIR$/src/components/tableGrid.vue" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/page/ADManage/proxyCopy.vue" afterPath="$PROJECT_DIR$/src/page/ADManage/proxyCopy.vue" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/page/userManagement/memberHierarchy.vue" afterPath="$PROJECT_DIR$/src/page/userManagement/memberHierarchy.vue" />
+    </list>
+=======
+<<<<<<< HEAD
+    <list default="true" id="efaac2d8-7c80-4af2-9cb7-2c914464777d" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/src/components/markdownEdit.vue" afterPath="$PROJECT_DIR$/src/components/markdownEdit.vue" />
+      <change beforePath="$PROJECT_DIR$/src/components/memberHierarSet.vue" afterPath="$PROJECT_DIR$/src/components/memberHierarSet.vue" />
+      <change beforePath="$PROJECT_DIR$/src/components/memberHierarchy_table.vue" afterPath="$PROJECT_DIR$/src/components/memberHierarchy_table.vue" />
+      <change beforePath="$PROJECT_DIR$/src/page/strategy/ipBlacklist.vue" afterPath="$PROJECT_DIR$/src/page/strategy/ipBlacklist.vue" />
+      <change beforePath="$PROJECT_DIR$/src/page/userManagement/childRoleAccount.vue" afterPath="$PROJECT_DIR$/src/page/userManagement/childRoleAccount.vue" />
+    </list>
+=======
+    <list default="true" id="efaac2d8-7c80-4af2-9cb7-2c914464777d" name="Default" comment="" />
+>>>>>>> master
+>>>>>>> master
+    <ignored path="$PROJECT_DIR$/.tmp/" />
+    <ignored path="$PROJECT_DIR$/temp/" />
+    <ignored path="$PROJECT_DIR$/tmp/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="tableGrid.vue" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/tableGrid.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="253">
+              <caret line="1427" column="43" lean-forward="false" selection-start-line="1427" selection-start-column="28" selection-end-line="1427" selection-end-column="43" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ipBlacklist.vue" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/page/strategy/ipBlacklist.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="253">
+              <caret line="368" column="29" lean-forward="true" selection-start-line="368" selection-start-column="29" selection-end-line="368" selection-end-column="29" />
+              <folding>
+                <element signature="e#16174#16339#0" expanded="false" />
+                <element signature="e#16343#16458#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+<<<<<<< HEAD
+      <file leaf-file-name="tableGrid.vue" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/components/tableGrid.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-142">
+              <caret line="1730" column="20" lean-forward="false" selection-start-line="1730" selection-start-column="20" selection-end-line="1730" selection-end-column="20" />
+              <folding>
+                <element signature="n#style#0;n#el-col#0;n#div#0;n#el-card#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="e#42251#48942#0" expanded="false" />
+                <element signature="e#59754#61370#0" expanded="false" />
+              </folding>
+=======
+      <file leaf-file-name="memberHierarchy.vue" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/page/userManagement/memberHierarchy.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="11616">
+              <caret line="1032" column="22" lean-forward="true" selection-start-line="1032" selection-start-column="22" selection-end-line="1032" selection-end-column="22" />
+              <folding />
+>>>>>>> master
+            </state>
+          </provider>
+        </entry>
+      </file>
+<<<<<<< HEAD
+      <file leaf-file-name="memberHierarchy.vue" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/page/userManagement/memberHierarchy.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1554">
+              <caret line="74" column="44" lean-forward="false" selection-start-line="74" selection-start-column="29" selection-end-line="74" selection-end-column="44" />
+              <folding>
+                <element signature="n#style#0;n#li#1;n#ul#0;n#div#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="e#6563#6635#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="memberHierarSet.vue" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/memberHierarSet.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="966">
+              <caret line="46" column="31" lean-forward="false" selection-start-line="46" selection-start-column="20" selection-end-line="46" selection-end-column="31" />
+              <folding>
+                <element signature="e#2885#2924#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="memberHierarchy_table.vue" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/memberHierarchy_table.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="4557">
+              <caret line="217" column="52" lean-forward="true" selection-start-line="217" selection-start-column="52" selection-end-line="217" selection-end-column="52" />
+=======
+      <file leaf-file-name="memberHierarchy_table.vue" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/memberHierarchy_table.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2167">
+              <caret line="315" column="47" lean-forward="true" selection-start-line="315" selection-start-column="47" selection-end-line="315" selection-end-column="47" />
+>>>>>>> master
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="childRoleAccount.vue" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/page/userManagement/childRoleAccount.vue">
+          <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+            <state relative-caret-position="4998">
+              <caret line="239" column="14" lean-forward="true" selection-start-line="222" selection-start-column="12" selection-end-line="239" selection-end-column="14" />
+=======
+<<<<<<< HEAD
+            <state relative-caret-position="-9651">
+              <caret line="641" column="45" lean-forward="false" selection-start-line="641" selection-start-column="45" selection-end-line="641" selection-end-column="45" />
+=======
+            <state relative-caret-position="1150">
+              <caret line="221" column="22" lean-forward="false" selection-start-line="221" selection-start-column="22" selection-end-line="221" selection-end-column="22" />
+>>>>>>> master
+>>>>>>> master
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="proxyCopy.vue" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/page/ADManage/proxyCopy.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-6002">
+              <caret line="227" column="33" lean-forward="false" selection-start-line="227" selection-start-column="33" selection-end-line="227" selection-end-column="33" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>doQuery</find>
+      <find>isInit</find>
+      <find>Datainit</find>
+      <find>updateDate</find>
+      <find>updated</find>
+      <find>getDateVal</find>
+      <find>object</find>
+      <find>所有层级</find>
+      <find>doAdd</find>
+      <find>intW</find>
+      <find>getForm</find>
+      <find>commission/level</find>
+      <find>GET.level</find>
+      <find>GET.commission</find>
+      <find>offlines</find>
+      <find>this.autoTable</find>
+      <find>autoTable</find>
+      <find>page</find>
+      <find>proxyCopy</find>
+      <find>p</find>
+<<<<<<< HEAD
+      <find>this</find>
+      <find>get</find>
+      <find>..</find>
+      <find>DVDFab Media Player</find>
+      <find>columnsUrl</find>
+      <find>doSelsect</find>
+      <find>confirmConfig</find>
+      <find>doConfirm</find>
+      <find>changes</find>
+=======
+      <find>urlconfig</find>
+>>>>>>> master
+    </findStrings>
+    <dirStrings>
+      <dir>$PROJECT_DIR$/src/components</dir>
+    </dirStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+<<<<<<< HEAD
+        <option value="$PROJECT_DIR$/src/page/userManagement/memberManagement/withdrawInformation.vue" />
+        <option value="$PROJECT_DIR$/src/components/newTree.vue" />
+=======
+>>>>>>> master
+        <option value="$PROJECT_DIR$/src/page/lottey/lotterSort.vue" />
+        <option value="$PROJECT_DIR$/src/page/instantNote/chaseNumber.vue" />
+        <option value="$PROJECT_DIR$/src/page/instantNote/noteManagement.vue" />
+        <option value="$PROJECT_DIR$/src/components/notesQuery.vue" />
+        <option value="$PROJECT_DIR$/src/page/instantNote/MarkSixQuery.vue" />
+        <option value="$PROJECT_DIR$/src/page/systemSettings/fieldSettings.vue" />
+        <option value="$PROJECT_DIR$/static/json/statement/sumStatement/membercolumns.json" />
+        <option value="$PROJECT_DIR$/src/page/statement/sumStatecom/memberDetail.vue" />
+        <option value="$PROJECT_DIR$/src/page/statement/sumStatecom/reportForms.vue" />
+        <option value="$PROJECT_DIR$/src/page/statement/gameStatement.vue" />
+        <option value="$PROJECT_DIR$/src/page/index/messageNotification.vue" />
+        <option value="$PROJECT_DIR$/src/page/userManagement/memberManagement/memberSet.vue" />
+        <option value="$PROJECT_DIR$/src/page/agent/commissionFeeset.vue" />
+        <option value="$PROJECT_DIR$/src/page/agent/commissionSet.vue" />
+        <option value="$PROJECT_DIR$/src/page/agent/refundCommissionPeriod.vue" />
+        <option value="$PROJECT_DIR$/src/page/agent/subAgentRebate.vue" />
+        <option value="$PROJECT_DIR$/src/page/agent/agentLink.vue" />
+        <option value="$PROJECT_DIR$/src/page/index/indexEcharts.vue" />
+        <option value="$PROJECT_DIR$/src/page/login/Login.vue" />
+        <option value="$PROJECT_DIR$/src/page/cash/manual/artificialTransfer.vue" />
+        <option value="$PROJECT_DIR$/src/page/preAct/discountSetting.vue" />
+        <option value="$PROJECT_DIR$/src/config/routes_bak.js" />
+        <option value="$PROJECT_DIR$/src/page/cash/receivableBank.vue" />
+        <option value="$PROJECT_DIR$/src/components/leftMenu.vue" />
+        <option value="$PROJECT_DIR$/src/main.js" />
+        <option value="$PROJECT_DIR$/static/json/cash/otherPayment/columns.json" />
+        <option value="$PROJECT_DIR$/src/page/userManagement/memberManagement/basicInformation.vue" />
+        <option value="$PROJECT_DIR$/src/page/index/index.vue" />
+        <option value="$PROJECT_DIR$/src/utils/diyaxios.js" />
+        <option value="$PROJECT_DIR$/src/page/cash/memberGetOut.vue" />
+        <option value="$PROJECT_DIR$/src/utils/routers.js" />
+        <option value="$PROJECT_DIR$/src/page/cash/offlineReceipts.vue" />
+        <option value="$PROJECT_DIR$/src/components/formEdit.vue" />
+        <option value="$PROJECT_DIR$/src/page/cash/otherPayment.vue" />
+        <option value="$PROJECT_DIR$/static/json/cash/offlineReceipts/columns.json" />
+        <option value="$PROJECT_DIR$/src/page/webSet/notice.vue" />
+        <option value="$PROJECT_DIR$/src/page/userManagement/childAccount.vue" />
+        <option value="$PROJECT_DIR$/src/page/userManagement/memberManagement/memberManagement.vue" />
+        <option value="$PROJECT_DIR$/src/page/accountManagement/otherMembers.vue" />
+        <option value="$PROJECT_DIR$/static/css/app.css" />
+        <option value="$PROJECT_DIR$/src/page/lottey/lotteryModel.vue" />
+        <option value="$PROJECT_DIR$/package.json" />
+        <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/src/page/ADManage/proxyCopy.vue" />
+        <option value="$PROJECT_DIR$/src/components/memberHierarchy_table.vue" />
+        <option value="$PROJECT_DIR$/src/page/userManagement/memberHierarchy.vue" />
+<<<<<<< HEAD
+        <option value="$PROJECT_DIR$/src/components/memberHierarSet.vue" />
+        <option value="$PROJECT_DIR$/src/components/tableGrid.vue" />
+=======
+        <option value="$PROJECT_DIR$/src/components/memberHierarchy_table.vue" />
+        <option value="$PROJECT_DIR$/src/components/markdownEdit.vue" />
+        <option value="$PROJECT_DIR$/src/components/memberHierarSet.vue" />
+        <option value="$PROJECT_DIR$/src/page/userManagement/childRoleAccount.vue" />
+        <option value="$PROJECT_DIR$/src/page/strategy/ipBlacklist.vue" />
+>>>>>>> master
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="NodeModulesDirectoryManager">
+    <handled-path value="$PROJECT_DIR$/node_modules" />
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="width" value="1920" />
+    <option name="height" value="1047" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource ProjectPane="true" />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+<<<<<<< HEAD
+      <pane id="Scratches" />
+      <pane id="Scope" />
+=======
+>>>>>>> master
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="client_admin" type="b2602c69:ProjectViewProjectNode" />
+              <item name="client_admin" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="client_admin" type="b2602c69:ProjectViewProjectNode" />
+              <item name="client_admin" type="462c0819:PsiDirectoryNode" />
+              <item name="assets" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="client_admin" type="b2602c69:ProjectViewProjectNode" />
+              <item name="client_admin" type="462c0819:PsiDirectoryNode" />
+              <item name="build" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="client_admin" type="b2602c69:ProjectViewProjectNode" />
+              <item name="client_admin" type="462c0819:PsiDirectoryNode" />
+              <item name="config" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="client_admin" type="b2602c69:ProjectViewProjectNode" />
+              <item name="client_admin" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="client_admin" type="b2602c69:ProjectViewProjectNode" />
+              <item name="client_admin" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="client_admin" type="b2602c69:ProjectViewProjectNode" />
+              <item name="client_admin" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="page" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="client_admin" type="b2602c69:ProjectViewProjectNode" />
+              <item name="client_admin" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="page" type="462c0819:PsiDirectoryNode" />
+              <item name="accountManagement" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="client_admin" type="b2602c69:ProjectViewProjectNode" />
+              <item name="client_admin" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="page" type="462c0819:PsiDirectoryNode" />
+              <item name="ADManage" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="client_admin" type="b2602c69:ProjectViewProjectNode" />
+              <item name="client_admin" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="page" type="462c0819:PsiDirectoryNode" />
+              <item name="agent" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="client_admin" type="b2602c69:ProjectViewProjectNode" />
+              <item name="client_admin" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="page" type="462c0819:PsiDirectoryNode" />
+              <item name="cash" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="client_admin" type="b2602c69:ProjectViewProjectNode" />
+              <item name="client_admin" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="page" type="462c0819:PsiDirectoryNode" />
+              <item name="index" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="client_admin" type="b2602c69:ProjectViewProjectNode" />
+              <item name="client_admin" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="page" type="462c0819:PsiDirectoryNode" />
+              <item name="lottey" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="client_admin" type="b2602c69:ProjectViewProjectNode" />
+              <item name="client_admin" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="page" type="462c0819:PsiDirectoryNode" />
+              <item name="strategy" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="client_admin" type="b2602c69:ProjectViewProjectNode" />
+              <item name="client_admin" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="page" type="462c0819:PsiDirectoryNode" />
+              <item name="userManagement" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="client_admin" type="b2602c69:ProjectViewProjectNode" />
+              <item name="client_admin" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="page" type="462c0819:PsiDirectoryNode" />
+              <item name="userManagement" type="462c0819:PsiDirectoryNode" />
+              <item name="memberManagement" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="client_admin" type="b2602c69:ProjectViewProjectNode" />
+              <item name="client_admin" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="page" type="462c0819:PsiDirectoryNode" />
+              <item name="webSet" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="client_admin" type="b2602c69:ProjectViewProjectNode" />
+              <item name="client_admin" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="tools" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="client_admin" type="b2602c69:ProjectViewProjectNode" />
+              <item name="client_admin" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="utils" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="client_admin" type="b2602c69:ProjectViewProjectNode" />
+              <item name="client_admin" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="client_admin" type="b2602c69:ProjectViewProjectNode" />
+              <item name="client_admin" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="css" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="client_admin" type="b2602c69:ProjectViewProjectNode" />
+              <item name="client_admin" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="client_admin" type="b2602c69:ProjectViewProjectNode" />
+              <item name="client_admin" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="json" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="client_admin" type="b2602c69:ProjectViewProjectNode" />
+              <item name="client_admin" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="json" type="462c0819:PsiDirectoryNode" />
+              <item name="accoutManage" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="client_admin" type="b2602c69:ProjectViewProjectNode" />
+              <item name="client_admin" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="json" type="462c0819:PsiDirectoryNode" />
+              <item name="accoutManage" type="462c0819:PsiDirectoryNode" />
+              <item name="memberHierarchy" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="client_admin" type="b2602c69:ProjectViewProjectNode" />
+              <item name="client_admin" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="json" type="462c0819:PsiDirectoryNode" />
+              <item name="ADManage" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="client_admin" type="b2602c69:ProjectViewProjectNode" />
+              <item name="client_admin" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="json" type="462c0819:PsiDirectoryNode" />
+              <item name="ADManage" type="462c0819:PsiDirectoryNode" />
+              <item name="ADHome" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="client_admin" type="b2602c69:ProjectViewProjectNode" />
+              <item name="client_admin" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="json" type="462c0819:PsiDirectoryNode" />
+              <item name="cash" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="client_admin" type="b2602c69:ProjectViewProjectNode" />
+              <item name="client_admin" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="json" type="462c0819:PsiDirectoryNode" />
+              <item name="cash" type="462c0819:PsiDirectoryNode" />
+              <item name="offlineReceipts" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="client_admin" type="b2602c69:ProjectViewProjectNode" />
+              <item name="client_admin" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="json" type="462c0819:PsiDirectoryNode" />
+              <item name="message" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+<<<<<<< HEAD
+=======
+      <pane id="Scratches" />
+      <pane id="Scope" />
+>>>>>>> master
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_interpreter_path" value="node" />
+    <property name="HbShouldOpenHtmlAsHb" value="" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.Sass" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="efaac2d8-7c80-4af2-9cb7-2c914464777d" name="Default" comment="" />
+      <created>1534501333382</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1534501333382</updated>
+      <workItem from="1534501334686" duration="311000" />
+      <workItem from="1534732782300" duration="1557000" />
+      <workItem from="1534772617055" duration="21000" />
+      <workItem from="1534815341355" duration="3915000" />
+      <workItem from="1534823240322" duration="7967000" />
+      <workItem from="1534900078059" duration="3797000" />
+      <workItem from="1534988210985" duration="3368000" />
+      <workItem from="1535004540903" duration="426000" />
+      <workItem from="1535009742958" duration="25000" />
+      <workItem from="1535009928568" duration="3755000" />
+      <workItem from="1535074661442" duration="5412000" />
+      <workItem from="1535335799374" duration="1618000" />
+      <workItem from="1535424543547" duration="1547000" />
+      <workItem from="1535510138469" duration="2962000" />
+      <workItem from="1535592304821" duration="5138000" />
+      <workItem from="1535616790576" duration="2090000" />
+      <workItem from="1535678080368" duration="2731000" />
+      <workItem from="1535937915381" duration="3172000" />
+      <workItem from="1536022960622" duration="5594000" />
+      <workItem from="1536112984116" duration="4159000" />
+      <workItem from="1536129667279" duration="3399000" />
+      <workItem from="1536196864796" duration="5375000" />
+      <workItem from="1536286368730" duration="1242000" />
+      <workItem from="1536289433155" duration="1794000" />
+      <workItem from="1536373227961" duration="6694000" />
+      <workItem from="1536545619183" duration="3724000" />
+      <workItem from="1536716633262" duration="5192000" />
+      <workItem from="1536740467506" duration="1626000" />
+      <workItem from="1536802417089" duration="3639000" />
+      <workItem from="1536889243079" duration="1812000" />
+      <workItem from="1537149910549" duration="385000" />
+      <workItem from="1537172400079" duration="1749000" />
+      <workItem from="1537237000928" duration="8941000" />
+      <workItem from="1537319412178" duration="12000000" />
+      <workItem from="1537408461524" duration="8303000" />
+      <workItem from="1537495314770" duration="7594000" />
+      <workItem from="1538056418251" duration="384000" />
+      <workItem from="1539049017223" duration="839000" />
+      <workItem from="1539157888057" duration="1415000" />
+      <workItem from="1539161794327" duration="1058000" />
+      <workItem from="1539220529060" duration="891000" />
+      <workItem from="1539248971261" duration="1680000" />
+      <workItem from="1539306414906" duration="5715000" />
+      <workItem from="1539565845181" duration="141000" />
+      <workItem from="1539571490921" duration="1321000" />
+      <workItem from="1539598514490" duration="1782000" />
+      <workItem from="1539844185307" duration="596000" />
+      <workItem from="1539921091820" duration="132000" />
+      <workItem from="1539927411796" duration="112000" />
+      <workItem from="1539940779009" duration="963000" />
+      <workItem from="1540194995506" duration="3127000" />
+      <workItem from="1540212229208" duration="91000" />
+      <workItem from="1540259888674" duration="584000" />
+      <workItem from="1540776025865" duration="3100000" />
+      <workItem from="1540862448032" duration="182000" />
+      <workItem from="1541055181622" duration="15176000" />
+      <workItem from="1541212167782" duration="162000" />
+      <workItem from="1541381879165" duration="6494000" />
+      <workItem from="1541557645398" duration="25000" />
+      <workItem from="1541584990747" duration="148000" />
+      <workItem from="1541640760862" duration="613000" />
+      <workItem from="1541658266641" duration="125000" />
+      <workItem from="1541663583704" duration="510000" />
+      <workItem from="1541671274679" duration="1817000" />
+      <workItem from="1541755845859" duration="4429000" />
+      <workItem from="1541985974564" duration="3036000" />
+      <workItem from="1542161443814" duration="531000" />
+      <workItem from="1542245280668" duration="418000" />
+      <workItem from="1543803965040" duration="266000" />
+      <workItem from="1543895129244" duration="124000" />
+      <workItem from="1544012446269" duration="3155000" />
+      <workItem from="1544066417909" duration="1702000" />
+      <workItem from="1544254448734" duration="812000" />
+      <workItem from="1544255465090" duration="29000" />
+      <workItem from="1544255506308" duration="4238000" />
+      <workItem from="1544402781857" duration="470000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+<<<<<<< HEAD
+    <option name="totallyTimeSpent" value="203573000" />
+=======
+<<<<<<< HEAD
+    <option name="totallyTimeSpent" value="201689000" />
+=======
+    <option name="totallyTimeSpent" value="199211000" />
+>>>>>>> master
+>>>>>>> master
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="0" y="0" width="1920" height="1047" extended-state="0" />
+    <layout>
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17590618" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+<<<<<<< HEAD
+=======
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32919255" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+>>>>>>> master
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+<<<<<<< HEAD
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4268168" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+=======
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.42663658" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+>>>>>>> master
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4268168" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20084439" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32919255" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <option name="time" value="9" />
+    </breakpoint-manager>
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+<<<<<<< HEAD
+    <entry file="file://$PROJECT_DIR$/public/index.html" />
+    <entry file="file://$PROJECT_DIR$/src/page/cash/receivableBank.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2457">
+          <caret line="119" column="111" lean-forward="false" selection-start-line="119" selection-start-column="111" selection-end-line="119" selection-end-column="111" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/leftMenu.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="4" column="53" lean-forward="false" selection-start-line="4" selection-start-column="53" selection-end-line="4" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+=======
+>>>>>>> master
+    <entry file="file://$PROJECT_DIR$/src/components/changeAll.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1491">
+          <caret line="71" column="46" lean-forward="false" selection-start-line="71" selection-start-column="46" selection-end-line="71" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/page/lottey/lotterModelSet.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/page/preAct/queryDetail.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="546">
+          <caret line="26" column="100" lean-forward="false" selection-start-line="26" selection-start-column="100" selection-end-line="26" selection-end-column="100" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/json/cash/otherPayment/columns.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1806">
+          <caret line="86" column="68" lean-forward="false" selection-start-line="86" selection-start-column="68" selection-end-line="86" selection-end-column="68" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/page/agent/agentDrawing.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="518">
+          <caret line="26" column="25" lean-forward="true" selection-start-line="26" selection-start-column="25" selection-end-line="26" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/confirm.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/page/userManagement/memberManagement/memberManagementDetial.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="882">
+          <caret line="42" column="27" lean-forward="false" selection-start-line="42" selection-start-column="11" selection-end-line="42" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/page/userManagement/memberManagement/basicInformation.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4641">
+          <caret line="221" column="99" lean-forward="false" selection-start-line="221" selection-start-column="99" selection-end-line="221" selection-end-column="99" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/page/instantNote/chaseNumber.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="401">
+          <caret line="131" column="21" lean-forward="false" selection-start-line="126" selection-start-column="20" selection-end-line="131" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/page/cash/memberGetOut.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="8883">
+          <caret line="427" column="22" lean-forward="true" selection-start-line="427" selection-start-column="22" selection-end-line="427" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/config/routes.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-11270">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/config/routes_bak.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="290">
+          <caret line="509" column="14" lean-forward="false" selection-start-line="504" selection-start-column="11" selection-end-line="509" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/js/init.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-285">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/tools/tools.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-8999">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/utils/diyaxios.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1323">
+          <caret line="65" column="5" lean-forward="true" selection-start-line="65" selection-start-column="5" selection-end-line="65" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/page/cash/otherPayment.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="8925">
+          <caret line="428" column="36" lean-forward="false" selection-start-line="428" selection-start-column="36" selection-end-line="428" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/page/index/index.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2421">
+          <caret line="256" column="17" lean-forward="false" selection-start-line="256" selection-start-column="17" selection-end-line="256" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/tools/addSearch.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="2" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="714">
+          <caret line="43" column="0" lean-forward="false" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/notesQuery.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="399">
+          <caret line="19" column="27" lean-forward="false" selection-start-line="19" selection-start-column="17" selection-end-line="19" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/formEdit.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="610">
+          <caret line="1010" column="17" lean-forward="true" selection-start-line="1010" selection-start-column="17" selection-end-line="1010" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/page/cash/offlineReceipts.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="502">
+          <caret line="338" column="35" lean-forward="false" selection-start-line="338" selection-start-column="35" selection-end-line="338" selection-end-column="80" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/json/cash/offlineReceipts/columns.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="458">
+          <caret line="81" column="72" lean-forward="false" selection-start-line="81" selection-start-column="72" selection-end-line="81" selection-end-column="72" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/json/message/columns.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="651">
+          <caret line="31" column="17" lean-forward="false" selection-start-line="31" selection-start-column="17" selection-end-line="31" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/page/webSet/notice.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="487">
+          <caret line="420" column="17" lean-forward="true" selection-start-line="420" selection-start-column="17" selection-end-line="420" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/page/ADManage/ADHome.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="506">
+          <caret line="112" column="75" lean-forward="false" selection-start-line="112" selection-start-column="35" selection-end-line="112" selection-end-column="75" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/json/ADManage/ADHome/columns.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/page/userManagement/childAccount.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="194">
+          <caret line="166" column="24" lean-forward="false" selection-start-line="166" selection-start-column="24" selection-end-line="166" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/page/webSet/registerSet.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="441">
+          <caret line="21" column="10" lean-forward="false" selection-start-line="21" selection-start-column="10" selection-end-line="21" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/page/userManagement/memberManagement/memberManagement.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5418">
+          <caret line="261" column="48" lean-forward="false" selection-start-line="261" selection-start-column="48" selection-end-line="261" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/page/accountManagement/otherMembers.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="441">
+          <caret line="21" column="24" lean-forward="false" selection-start-line="21" selection-start-column="24" selection-end-line="21" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/css/app.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4305">
+          <caret line="205" column="1" lean-forward="false" selection-start-line="205" selection-start-column="1" selection-end-line="205" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/newTree.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1638">
+          <caret line="78" column="52" lean-forward="false" selection-start-line="78" selection-start-column="41" selection-end-line="78" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/page/lottey/lotterSort.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3717">
+          <caret line="178" column="36" lean-forward="false" selection-start-line="178" selection-start-column="36" selection-end-line="178" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/page/lottey/lotteryModel.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6048">
+          <caret line="290" column="23" lean-forward="false" selection-start-line="290" selection-start-column="23" selection-end-line="290" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/utils/routers.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6321">
+          <caret line="301" column="18" lean-forward="false" selection-start-line="301" selection-start-column="8" selection-end-line="301" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/page/agent/agentSettlementSet.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="21">
+          <caret line="103" column="48" lean-forward="false" selection-start-line="103" selection-start-column="48" selection-end-line="103" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/page/index/messageNotification.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="112" column="32" lean-forward="true" selection-start-line="104" selection-start-column="16" selection-end-line="112" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/page/index/indexEcharts.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="362" column="12" lean-forward="true" selection-start-line="362" selection-start-column="12" selection-end-line="362" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1428">
+          <caret line="68" column="30" lean-forward="false" selection-start-line="68" selection-start-column="30" selection-end-line="68" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build/dev-server.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="11" column="54" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="95" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="9429">
+          <caret line="454" column="0" lean-forward="false" selection-start-line="454" selection-start-column="0" selection-end-line="454" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+<<<<<<< HEAD
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1428">
+          <caret line="68" column="30" lean-forward="false" selection-start-line="68" selection-start-column="30" selection-end-line="68" selection-end-column="30" />
+=======
+    <entry file="file://$PROJECT_DIR$/src/page/ADManage/proxyCopy.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-6002">
+          <caret line="227" column="33" lean-forward="false" selection-start-line="227" selection-start-column="33" selection-end-line="227" selection-end-column="33" />
+>>>>>>> master
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/page/userManagement/memberHierarchy.vue">
+      <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state relative-caret-position="1554">
+          <caret line="74" column="44" lean-forward="false" selection-start-line="74" selection-start-column="29" selection-end-line="74" selection-end-column="44" />
+          <folding>
+            <element signature="n#style#0;n#li#1;n#ul#0;n#div#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="e#6563#6635#0" expanded="true" />
+          </folding>
+=======
+        <state relative-caret-position="11616">
+          <caret line="1032" column="22" lean-forward="true" selection-start-line="1032" selection-start-column="22" selection-end-line="1032" selection-end-column="22" />
+          <folding />
+>>>>>>> master
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/memberHierarSet.vue">
+      <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state relative-caret-position="4998">
+          <caret line="239" column="14" lean-forward="true" selection-start-line="222" selection-start-column="12" selection-end-line="239" selection-end-column="14" />
+=======
+<<<<<<< HEAD
+        <state relative-caret-position="-3330">
+          <caret line="391" column="38" lean-forward="false" selection-start-line="391" selection-start-column="38" selection-end-line="391" selection-end-column="38" />
+=======
+        <state relative-caret-position="1150">
+          <caret line="221" column="22" lean-forward="false" selection-start-line="221" selection-start-column="22" selection-end-line="221" selection-end-column="22" />
+>>>>>>> master
+>>>>>>> master
+          <folding />
+        </state>
+      </provider>
+    </entry>
+<<<<<<< HEAD
+    <entry file="file://$PROJECT_DIR$/src/components/memberHierarchy_table.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4557">
+          <caret line="217" column="52" lean-forward="true" selection-start-line="217" selection-start-column="52" selection-end-line="217" selection-end-column="52" />
+=======
+    <entry file="file://$PROJECT_DIR$/src/components/markdownEdit.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2270">
+          <caret line="143" column="47" lean-forward="false" selection-start-line="143" selection-start-column="47" selection-end-line="143" selection-end-column="47" />
+>>>>>>> master
+          <folding />
+        </state>
+      </provider>
+    </entry>
+<<<<<<< HEAD
+    <entry file="file://$PROJECT_DIR$/src/components/memberHierarSet.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="966">
+          <caret line="46" column="31" lean-forward="false" selection-start-line="46" selection-start-column="20" selection-end-line="46" selection-end-column="31" />
+          <folding>
+            <element signature="e#2885#2924#0" expanded="true" />
+          </folding>
+=======
+    <entry file="file://$PROJECT_DIR$/src/components/memberHierarchy_table.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2167">
+          <caret line="315" column="47" lean-forward="true" selection-start-line="315" selection-start-column="47" selection-end-line="315" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/page/userManagement/childRoleAccount.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-9651">
+          <caret line="641" column="45" lean-forward="false" selection-start-line="641" selection-start-column="45" selection-end-line="641" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="13" column="38" lean-forward="false" selection-start-line="13" selection-start-column="38" selection-end-line="13" selection-end-column="38" />
+          <folding />
+>>>>>>> master
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/tableGrid.vue">
+      <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state relative-caret-position="-142">
+          <caret line="1730" column="20" lean-forward="false" selection-start-line="1730" selection-start-column="20" selection-end-line="1730" selection-end-column="20" />
+          <folding>
+            <element signature="n#style#0;n#el-col#0;n#div#0;n#el-card#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="e#42251#48942#0" expanded="false" />
+            <element signature="e#59754#61370#0" expanded="false" />
+=======
+        <state relative-caret-position="253">
+          <caret line="1427" column="43" lean-forward="false" selection-start-line="1427" selection-start-column="28" selection-end-line="1427" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/page/strategy/ipBlacklist.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="253">
+          <caret line="368" column="29" lean-forward="true" selection-start-line="368" selection-start-column="29" selection-end-line="368" selection-end-column="29" />
+          <folding>
+            <element signature="e#16174#16339#0" expanded="false" />
+            <element signature="e#16343#16458#0" expanded="false" />
+>>>>>>> master
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ScopeChooserConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>

@@ -1,0 +1,97 @@
+{
+    "columns":[
+        {	"prop":"id",
+            "label":""
+        },
+        {	"prop":"types",
+            "label":"优惠类型",
+            "disabled":true,
+            "type" : "connectArray",
+            "width":"150"
+        },
+        {	"prop":"name",
+            "label":"优惠活动名称",
+            "disabled":true,
+            "width":"150"
+        },
+        {	"prop":"title",
+            "label":"优惠活动标题",
+            "disabled":true,
+            "width":"150"
+        },{
+            "prop": "language_name",
+            "label": "语言",
+            "disabled": true,
+            "width":"100"
+        },{
+            "prop":"description",
+            "label":"活动描述",
+            "disabled":true,
+            "width":"350"
+        },{
+            "prop":"cover",
+            "label":"活动图片",
+            "type":"img",
+            "disabled":true,
+            "width":"100"
+        },
+        {
+            "prop":"begin_time",
+            "label":"开始时间",
+            "disabled":true,
+            "sortable":true,
+            "width":"180"
+        },
+        {
+            "prop":"end_time",
+            "label":"结束时间",
+            "disabled":true,
+            "sortable":true,
+            "width":"180"
+        },
+        {
+            "prop":"created",
+            "label":"建立时间",
+            "disabled":true,
+            "sortable":true,
+            "width":"180"
+        },
+        {
+            "prop":"created_uname",
+            "label":"建立人",
+            "disabled":true,
+            "width":"100"
+        },
+        {
+            "prop":"updated",
+            "label":"最后修改时间",
+            "disabled":true,
+            "width":"180"
+        },
+        {
+            "prop":"updated_uname",
+            "label":"修改人",
+            "disabled":true,
+            "width":"100"
+        },
+        {
+            "prop":"status",
+            "label":"状态",
+            "filters":[{ "text": "启用", "value": "enabled"}, { "text": "停用", "value": "disabled" }],
+            "disabled":true,
+            "width":"100"
+        },
+        {
+            "label":"操作",
+            "type":"button",
+            "width":"210",
+            "disabled":true,
+            "btnGroup":[
+                {"btnType":"text","label":"启用","fn":"doEnabled","prop":"status","val":"disabled"},
+                {"btnType":"text","label":"停用","fn":"doDisabled","prop":"status","val":"enabled"},
+                {"btnType":"text","label":"修改","fn":"doEdit"},
+                {"btnType":"text","label":"删除","fn":"doDel"}
+
+            ]}
+    ]
+}

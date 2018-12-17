@@ -1,0 +1,26 @@
+{
+  "columns": [
+    {
+      "prop": "sort",
+      "label": "排序",
+      "disabled": true
+    },
+    {
+      "prop": "level",
+      "label": "等级",
+      "disabled": true
+    },
+    {
+      "prop": "username",
+      "label": "用户名",
+      "disabled": true
+    },
+
+    {
+      "prop": "amount",
+      "label": "金额",
+      "type":"divisionMoney",
+      "disabled": true
+    }
+  ]
+}

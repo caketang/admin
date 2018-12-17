@@ -1,0 +1,85 @@
+{
+  "columns":[
+    { "prop":"id",
+      "label":""
+    },
+    { "prop":"created",
+      "label":"申请时间",
+      "sortable":true,
+      "width":"200",
+      "disabled":true
+    },
+    { "prop":"trade_no",
+      "label":"订单号",
+      "sortable":true,
+      "width":"200",
+      "disabled":true
+    },
+    { "prop":"agent_name",
+      "label":"代理用户名",
+      "disabled":true,
+      "type":"link",
+      "width":"150",
+      "fn":"openUserSet"
+    },
+    {
+      "prop":"money",
+      "label":"提现金额",
+      "width":"150",
+      "type":"divisionMoney",
+      "disabled": true
+    },
+    { "prop":"receive_bank_info,bank",
+      "label":"提款银行",
+      "width":"150",
+      "type":"object",
+      "disabled":true
+    },
+    { "prop":"receive_bank_info,accountname",
+      "label":"户名",
+      "width":"150",
+      "type":"object",
+      "disabled":true
+    },
+    {
+      "prop":"receive_bank_info,card",
+      "label":"银行账号",
+      "width":"150",
+      "type":"object",
+      "disabled":true
+    },
+    {
+      "prop":"receive_bank_info,address",
+      "label":"开户行",
+      "width":"150",
+      "type":"object",
+      "disabled":true
+    },
+    {
+      "prop":"process_uname",
+      "label":"处理人",
+      "width":"100",
+      "disabled":true
+    },
+    {
+      "prop":"confirm_time",
+      "label":"处理时间",
+      "width":"150",
+      "disabled":true
+    },
+    {
+      "prop":"status",
+      "width":"100",
+      "label":"状态",
+      "filters":[{ "text": "待处理", "value": "pending"}, { "text": "已支付", "value": "paid" },{ "text": "已取消", "value": "refused" }],
+      "disabled":true
+    },
+    {
+      "label":"操作",
+      "type":"button",
+      "width":"150",
+      "disabled":true,
+      "btnGroup":[{"btnType":"text","label":"支付","fn":"doPay","prop":"status","val":"pending"},
+                  {"btnType":"text","label":"取消","fn":"doRefuse","prop":"status","val":"pending"}]
+    }]
+}

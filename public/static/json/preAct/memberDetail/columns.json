@@ -1,0 +1,15 @@
+{
+  "columns":[
+    { "prop":"valid_bet,coupon",
+      "type":"twoLine",
+      "btnGroup":[
+        {"btnType":"text","label":"上：有效总投注","fn":"sortByTZ"},
+        {"btnType":"text","label":"下：优惠小计","fn":"sortByXJ"}
+      ],
+      "click":true,
+      "sortable":true,
+       "width":"200",
+      "disabled":true
+    }
+  ]
+}
