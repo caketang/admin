@@ -61,13 +61,13 @@
                             <el-input v-model="userCont.name" size="small" :disabled="true"></el-input>
                         </el-form-item>
                         <el-form-item :label="LANG['存入金额'] || '存入金额'" prop="amount">
-                            <el-input v-model.number="depositForm.amount" size="small" placeholder="请填写存入金额"></el-input>
+                            <el-input v-model.number="depositForm.amount" size="small" type="number" placeholder="请填写存入金额"></el-input>
                         </el-form-item>
                         <el-form-item :label="LANG['优惠金额'] || '优惠金额'" prop="discount">
-                            <el-input v-model.number="depositForm.discount" size="small" placeholder="请填写优惠金额"></el-input>
+                            <el-input v-model.number="depositForm.discount" size="small" type="number"  placeholder="请填写优惠金额"></el-input>
                         </el-form-item>
                         <el-form-item :label="LANG['优惠打码量'] || '优惠打码量'" prop="play_code">
-                            <el-input v-model.number="depositForm.play_code" size="small"></el-input>
+                            <el-input v-model.number="depositForm.play_code" type="number"  size="small"></el-input>
                         </el-form-item>
                         <el-form-item :label="LANG['存入银行'] || '存入银行'" prop="bank_id">
                             <el-select v-model="depositForm.bank_id" :placeholder="LANG['请选择银行'] || '请选择银行'" size="small"
@@ -84,10 +84,6 @@
                         <el-form-item :label="LANG['备注'] || '备注'" prop="remarks">
                             <el-input v-model="depositForm.memo" type="textarea" :rows="5" size="small"></el-input>
                         </el-form-item>
-                        <!-- <el-form-item :label="LANG['状态'] || '状态'" prop="state">
-                            <el-radio v-model="depositForm.status" label="1">{{LANG['申请'] || '申请'}}</el-radio>
-                            <el-radio v-model="depositForm.status" label="2">{{LANG['直接成功'] || '直接成功'}}</el-radio>
-                        </el-form-item> -->
                         <div class="formbtn">
                             <el-button type="primary" :plain="true" size="small" @click="doAddDeposit" :disabled="formControlBtn.deposit_boolean">{{LANG['保存'] || '保存'}}
                             </el-button>
@@ -99,7 +95,7 @@
                             <el-input v-model="userCont.name" size="small" :disabled="true"></el-input>
                         </el-form-item>
                         <el-form-item :label="LANG['提款金额'] || '提款金额'" prop="amount">
-                            <el-input v-model.number="cashForm.amount" size="small"></el-input>
+                            <el-input v-model.number="cashForm.amount" size="small" type="number" ></el-input>
                         </el-form-item>
                         <el-form-item :label="LANG['提出银行'] || '提出银行'" prop="bank_id">
                             <el-select v-model="cashForm.bank_id" :placeholder="LANG['请选择银行'] || '请选择银行'" size="small"
@@ -116,10 +112,6 @@
                         <el-form-item :label="LANG['备注'] || '备注'" prop="remarks">
                             <el-input v-model="cashForm.memo" type="textarea" :rows="5" size="small"></el-input>
                         </el-form-item>
-                        <!-- <el-form-item :label="LANG['状态'] || '状态'" prop="state">
-                            <el-radio v-model="cashForm.status" label="1">{{LANG['申请'] || '申请'}}</el-radio>
-                            <el-radio v-model="cashForm.status" label="2">{{LANG['直接成功'] || '直接成功'}}</el-radio>
-                        </el-form-item> -->
                         <div class="formbtn">
                             <el-button type="primary" :plain="true" size="small" @click="doCash" :disabled="formControlBtn.cash_boolean">{{LANG['保存'] || '保存'}}</el-button>
                         </div>
@@ -130,32 +122,10 @@
                             <el-input v-model="userCont.name" :disabled="true" size="small"></el-input>
                         </el-form-item>
                         <el-form-item :label="LANG['优惠金额'] || '优惠金额'" prop="amount">
-                            <el-input v-model.number="grantDiscountForm.amount" size="small"></el-input>
+                            <el-input v-model.number="grantDiscountForm.amount" size="small" type="number" ></el-input>
                         </el-form-item>
                         <el-form-item :label="LANG['打码量'] || '打码量'" prop="condition">
-                            <!-- <el-col :span="5">存入银行
-
-                                <span>&nbsp;{{LANG['存款金额'] || '存款金额'}}</span>
-                            </el-col>
-                            <el-col :span="5">
-                                <el-input v-model="grantDiscountForm.condition_deposit" size="small"></el-input>
-                            </el-col>
-                            <el-col :span="4">
-                                <span>&nbsp;+&nbsp;{{LANG['优惠'] || '优惠'}}</span>
-                            </el-col>
-                            <el-col :span="3">
-                                <el-input v-model="grantDiscountForm.condition_discount" size="small"></el-input>
-                            </el-col>
-                            <el-col :span="2">
-                                <span>&nbsp;&nbsp;)&nbsp;&nbsp;X</span>
-                            </el-col>
-                            <el-col :span="5">
-                                <el-col :span="18">
-                                    <el-input v-model="grantDiscountForm.condition_ratio" size="small"></el-input>
-                                </el-col>
-                                <el-col :span="6">&nbsp;{{LANG['倍'] || '倍'}}</el-col>
-                            </el-col> -->
-                            <el-input v-model.number="grantDiscountForm.condition" size="small"></el-input>
+                            <el-input v-model.number="grantDiscountForm.condition" size="small" type="number" ></el-input>
                         </el-form-item>
                         <el-form-item :label="LANG['优惠活动名称'] || '优惠活动名称'" prop="aid">
                             <el-select v-model="grantDiscountForm.aid" :placeholder="LANG['请选择优惠活动名称'] || '请选择优惠活动名称'" size="small">
@@ -166,10 +136,6 @@
                         <el-form-item :label="LANG['备注'] || '备注'" prop="memo">
                             <el-input v-model="grantDiscountForm.memo" type="textarea" :rows="5" size="small"></el-input>
                         </el-form-item>
-                        <!-- <el-form-item :label="LANG['状态'] || '状态'" prop="status">
-                            <el-radio v-model="grantDiscountForm.status" label="1">{{LANG['申请'] || '申请'}}</el-radio>
-                            <el-radio v-model="grantDiscountForm.status" label="2">{{LANG['成功'] || '成功'}}</el-radio>
-                        </el-form-item> -->
                         <div class="formbtn">
                             <el-button type="primary" size="small" @click="doGrantDiscountForm" :disabled="formControlBtn.discount_boolean">{{LANG['保存'] || '保存'}}</el-button>
                         </div>
@@ -180,7 +146,7 @@
                             <el-input v-model="userCont.name" :disabled="true" size="small"></el-input>
                         </el-form-item>
                         <el-form-item :label="LANG['减金额'] || '减金额'" prop="amount">
-                            <el-input v-model.number="artificialReduceForm.amount" size="small"></el-input>
+                            <el-input v-model.number="artificialReduceForm.amount" size="small" type="number" ></el-input>
                         </el-form-item>
                         <el-form-item :label="LANG['备注'] || '备注'" prop="memo">
                             <el-input v-model="artificialReduceForm.memo" type="textarea" :rows="5"
@@ -196,10 +162,10 @@
                             <el-input v-model="userCont.name" :disabled="true" size="small"></el-input>
                         </el-form-item>
                         <el-form-item :label="LANG['加金额'] || '加金额'" prop="amount">
-                            <el-input v-model.number="artificialAddForm.amount" size="small"></el-input>
+                            <el-input v-model.number="artificialAddForm.amount" size="small" type="number" ></el-input>
                         </el-form-item>
                         <el-form-item v-if="formInline.role == 1" :label="LANG['打码量'] || '打码量'" prop="withdraw_bet">
-                            <el-input v-model.number="artificialAddForm.withdraw_bet" size="small"></el-input>
+                            <el-input v-model.number="artificialAddForm.withdraw_bet" size="small" type="number" ></el-input>
                         </el-form-item>
                         <el-form-item :label="LANG['备注'] || '备注'" prop="memo">
                             <el-input v-model="artificialAddForm.memo" type="textarea" :rows="5" size="small"></el-input>
@@ -214,10 +180,10 @@
                             <el-input v-model="userCont.name" :disabled="true" size="small"></el-input>
                         </el-form-item>
                         <el-form-item :label="LANG['返水金额'] || '返水金额'" prop="amount">
-                            <el-input v-model.number="grantRebateForm.amount" size="small"></el-input>
+                            <el-input v-model.number="grantRebateForm.amount" size="small" type="number" ></el-input>
                         </el-form-item>
                         <el-form-item :label="LANG['打码量'] || '打码量'" prop="condition">
-                            <el-input v-model.number="grantRebateForm.condition" size="small"></el-input>
+                            <el-input v-model.number="grantRebateForm.condition" size="small" type="number" ></el-input>
                         </el-form-item>
                         <el-form-item :label="LANG['备注'] || '备注'" prop="memo">
                             <el-input v-model="grantRebateForm.memo" type="textarea" :rows="5" size="small"></el-input>
@@ -232,7 +198,7 @@
                             <el-input v-model="userCont.name" :disabled="true" size="small"></el-input>
                         </el-form-item>
                         <el-form-item :label="LANG['金额'] || '金额'" prop="amount">
-                            <el-input v-model.number="childToMasterForm.amount" size="small"></el-input>
+                            <el-input v-model.number="childToMasterForm.amount" size="small" type="number" ></el-input>
                         </el-form-item>
                         <el-form-item prop="state">
                             <el-radio v-model="childToMasterForm.status" label="1">{{LANG['实际加钱'] || '实际加钱'}}</el-radio>
@@ -251,7 +217,7 @@
                             <el-input v-model="userCont.name" :disabled="true" size="small"></el-input>
                         </el-form-item>
                         <el-form-item :label="LANG['金额'] || '金额'" prop="amount">
-                            <el-input v-model.number="masterToChildForm.amount" size="small"></el-input>
+                            <el-input v-model.number="masterToChildForm.amount" size="small" type="number" ></el-input>
                         </el-form-item>
                         <el-form-item prop="state">
                             <el-radio v-model="masterToChildForm.status" label="1">{{LANG['实际加钱'] || '实际加钱'}}</el-radio>
@@ -384,8 +350,6 @@
                 },
                 artificialReduceFormRules: {
                     amount: [{validator:checkNumber, required: true , trigger: "blur"}]
-                    // qkbs: [{required: true, message: LANG['请选择提出银行'] || '请选择提出银行', trigger: 'blur'}],
-                    // discountName: [{required: true, message: LANG['请选择提出银行'] || '请选择提出银行', trigger: 'change'}]
                 },
                 //手动增加余额
                 artificialAddForm: {
@@ -492,7 +456,6 @@
                 }
                 //获取厅主银行卡列表
                 let acountsUrl = URL.api + ROUTES.GET.cash.bank.acounts;
-
 				this.$.autoAjax('get', acountsUrl, '', {
 					ok: (res) => {
 						let model = res.data;
@@ -514,24 +477,7 @@
 						console.log(e)
 					}
 				})
-                // this.$http.get(acountsUrl, URLCONFIG).then((res) => {
-                //     let model = res.data.data;
-                //     this.bankList = [];
-                //   for (let i in model) {
-                //         if (model[i].state === 'enabled') {
-                //             this.bankList.push({
-                //                 "label": model[i].bank_name + ':' + model[i].card + ':' + model[i].accountname,
-                //                 "value": model[i].id,
-                //                 "card": model[i].card,
-                //                 "id": model[i].id
-                //             })
-                //         }
-                //     }
-                // })
-                //获取优惠活动名称
-                // let activeUrl = URL.api + ROUTES.GET.actives.short;
                 let activeUrl = URL.api + '/active.short'
-
 				this.$.autoAjax('get',activeUrl, '', {
 					ok: (res) => {
 						let model = res.data;
@@ -551,18 +497,6 @@
 						console.log(e)
 					}
 				})
-                // this.$http.get(activeUrl, URLCONFIG).then((res) => {
-                //     let model = res.data.data;
-                //     this.discountNameList = [];
-                //     for (let i in model) {
-                //         // if (model[i].status) {
-                //             this.discountNameList.push({
-                //                 "label": model[i].name,
-                //                 "value": model[i].id
-                //             })
-                //         // }
-                //     }
-                // })
                 this.btnGroup = [{"txt": "手动存款", "fn": "manualDeposit", "id": 1},
                     {"txt": "手动提款", "fn": "manualCash", "id": 2},
                     {"txt": "发放优惠", "fn": "grantDiscount", "id": 3},
@@ -632,7 +566,6 @@
 								this.permissions['is_refuse_withdraw'] = parseInt(res.data.is_refuse_withdraw);
 							}
 							// 获取当前用户的银行卡列表
-
 							this.$.autoAjax('get',URL.api+ROUTES.GET.user.newInfo+"?id="+parseInt(this.userCont.uid)+"&type=bank", '', {
 								ok: (res2) => {
 									// 清空原来上一个查询留下的数据
@@ -664,89 +597,9 @@
 					p: () => {
 					},
 					error: e => {
-						console.log(e)
-					}
+                        this.loading = false;
+                    }
 				})
-//                 this.$http.get(url, URLCONFIG).then((res) => {
-//                     if (res.data.state == 0) {
-//                         // 设置真实姓名和备注
-//                         this.note.truename = res.data.data.truename || '';
-//                         this.note.comment = res.data.data.comment || '';
-//
-//                         let primaryAccount = res.data.data.primary;
-//                         let tableDate = res.data.data.secondary;
-//                         let totalArr = {"name": "总余额", "balance": res.data.data.total_balance};
-//                         this.userCont.name = res.data.data.username;
-//                         this.userCont.uid = res.data.data.uid;
-//                         tableDate.forEach(function (json) {
-//                             primaryAccount.push(json);
-//                         });
-//                         this.tableDate = primaryAccount;
-//                         this.tableDate.push(totalArr);
-//                         for (let i = 0; i < this.tableDate.length; i++) {
-//                             (this.tableDate[i]["name"] == "主钱包") && (this.primaryId = this.tableDate[i]["sid"]);
-//                             // 显示金额需要除余100
-//                             this.tableDate[i]["balance"] = this.tableDate[i]["balance"] / 100;
-//                         }
-//                         // 处理权限问题
-//                         if (parseInt(formData.role) === 1) {
-//                             this.permissions['is_refuse_rebate'] = parseInt(res.data.data.is_refuse_rebate);
-//                             this.permissions['is_refuse_sale'] = parseInt(res.data.data.is_refuse_sale);
-//                             this.permissions['is_refuse_withdraw'] = parseInt(res.data.data.is_refuse_withdraw);
-//                         }
-//                         // 获取当前用户的银行卡列表
-//
-// 						this.$.autoAjax('get',URL.api+ROUTES.GET.user.newInfo+"?id="+parseInt(this.userCont.uid)+"&type=bank", '', {
-// 							ok: (res) => {
-//                                 // 清空原来上一个查询留下的数据
-// 								this.userBankList = [];
-// 								let model = res2.data;
-// 								for (let i in model) {
-// 									// 判断该会员下的改银行卡是否启用
-// 									if (model[i].state === 'enabled') {
-// 										this.userBankList.push({
-// 											"label": model[i].bank_name + ':' + model[i].card + ':' + model[i].accountname,
-// 											"value": model[i].id,
-// 											"card": model[i].card,
-// 											"id": model[i].id
-// 										})
-// 									}
-// 								}
-// 							},
-// 							p: () => {
-// 							},
-// 							error: e => {
-// 								console.log(e)
-// 							}
-// 						})
-//                         // this.$http.get(URL.api+ROUTES.GET.user.newInfo+"?id="+parseInt(this.userCont.uid)+"&type=bank", URLCONFIG).then((res2) => {
-//                         //     // 清空原来上一个查询留下的数据
-//                         //     this.userBankList = [];
-//                         //     let model = res2.data.data;
-//                         //     for (let i in model) {
-//                         //         // 判断该会员下的改银行卡是否启用
-//                         //         if (model[i].state === 'enabled') {
-//                         //             this.userBankList.push({
-//                         //                 "label": model[i].bank_name + ':' + model[i].card + ':' + model[i].accountname,
-//                         //                 "value": model[i].id,
-//                         //                 "card": model[i].card,
-//                         //                 "id": model[i].id
-//                         //             })
-//                         //         }
-//                         //     }
-//                         // })
-//                         .catch(function (err) {
-// //                            console.log(err)
-//                         });
-//                     } else {
-//                         this.$message.error(this.LANG[res.data.msg] || res.data.msg);
-//                     }
-//                     this.loading = false;
-//                 })
-                .catch(function (err) {
-//                    console.log(err)
-                    this.loading = false;
-                });
             },
             // 表格按钮事件
             doHandle(fn, row){
@@ -856,27 +709,19 @@
                 formData.role = parseInt(this.formInline.role);
                 for (let i in this.depositForm) {
                     formData[i] = this.depositForm[i];
-                }
-
-                // (formData.name != '' || (this.$message({message: '请查询体系后添加', type: 'warning'})) && false)
-                // && (formData.amount != '' || (this.$message({message: '请输入存入金额', type: 'warning'})) && false)
-                // && (formData.bank_id != '' || (this.$message({message: '请选择存入银行', type: 'warning'})) && false)
-
-                //需要验证的参数
+                }//需要验证的参数
                 let formInline_prop = [{name: formData.amount, message: '请输入存入金额'},{name: formData.bank_id, message: '请选择存入银行'}]
                 if (!this.judgmentProp(formInline_prop)) {
                     return;
                 }
 
                 //对输入数值参数进行转换
-                formData.amount = parseFloat(formData.amount).toFixed(2) * 100;
-                formData.play_code = parseFloat(formData.play_code).toFixed(2) * 100;
-                formData.discount = parseFloat(formData.discount).toFixed(2) * 100;
-
+                formData.amount = formData.amount?formData.amount.toFixed(2) * 100:'';
+                formData.play_code = formData.play_code?formData.play_code.toFixed(2) * 100:'';
+                formData.discount = formData.discount?formData.discount.toFixed(2) * 100:'';
                 if (!this.djOperateMoney(formData.amount)) return false;
                 this.formControlBtn.deposit_boolean = true;
                 let acountsUrl = URL.api + ROUTES.POST.cash.deposit;
-
 				this.$.autoAjax('post',acountsUrl,  formData, {
 					ok: (res) => {
 						// debugger;
@@ -894,19 +739,6 @@
 						console.log(e)
 					}
 				})
-               //  this.$http.post(acountsUrl, JSON.stringify(formData), URLCONFIG).then((res) => {
-               //     // debugger;
-               //     if (res.data.state == 0 && res.data.data) {
-               //          this.$message({message: '保存成功',type: 'success'});
-               //          this.doQuery(1);
-               //     } else {
-               //          this.$message({message: res.data.msg, type: 'error'});
-               //     }
-               //     this.formControlBtn.deposit_boolean = false;
-               // })
-                .catch(function (err) {
-//                   console.log(err)
-               });
             },
             //手动提款
             manualCash(row){
@@ -934,7 +766,7 @@
                     return;
                 }
 
-                formData.amount = parseFloat(this.cashForm.amount).toFixed(2) * 100;
+                formData.amount = this.cashForm.amount?this.cashForm.amount.toFixed(2) * 100:'';
 
                 if (!this.djOperateMoney(formData.amount)) return false;
                 this.formControlBtn.cash_boolean = true;
@@ -958,18 +790,6 @@
 						console.log(e)
 					}
 				})
-               //  this.$http.post(acountsUrl, formData, URLCONFIG).then((res) => {
-               //     if (res.data.state == 0 && res.data.data) {
-               //          this.$message({message: '保存成功',type: 'success'});
-               //          this.doQuery(1);
-               //     } else {
-               //          this.$message({message: res.data.msg, type: 'error'});
-               //     }
-               //     this.formControlBtn.cash_boolean = false;
-               // })
-                .catch(function (err) {
-//                   console.log(err)
-               });
             },
             //发放优惠
             grantDiscount(row){
@@ -1004,8 +824,8 @@
                     return;
                 }
 
-                formData.amount = parseFloat(this.grantDiscountForm.amount).toFixed(2) * 100;
-                formData.condition = parseFloat(this.grantDiscountForm.condition).toFixed(2) * 100;
+                formData.amount = this.grantDiscountForm.amount?this.grantDiscountForm.amount.toFixed(2) * 100:'';
+                formData.condition = this.grantDiscountForm.condition?this.grantDiscountForm.condition.toFixed(2) * 100:'';
 
                 if (!this.djOperateMoney(formData.amount)) return false;
                 this.formControlBtn.discount_boolean = true;
@@ -1028,25 +848,12 @@
 						console.log(e)
 					}
 				})
-                // this.$http.post(acountsUrl, formData, URLCONFIG).then((res) => {
-                //     if (res.data.state == 0 && res.data.data) {
-                //         this.$message({message: '保存成功', type: 'success'});
-                //         this.doQuery(1);
-                //     } else {
-                //         this.$message({message: res.data.msg, type: 'error'});
-                //     }
-                //     this.formControlBtn.discount_boolean = false;
-                // })
-                .catch(function (err) {
-//                    console.log(err)
-                });
             },
             //手动减少余额
             artificialReduce(row){
                 // this.artificialReduceForm.wid = row.sid;
                 this.walletTitle = "主钱包";
                 this.formTitle = "手动减少余额";
-                // this.artificialReduceForm.name = this.userCont.name;
                 this.artificialReduceForm.wid = parseInt(row.sid);
                 this.artificialReduceForm.uid = parseInt(this.userCont.uid);
                 this.artificialReduceForm.amount = "";
@@ -1060,19 +867,10 @@
                 for (let i in this.artificialReduceForm) {
                     formData[i] = this.artificialReduceForm[i];
                 }
-
-                //需要验证的参数
-                // let formInline_prop = [{name: formData.amount, message: '请输入减金额'}]
-                // if (!this.judgmentProp(formInline_prop)) {
-                //     return;
-                // }
-
-                formData.amount = parseFloat(this.artificialReduceForm.amount).toFixed(2) * 100;
-
+                formData.amount =  this.artificialReduceForm.amount?this.artificialReduceForm.amount.toFixed(2) * 100:'';
                 if (!this.djOperateMoney(formData.amount)) return false;
                 this.formControlBtn.reduce_boolean = true;
                 let acountsUrl = URL.api + ROUTES.POST.cash.decrease;
-
 				this.$.autoAjax('post',acountsUrl, formData, {
 					ok: (res) => {
 						if (res.state == 0 && res.data) {
@@ -1089,18 +887,6 @@
 						console.log(e)
 					}
 				})
-                // this.$http.post(acountsUrl, formData, URLCONFIG).then((res) => {
-                //     if (res.data.state == 0 && res.data.data) {
-                //         this.$message({message: '保存成功', type: 'success'});
-                //         this.doQuery(1);
-                //     } else {
-                //         this.$message({message: res.data.msg, type: 'error'});
-                //     }
-                //     this.formControlBtn.reduce_boolean = false;
-                // })
-                .catch(function (err) {
-//                    console.log(err)
-                });
             },
             //手动增加余额
             artificialAdd(row){
@@ -1121,22 +907,18 @@
                 for (let i in this.artificialAddForm) {
                     formData[i] = this.artificialAddForm[i];
                 }
-
                 //需要验证的参数
                 // 手动增加金额代理没有打码量
                 let formInline_prop = formData.role == 1 ? [{name: formData.amount, message: '请输入加金额'}] : [{name: formData.amount, message: '请输入加金额'}]
                 if (!this.judgmentProp(formInline_prop)) {
                     return;
                 }
-
-                formData.amount = parseFloat(this.artificialAddForm.amount).toFixed(2) * 100;
-                formData.withdraw_bet = parseFloat(this.artificialAddForm.withdraw_bet).toFixed(2) * 100;
-
+                formData.amount = this.artificialAddForm.amount?this.artificialAddForm.amount.toFixed(2) * 100:'';
+                formData.withdraw_bet = this.artificialAddForm.withdraw_bet?this.artificialAddForm.withdraw_bet.toFixed(2) * 100:'';
                 if (!this.djOperateMoney(formData.amount)) return false;
                 this.formControlBtn.add_boolean = true;
                 // console.log(JSON.stringify(formData));
                 let acountsUrl = URL.api + ROUTES.POST.cash.increase;
-
 				this.$.autoAjax('post',acountsUrl, formData,  {
 					ok: (res) => {
 						if (res.state == 0 && res.data) {
@@ -1153,18 +935,6 @@
 						console.log(e)
 					}
 				})
-                // this.$http.post(acountsUrl, JSON.stringify(formData), URLCONFIG).then((res) => {
-                //     if (res.data.state == 0 && res.data.data) {
-                //         this.$message({message: '保存成功',type: 'success'});
-                //         this.doQuery(1);
-                //     } else {
-                //         this.$message({message: res.data.msg, type: 'error'});
-                //     }
-                //     this.formControlBtn.add_boolean = false;
-                // })
-                .catch(function (err) {
-//                    console.log(err)
-                });
             },
             //发放返水
             grantRebate(row){
@@ -1190,8 +960,8 @@
                     return;
                 }
 
-                formData.amount = parseFloat(this.grantRebateForm.amount).toFixed(2) * 100;
-                formData.condition = parseFloat(this.grantRebateForm.condition).toFixed(2) * 100;
+                formData.amount = this.grantRebateForm.amount?this.grantRebateForm.amount.toFixed(2) * 100:'';
+                formData.condition = this.grantRebateForm.condition?this.grantRebateForm.condition.toFixed(2) * 100:'';
 
                 if (!this.djOperateMoney(formData.amount)) return false;
                 this.formControlBtn.rebate_boolean = true;
@@ -1213,18 +983,6 @@
 						console.log(e)
 					}
 				})
-                // this.$http.post(acountsUrl, formData, URLCONFIG).then((res) => {
-                //     if (res.data.state == 0 && res.data.data) {
-                //         this.$message({message: '保存成功',type: 'success'});
-                //         this.doQuery(1);
-                //     } else {
-                //         this.$message({message: res.data.msg, type: 'error'});
-                //     }
-                //     this.formControlBtn.rebate_boolean = false;
-                // })
-                .catch(function (err) {
-//                    console.log(err)
-                });
             },
             //子转主钱包
             childToMaster(row){
@@ -1252,7 +1010,7 @@
                     return;
                 }
 
-                formData.amount = parseFloat(this.childToMasterForm.amount).toFixed(2) * 100;
+                formData.amount = this.childToMasterForm.amount?this.childToMasterForm.amount.toFixed(2) * 100:'';
 
                 if (!this.djOperateMoney(formData.amount)) return false;
                 this.formControlBtn.childtomaster_boolean = true;
@@ -1275,18 +1033,6 @@
 						console.log(e)
 					}
 				})
-               //  this.$http.post(acountsUrl, JSON.stringify(formData), URLCONFIG).then((res) => {
-               //      if (res.data.state == 0 && res.data.data) {
-               //          this.$message({message: '保存成功',type: 'success'});
-               //          this.doQuery(1);
-               //      } else {
-               //          this.$message({message: res.data.msg,type: 'error'});
-               //      }
-               //      this.formControlBtn.childtomaster_boolean = false;
-               // })
-                .catch(function (err) {
-//                   console.log(err)
-               });
             },
             //主转子钱包
             masterToChild(row){
@@ -1314,7 +1060,7 @@
                     return;
                 }
 
-                formData.amount = parseFloat(this.masterToChildForm.amount).toFixed(2) * 100;
+                formData.amount = this.masterToChildForm.amount?this.masterToChildForm.amount.toFixed(2) * 100:'';
 
                 if (!this.djOperateMoney(formData.amount)) return false;
                 this.formControlBtn.mastertochild_boolean = true;
@@ -1336,18 +1082,6 @@
 						console.log(e)
 					}
 				})
-               //  this.$http.post(acountsUrl, JSON.stringify(formData), URLCONFIG).then((res) => {
-               //      if (res.data.state == 0 && res.data.data) {
-               //          this.$message({message: '保存成功', type: 'success'});
-               //          this.doQuery(1);
-               //      } else {
-               //          this.$message({message: res.data.msg, type: 'error'});
-               //      }
-               //      this.formControlBtn.mastertochild_boolean = false;
-               // })
-                .catch(function (err) {
-//                   console.log(err)
-               });
             },
             // 判断操作金额
             djOperateMoney(money) {

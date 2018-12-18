@@ -1,25 +1,11 @@
 <template>
     <div id="lotteryZKCprophesy" class="w100">
         <el-card>
-            <el-tabs v-model="lotteryData.lottery_type" @tab-click="handleClick(lotteryData.lottery_type)">
+            <el-tabs v-model="lotteryData.lottery_type" @tab-click="handleClick(lotteryData.lottery_type,lotteryData.lottery_name)">
                 <el-tab-pane :label="item.lottery_name" :name="item.lottery_type" v-for="item,key in gameList"
                              :key="key">
                 </el-tab-pane>
             </el-tabs>
-            <!--搜索-->
-            <!--<el-col>-->
-                <!--<formEdit :formVisible="formVisible"-->
-                          <!--:formConfig="searchConfig"-->
-                          <!--:type="type"-->
-                          <!--:labelWidth="labelWidth"-->
-                          <!--@do-query="doQuery"-->
-                          <!--:isEdit="isEdit"-->
-                          <!--@reset-form="resetForm"-->
-                          <!--:formReset="formReset"-->
-                          <!--:formType="formType"-->
-                          <!--:showAdd="false"-->
-                <!--&gt;</formEdit>-->
-            <!--</el-col>-->
             <el-col>
                 <LotteryNote :columnsUrl="columnsUrl" :tableUrl="tableUrl" :lotteryData="lotteryData"></LotteryNote>
             </el-col>
@@ -41,6 +27,7 @@
                 lotteryData: {
                     lottery_type: '',
                     lottery_number: '',
+                    lottery_name:''
                 },
                 gameList: [],
             }
@@ -60,6 +47,7 @@
                             this.gameList = res.data;
                             //默认选中第一个
                             this.lotteryData.lottery_type = res.data[0].lottery_type;
+                            this.lotteryData.lottery_name = res.data[0].lottery_name;
                             this.tableUrl = URL.api + '/plottery/presetlist?id=' + res.data[0].lottery_type
                         }
                     },
@@ -78,9 +66,10 @@
             },
             resetForm() {
             },
-            handleClick(value) {
+            handleClick(value,name) {
                 this.formReset = true
                 this.lotteryData.lottery_type = value;
+                this.lotteryData.lottery_name = name;
                 this.tableUrl = URL.api + '/plottery/presetlist' + this.addSearch({
                     id: value,
                 })
