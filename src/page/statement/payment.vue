@@ -626,7 +626,7 @@
 					// 支付
 					case "update":
 
-                        this.$.autoAjax('patch',URL.api + ROUTES.POST.cash.payment + '/' + this.nowId, JSON.stringify({'status': 'paid'}), {
+                        this.$.autoAjax('patch',URL.api + ROUTES.POST.cash.payment + '/' + this.nowId, {'status': 'paid'}, {
                             ok: (res) => {
                                 if (res.state === 0) {
                                     _this.$message.success(LANG["支付成功"] || "支付成功");
@@ -707,7 +707,7 @@
 					// 取消
 					case "refuse":
 
-                        this.$.autoAjax('patch',URL.api + ROUTES.POST.cash.payment + '/' + this.nowId, JSON.stringify({'status': 'refused'}),{
+                        this.$.autoAjax('patch',URL.api + ROUTES.POST.cash.payment + '/' + this.nowId,{'status': 'refused'},{
                             ok: (res) => {
                                 if (res.state === 0) {
                                     _this.$message.success(LANG["取消支付操作成功"] || "取消支付操作成功");
