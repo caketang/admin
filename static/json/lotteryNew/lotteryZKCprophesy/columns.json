@@ -23,13 +23,14 @@
             "disabled": true
         },
         {
-            "prop": "start_time,end_time",
+            "prop": "start_time,official_time",
             "label": "开盘/封盘时间",
             "width": "200",
             "class": "tCent",
             "delimiter":"/",
-            "type":"data",
-            "disabled": true
+            "width":"280",
+            "type":"connect",
+            "disabled":true
         },
         {
             "prop": "official_time",

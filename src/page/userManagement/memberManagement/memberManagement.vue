@@ -306,22 +306,6 @@
                     this.tableUrl = URL.api + ROUTES.GET.user.list + this.addSearch({"online": '1',"state": '1'});
                 }
                 this.columnsUrl = "/static/json/accoutManage/memberManagement/columns.json"
-                // 去掉会员层级
-                // let levelUrl = URL.api + ROUTES.GET.user.level.list;
-                // let _this = this;
-                // this.$http.get(levelUrl, URLCONFIG).then((res) => {
-                //     let model = res.data.data
-                //     _this.searchConfig[6].list.push({
-                //         "label": "全部",
-                //         "value": ""
-                //     });
-                //     for (let i in model) {
-                //         _this.searchConfig[6].list.push({
-                //             "label": model[i].name,
-                //             "value": model[i].id
-                //         })
-                //     }
-                // })
                 this.getLables();
                 this.getLimitModel();
                 if (this.userid > 0) {

@@ -300,7 +300,7 @@
                         URLCONFIG.headers['Accept-Language'] = LANGHEAD[sessionStorage.langkey];
                     }
                 } else {
-                    this.$message(LANG['登录超时，请重新登录！'] || '登录超时，请重新登录！');
+//                    this.$message(LANG['登录超时，请重新登录！'] || '登录超时，请重新登录！');
                     this.$router.push('/login');
                     return;
                 }
