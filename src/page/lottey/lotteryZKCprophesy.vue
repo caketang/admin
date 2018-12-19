@@ -1,7 +1,7 @@
 <template>
     <div id="lotteryZKCprophesy" class="w100">
         <el-card>
-            <el-tabs v-model="lotteryData.lottery_type" @tab-click="handleClick(lotteryData.lottery_type,lotteryData.lottery_name)">
+            <el-tabs v-model="lotteryData.lottery_type" @tab-click="handleClick">
                 <el-tab-pane :label="item.lottery_name" :name="item.lottery_type" v-for="item,key in gameList"
                              :key="key">
                 </el-tab-pane>
@@ -62,16 +62,16 @@
                 let j = obj.item;
                 j.id = this.lotteryData.lottery_type
                 this.tableUrl = URL.api + '/plottery/presetlist' + this.addSearch(j)
-                console.log(j)
             },
             resetForm() {
             },
-            handleClick(value,name) {
+            handleClick(value) {
+                console.log(value)
                 this.formReset = true
-                this.lotteryData.lottery_type = value;
-                this.lotteryData.lottery_name = name;
+                this.lotteryData.lottery_type = value.name;
+                this.lotteryData.lottery_name = value.label;
                 this.tableUrl = URL.api + '/plottery/presetlist' + this.addSearch({
-                    id: value,
+                    id: value.name,
                 })
             },
             doHandle() {

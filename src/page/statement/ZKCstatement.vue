@@ -2,7 +2,7 @@
 <template>
     <div id="ZKCstatement" class="w100">
         <el-card>
-            <el-tabs v-model="lotteryData.lottery_type" @tab-click="handleClick(lotteryData.lottery_type)">
+            <el-tabs v-model="seachData.lottery_type" @tab-click="handleClick">
                 <el-tab-pane :label="item.lottery_name" :name="item.lottery_type" v-for="item,key in gameList"
                              :key="key">
                 </el-tab-pane>
@@ -22,7 +22,7 @@
                 ></formEdit>
             </el-col>
             <el-col>
-                <Note :columnsUrl="columnsUrl" :tableUrl="tableUrl" :lotteryData="lotteryData"></Note>
+                <Note :columnsUrl="columnsUrl" :tableUrl="tableUrl" :lotteryData="seachData"></Note>
             </el-col>
         </el-card>
     </div>
@@ -39,10 +39,14 @@
                 columnsUrl: "",
                 //表格数据
                 tableUrl: "",
-                lotteryData: {
-                    lottery_type: '',
-                    lottery_number: '',
+                //seach
+                seachData:{
+                    start_time: "",
+                    end_time: "",
+                    lottery_number: "",
+                    lottery_type: ""
                 },
+                //游戏列表
                 gameList: [],
                 //条件搜索
                 formType: "",
@@ -85,9 +89,13 @@
                     ok: (res) => {
                         if (res.state == 0 && res.data) {
                             this.gameList = res.data;
+                            this.seachData.start_time = sessionStorage.dateTimeStart
+                            this.seachData.end_time = sessionStorage.dateTimeEnd
                             //默认选中第一个
-                            this.lotteryData.lottery_type = res.data[0].lottery_type;
-                            this.tableUrl = URL.api + '/plottery/report?lottery_type=' + res.data[0].lottery_type + '&start_time=' + sessionStorage.dateTimeStart + '&end_time=' + sessionStorage.dateTimeEnd
+                            this.seachData.lottery_type = res.data[0].lottery_type;
+                            console.log(this.seachData)
+//                            this.tableUrl = URL.api + '/plottery/report?lottery_type=' + res.data[0].lottery_type + '&start_time=' + sessionStorage.dateTimeStart + '&end_time=' + sessionStorage.dateTimeEnd
+                            this.tableUrl = URL.api + '/plottery/report'+ this.addSearch(this.seachData)
                         }
                     },
                     p: () => {
@@ -98,24 +106,17 @@
                 })
             },
             doQuery(obj) {
-                let j = obj.item;
-                j.lottery_type = this.lotteryData.lottery_type
-                this.tableUrl = URL.api + '/plottery/report' + this.addSearch(j)
-                console.log(j)
+                this.seachData.start_time = obj.item.date_from
+                this.seachData.end_time = obj.item.date_to
+                this.seachData.lottery_number = obj.item.lottery_number
+                this.tableUrl = URL.api + '/plottery/report' + this.addSearch(this.seachData)
             },
             resetForm() {
             },
             handleClick(value) {
-                this.formReset = true
-                this.lotteryData.lottery_type = value;
-                this.tableUrl = URL.api + '/plottery/report' + this.addSearch({
-                    lottery_type: value,
-                    start_time: sessionStorage.dateTimeStart,
-                    end_time: sessionStorage.dateTimeEnd
-                })
+                this.seachData.lottery_type = value.name
+                this.tableUrl = URL.api + '/plottery/report' + this.addSearch(this.seachData)
             },
-            doHandle() {
-            }
         },
         created: function () {
             this.init()

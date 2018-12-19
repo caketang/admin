@@ -28,7 +28,6 @@
             tablegrid: tablegrid,
         },
         props:{
-            lotteryData:Object,
             columnsUrl:String,
             //表格数据
             tableUrl: String,
