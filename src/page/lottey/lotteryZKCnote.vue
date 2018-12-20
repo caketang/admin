@@ -8,6 +8,7 @@
                     :showExport="false"
                     :times="times"
                     :updated="updated"
+                    :autoshowRefresh="true"
                     :getData="true"
                     @do-handle="doHandle">
                 </tablegrid>
@@ -34,7 +35,7 @@
                         v-model="manual" class="w60" style="max-width: 240px;">
                     </el-input>
                 </div>
-                <p class="font14 state_info pleft20">温馨提示：快三开奖号码必须是3个号码0-9的数字组成，赛车为10个号码，且必须使用半角逗号隔开，格式如：5,4,6</p>
+                <p class="font14 state_info pleft20">温馨提示：开奖号码必须是数字组成，且必须使用半角逗号隔开，格式如：5,4,6</p>
             </el-row>
             <span slot="footer" class="dialog-footer">
     <el-button @click="dialogVisible = false">取 消</el-button>

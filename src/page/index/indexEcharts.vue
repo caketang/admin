@@ -384,7 +384,6 @@
 				this.$.autoAjax('get', URL.api + ROUTES.GET.stat.channel.$(parseInt(val)), '', {
 					ok: (res) => {
 						if (res.state == 0 && res.data) {
-							console.log(res)
 							let model = res.data;
 							let roundtitleList = _this.roundtitleList = [];
 							let roundDataList1 = _this.roundDataList1 = [];

@@ -663,13 +663,13 @@ export default [
 				iconCls: '',
 				name: '退佣期数'
 			},
-			{
-				path: '/RefundCommissionPeriod_child',
-				component: resolve => require(['../page/agent/refundCommissionPeriod_child'], resolve),
-				iconCls: '',
-				hidden: true,
-				name: '退佣期数'
-			},
+			// {
+			// 	path: '/RefundCommissionPeriod_child',
+			// 	component: resolve => require(['../page/agent/refundCommissionPeriod_child'], resolve),
+			// 	iconCls: '',
+			// 	hidden: true,
+			// 	name: '退佣期数'
+			// },
 			{
 				path: '/CommissionIncomeQuery',
 				component: resolve => require(['../page/agent/commissionIncomeQuery'], resolve),
