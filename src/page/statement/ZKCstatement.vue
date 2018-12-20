@@ -94,7 +94,6 @@
                             //默认选中第一个
                             this.seachData.lottery_type = res.data[0].lottery_type;
                             console.log(this.seachData)
-//                            this.tableUrl = URL.api + '/plottery/report?lottery_type=' + res.data[0].lottery_type + '&start_time=' + sessionStorage.dateTimeStart + '&end_time=' + sessionStorage.dateTimeEnd
                             this.tableUrl = URL.api + '/plottery/report'+ this.addSearch(this.seachData)
                         }
                     },
