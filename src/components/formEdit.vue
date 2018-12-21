@@ -137,7 +137,6 @@
                         <!--<span class="help_gray" v-if="item.type == 'markdown' && textareaTest && textareaTest.type && editForm[item.prop].length && textareaTest.length && editForm[item.prop].length <= textareaTest.length" >当前还可以输入 <span>{{textareaTest.length-editForm[item.prop].length}}</span> 个字符</span>-->
                     </el-form-item>
                     <el-form-item :label="LANG[item.label] || item.label" v-if="(item.type =='upload') && (item.ifKey ? (editForm[item.ifKey] == item.ifVal) :true)" :prop="item.prop">
-                        <!--{{item.action}}-->
                         <upload @response="doSaveFile" :keys="item.prop" :folder="item.folder" :isInit="imgInit" :arrList="item.value" :fileNum="item.fileNum"></upload>
                     </el-form-item>
                 </div>
