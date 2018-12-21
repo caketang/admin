@@ -1,104 +1,107 @@
 <template>
-    <div id="lotteryZKClarge" class="lotteryZKClarge w100">
-        <div id="lotteryZKCprophesy" class="lotteryZKCprophesy w100">
-            <el-card>
-                <el-tabs v-model="activeName" @tab-click="handleClick">
-                    <el-tab-pane :label="item.name" :name="item.gameId" v-for="item,key in gameList" :key="key">
-                        <el-col :span="24" class="mb20 pb">
-                            <!--搜索-->
-                            <formEdit   :formVisible="formVisibleSearch"
-                                        :formConfig="searchConfig"
-                                        :type="typeSearch"
-                                        :labelWidth="labelWidthSearch"
-                                        @do-query="doQuery"
-                                        :isEdit="isEditSearch"
-                                        :showAdd="false"
-                                        @reset-form="resetForm">
-
-                            </formEdit>
-                            <tablegrid
-                                :columnsUrl="columnsUrl"
-                                :tableUrl="tableUrl"
-                                :updated="updated"
-                                :autoshowRefresh="true"
-                                @do-handle="doHandle"
-                                :showRefresh="false"
-                            >
-                            </tablegrid>
-                        </el-col>
-                    </el-tab-pane>
-                </el-tabs>
-            </el-card>
-        </div>
+    <div id="lotteryZKCprophesy" class="w100">
+        <el-card>
+            <el-tabs v-model="lotteryData.lottery_type" @tab-click="handleClick">
+                <el-tab-pane :label="item.lottery_name" :name="item.lottery_type" v-for="item,key in gameList"
+                             :key="key">
+                </el-tab-pane>
+            </el-tabs>
+            <formEdit :formVisible="formVisible"
+                      :formConfig="searchConfig"
+                      :type="type"
+                      :labelWidth="labelWidth"
+                      @do-query="doQuery"
+                      :isEdit="isEdit"
+                      @reset-form="resetForm"
+                      :formReset="formReset"
+                      :formType="formType"
+                      :showAdd="false"
+            ></formEdit>
+            <el-col>
+                <ZKClargeNote :columnsUrl="columnsUrl" :tableUrl="tableUrl" :lotteryData="lotteryData"></ZKClargeNote>
+            </el-col>
+        </el-card>
     </div>
 </template>
 <script>
-    import tableGrid from '../../components/tableGrid.vue'
     import formEdit from '../../components/formEdit.vue'
-	export default{
-		data(){
-			return{
-				LANG,
+    import ZKClargeNote from './ZKClargeNote.vue'
+
+    export default {
+        data() {
+            return {
+                LANG,
                 //表格列数据
                 columnsUrl: "",
+                tableUrl:'',
                 //表格数据
-                tableUrl: "",
-                updated:false,
-                activeName: '1',
-                gameList:[
-                    {name:'3分时时彩',gameId:'1'},
-                    {name:'5分时时彩',gameId:'2'},
-                    {name:'3分快3',gameId:'3'},
-                    {name:'5分快3',gameId:'4'},
-                    {name:'5分6合彩',gameId:'5'},
-                ],
-                labelWidthSearch: "100px",
-                typeSearch: "search",
-                formVisibleSearch: {
-                    state: false
+                lotteryData: {
+                    lottery_type: '',
+                    user_name: '',
+                    pay_money:''
                 },
+                gameList: [],
+                //条件搜索
+                formType: "",
+                type: "search",
+                labelWidth: "90px",
+                //搜索相关
                 searchConfig: [
-                    {"prop":"order_number","value":"","type":"text","label":"投注金额"},
-                    {"prop":"order_number","value":"","type":"text","label":"玩家帐号"},
+                    {"prop": "user_name", "value": "", "label": "玩家账号", "type": "text"},
+                    {"prop": "pay_money", "value": "", "label": "投注金额 ≥", "type": "number"},
                 ],
-                typeSearch: "search",
-                labelWidthSearch: "100px",
-                formVisibleSearch: {
+                formVisible: {
                     state: false
                 },
-                //是否编辑数据
-                isEditSearch: {
+                LANG,
+                isEdit: {
                     state: false
                 },
-                //--------
-                formLabelWidth: "100px",
-                dialogTableVisible: false,
-
-			}
-		},
-		components: {
-            tablegrid: tableGrid,
-            formEdit: formEdit
-		},
-		methods: {
-			init(){
-
-			},
-            init(){
-                this.columnsUrl="static/json/lotteryNew/lotteryZKCprophesy/columns.json";
-
+                formReset: false,
+            }
+        },
+        components: {
+            formEdit: formEdit,
+            ZKClargeNote: ZKClargeNote
+        },
+        methods: {
+            init() {
+                let _this = this;
+                this.columnsUrl="static/json/lotteryNew/ZKClarge/columns.json";
+                //获取自开彩的彩种
+                this.$.autoAjax('get', URL.api + '/plottery/menu', '', {
+                    ok: (res) => {
+                        if (res.state == 0 && res.data) {
+                            this.gameList = res.data;
+                            //默认选中第一个
+                            this.lotteryData.lottery_type = res.data[0].lottery_type;
+                            this.tableUrl = URL.api + '/plottery/bet'+this.addSearch(this.lotteryData)
+                        }
+                    },
+                    p: () => {
+                    },
+                    error: e => {
+                        console.log(e)
+                    }
+                })
             },
-            doQuery(obj){},
-            resetForm(){},
-            handleClick(tab, event) {
-                console.log(tab, event);
+            doQuery(obj) {
+                console.log(obj)
+                this.lotteryData.user_name = obj.item.user_name,
+                this.lotteryData.pay_money = obj.item.pay_money*100,
+                this.tableUrl = URL.api + '/plottery/bet' + this.addSearch(this.lotteryData)
             },
-            doHandle(){}
-		},
-		created: function () {
-			this.init()
-		}
-	}
+            resetForm() {
+            },
+            handleClick(value) {
+                this.lotteryData.lottery_type = value.name;
+                this.tableUrl = URL.api + '/plottery/bet' + this.addSearch(this.lotteryData)
+            },
+        },
+        created: function () {
+            this.init()
+        }
+    }
 </script>
 <style scopend>
 

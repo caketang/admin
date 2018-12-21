@@ -65,7 +65,7 @@
                         <span>{{detailform.sort}}</span>
                     </el-form-item>
                     <el-form-item :label="LANG['轮播图片:'] || '轮播图片:'" :label-width="formLabelWidth">
-                        <img :src="detailform.picture" style="margin-right: 10px; width: 90%"></img>
+                        <img :src="detailform.picture" style="margin-right: 10px; width: 90%" />
                     </el-form-item>
                 </el-form>
                 <span slot="footer" class="dialog-footer">
@@ -197,7 +197,6 @@
                 this.columnsUrl = "/static/json/ADManage/ADList/columns.json";
                 this.tableUrl = URL.api + ROUTES.GET.copywriter.carousel + "?pf=" + this.pf;
                 this.baseUrl = URL.api + ROUTES.GET.copywriter.carousel;
-
                 //获取语言列表
                 let langeUrl = URL.api + ROUTES.GET.langeages;
 				this.$.autoAjax('get', langeUrl, '', {
@@ -394,15 +393,6 @@
 								console.log(e)
 							}
 						})
-                        // this.$http.patch(URL.api + ROUTES.PUT.copywriter.carousel + "/" + parseInt(this.nowId), JSON.stringify(disableddata), URLCONFIG).then((res) => {
-                        //     if (res.data.state == 0 && res.data.data) {
-                        //         _this.$message.success(LANG['恭喜您，停用成功！'] || '恭喜您，停用成功！');
-                        //         _this.updated = true;
-                        //     } else {
-                        //         _this.$message.error(LANG['停用失败，请稍后重试！']);
-                        //     }
-                        //     _this.loading = false;
-                        // });
                         break;
                     case "start":
                         let enableddata = {
@@ -429,15 +419,6 @@
 								console.log(e)
 							}
 						})
-                        // this.$http.patch(URL.api + ROUTES.PUT.copywriter.carousel + "/" + parseInt(this.nowId), JSON.stringify(enableddata), URLCONFIG).then((res) => {
-                        //     if (res.data.state == 0 && res.data.data) {
-                        //         _this.$message.success(LANG['恭喜您，启用成功！'] || '恭喜您，启用成功！');
-                        //         _this.updated = true;
-                        //     } else {
-                        //         _this.$message.error(LANG['启用失败，请稍后重试！']);
-                        //     }
-                        //     _this.loading = false;
-                        // });
                         break;
                     case "apply":
                         let applyddata = {

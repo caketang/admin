@@ -185,57 +185,44 @@
                         formData.append('upfile[]', item,item.name);
                     })
                     this.uploadStatus = true;
-                    this.$http.post(this.uploadUrl + '/' +  this.folder,formData,this.requestHeaders).then((res)=>{
-                        this.selectList = [];
-                        if(res.data.state  && res.data.state == 0 && res.data.data.file[0].type === 'success'){
-                            let fileList = res.data.data.file || [];
-                            for(let k in fileList){
-                                if(fileList[k].type === "success"){
-                                    let model = this.fileList;
-                                    let num = 0;
-                                    for(let n in model){
-                                        if(model[n].url === fileList[k].url){
-                                            num++ ;
+                    this.$.autoAjax('post', this.uploadUrl + '/' +  this.folder,formData,this.requestHeaders, '', {
+                        ok: (res) => {
+                            this.selectList = [];
+                            if(res.state  && res.state == 0 && res.data.file[0].type === 'success'){
+                                let fileList = res.data.file || [];
+                                for(let k in fileList){
+                                    if(fileList[k].type === "success"){
+                                        let model = this.fileList;
+                                        let num = 0;
+                                        for(let n in model){
+                                            if(model[n].url === fileList[k].url){
+                                                num++ ;
+                                            }
+                                        }
+                                        if(num === 0){
+                                            this.fileList.push(fileList[k]);
                                         }
                                     }
-                                    if(num === 0){
-                                        this.fileList.push(fileList[k]);
-                                    }
                                 }
-                                // if(fileList[k].type === "error"){
-                                //     let model = _this.errorList;
-                                //     let num = 0;
-                                //     for(let n in model){
-                                //         if(model[n].url === fileList[k].url){
-                                //             num++ ;
-                                //         }
-                                //     }
-                                //     if(num === 0){
-                                //         this.errorList.push(fileList[k].msg);
-                                //     }
-                                // }
+                                this.$message.success(LANG['文件上传成功！'] || '文件上传成功！');// 此处为单传一个图片成功提示
+                            }else{
+                                this.$message.error(LANG['文件上传失败，请稍后重试！'] || '文件上传失败，请稍后重试！');
                             }
-                            this.$message.success(LANG['文件上传成功！'] || '文件上传成功！');// 此处为单传一个图片成功提示
-                            // if(this.errorList.length >0){
-                            //     this.$message.error(this.errorList.toString() + " " + (LANG['文件上传失败，请稍后重试！'] || '文件上传失败，请稍后重试！'));
-                            // }else{
-                            //
-                            // }
-                        }else{
-                            this.$message.error(LANG['文件上传失败，请稍后重试！'] || '文件上传失败，请稍后重试！');
+                            // 传到组件外部的回调
+                            let model = [];
+                            let fileList = this.fileList;
+                            for(let k in fileList){
+                                model.push(fileList[k].url);
+                            }
+                            this.$emit("response",{url:model,key:this.keys})
+                            this.uploadStatus = false;
+                        },
+                        p: () => {
+                        },
+                        error: e => {
+                            this.uploadStatus = false;
+                            this.$message.error(LANG['服务器错误请稍后重试！'] || '服务器错误请稍后重试！');
                         }
-                        // 传到组件外部的回调
-                        let model = [];
-                        let fileList = this.fileList;
-                        for(let k in fileList){
-                            model.push(fileList[k].url);
-                        }
-                        this.$emit("response",{url:model,key:this.keys})
-                        this.uploadStatus = false;
-
-                    }).catch((err)=>{
-                        this.uploadStatus = false;
-                        this.$message.error(LANG['服务器错误请稍后重试！'] || '服务器错误请稍后重试！');
                     })
                 }else{
                     this.$message('请先选取要上传的文件');
@@ -259,23 +246,27 @@
                     _this.$emit("response",{url:model,key:_this.keys});
                     return;
                 }
-                this.$http.delete(this.uploadUrl + '/' + item.folder,this.requestHeaders).then((res)=>{
-
-                    if(res.data.state && res.data.state == "0"){
-                        _this.fileList.splice(index,1);
-                        let model = [];
-                        let fileList = _this.fileList;
-                        for(let k in fileList){
-                            model.push(fileList[k].url);
+                this.$.autoAjax('delete', this.uploadUrl + '/' + item.folder,this.requestHeaders, '', {
+                    ok: (res) => {
+                        if(res.state && res.state == "0"){
+                            _this.fileList.splice(index,1);
+                            let model = [];
+                            let fileList = _this.fileList;
+                            for(let k in fileList){
+                                model.push(fileList[k].url);
+                            }
+                            _this.$message.success(LANG['文件删除成功！'] || '文件删除成功！');
+                            _this.$emit("response",{url:model,key:_this.keys});
+                        }else{
+                            _this.$message.error(res.msg + LANG['文件删除失败！'] || '文件删除失败！');
                         }
-                        _this.$message.success(LANG['文件删除成功！'] || '文件删除成功！');
-                        _this.$emit("response",{url:model,key:_this.keys});
-                    }else{
-                        _this.$message.error(res.data.msg + LANG['文件删除失败！'] || '文件删除失败！');
+                        _this.deleteStatus = false;
+                    },
+                    p: () => {
+                    },
+                    error: e => {
+                        console.log(e)
                     }
-                    _this.deleteStatus = false;
-                }).catch((err)=>{
-                    this.$message.error(err);
                 })
             }
             // 读取本地文件的方法，暂时不用
