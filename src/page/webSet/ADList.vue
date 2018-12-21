@@ -23,14 +23,14 @@
             <el-col :span="24">
                 <div>
                     <tablegrid
-                            :columnsUrl="columnsUrl"
-                            :tableUrl="tableUrl"
-                            :tableCheck="false"
-                            @do-handle="doHandle"
-                            :showRefresh="true"
-                            :pageSet="true"
-                            :updated="updated"
-                            :tableIndex="false">
+                        :columnsUrl="columnsUrl"
+                        :tableUrl="tableUrl"
+                        :tableCheck="false"
+                        @do-handle="doHandle"
+                        :showRefresh="true"
+                        :pageSet="true"
+                        :updated="updated"
+                        :tableIndex="false">
                     </tablegrid>
                 </div>
             </el-col>
@@ -199,26 +199,26 @@
                 this.baseUrl = URL.api + ROUTES.GET.copywriter.carousel;
                 //获取语言列表
                 let langeUrl = URL.api + ROUTES.GET.langeages;
-				this.$.autoAjax('get', langeUrl, '', {
-					ok: (res) => {
-						let model = res.data
-						for (let i in model) {
-							_this.langList.push({
-								"label": model[i].name,
-								"value": model[i].id.toString()
-							});
-							_this.formConfig[4].list.push({
-								"label": model[i].name,
-								"value": model[i].id.toString()
-							})
-						}
-					},
-					p: () => {
-					},
-					error: e => {
+                this.$.autoAjax('get', langeUrl, '', {
+                    ok: (res) => {
+                        let model = res.data
+                        for (let i in model) {
+                            _this.langList.push({
+                                "label": model[i].name,
+                                "value": model[i].id.toString()
+                            });
+                            _this.formConfig[4].list.push({
+                                "label": model[i].name,
+                                "value": model[i].id.toString()
+                            })
+                        }
+                    },
+                    p: () => {
+                    },
+                    error: e => {
                         console.log(e)
-					}
-				})
+                    }
+                })
             },
             //表格操作点击事件处理
             doHandle(e) {
@@ -313,27 +313,27 @@
                 let _this = this;
                 _this.isEdit.state = false;
                 let fromDataUrl = URL.api + ROUTES.GET.copywriter.carousel + "/" + parseInt(this.nowId);
-				this.$.autoAjax('get',fromDataUrl,'', {
-					ok: (res) => {
-						if (res.state == 0 && res.data) {
-							_this.isEdit.state = true;
-							_this.formType = "edit";
-							_this.formTitel = "修改轮播广告";
-							FORMVAL(res.data, _this.formConfig);
-							let str = res.data.picture || "";
-							_this.formConfig[6].value.push(str);
-							_this.editVisible.state = true;
-						} else {
-							_this.$message.error(LANG['修改轮播广失败，请稍后重试！']);
-						}
-						_this.loading = false;
-					},
-					p: () => {
-					},
-					error: e => {
-						console.log(e)
-					}
-				})
+                this.$.autoAjax('get',fromDataUrl,'', {
+                    ok: (res) => {
+                        if (res.state == 0 && res.data) {
+                            _this.isEdit.state = true;
+                            _this.formType = "edit";
+                            _this.formTitel = "修改轮播广告";
+                            FORMVAL(res.data, _this.formConfig);
+                            let str = res.data.picture || "";
+                            _this.formConfig[6].value.push(str);
+                            _this.editVisible.state = true;
+                        } else {
+                            _this.$message.error(LANG['修改轮播广失败，请稍后重试！']);
+                        }
+                        _this.loading = false;
+                    },
+                    p: () => {
+                    },
+                    error: e => {
+                        console.log(e)
+                    }
+                })
             },
             //删除
             doDel(row) {
@@ -349,24 +349,24 @@
                 let _this = this;
                 switch (obj.fn) {
                     case "delete":
-						this.$.autoAjax('delete',URL.api + ROUTES.PUT.copywriter.carousel + "/" + parseInt(this.nowId) + "?pf=" + this.pf, '', {
-							ok: (res) => {
-								if (res.state == 0 && res.data) {
-									_this.formType = "delete";
-									_this.$message.success(LANG['恭喜您，删除成功！'] || '恭喜您，删除成功！');
-									_this.updated = true;
-								} else {
-									this.$message.error(LANG['删除失败，请稍后重试！'] || '删除失败，请稍后重试！');
-								}
-								_this.loading = false;
-							},
-							p: () => {
-							},
-							error: e => {
+                        this.$.autoAjax('delete',URL.api + ROUTES.PUT.copywriter.carousel + "/" + parseInt(this.nowId) + "?pf=" + this.pf, '', {
+                            ok: (res) => {
+                                if (res.state == 0 && res.data) {
+                                    _this.formType = "delete";
+                                    _this.$message.success(LANG['恭喜您，删除成功！'] || '恭喜您，删除成功！');
+                                    _this.updated = true;
+                                } else {
+                                    this.$message.error(LANG['删除失败，请稍后重试！'] || '删除失败，请稍后重试！');
+                                }
+                                _this.loading = false;
+                            },
+                            p: () => {
+                            },
+                            error: e => {
                                 _this.loading = false;
                                 console.log(e)
-							}
-						})
+                            }
+                        })
                         break;
                     case "stop":
                         let disableddata = {
@@ -377,22 +377,22 @@
                             "approve":obj.obj.approve
                         }
 
-						this.$.autoAjax('patch',URL.api + ROUTES.PUT.copywriter.carousel + "/" + parseInt(this.nowId), disableddata, {
-							ok: (res) => {
-								if (res.state == 0 && res.data) {
-									_this.$message.success(LANG['恭喜您，停用成功！'] || '恭喜您，停用成功！');
-									_this.updated = true;
-								} else {
-									_this.$message.error(LANG['停用失败，请稍后重试！']);
-								}
-								_this.loading = false;
-							},
-							p: () => {
-							},
-							error: e => {
-								console.log(e)
-							}
-						})
+                        this.$.autoAjax('patch',URL.api + ROUTES.PUT.copywriter.carousel + "/" + parseInt(this.nowId), disableddata, {
+                            ok: (res) => {
+                                if (res.state == 0 && res.data) {
+                                    _this.$message.success(LANG['恭喜您，停用成功！'] || '恭喜您，停用成功！');
+                                    _this.updated = true;
+                                } else {
+                                    _this.$message.error(LANG['停用失败，请稍后重试！']);
+                                }
+                                _this.loading = false;
+                            },
+                            p: () => {
+                            },
+                            error: e => {
+                                console.log(e)
+                            }
+                        })
                         break;
                     case "start":
                         let enableddata = {
@@ -403,22 +403,22 @@
                             "approve":obj.obj.approve
                         }
 
-						this.$.autoAjax('patch',URL.api + ROUTES.PUT.copywriter.carousel + "/" + parseInt(this.nowId), enableddata, {
-							ok: (res) => {
-								if (res.state == 0 && res.data) {
-									_this.$message.success(LANG['恭喜您，启用成功！'] || '恭喜您，启用成功！');
-									_this.updated = true;
-								} else {
-									_this.$message.error(LANG['启用失败，请稍后重试！']);
-								}
-								_this.loading = false;
-							},
-							p: () => {
-							},
-							error: e => {
-								console.log(e)
-							}
-						})
+                        this.$.autoAjax('patch',URL.api + ROUTES.PUT.copywriter.carousel + "/" + parseInt(this.nowId), enableddata, {
+                            ok: (res) => {
+                                if (res.state == 0 && res.data) {
+                                    _this.$message.success(LANG['恭喜您，启用成功！'] || '恭喜您，启用成功！');
+                                    _this.updated = true;
+                                } else {
+                                    _this.$message.error(LANG['启用失败，请稍后重试！']);
+                                }
+                                _this.loading = false;
+                            },
+                            p: () => {
+                            },
+                            error: e => {
+                                console.log(e)
+                            }
+                        })
                         break;
                     case "apply":
                         let applyddata = {
@@ -428,22 +428,22 @@
                             "position": obj.obj.position
                         }
 
-						this.$.autoAjax('patch', URL.api + ROUTES.PUT.copywriter.carousel + "/" + parseInt(this.nowId), applyddata,{
-							ok: (res) => {
-								if (res.state == 0 && res.data) {
-									_this.$message.success(LANG['恭喜您，申请成功！'] || '恭喜您，申请成功！');
-									_this.updated = true;
-								} else {
-									_this.$message.error(LANG['申请失败，请稍后重试！']);
-								}
-								_this.loading = false;
-							},
-							p: () => {
-							},
-							error: e => {
-								console.log(e)
-							}
-						})
+                        this.$.autoAjax('patch', URL.api + ROUTES.PUT.copywriter.carousel + "/" + parseInt(this.nowId), applyddata,{
+                            ok: (res) => {
+                                if (res.state == 0 && res.data) {
+                                    _this.$message.success(LANG['恭喜您，申请成功！'] || '恭喜您，申请成功！');
+                                    _this.updated = true;
+                                } else {
+                                    _this.$message.error(LANG['申请失败，请稍后重试！']);
+                                }
+                                _this.loading = false;
+                            },
+                            p: () => {
+                            },
+                            error: e => {
+                                console.log(e)
+                            }
+                        })
                         // this.$http.patch(URL.api + ROUTES.PUT.copywriter.carousel + "/" + parseInt(this.nowId), JSON.stringify(applyddata), URLCONFIG).then((res) => {
                         //     if (res.data.state == 0 && res.data.data) {
                         //         _this.$message.success(LANG['恭喜您，申请成功！'] || '恭喜您，申请成功！');
@@ -490,61 +490,37 @@
                 }
                 obj.formObj['picture'] = obj.formObj['images'].toString();
                 delete obj.formObj['images']
-				this.$.autoAjax('put',typeUrl, obj.formObj, {
-					ok: (res) => {
-						if (res.state === 2) {
-							_this.$message.error(LANG['轮播图片不能为空'] || '轮播图片不能为空');
-						} else {
-							if (res.state == 0 && res.data) {
-								let str = "";
-								if (_this.formType == "add") {
-									str = LANG['恭喜您，新增轮播广告成功！'] || '恭喜您，新增轮播广告成功！';
-								} else {
-									str = LANG['恭喜您，修改轮播广告成功！'] || '恭喜您，修改轮播广告成功！';
-								}
-								_this.updated = true;
-								_this.$message.success(str);
-							} else {
-								let str = "";
-								if (_this.formType == "add") {
-									str = LANG['新增轮播广告失败！'] || '新增轮播广告失败！';
-								} else {
-									str = LANG['修改轮播广告失败！'] || '修改轮播广告失败！';
-								}
-								_this.$message.error(str);
-							}
-						}
-					},
-					p: () => {
-					},
-					error: e => {
-						console.log(e)
-					}
-				})
-                // this.$http.put(typeUrl, JSON.stringify(obj.formObj), URLCONFIG).then((res) => {
-                //     if (res.data.state === 2) {
-                //         _this.$message.error(LANG['轮播图片不能为空'] || '轮播图片不能为空');
-                //     } else {
-                //         if (res.data.state == 0 && res.data.data) {
-                //             let str = "";
-                //             if (_this.formType == "add") {
-                //                 str = LANG['恭喜您，新增轮播广告成功！'] || '恭喜您，新增轮播广告成功！';
-                //             } else {
-                //                 str = LANG['恭喜您，修改轮播广告成功！'] || '恭喜您，修改轮播广告成功！';
-                //             }
-                //             _this.updated = true;
-                //             _this.$message.success(str);
-                //         } else {
-                //             let str = "";
-                //             if (_this.formType == "add") {
-                //                 str = LANG['新增轮播广告失败！'] || '新增轮播广告失败！';
-                //             } else {
-                //                 str = LANG['修改轮播广告失败！'] || '修改轮播广告失败！';
-                //             }
-                //             _this.$message.error(str);
-                //         }
-                //     }
-                // })
+                this.$.autoAjax('put',typeUrl, obj.formObj, {
+                    ok: (res) => {
+                        if (res.state === 2) {
+                            _this.$message.error(LANG['轮播图片不能为空'] || '轮播图片不能为空');
+                        } else {
+                            if (res.state == 0 && res.data) {
+                                let str = "";
+                                if (_this.formType == "add") {
+                                    str = LANG['恭喜您，新增轮播广告成功！'] || '恭喜您，新增轮播广告成功！';
+                                } else {
+                                    str = LANG['恭喜您，修改轮播广告成功！'] || '恭喜您，修改轮播广告成功！';
+                                }
+                                _this.updated = true;
+                                _this.$message.success(str);
+                            } else {
+                                let str = "";
+                                if (_this.formType == "add") {
+                                    str = LANG['新增轮播广告失败！'] || '新增轮播广告失败！';
+                                } else {
+                                    str = LANG['修改轮播广告失败！'] || '修改轮播广告失败！';
+                                }
+                                _this.$message.error(str);
+                            }
+                        }
+                    },
+                    p: () => {
+                    },
+                    error: e => {
+                        console.log(e)
+                    }
+                })
             },
 
         },

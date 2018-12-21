@@ -12,11 +12,12 @@ body {
     margin: 0 auto;
     background: #E5E9F2;
     padding: 0px;
+    min-width: 1200px;
     font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
     /*font-weight: 400;*/
     font-size:12px;
     font-size:1.2rem ;
-    min-width: 860px;
+    /*min-width: 860px;*/
     -webkit-font-smoothing: antialiased;
     /*overflow-x: scroll;*/
 

@@ -124,7 +124,7 @@
                                                 sessionStorage.timeOutString = model.expire ? new Date(parseInt(model.expire) * 1000) : 0;
                                                 sessionStorage.refresh_token = model.refresh_token;
                                                 SETSESSIONSTORAGE('token', model.token);
-                                                //                                localStorage.token = model.token;
+                                                SETSESSIONSTORAGE('stsToken', model.stsToken);
                                                 // 当前用户的操作权限
                                                 sessionStorage.role = model.list.role;
                                                 this.setPermissions(model.member_control);
@@ -137,8 +137,7 @@
                                                     emulateJson: true,
                                                     headers: {
                                                         "Content-Type": "application/json",
-//                                                    "Authorization": "Bearer" + sessionStorage.token
-                                                        "Authorization": sessionStorage.token
+                                                        "Authorization": sessionStorage.stsToken
                                                     },
                                                     validateStatus: function (status) {
                                                         return status;
