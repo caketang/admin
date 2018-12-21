@@ -71,25 +71,33 @@
                     oType.fast = obj.row['is_fast'];
                     oType.standard = obj.row['is_standard'];
                     oType.is_auto = obj.row['is_auto'];
-                    this.$http.patch(oUrl, oType, URLCONFIG).then((res) => {
-                        if (res.data.data && res.data.state == 0) {
-                            this.$message({
-                                showClose: true,
-                                message: '操作成功',
-                                type: 'success',
 
-                            })
-	                        _this.updated = true;
-                        }else{
-                            this.$message({
-                                showClose: true,
-                                message: '操作失败，请稍后重试！',
-                                type: 'error',
+                    this.$.autoAjax('patch',oUrl, oType, {
+                        ok: (res) => {
+                            if (res.data && res.state == 0) {
+                                this.$message({
+                                    showClose: true,
+                                    message: '操作成功',
+                                    type: 'success',
 
-                            })
-	                        _this.updated = true;
+                                })
+                                _this.updated = true;
+                            }else{
+                                this.$message({
+                                    showClose: true,
+                                    message: '操作失败，请稍后重试！',
+                                    type: 'error',
+
+                                })
+                                _this.updated = true;
+                            }
+                        },
+                        p: () => {
+                        },
+                        error: e => {
+                            console.log(e)
                         }
-                    });
+                    })
                 }, 0)
             }
         },

@@ -57,14 +57,30 @@
                     let headUrl = this.headUrl;
                     let headModel = this.headModel;
                     headModel.splice(0,bodyModel.length);
-                    this.$http.get(headUrl,URLCONFIG).then((res) => {
-                        let data = res.data.columns || [];
-                        if(data.length > 0){
-                            for (let i in data) {
-                                headModel.push(data[i])
+
+                    this.$.autoAjax('get',headUrl, '', {
+                        ok: (res) => {
+                            let data = res.columns || [];
+                            if(data.length > 0){
+                                for (let i in data) {
+                                    headModel.push(data[i])
+                                }
                             }
+                        },
+                        p: () => {
+                        },
+                        error: e => {
+                            console.log(e)
                         }
-                    });
+                    })
+                    // this.$http.get(headUrl,URLCONFIG).then((res) => {
+                    //     let data = res.data.columns || [];
+                    //     if(data.length > 0){
+                    //         for (let i in data) {
+                    //             headModel.push(data[i])
+                    //         }
+                    //     }
+                    // });
                 }
                 if(this.bodyModelUrl) {
                     let bodyurl = this.bodyModelUrl

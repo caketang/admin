@@ -99,18 +99,32 @@
 
                     bodyModel.splice(0,bodyModel.length);
                     let _this = this
-                    this.$http.get(bodyurl,URLCONFIG).then((res) => {
-                            let data = res.data.tableDemoDate
-                            if(data.length > 0
-                    )
-                        {
-                            for (let i in data) {
-                                bodyModel.push(data[i])
+
+                    this.$.autoAjax('get',bodyurl,'', {
+                        ok: (res) => {
+                            let data = res.tableDemoDate
+                            if(data.length > 0) {
+                                for (let i in data) {
+                                    bodyModel.push(data[i])
+                                }
                             }
+                        },
+                        p: () => {
+                        },
+                        error: e => {
+                            console.log(e)
                         }
-                    }).catch((err)=>{
-//                        console.log(err)
                     })
+//                     this.$http.get(bodyurl,URLCONFIG).then((res) => {
+//                             let data = res.data.tableDemoDate
+//                             if(data.length > 0) {
+//                             for (let i in data) {
+//                                 bodyModel.push(data[i])
+//                             }
+//                         }
+//                     }).catch((err)=>{
+// //                        console.log(err)
+//                     })
                 }
                 if(this.headModelUrl != "" && this.headModelUrl != null) {
                     let headModelUrl = this.headModelUrl
@@ -119,17 +133,34 @@
                     headModel.splice(0,headModel.length);
                     let _this = this
                     debugger;
-                    this.$http.get(headModelUrl,URLCONFIG).then((res) => {
-                        debugger;
-                        let data = res.data.columns
-                        if(data.length > 0){
-                            for (let i in data) {
-                                headModel.push(data[i])
+
+                    this.$.autoAjax('get',headModelUrl, '', {
+                        ok: (res) => {
+                            debugger;
+                            let data = res.columns
+                            if(data.length > 0){
+                                for (let i in data) {
+                                    headModel.push(data[i])
+                                }
                             }
+                        },
+                        p: () => {
+                        },
+                        error: e => {
+                            console.log(e)
                         }
-                    }).catch((err)=>{
-//                        console.log(err)
                     })
+//                     this.$http.get(headModelUrl,URLCONFIG).then((res) => {
+//                         debugger;
+//                         let data = res.data.columns
+//                         if(data.length > 0){
+//                             for (let i in data) {
+//                                 headModel.push(data[i])
+//                             }
+//                         }
+//                     }).catch((err)=>{
+// //                        console.log(err)
+//                     })
                 }
 
             }
