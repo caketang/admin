@@ -953,20 +953,16 @@
                 for (let i in this.grantRebateForm) {
                     formData[i] = this.grantRebateForm[i];
                 }
-
                 //需要验证的参数
                 let formInline_prop = [{name: formData.amount, message: '请输入返水金额'}]
                 if (!this.judgmentProp(formInline_prop)) {
                     return;
                 }
-
                 formData.amount = this.grantRebateForm.amount?this.grantRebateForm.amount.toFixed(2) * 100:'';
                 formData.condition = this.grantRebateForm.condition?this.grantRebateForm.condition.toFixed(2) * 100:'';
-
                 if (!this.djOperateMoney(formData.amount)) return false;
                 this.formControlBtn.rebate_boolean = true;
                 let acountsUrl = URL.api + ROUTES.POST.cash.rebate;
-
 				this.$.autoAjax('post',acountsUrl, formData, {
 					ok: (res) => {
 						if (res.state == 0 && res.data) {
@@ -1009,14 +1005,10 @@
                 if (!this.judgmentProp(formInline_prop)) {
                     return;
                 }
-
                 formData.amount = this.childToMasterForm.amount?this.childToMasterForm.amount.toFixed(2) * 100:'';
-
                 if (!this.djOperateMoney(formData.amount)) return false;
                 this.formControlBtn.childtomaster_boolean = true;
-                // console.log(JSON.stringify(formData));
                 let acountsUrl = URL.api + ROUTES.POST.cash.childOrmaster;
-
 				this.$.autoAjax('post',acountsUrl, formData, {
 					ok: (res) => {
 						if (res.state == 0 && res.data) {
