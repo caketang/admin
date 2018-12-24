@@ -5,7 +5,7 @@
         <!--</div>-->
         <el-col>
             <formEdit :formTitel="formTitel" :formVisible="formVisible" :formConfig="searchConfig" :type="searchType" :labelWidth="labelWidth" :isEdit="isEdit" @do-query="doQuery" @reset-form="resetForm" :showAdd="false"></formEdit>
-            
+
         </el-col>
         <el-col>
             <tablegrid
@@ -83,7 +83,7 @@
                         this.openUserSet(item.row);
                         break;
                     case "openMembers":
-                        this.openMembers(item.row);    
+                        this.openMembers(item.row);
                     default:
                         break;
                 }
