@@ -93,9 +93,9 @@
                 function getGame() {
                     return new Promise((resolve,reject) => {
                         if(_this.assembleColumns.data.length === 0) {
-
-							this.$.autoAjax('get', URL.api + "/games/list", '', {
+							_this.$.autoAjax('get', URL.api + "/games/list", '', {
 								ok: (res) => {
+//								    console.log(res)
 									if(res.state === 0 && res.data){
 										let model = res.data;
 										let games = _this.games;
@@ -110,7 +110,7 @@
 											"type":"divisionMoney"
 										});
 										resolve();
-										stop();
+//										stop();
 									}
 								},
 								p: () => {
@@ -119,28 +119,6 @@
 									console.log(e)
 								}
 							})
-                            // _this.$http.get(URL.api + "/games/list", URLCONFIG).then((res)=>{
-                            //     if(res.data.state === 0 && res.data.data){
-                            //         let model = res.data.data;
-                            //         let games = _this.games;
-                            //         model.forEach(item => {
-                            //             let obj = {"label":item.name,prop:`games,${item.name}`,"type": "connectProp"};
-                            //             games.push(item.name);
-                            //             _this.assembleColumns.data.push(obj);
-                            //         })
-                            //         _this.assembleColumns.data.push({
-                            //             "prop": 'total',
-                            //             "label":"小计",
-                            //             "type":"divisionMoney"
-                            //         });
-                            //         resolve();
-                            //         stop();
-                            //     }
-                            // })
-                            .catch((res) => {
-                                _this.$message.error(LANG['未知错误，请稍后重试'] || '未知错误，请稍后重试');
-                                reject(res)
-                            });
                         }else{
                             resolve();
                         }
@@ -160,9 +138,9 @@
             },
             getTableData(obj){
                 this.totalMoney = {};
-                this.tableLength = obj.allData.data.length || 0;
-                this.subTotalValidBet = obj.allData.attributes.subTotalValidBet || {}
-                this.totalValidBet = obj.allData.attributes.totalValidBet || {};
+                this.tableLength = obj.allData.length || 0;
+                this.subTotalValidBet = obj.item.subTotalValidBet || {}
+                this.totalValidBet = obj.item.totalValidBet || {};
             }
         },
         mounted(){},
