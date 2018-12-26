@@ -517,7 +517,7 @@ global.ROUTES = {
 		lottery: {
 			template: "/lottery/template",
 			rate: "/lottery/rate",
-			fast: "/lottery/rate.fast",
+			// fast: "/lottery/rate.fast",
 			orders: "/lottery/orders",
 			realtime: "/lottery/realtime",
 			result: "/lottery/result",

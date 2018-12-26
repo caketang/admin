@@ -66,8 +66,7 @@
             // 取日志类型
             getLogType(){
                 let typeList = this.searchConfig[4].list;
-
-				this.$.autoAjax('get',URL.api + '/system/log/user.type/', '', {
+				this.$.autoAjax('get',URL.api + '/system/log/user.type', '', {
 					ok: (res) => {
 						if(res.data && res.state === 0){
 							let list = res.data || [];
