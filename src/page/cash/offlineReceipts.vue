@@ -53,17 +53,6 @@
               </span>
             </el-dialog>
         </el-col>
-        <!--  <el-dialog :title="LANG['修改备注'] || '修改备注'" v-model="dialogMemo" size="tiny">
-            <el-form :model="formMemo">
-                <el-form-item :label="LANG['备注'] || '备注'" label-width="45px">
-                    <el-input type="textarea" v-model="formMemo.memo"></el-input>
-                </el-form-item>
-            </el-form>
-            <span slot="footer" class="dialog-footer">
-                    <el-button @click="dialogMemo = false">{{LANG['取消'] || '取消'}}</el-button>
-                    <el-button type="primary" @click="submitForm">{{LANG['确定并发送用户'] || '确定并发送用户'}}</el-button>
-                </span>
-        </el-dialog> -->
         <!--详情-->
         <el-dialog :title="LANG['公司入款详情'] || '公司入款详情'" v-model="dialogDetail.state" size="small">
             <el-row :gutter="30">
@@ -126,13 +115,6 @@
                         </el-col>
                         <el-col :span="12">{{LANG['优惠活动名称'] || '优惠活动名称'}}  ： <span>{{Detailcontent.active_name}}</span>
                         </el-col>
-
-                        <!--<el-col :span="12" v-if="btnShow">-->
-                        <!--<template>-->
-                        <!--&lt;!&ndash; <el-radio class="radio" v-model="radio" label="1">{{LANG['发放优惠'] || '发放优惠'}} </el-radio> &ndash;&gt;-->
-                        <!--<el-radio class="radio" v-model="radio" label="2">{{LANG['拒绝优惠'] || '拒绝优惠'}} </el-radio>-->
-                        <!--</template>-->
-                        <!--</el-col>-->
                     </div>
                 </el-col>
                 <el-col :span="24" class="mt10 borStyle">
@@ -205,10 +187,6 @@
                     {"prop": "user_name", "value": "", "type": "text", "label": "用户名"},
                     //ID2
                     {"prop": "pay_no", "value": "", "type": "text", "label": "交易订单号", "style": {width: '250px'}},
-//                    {
-//                        "prop": "ranting", "value": "", "label": "会员等级", "type": "select",
-//                        "list": []
-//                    },
                     // 优惠搜索
                     {
                         "prop": "give_active", "value": "", "label": "存款优惠", "type": "select",
@@ -330,7 +308,7 @@
         },
         watch: {
             '$route'(to, from) {//监听路由改变
-
+                console.log(to)
             }
         },
         methods: {
@@ -346,24 +324,15 @@
                 if(JSON.stringify(this.$route.query) == "{}"){
                     this.tableUrl = URL.api + ROUTES.GET.cash.offlines + "?date_from=" + sessionStorage.sysTime + " 00:00:00&date_to=" + sessionStorage.sysTime + ' 23:59:59';
                 }else {
+                    this.searchConfig[5].value = this.$route.query.status
                     this.tableUrl = this.baseUrl + '?status=' + this.$route.query.status;
                 }
                 // 获取层级
                 let levelUrl = URL.api + ROUTES.GET.user.level.list;
-//                _this.searchConfig[2].list.splice(0,_this.searchConfig[2].list.length);
-//                _this.searchConfig[2].list.push({
-//                    "label": LANG['全部'] || '全部',
-//                    "value": ''
-//                });
-
 				this.$.autoAjax('get',levelUrl, '', {
 					ok: (res) => {
 						let model = res.data;
 						for (let i in model) {
-//                        _this.searchConfig[2].list.push({
-//                            "label": model[i].name,
-//                            "value": model[i].id
-//                        })
 							_this.searchConfig[4].list.push(model[i].name);
 							_this.searchConfig[4].Arr.push({
 								"label": model[i].name,
@@ -377,22 +346,6 @@
 						console.log(e)
 					}
 				})
-//                 this.$http.get(levelUrl, URLCONFIG).then((res) => {
-//                     let model = res.data.data;
-//                     for (let i in model) {
-// //                        _this.searchConfig[2].list.push({
-// //                            "label": model[i].name,
-// //                            "value": model[i].id
-// //                        })
-//                         _this.searchConfig[4].list.push(model[i].name);
-//                         _this.searchConfig[4].Arr.push({
-//                             "label": model[i].name,
-//                             "value": model[i].id
-//                         })
-//                     }
-//                 }).catch(function (err) {
-// //                    console.log(err)
-//                 });
                 //获取银行列表
                 let acountsUrl = URL.api + ROUTES.GET.cash.bank.acounts + '?page=1&page_size=10';
                 _this.searchConfig[6].list.splice(0, _this.searchConfig[6].list.length);
@@ -417,17 +370,6 @@
 						console.log(e)
 					}
 				})
-//                 this.$http.get(acountsUrl, URLCONFIG).then((res) => {
-//                     let model = res.data.data;
-//                     for (let i in model) {
-//                         _this.searchConfig[6].list.push({
-//                             "label": model[i].bank_name,
-//                             "value": model[i].id
-//                         })
-//                     }
-//                 }).catch(function (err) {
-// //                    console.log(err)
-//                 });
             },
             dialogDetais() {
                 this.dialogDetail.state = false;
@@ -529,25 +471,6 @@
 						console.log(e)
 					}
 				})
-
-//                 this.$http.get(this.DetailUrl + '/' + DetailId, URLCONFIG).then((res) => {
-//                     this.Detailcontent = res.data.data;
-//                     switch (row.status) {
-//                         case "paid":
-//                             this.Detailcontent.status = '已存入'
-//                             break;
-//                         case "pending":
-//                             this.Detailcontent.status = '未处理'
-//                             break
-//                         case "canceled":
-//                             this.Detailcontent.status = '取消'
-//                             break
-//                     }
-//                     _this.oDetailStatus = true;
-//                     _this.oDetail = row.user_id
-//                 }).catch(function (err) {
-// //                    console.log(err)
-//                 })
             },
             //通过
             doPass(row) {
@@ -590,19 +513,6 @@
 						console.log(e)
 					}
 				})
-
-                // this.$http.patch(this.DetailUrl + '/' + this.nowId, JSON.stringify(formData), URLCONFIG).then((res) => {
-                //     if (res.data.state == 0 && res.data.data) {
-                //         this.$message.success(LANG['恭喜您，备注发送成功！'] || '恭喜您，备注发送成功！');
-                //         _this.updated = true;
-                //         _this.oDetailStatus = false;
-                //     } else {
-                //         this.$message.error(LANG['备注发送失败，请稍候重试！'] || '备注发送失败，请稍候重试！');
-                //         _this.oDetailStatus = false;
-                //     }
-                //     _this.formType = "memo";
-                //     _this.dialogDetail.state = false;
-                // })
             },
             //获取表格数据
             getTableData(obj) {
@@ -672,21 +582,6 @@
 								console.log(e)
 							}
 						})
-
-//                         this.$http.patch(this.DetailUrl + '/' + this.nowId, JSON.stringify(formData), URLCONFIG).then((res) => {
-//                             if (res.data.state == 0 && res.data.data) {
-//                                 _this.$message.success(LANG['恭喜您，确定成功！'] || '恭喜您，确定成功！');
-//                                 _this.updated = true;
-//                                 _this.oDetailStatus = false;
-//                             } else {
-//                                 _this.$message.error(LANG['确定失败，请稍候重试！'] || '确定失败，请稍候重试！');
-//                                 _this.oDetailStatus = false;
-//                             }
-//                             _this.formType = "pass";
-//                             _this.dialogDetail.state = false;
-//                         }).catch(function (err) {
-// //                            console.log(err)
-//                         });
                         this.radio = 0;
                         break;
                     case "refuse":
@@ -723,20 +618,6 @@
 								console.log(e)
 							}
 						})
-
-                        // this.$http.patch(this.DetailUrl + '/' + this.nowId, JSON.stringify(formData1), URLCONFIG).then((res) => {
-                        //     if (res.data.state == 0 && res.data.data) {
-                        //         _this.$message.success(LANG['恭喜您，取消成功！'] || '恭喜您，取消成功！');
-                        //         _this.updated = true;
-                        //         _this.oDetailStatus = false;
-                        //     } else {
-                        //         _this.$message.error(LANG['取消失败，请稍候重试！'] || '取消失败，请稍候重试！');
-                        //         _this.oDetailStatus = false;
-                        //     }
-                        //     _this.dialogDetail.state = false;
-                        //     _this.formType = "refuse";
-                        // });
-
                         this.radio = 0;
                         break;
                 }
@@ -776,20 +657,6 @@
 							console.log(e)
 						}
 					})
-
-//                     this.$http.get(URL.api + '/dev/download/sign' + '?nonce=' + url, URLCONFIG).then((res) => {
-//                         // 执行导出
-//                         if (res.data.data) {
-//                             this.outUrl = url + this.addSearch(this.searchObj) + "&nonce=" + res.data.data.nonce + "&signature=" + res.data.data.signature + "&time=" + res.data.data.time + "&uuid=" + res.data.data.uuid;
-//                             this.dialogVisible = true;
-//                         } else if (res.data.msg) {
-//                             _this.$message.error(res.data.msg);
-//                         } else {
-//                             _this.$message.error(LANG['数据导出失败，请稍后重试'] || '数据导出失败，请稍后重试');
-//                         }
-//                     }).catch((e) => {
-// //                        console.log(e);
-//                     });
                 } else {
                     this.$message.error(LANG['必需选择时间才能导出'] || '必需选择时间才能导出');
                     return;
@@ -823,6 +690,7 @@
                 if (query['user_name'] && query['user_name'].length > 0) {
                     this.tableUrl = this.baseUrl + '?user_name=' + query['user_name'];
                     this.searchConfig[1].value = query['user_name'];
+                    this.searchConfig[5].value = this.$route.query.status
                 }
             } else if (this.$route.query.status) {
                 this.tableUrl = this.baseUrl + '?status=' + this.$route.query.status;

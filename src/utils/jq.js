@@ -67,11 +67,6 @@ let a = {
 						global.VUE.$router.push({path: 'errorPage', query: {code: status, url: nowUrl}});
 						break;
 				}
-				// if (res.status == 401) {
-				// 	global.VUE.$message.error('权限不足，请重新登录');
-				// 	global.VUE.$router.push('/login');
-				// 	return;
-				// }
 				!!obj.error ? obj.error(res) : console.log(res.status);
 			},
 		};

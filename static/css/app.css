@@ -12,19 +12,12 @@ body {
     margin: 0 auto;
     background: #E5E9F2;
     padding: 0px;
-<<<<<<< HEAD
     min-width: 1200px;
-=======
->>>>>>> ba3c18a514e9dd6fdfebd1b8f17386061b240b16
     font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
     /*font-weight: 400;*/
     font-size:12px;
     font-size:1.2rem ;
-<<<<<<< HEAD
     /*min-width: 860px;*/
-=======
-    min-width: 860px;
->>>>>>> ba3c18a514e9dd6fdfebd1b8f17386061b240b16
     -webkit-font-smoothing: antialiased;
     /*overflow-x: scroll;*/
 
