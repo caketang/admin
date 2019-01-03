@@ -17,34 +17,7 @@
                         <checkGroup :checkOptions="type_idList" :sReset="sReset" @change-option="changeOption"
                                     :checkedval="checkedval"></checkGroup>
                         <input v-model="modeData.type_id" style="display: none"></input>
-                        <!--<el-select v-model="modeData.type_id" placeholder="请选择类型" class="w80">-->
-                        <!--<el-option :label=item.label :value=item.value :key=item.index-->
-                        <!--v-for="(item,index) in type_idList"></el-option>-->
-                        <!--</el-select>-->
                     </el-form-item>
-                    <!-- <el-form-item label="有效时间" required class="w80">
-                        <el-col class="w30">
-                            <el-form-item prop="begin_time">
-                                <dateTimePicker  v-model="modeData.begin_time" :datekey="'begin_time'"></dateTimePicker>
-                            </el-form-item>
-                        </el-col>
-                        <div style="float:left;" class="w20 tCent"> - </div>
-                        <el-col class="w30">
-                            <el-form-item prop="end_time">
-                                <dateTimePicker  v-model="modeData.end_time" :datekey="'end_time'"></dateTimePicker>
-                            </el-form-item>
-                        </el-col>
-                    </el-form-item> -->
-                    <!--<el-form-item label="发放奖金" prop="rule.issueMode" v-if="seachData.type=='add'">-->
-                    <!--<el-radio-group v-model="modeData.rule.issueMode">-->
-                    <!--<el-radio class="radio"  label="auto"><span-->
-                    <!--v-text="LANG['自动发放'] || '自动发放'"></span>-->
-                    <!--</el-radio>-->
-                    <!--<el-radio class="radio"  label="manual"><span-->
-                    <!--v-text="LANG['手动发放'] || '手动发放'"></span>-->
-                    <!--</el-radio>-->
-                    <!--</el-radio-group>-->
-                    <!--</el-form-item>-->
                     <el-form-item label="优惠规则" required>
                         <span v-text="LANG['注册成功优惠'] || '注册成功优惠'"></span>
                         <el-form-item prop="rule.rule.prize" class="to-inline-block"
@@ -68,13 +41,6 @@
                             <el-radio label="2" class="radio"><span v-text="LANG['无限定次数'] || '无限定次数'"></span></el-radio>
                         </el-radio-group>
                     </el-form-item>
-                    <!-- <el-form-item label="发放时间" required v-show="seachData.type=='add'">
-                        <span v-text="LANG['注册完成后第'] || '注册完成后第'"></span>
-                        <el-form-item prop="rule.issueTime" :rules="[{ validator:validatorNumber,trigger:'blur'}]" class="to-inline-block">
-                            <el-input class="intW" v-model="modeData.rule.issueTime"></el-input>
-                        </el-form-item>
-                        <span v-text="LANG['天发放'] || '天发放'"></span>
-                    </el-form-item> -->
                     <el-form-item label="提款要求" prop="rule.withdrawRequire">
                         <el-radio-group v-model="modeData.rule.withdrawRequire" @change="withdrawRequireChange"
                                         :disabled="seachData.type=='edit'">
@@ -140,9 +106,6 @@
                     </el-form-item>
                     <el-form-item label="打开方式" prop="open_mode">
                         <el-radio-group v-model="modeData.open_mode" @change="radioChange">
-                            <!--<el-radio class="radio"  label="1"><span-->
-                            <!--v-text="LANG['弹窗'] || '弹窗'"></span>-->
-                            <!--</el-radio>-->
                             <el-radio class="radio" label="2"><span
                                 v-text="LANG['新窗口打开'] || '新窗口打开'"></span>
                             </el-radio>
@@ -381,7 +344,6 @@
                 for (let k in query) {
                     this.seachData[k] = query[k];
                 }
-
                 //编辑页面数据获得后要操作会员层级数据，所以先要获得到会员层级数据
                 function getMeber() {
                     return new Promise(function (resolve, reject) {
@@ -411,7 +373,7 @@
                     if (_this.seachData.type === 'edit') {
                         _this.checkedval.checked.splice(0, _this.checkedval.checked.length);
                         let editUrl = URL.api + `/active/template.fix/${_this.seachData.id}`;
-                        this.$.autoAjax('get', editUrl, '', {
+                        _this.$.autoAjax('get', editUrl, '', {
                             ok: (res) => {
                                 if (res.state === 0 && res.data) {
                                     let formData = res.data;
@@ -488,76 +450,6 @@
                                 console.log(e)
                             }
                         })
-                        // _this.$http.get(editUrl,URLCONFIG).then(res => {
-                        //         if(res.data.state === 0 && res.data.data) {
-                        //             let formData = res.data.data;
-                        //             let temp = res.data.data.types || [],typelist = [];
-                        //             temp.forEach((item,key)=>{
-                        //                 typelist.push(item.id);
-                        //                 _this.checkedval.checked.push(item.id.toString());
-                        //             })
-                        //             _this.modeData =  {
-                        //                 arrList:[],
-                        //                 name : formData.name,
-                        //                 type_id : typelist,
-                        //                 title : formData.title,
-                        //                 begin_time : formData.begin_time,
-                        //                 end_time : formData.end_time,
-                        //                 day : formData.day,
-                        //                 vipType: [],//会员列表
-                        //                 money: formData.money,
-                        //                 status: formData.status,
-                        //                 description: formData.description,
-                        //                 language_id: formData.language_id,
-                        //                 language_name: formData.language_name,
-                        //                 sort:formData.sort,
-                        //                 cover:formData.cover,
-                        //                 content: formData.content,
-                        //                 content2:formData.content2,
-                        //                 open_mode:formData.open_mode,
-                        //                 link:formData.link,
-                        //                 rule:{
-                        //                     rule: {
-                        //                         prize:(formData.rule.rule.prize / 100).toString()
-                        //                     },
-                        //                     limit_times:formData.rule.limit_times,
-                        //                     withdrawRequire:formData.rule.withdraw_require,
-                        //                     issueTime: '0' ,
-                        //                     issue_cycle: formData.rule.issue_cycle,
-                        //                     issueMode:formData.rule.issue_mode,
-                        //                     game: [],
-                        //                     extra:{
-                        //                         ip_limit_times:formData.rule.extra.ip_limit_times,
-                        //                     }
-                        //                 },
-                        //             };
-                        //             //处理会员层级数据
-                        //             // let meberList = formData.rule.member_level.split(',');
-                        //             // _this.vipList.forEach(function (item) {
-                        //             //     meberList.forEach(function (meberItem) {
-                        //             //         if(meberItem === item.value){
-                        //             //             _this.modeData.checkedDefut.push(item.label)
-                        //             //             console.log(_this.modeData.checkedDefut)
-                        //             //         }
-                        //             //     })
-                        //             // })
-                        //             //活动图片
-                        //             _this.modeData.arrList.push(formData.cover);
-                        //             //处理领取限制
-                        //             if(formData.rule.limit_times > 0){
-                        //                 _this.get = '1'
-                        //             }else{
-                        //                 _this.get = '2';
-                        //                 _this.modeData.rule.limit_times = null;
-                        //             }
-                        //             //处理提款要求
-                        //             if(formData.rule.withdraw_require === 'bet'){
-                        //                 _this.modeData.rule.withdrawRequireVal1 = formData.rule.withdraw_require_val /100
-                        //             }else if(formData.rule.withdraw_require === 'times'){
-                        //                 _this.modeData.rule.withdrawRequireVal = formData.rule.withdraw_require_val
-                        //             }
-                        //         }
-                        //     })
                     }
                 });
                 //初始化优惠活动名称
@@ -583,20 +475,7 @@
                         console.log(e)
                     }
                 })
-                // this.$http.get(URL.api + ROUTES.GET.activity.types + "?page=1&page_size=100", URLCONFIG).then((res) => {
-                //     if (res.data.state === 0 && res.data.data) {
-                //         this.type_idList = [];
-                //         let model = res.data.data || [];
-                //         for (let k in model) {
-                //             this.type_idList.push({
-                //                 "label": model[k].name,
-                //                 "value": model[k].id.toString()
-                //             });
-                //         }
-                //     }
-                // });
                 let langeUrl = URL.api + ROUTES.GET.langeages;
-
                 this.$.autoAjax('get', langeUrl, '', {
                     ok: (res) => {
                         this.languageList = [];
@@ -615,33 +494,7 @@
                         console.log(e)
                     }
                 })
-                // this.$http.get(langeUrl, URLCONFIG).then((res) => {
-                //     this.languageList = [];
-                //     let model = res.data.data
-                //     for (let i in model) {
-                //         this.languageList.push({
-                //             "label": model[i].name,
-                //             "value": model[i].id.toString()
-                //         })
-                //     }
-                //     this.modeData.language_id = '1';
-                // })
             },
-            //全选
-            // handleCheckAllChange(event) {
-            //     let checkList = [];
-            //     for (let v in this.vipList) {
-            //         checkList[v] = this.vipList[v].label;
-            //     };
-            //     this.modeData.checkedDefut = event.target.checked ? checkList : [];
-            //     this.isIndeterminate = false;
-            // },
-            // //单选
-            // handleCheckedDefutChange(value) {
-            //     let checkedCount = value.length;
-            //     this.checkAll = checkedCount === this.vipList.length;
-            //     this.isIndeterminate = checkedCount > 0 && checkedCount < this.vipList.length;
-            // },
             // 优惠类型全选
             changeOption(obj) {
                 this.modeData.type_id = obj.item;
@@ -651,18 +504,6 @@
                 let _this = this;
                 this.$refs.form.validate((valid) => {
                     if (valid) {
-                        //会员层级字符串
-                        // let checklist= [];
-                        // this.modeData.checkedDefut.forEach(function (it) {
-                        //     _this.vipList.forEach(function (item) {
-                        //         if(item.label === it){
-                        //             checklist.push(item)
-                        //         }
-                        //     });
-                        // });
-                        // let member_level = checklist.map(function (item) {
-                        //     return item.value
-                        // }).join(',');
                         //拿到选中的语言
                         let lan = this.languageList.find(function (item) {
                             return item.value = _this.modeData.language_id
@@ -676,7 +517,6 @@
                         } else {
                             withdraw_require_val = 0
                         }
-
                         //  优惠类型多选
                         let type_idList = this.type_idList, typeList = [], type_id = this.modeData.type_id;
                         for (let m = 0; m < type_id.length; m++) {
@@ -689,7 +529,6 @@
                                 }
                             }
                         }
-
                         let formData = {
                             name: this.modeData.name,
                             types: typeList,
@@ -728,10 +567,9 @@
                         };
                         if (type === 'add') {
                             let url = URL.api + `/active/template.fix`;
-
                             this.$.autoAjax('put', url, formData, {
                                 ok: (res) => {
-                                    if (data.state === 0) {
+                                    if (res.state === 0&&res.data) {
                                         let str = LANG['添加成功'] || '添加成功';
                                         this.$message.success(str)
                                         setTimeout(function () {
@@ -750,26 +588,11 @@
                                     console.log(e)
                                 }
                             })
-                            // this.$http.put(url,formData,URLCONFIG).then(data =>{
-                            //         if(data.data.state === 0){
-                            //             let str = LANG['添加成功'] || '添加成功';
-                            //             this.$message.success(str)
-                            //             setTimeout(function () {
-                            //                 _this.$router.push({path: 'addActiveSet'})
-                            //             },1000)
-                            //         }else if(data.data.state > 3){
-                            //             this.$message.error(data.data.msg)
-                            //         }else {
-                            //             let str = LANG['修改失败'] || '修改失败';
-                            //             this.$message.error(str)
-                            //         }
-                            //     })
                         } else {
                             let url = URL.api + `/active/template.fix/${this.seachData.id}`
-
                             this.$.autoAjax('put', url, formData, {
                                 ok: (res) => {
-                                    if (data.state === 0) {
+                                    if (res.state === 0&&res.data) {
                                         let str = LANG['修改成功'] || '修改成功';
                                         this.$message.success(str)
                                         setTimeout(function () {
@@ -788,20 +611,6 @@
                                     console.log(e)
                                 }
                             })
-                            // this.$http.put(url,formData,URLCONFIG).then(data =>{
-                            //         if(data.data.state === 0){
-                            //             let str = LANG['修改成功'] || '修改成功';
-                            //             this.$message.success(str)
-                            //             setTimeout(function () {
-                            //                 _this.$router.push({path: 'activeSet'})
-                            //             },1000)
-                            //         }else if(data.data.state > 3){
-                            //             this.$message.error(data.data.msg)
-                            //         }else {
-                            //             let str = LANG['修改失败'] || '修改失败';
-                            //             this.$message.error(str)
-                            //         }
-                            //     })
                         }
                     } else {
                         _this.$message.error('请检查表单');
