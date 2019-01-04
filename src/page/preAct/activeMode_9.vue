@@ -1086,7 +1086,7 @@
                                     }
                                     _this.modeData.online = rules.online;
                                     //处理会员层级数据
-                                    let model = res.data.data.rule.member_level;
+                                    let model = res.data.rule.member_level;
                                     for (let i in model) {
                                         _this.vipList.forEach(item => {
                                             if (item.value === model[i].id.toString()) {

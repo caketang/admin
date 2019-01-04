@@ -556,25 +556,10 @@
 						console.log(e)
 					}
 				})
-                // this.$http.get(URL.api + ROUTES.GET.user.level.list, URLCONFIG).then((res) => {
-                //     if (res.data.state == 0 && res.data.data) {
-                //         let model = res.data.data;
-                //         for (let i in model) {
-                //             _this.searchConfig[3].list.push(model[i].name);
-                //             _this.searchConfig[3].Arr.push({
-                //                 "label": model[i].name,
-                //                 "value": model[i].id
-                //             })
-                //         }
-                //     }
-                // }).catch(e => {
-					// console.log(e)
-                // });
                 _this.searchObj.date_from = sessionStorage.sysTime + ' 00:00:00';
                 _this.searchObj.date_to = sessionStorage.sysTime + ' 23:59:59';
                 _this.searchConfig[3].list = this.memberGradeList;
             },
-
             //执行查询
             doQuery(obj) {
                 let temp = {};
@@ -989,8 +974,7 @@
                 let id = this.id;
                 switch (obj.fn) {
                     case "prepare":
-
-						this.$.autoAjax('patch', URL.api + ROUTES.GET, {"status": "prepare", "role": 1}, {
+						this.$.autoAjax('patch', URL.api + ROUTES.PATCH.cash.withdraw.state.$(id), {"status": "prepare", "role": 1}, {
 							ok: (res) => {
 								if (res.state === 0 && res.data) {
 									this.$message.success(LANG['预支付成功'] || '预支付成功');
@@ -1004,17 +988,9 @@
 							},
 							error: e => {
 								console.log(e)
+                                this.loading = false;
 							}
 						})
-                        // this.$http.patch(URL.api + ROUTES.PATCH.cash.withdraw.state.$(id), JSON.stringify({"status": "prepare", "role": 1}), URLCONFIG).then((res) => {
-                        //     if (res.data.state === 0 && res.data.data) {
-                        //         this.$message.success(LANG['预支付成功'] || '预支付成功');
-                        //         this.updated = true;
-                        //     } else {
-                        //         this.$message.error(LANG[res.data.msg] || res.data.msg);
-                        //     }
-                        //     this.loading = false;
-                        // });
                         break;
                     case "refuse":
 
@@ -1034,18 +1010,8 @@
 								console.log(e)
 							}
 						})
-                        // this.$http.patch(URL.api + ROUTES.PATCH.cash.withdraw.state.$(id), JSON.stringify({"status": "refused", "role": 1}), URLCONFIG).then((res) => {
-                        //     if (res.data.state === 0 && res.data.data) {
-                        //         this.$message.success(LANG['取消成功'] || '取消成功');
-                        //         this.updated = true;
-                        //     } else {
-                        //         this.$message.error(LANG[res.data.msg] || res.data.msg);
-                        //     }
-                        //     this.loading = false;
-                        // });
                         break;
                     case "pay":
-
 						this.$.autoAjax('patch',URL.api + ROUTES.PATCH.cash.withdraw.state.$(id), {"status": "paid"}, {
 							ok: (res) => {
 								if (res.state === 0 && res.data) {
@@ -1062,15 +1028,6 @@
 								console.log(e)
 							}
 						})
-                        // this.$http.patch(URL.api + ROUTES.PATCH.cash.withdraw.state.$(id), JSON.stringify({"status": "paid"}), URLCONFIG).then((res) => {
-                        //     if (res.data.state === 0 && res.data.data) {
-                        //         this.$message.success(LANG['支付成功'] || '支付成功');
-                        //         this.updated = true;
-                        //     } else {
-                        //         this.$message.error(LANG[res.data.msg] || res.data.msg);
-                        //     }
-                        //     this.loading = false;
-                        // });
                         break;
 //                        拒绝 等接口
                     case "reject":
@@ -1091,15 +1048,6 @@
 								console.log(e)
 							}
 						})
-                        // this.$http.patch(URL.api + ROUTES.PATCH.cash.withdraw.state.$(id), JSON.stringify({"status": "rejected", "role": 1}), URLCONFIG).then((res) => {
-                        //     if (res.data.state === 0 && res.data.data) {
-                        //         this.$message.success(LANG['拒绝成功'] || '拒绝成功');
-                        //         this.updated = true;
-                        //     } else {
-                        //         this.$message.error(LANG[res.data.msg] || res.data.msg);
-                        //     }
-                        //     this.loading = false;
-                        // });
                         break;
                     // 付款
                     case "update":
@@ -1120,15 +1068,7 @@
 								console.log(e)
 							}
 						})
-                        // this.$http.patch(URL.api + ROUTES.POST.cash.payment + '?id=' + id, JSON.stringify({'status': 'paid'}), URLCONFIG).then((res) => {
-                        //     if (res.data.state === 0 && res.data.data) {
-                        //         this.$message.success(LANG["支付成功"] || "支付成功");
-                        //         this.updated = true;
-                        //     } else {
-                        //         this.$message.error(LANG["支付失败"] || "支付失败");
-                        //     }
-                        //     this.loading = false;
-                        // });
+
                         break;
                 }
             },
