@@ -3,31 +3,7 @@
         <el-row :gutter="20" class="w50" style="margin:0 auto;">
             <!--计算设置-->
             <el-col :span="24" class="mainStyle">
-                <div class="">
-                    <!--<div class="fl setPlay">-->
-                        <!--<el-form :model="agentSet" label-width="100px" class="mt10">-->
-                            <!--<h3>{{LANG['计算设置'] || '计算设置'}}</h3>-->
-                            <!--<el-form-item :label="LANG['最小支付金额'] || '最小支付金额'" prop="pay_min" class="w90">-->
-                                <!--<el-input v-model="agentSet.minPay" size="small" type="number"></el-input>-->
-                            <!--</el-form-item>-->
-                            <!--&lt;!&ndash;<el-form-item :label="LANG['佣金结算日期'] || '佣金结算日期'" prop="accountDate"&ndash;&gt;-->
-                                          <!--&lt;!&ndash;class="w90">&ndash;&gt;-->
-                                <!--&lt;!&ndash;<el-select v-model="agentSet.accountDate" placeholder="请选择佣金结算日期"&ndash;&gt;-->
-                                           <!--&lt;!&ndash;class="setPlaySel">&ndash;&gt;-->
-                                    <!--&lt;!&ndash;<el-option v-for="(item,index) in dataList" :label="item.label + item.value + '日'"&ndash;&gt;-->
-                                               <!--&lt;!&ndash;:value="item.value" :key="index"></el-option>&ndash;&gt;-->
-                                <!--&lt;!&ndash;</el-select>&ndash;&gt;-->
-                            <!--&lt;!&ndash;</el-form-item>&ndash;&gt;-->
-                            <!--<el-form-item :label="LANG['退佣发放方式'] || '退佣发放方式'" prop="settlement_type">-->
-                                <!--<el-radio v-model="agentSet.payType" label="1">-->
-                                    <!--{{LANG['自动发放'] || '自动发放'}}-->
-                                <!--</el-radio>-->
-                                <!--<el-radio v-model="agentSet.payType" label="2">-->
-                                    <!--{{LANG['手动发放'] || '手动发放'}}-->
-                                <!--</el-radio>-->
-                            <!--</el-form-item>-->
-                        <!--</el-form>-->
-                    <!--</div>-->
+                <div>
                     <div class="fl setPlay">
                         <div class="">
                             <el-form :model="agentSet" label-width="110px" class="mt10">
@@ -126,23 +102,6 @@
                         console.log(e)
                     }
                 })
-//                 this.$http.get(levelUrl, URLCONFIG).then((res) => {
-//                     let oModel = res.data.data;
-//                     _this.agentSet.levels = {};
-//                     _this.agentSet.minPay = FORMATMONEY(oModel.minPay);
-//                     _this.agentSet.accountDate = oModel.accountDate;
-//                     _this.agentSet.payType = oModel.payType.toString()?oModel.payType.toString():'';
-//                     _this.agentSet.userBet = FORMATMONEY(oModel.userBet);
-//                     _this.agentSet.monthDeposit = FORMATMONEY(oModel.monthDeposit);
-//                     _this.agentSet.max_agent_levels = oModel.commission_level_percent.length;
-//                     let levels = this.agentSet.levels;
-//                     oModel.commission_level_percent.map((item,i)=>{
-//                         levels[`level${i+1}`] = item.value;
-//                     });
-//                     _this.showLevles(this.agentSet.max_agent_levels);
-//                 }).catch(function (err) {
-// //                    console.log(err)
-//                 });
             },
             doCash(){
                 this.$refs.agentSet.validate((valid) => {
@@ -168,7 +127,7 @@
                         }
                         let levelUrl = URL.api + ROUTES.PUT.commission.level;
 
-                        this.$.autoAjax('put',levelUrl, newFormDate, '', {
+                        this.$.autoAjax('put',levelUrl, newFormDate, {
                             ok: (res) => {
                                 if (res.data) {
                                     this.$message.success(this.LANG['保存成功'] || '保存成功');
@@ -180,13 +139,6 @@
                                 console.log(e)
                             }
                         })
-//                         this.$http.put(levelUrl, newFormDate, URLCONFIG).then((res) => {
-//                             if (res.data.data) {
-//                                 this.$message.success(this.LANG['保存成功'] || '保存成功');
-//                             }
-//                         }).catch(function (err) {
-// //                            console.log(err)
-//                         });
                     }
                 })
             },

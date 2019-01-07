@@ -304,7 +304,7 @@
                     this.tableUrl1 = URL.api + ROUTES.GET.stat.profit;
                     this.tableUrl2 = URL.api + ROUTES.GET.stat.deposit;
                     this.tableUrl3 = URL.api + ROUTES.GET.stat.withdraw;
-                },1000)
+                },3000)
 				// 初始化状态
 				this.timeObj = {
 					game_one: false,
