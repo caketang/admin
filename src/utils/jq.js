@@ -15,7 +15,7 @@ let a = {
 		// console.log(url)
 		let ajax = {
 			type: type || 'post',
-			url: /^https|^\/\//.test(url) ? url : URL.api + url,
+			url: /^http|^\/\//.test(url) ? url : URL.api + url,
 			data: json !== '' && !!head["Content-Type"] && head["Content-Type"] === "application/json" ? JSON.stringify(json) : json,
 			success: function (res, code, xhr) {
 				let t = xhr.getResponseHeader('Content-Type');
