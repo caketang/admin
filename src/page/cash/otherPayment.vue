@@ -104,35 +104,7 @@
                     },
                     {"prop": "name", "value": "", "label": "商户名称", "type": "text", "rules": [{"require": true}]},
                     {"prop": "parter", "value": "", "label": "商户编号", "type": "text", "ifVal": "101", "ifKey": "pay_id", "rules": [{"require": true}]},
-					// 飞秒付 ID4~ID6
-				    {
-                        "prop": "key",
-                        "value": "",
-                        "label": "密钥",
-                        "type": "password",
-                        "ifVal": "102",
-                        "ifKey": "pay_id",
-                        "rules": [{"require": true}]
-                    },
-                    {
-                        "prop": "pub_key",
-                        "value": "",
-                        "label": "支付公钥",
-                        "type": "password",
-                        "ifVal": "102",
-                        "ifKey": "pay_id",
-                        "rules": [{"require": true}]
-                    },
-                    {
-                        "prop": "pri_key",
-                        "value": "",
-                        "label": "支付私钥",
-                        "type": "password",
-                        "ifVal": "102",
-                        "ifKey": "pay_id",
-                        "rules": [{"require": true}]
-                    },
-//                     薄情付财 ID7
+                     //薄情付财 ID4
                     {
                         "prop": "keyTwo",
                         "value": "",
@@ -141,7 +113,41 @@
                         "ifVal": "101", "ifKey": "pay_id",
                         "rules": [{"require": true, "isDefault": true}]
                     },
-                    // 支付场景 ID23
+                    //a支付
+                    {
+                        "prop": "payKey",
+                        "value": "",
+                        "label": "商户密钥",
+                        "type": "password",
+                        "ifVal": "104", "ifKey": "pay_id",
+                        "rules": [{"require": true, "isDefault": true}]
+                    },
+                    {
+                        "prop": "paySecret",
+                        "value": "",
+                        "label": "支付密钥",
+                        "type": "password",
+                        "ifVal": "104", "ifKey": "pay_id",
+                        "rules": [{"require": true, "isDefault": true}]
+                    },
+                    //贝壳支付 7-8
+                    {
+                        "prop": "account_id",
+                        "value": "",
+                        "label": "商户ID",
+                        "type": "password",
+                        "ifVal": "105", "ifKey": "pay_id",
+                        "rules": [{"require": true, "isDefault": true}]
+                    },
+                    {
+                        "prop": "key",
+                        "value": "",
+                        "label": "支付密钥",
+                        "type": "password",
+                        "ifVal": "105", "ifKey": "pay_id",
+                        "rules": [{"require": true, "isDefault": true}]
+                    },
+                    // 支付场景
                     {
                         "prop": "pay_scene",
                         "value": [],
@@ -231,20 +237,20 @@
                 this.tableUrl = URL.api + ROUTES.GET.cash.thirds.$;
                 this.columnsUrl = "/static/json/cash/otherPayment/columns.json";
                 //取支付渠道
-
 				this.$.autoAjax('get',URL.api + ROUTES.GET.cash.third.providers, '', {
 					ok: (res) => {
-						if (res.state == 0 && res.data) {
+						if (res.state === 0 && res.data) {
 							let model = res.data;
 							for (let i in model) {
-								// 云宝ID 4 值更新
-								if (model[i].code.toUpperCase() === 'FMF') {
-									// 飞秒付
+								// 支付 更新
+								if (model[i].code.toUpperCase() === 'BQZF') {
 									_this.formConfig[4].ifVal = model[i].id.toString();
-									_this.formConfig[5].ifVal = model[i].id.toString();
-									_this.formConfig[6].ifVal = model[i].id.toString();
-								} else if (model[i].code.toUpperCase() === 'BQZF') {
+                                }else if (model[i].code.toUpperCase() === 'aabill') {
+                                    _this.formConfig[5].ifVal = model[i].id.toString();
+                                    _this.formConfig[6].ifVal = model[i].id.toString();
+								}else if (model[i].code.toUpperCase() === 'beke') {
 									_this.formConfig[7].ifVal = model[i].id.toString();
+									_this.formConfig[8].ifVal = model[i].id.toString();
 								}
 								list2.push({
 									"label": model[i].name,
@@ -265,32 +271,6 @@
 						console.log(e)
 					}
 				})
-                // this.$http.get(URL.api + ROUTES.GET.cash.third.providers, URLCONFIG).then((res) => {
-                //     if (res.data.state == 0 && res.data.data) {
-                //         let model = res.data.data;
-                //         for (let i in model) {
-                //             // 云宝ID 4 值更新
-                //             if (model[i].code.toUpperCase() === 'FMF') {
-					// 			// 飞秒付
-					// 			_this.formConfig[4].ifVal = model[i].id.toString();
-					// 			_this.formConfig[5].ifVal = model[i].id.toString();
-					// 			_this.formConfig[6].ifVal = model[i].id.toString();
-                //             } else if (model[i].code.toUpperCase() === 'BQZF') {
-                //                 _this.formConfig[7].ifVal = model[i].id.toString();
-                //             }
-                //             list2.push({
-                //                 "label": model[i].name,
-                //                 "code": model[i].code,
-                //                 "value": model[i].id.toString()
-                //             })
-                //             channel.push({
-                //                 "label": model[i].name,
-                //                 "code": model[i].code,
-                //                 "value": model[i].id.toString()
-                //             })
-                //         }
-                //     }
-                // });
                 // 获取层级
                 let levelUrl = URL.api + ROUTES.GET.user.level.list;
                 let _this = this, listLevels;
@@ -323,24 +303,7 @@
 						console.log(e)
 					}
 				})
-//                 this.$http.get(levelUrl, URLCONFIG).then((res) => {
-//                     let model = res.data.data || [];
-//                     for (let k in model) {
-//                         listLevels.list.push(model[k].id.toString())
-//                         listLevels.Arr.push({
-//                             "label": model[k].name,
-//                             "value": model[k].id.toString()
-//                         });
-//                         _this.searchConfig[5].list.push({
-//                             "label": model[k].name,
-//                             "value": model[k].id
-//                         })
-//                     }
-//                 }).catch(function (err) {
-// //                    console.log(err)
-//                 });
                 // 支付场景
-
 				this.$.autoAjax('get',URL.api + '/cash/3th.providers', '', {
 					ok: (res) => {
 						if (res.state === 0 && res.data) {
@@ -358,16 +321,6 @@
 						console.log(e)
 					}
 				})
-                // this.$http.get(URL.api + '/cash/3th.providers', URLCONFIG).then((res) => {
-                //     if (res.data.state === 0 && res.data.data) {
-                //         let model = res.data.data || [], pay_scene_list = this.pay_scene_list;
-                //         if (model.length && model.length > 0) {
-                //             for (let k = 0; k < model.length; k++) {
-                //                 pay_scene_list[model[k].id] = model[k];
-                //             }
-                //         }
-                //     }
-                // });
             },
             //readio
             changeRadio(item) {
@@ -485,25 +438,31 @@
                     }
                 }
                 switch (query['code']) {
-					case 'fmf':
-                        query['configs'] = {
-                            "key": query['key'],
-                            "pub_key": query['pub_key'],
-                            "pri_key": query['pri_key'],
-                        };
-                        break;
                     case 'bqzf':
                         query['configs'] = {
                             'merchant':query['parter'],
                             'key': query['keyTwo']
                         }
                         break;
+                    case 'aabill':
+                        query['configs'] = {
+                            'payKey':query['payKey'],
+                            'paySecret': query['paySecret']
+                        }
+                        break;
+                    case 'beke':
+                        query['configs'] = {
+                            'account_id':query['account_id'],
+                            'key': query['key']
+                        }
+                        break;
                 }
-                delete query['key'];
                 delete query['keyTwo'];
-                delete query['pub_key'];
-                delete query['pri_key'];
                 delete query['parter'];
+                delete query['payKey'];
+                delete query['paySecret'];
+                delete query['account_id'];
+                delete query['key'];
                 query['pay_scene'] = query['pay_scene'].toString();
                 query['terminal'] = (query['terminal'].toString()).toUpperCase();
                 // 防止前台不填写金额直接传null过去，避免后台直接过滤null
@@ -530,14 +489,6 @@
 							console.log(e)
 						}
 					})
-                    // this.$http.put(url, JSON.stringify(query), URLCONFIG).then((res) => {
-                    //     if (res.data.state == 0 && res.data.data) {
-                    //         _this.$message.success(LANG['恭喜您，新增第三方支付成功！'] || '恭喜您，新增第三方支付成功！');
-                    //     } else {
-                    //         _this.$message.error(res.data.msg + "," + (LANG['新增第三方支付失败，请稍候重试！'] || '新增第三方支付失败，请稍候重试！'));
-                    //     }
-                    //     _this.updated = true;
-                    // })
                 } else {
                     query['id'] = parseInt(this.nowId);
 					this.$.autoAjax('put', url + '?id=' + parseInt(this.nowId), query, {
@@ -555,15 +506,6 @@
 							console.log(e)
 						}
 					})
-
-                    // this.$http.put(url + '?id=' + parseInt(this.nowId), JSON.stringify(query), URLCONFIG).then((res) => {
-                    //     if (res.data.state == 0 && res.data.data) {
-                    //         _this.$message.success(LANG['恭喜您，第三方支付修改成功！'] || '恭喜您，第三方支付修改成功！');
-                    //     } else {
-                    //         _this.$message.error(res.data.msg + "," + (LANG['修改第三方支付失败，请稍候重试！'] || '修改第三方支付失败，请稍候重试！'));
-                    //     }
-                    //     _this.updated = true;
-                    // })
                 }
 
             },
@@ -646,19 +588,6 @@
 								_this.$message.error(LANG['未知错误，请稍后重试！'] || '未知错误，请稍后重试！');
 							}
 						})
-
-                        // _this.$http.patch(URL.api + ROUTES.PATCH.cash.third + '?id=' + nowId, JSON.stringify([{"id": parseInt(nowId), "status": "enabled", "name": row.obj.name}]), URLCONFIG).then((res) => {
-                        //     if (res.data.state == 0 && res.data.data) {
-                        //         _this.$message.success(_this.LANG['第三方支付启用成功'] || '第三方支付启用成功');
-                        //         _this.updated = true;
-                        //     } else {
-                        //         _this.$message.error(_this.LANG['第三方支付启用失败，请稍后重试'] || '第三方支付启用失败，请稍后重试');
-                        //     }
-                        //     _this.loading = false
-                        // }).catch((e) => {
-                        //     _this.loading = false
-                        //     _this.$message.error(LANG['未知错误，请稍后重试！'] || '未知错误，请稍后重试！');
-                        // });
                         break;
                     case "disable":
 						this.$.autoAjax('patch',URL.api + ROUTES.PATCH.cash.third + '?id=' + nowId, [{"id": parseInt(nowId), "status": "disabled", "name": row.obj.name}],{
@@ -678,19 +607,6 @@
 								_this.$message.error(LANG['未知错误，请稍后重试！'] || '未知错误，请稍后重试！');
 							}
 						})
-
-                        // _this.$http.patch(URL.api + ROUTES.PATCH.cash.third + '?id=' + nowId, JSON.stringify([{"id": parseInt(nowId), "status": "disabled", "name": row.obj.name}]), URLCONFIG).then((res) => {
-                        //     if (res.data.state == 0 && res.data.data) {
-                        //         _this.$message.success(_this.LANG['第三方支付停用成功'] || '第三方支付停用成功');
-                        //         _this.updated = true;
-                        //     } else {
-                        //         _this.$message.error(_this.LANG['第三方支付停用失败，请稍后重试'] || '第三方支付停用失败，请稍后重试');
-                        //     }
-                        //     _this.loading = false
-                        // }).catch((e) => {
-                        //     _this.loading = false
-                        //     _this.$message.error(LANG['未知错误，请稍后重试！'] || '未知错误，请稍后重试！');
-                        // });
                         break;
                     case "disables":
                         let templist = row.obj || [], query = [];
@@ -703,7 +619,6 @@
                                 });
                             }
                         }
-
 						this.$.autoAjax('patch',URL.api + ROUTES.PATCH.cash.third,query, {
 							ok: (res) => {
 								if (res.state == 0 && res.data) {
@@ -721,18 +636,6 @@
 								_this.$message.error(LANG['未知错误，请稍后重试！'] || '未知错误，请稍后重试！');
 							}
 						})
-                        // _this.$http.patch(URL.api + ROUTES.PATCH.cash.third, JSON.stringify(query), URLCONFIG).then((res) => {
-                        //     if (res.data.state == 0 && res.data.data) {
-                        //         _this.$message.success(_this.LANG['第三方支付批量停用成功'] || '第三方支付批量停用成功');
-                        //         _this.updated = true;
-                        //     } else {
-                        //         _this.$message.error(_this.LANG['第三方支付批量停用失败，请稍后重试'] || '第三方支付批量停用失败，请稍后重试');
-                        //     }
-                        //     _this.loading = false
-                        // }).catch((e) => {
-                        //     _this.loading = false
-                        //     _this.$message.error(LANG['未知错误，请稍后重试！'] || '未知错误，请稍后重试！');
-                        // });
                         break;
                     case "enables":
                         let templists = row.obj || [], querys = [];
@@ -745,7 +648,6 @@
                                 });
                             }
                         }
-
 						this.$.autoAjax('patch',URL.api + ROUTES.PATCH.cash.third, querys, {
 							ok: (res) => {
 								if (res.state == 0 && res.data) {
@@ -763,18 +665,6 @@
 								_this.$message.error(LANG['未知错误，请稍后重试！'] || '未知错误，请稍后重试！');
 							}
 						})
-                        // _this.$http.patch(URL.api + ROUTES.PATCH.cash.third, JSON.stringify(querys), URLCONFIG).then((res) => {
-                        //     if (res.data.state == 0 && res.data.data) {
-                        //         _this.$message.success(_this.LANG['第三方支付批量启用成功'] || '第三方支付批量启用成功');
-                        //         _this.updated = true;
-                        //     } else {
-                        //         _this.$message.error(_this.LANG['第三方支付批量启用失败，请稍后重试'] || '第三方支付批量启用失败，请稍后重试');
-                        //     }
-                        //     _this.loading = false
-                        // }).catch((e) => {
-                        //     _this.loading = false
-                        //     _this.$message.error(LANG['未知错误，请稍后重试！'] || '未知错误，请稍后重试！');
-                        // });
                         break;
                     case "delete":
                         let nowid = parseInt(row.id);
@@ -795,19 +685,6 @@
 								_this.$message.error(LANG['未知错误，请稍后重试！'] || '未知错误，请稍后重试！');
 							}
 						})
-
-                        // this.$http.delete(URL.api + ROUTES.DELETE.cash.threeTh.del+'?id=' + parseInt(nowId) + "&name=" + row.obj.name, URLCONFIG).then((res) => {
-                        //     if (res.data.state === 0 && res.data.data) {
-                        //         _this.$message.success(LANG['恭喜您，第三方支付删除成功！'] || '恭喜您，第三方支付删除成功！');
-                        //         _this.updated = true;
-                        //     } else {
-                        //         _this.$message.error(LANG['第三方支付删除失败，请稍后重试！'] || '第三方支付删除失败，请稍后重试！');
-                        //     }
-                        //     _this.loading = false
-                        // }).catch((e) => {
-                        //     _this.loading = false
-                        //     _this.$message.error(LANG['未知错误，请稍后重试！'] || '未知错误，请稍后重试！');
-                        // });
                         break;
                 }
             },
@@ -826,13 +703,14 @@
 							res.data.money_day_stop = FORMATMONEY(res.data.money_day_stop).toString();
 							FORMVAL(res.data, _this.formConfig);
 							this.formConfig[1].value = res.data.pay_id;
-							if (res.data.pay_name === "FMF") {
-								this.formConfig[4].value = res.data.configs.key || '';
-								this.formConfig[5].value = res.data.configs.pub_key || '';
-								this.formConfig[6].value = res.data.configs.pri_key || '';
-							}else if(res.data.pay_name === "BQZF"){
-								this.formConfig[3].value = res.data.configs.merchant || '';
-								this.formConfig[7].value = res.data.configs.key || '';
+							if(res.data.pay_name === "BQZF"){
+								this.formConfig[4].value = res.data.configs.keyTwo || '';
+							}else if(res.data.pay_name === "AABILL"){
+								this.formConfig[5].value = res.data.configs.payKey || '';
+								this.formConfig[6].value = res.data.configs.paySecret || '';
+							}else if(res.data.pay_name === "BEKE"){
+								this.formConfig[7].value = res.data.configs.account_id || '';
+								this.formConfig[8].value = res.data.configs.key || '';
 							}
 							for (let k = 0; k < this.formConfig.length; k++) {
 								if (this.formConfig[k].prop == 'pay_scene') {

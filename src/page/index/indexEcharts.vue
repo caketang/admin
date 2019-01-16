@@ -237,7 +237,7 @@
 				//柱状图
 				histogramName: "histogram",
 				typeHistogram: "histogram",
-				histogramTitleList: [LANG["游戏下单数"] || "游戏下单数", LANG["游戏下注金额"] || "游戏下注金额", LANG["游戏盈亏金额"] || "游戏盈亏金额"],
+				histogramTitleList: [LANG["彩票下单数"] || "彩票下单数", LANG["彩票下注金额"] || "彩票下注金额", LANG["彩票盈亏金额"] || "彩票盈亏金额"],
 				histogramDataList: {
 					"orders": [],
 					"amount": [],
