@@ -103,12 +103,12 @@
                 <td class="el-table_1_column_19">
                     <div class="cell">
                         <div v-for="(sub,key) in item.sub_odds" style="clear: both;">
-                            <span class="sub">{{sub.name}}</span>
-                            <span @click="changeInput($event,index,'zdpl')" class="sub">{{sub.odds}}</span>
+                            <span class="sub">{{sub?sub.name:''}}</span>
+                            <span @click="changeInput($event,index,'zdpl')" class="sub">{{sub?sub.odds:''}}</span>
                             <input type="number" class="el-input__inner" v-model="sub.odds"
                                    @keyup.13="doEnter(index,'odds',key)" @blur="doEnter(index,'odds',key)">
                         </div>
-                        <span @click="changeInput($event,index,'zdpl')" v-if="!item.sub_odds">{{item.odds}}</span>
+                        <span @click="changeInput($event,index,'zdpl')" v-if="!item.sub_odds">{{sub.odds?sub.odds:''}}</span>
                         <input type="number" class="el-input__inner" v-model="item.odds"
                                @keyup.13="doEnter(index,'odds')" @blur="doEnter(index,'odds')">
                     </div>
@@ -116,12 +116,12 @@
                 <td class="el-table_1_column_19">
                     <div class="cell">
                         <div v-for="(sub,key) in item.sub_odds" style="clear: both;">
-                            <span class="sub">{{sub.name}}</span>
-                            <span @click="changeInput($event,index,'zdpl')" class="sub">{{sub.per_odds}}</span>
+                            <span class="sub">{{sub?sub.name:''}}</span>
+                            <span @click="changeInput($event,index,'fj')" class="sub">{{sub?sub.per_odds:''}}</span>
                             <input type="number" class="el-input__inner" v-model="sub.per_odds"
                                    @keyup.13="doEnter(index,'per_odds',key)" @blur="doEnter(index,'per_odds',key)">
                         </div>
-                        <span @click="changeInput($event,index,'zdpl')" v-if="!item.sub_odds">{{item.per_odds}}</span>
+                        <span @click="changeInput($event,index,'fj')" v-if="!item.sub_odds">{{sub?sub.per_odds:''}}</span>
                         <input type="number" class="el-input__inner" v-model="item.per_odds"
                                @keyup.13="doEnter(index,'per_odds')" @blur="doEnter(index,'per_odds')">
                     </div>
@@ -240,6 +240,7 @@
         methods: {
             //系统初始化
             init() {
+                //console.log(this.dataModel)
                 let _this = this;
                 // 初始化快调值
                 this.inputfive = '';
@@ -321,47 +322,6 @@
                             console.log(e)
                         }
                     })
-                    // this.$http.get(this.baseUrl,URLCONFIG).then((res) => {
-                    //     if(res.data.state === 0 && res.data.data){
-                    //         _this.total = res.data.attributes.total || 10;
-                    //         _this.pageSize = res.data.attributes.size || 50;
-                    //         _this.pageCount = Math.ceil(this.total / this.pageSize);
-                    //         _this.currentPage = res.data.attributes.number || 1;
-                    //         let data = res.data.data || res.data.data.list || [];
-                    //         let dataModel = _this.dataModel;
-                    //         //
-                    //         for (let n of data) {
-                    //             n.checked = false;
-                    //         }
-                    //
-                    //
-                    //         _this.all_min_odds = FORMATNUMBER(res.data.data[0].max_odds);
-                    //         for (let i in data) {
-                    //             let list = data[i];
-                    //             let obj = {};
-                    //             for(let k in list){
-                    //                 if(k === 'min_bet' || k === 'one_bet' || k === 'one_term' || k === 'one_max_money'){
-                    //                     obj[k] = FORMATMONEY(list[k]);
-                    //                 }else{
-                    //                     if(k === 'max_odds' && FORMATNUMBER(_this.all_min_odds) >0 && FORMATNUMBER(list[k]) < FORMATNUMBER(_this.all_min_odds)){
-                    //                         _this.all_min_odds = FORMATNUMBER(list[k]);
-                    //                     }
-                    //                     obj[k] = list[k];
-                    //                 }
-                    //             }
-                    //             _this.$set(dataModel,i, obj);
-                    //         }
-                    //         let old_odds = dataModel
-                    //         sessionStorage.setItem('old_odds',JSON.stringify(old_odds));
-                    //     }
-                    //     _this.loading = false;
-                    //
-                    // })
-                    .catch((e) => {
-                        _this.loading = false;
-                        _this.$message.error(LANG['未知错误 ，请稍后重试！'] || '未知错误 ，请稍后重试！')
-                    });
-
                 }
             },
             //保存数据
