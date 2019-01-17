@@ -1,6 +1,5 @@
 <template>
     <div id="modelSet" v-loading="loading">
-
         <el-button type="primary" v-text="LANG['保 存'] || '保 存'" @click="doSave"
                    style="position: absolute;right:10px;top:-36px" size="small"></el-button>
         <table cellspacing="0" cellpadding="0" border="0" class="el-table el-table__header el-table--border"
@@ -105,10 +104,10 @@
                         <div v-for="(sub,key) in item.sub_odds" style="clear: both;">
                             <span class="sub">{{sub?sub.name:''}}</span>
                             <span @click="changeInput($event,index,'zdpl')" class="sub">{{sub?sub.odds:''}}</span>
-                            <input type="number" class="el-input__inner" v-model="sub.odds"
+                            <input v-if="sub" type="number" class="el-input__inner" v-model="sub.odds"
                                    @keyup.13="doEnter(index,'odds',key)" @blur="doEnter(index,'odds',key)">
                         </div>
-                        <span @click="changeInput($event,index,'zdpl')" v-if="!item.sub_odds">{{sub.odds?sub.odds:''}}</span>
+                        <span @click="changeInput($event,index,'zdpl')" v-if="!item.sub_odds">{{item.odds}}</span>
                         <input type="number" class="el-input__inner" v-model="item.odds"
                                @keyup.13="doEnter(index,'odds')" @blur="doEnter(index,'odds')">
                     </div>
@@ -118,10 +117,10 @@
                         <div v-for="(sub,key) in item.sub_odds" style="clear: both;">
                             <span class="sub">{{sub?sub.name:''}}</span>
                             <span @click="changeInput($event,index,'fj')" class="sub">{{sub?sub.per_odds:''}}</span>
-                            <input type="number" class="el-input__inner" v-model="sub.per_odds"
+                            <input v-if="sub" type="number" class="el-input__inner" v-model="sub.per_odds"
                                    @keyup.13="doEnter(index,'per_odds',key)" @blur="doEnter(index,'per_odds',key)">
                         </div>
-                        <span @click="changeInput($event,index,'fj')" v-if="!item.sub_odds">{{sub?sub.per_odds:''}}</span>
+                        <span @click="changeInput($event,index,'fj')" v-if="!item.sub_odds">{{item.per_odds}}</span>
                         <input type="number" class="el-input__inner" v-model="item.per_odds"
                                @keyup.13="doEnter(index,'per_odds')" @blur="doEnter(index,'per_odds')">
                     </div>
@@ -240,7 +239,6 @@
         methods: {
             //系统初始化
             init() {
-                //console.log(this.dataModel)
                 let _this = this;
                 // 初始化快调值
                 this.inputfive = '';
@@ -386,21 +384,21 @@
                 if (prop === 'odds') {
                     const h = this.$createElement;
                     if (parseInt(subkey) >= 0) {
-                        if (FORMATNUMBER(this.dataModel[index]['sub_odds'][subkey].odds) > FORMATNUMBER(this.dataModel[index].max_odds)) {
-                            _this.$notify.error({
-                                title: '标题名称',
-                                message: h('i', {style: 'color: teal'}, (LANG['赠率值不可大于最高赔率,已修改为最大值'] || '赠率值不可大于最高赔率,已修改为最大值') + this.dataModel[index].max_odds)
-                            });
-                            this.dataModel[index]['sub_odds'][subkey].odds = this.dataModel[index].max_odds;
-                        }
+//                        if (FORMATNUMBER(this.dataModel[index]['sub_odds'][subkey].odds) > FORMATNUMBER(this.dataModel[index].max_odds)) {
+//                            _this.$notify.error({
+//                                title: '标题名称',
+//                                message: h('i', {style: 'color: teal'}, (LANG['赠率值不可大于最高赔率,已修改为最大值'] || '赠率值不可大于最高赔率,已修改为最大值') + this.dataModel[index].max_odds)
+//                            });
+//                            this.dataModel[index]['sub_odds'][subkey].odds = this.dataModel[index].max_odds;
+//                        }
                     } else {
-                        if (FORMATNUMBER(this.dataModel[index].odds) > FORMATNUMBER(this.dataModel[index].max_odds)) {
-                            _this.$notify.error({
-                                title: '标题名称',
-                                message: h('i', {style: 'color: teal'}, (LANG['赠率值不可大于最高赔率,已修改为最大值'] || '赠率值不可大于最高赔率,已修改为最大值') + this.dataModel[index].max_odds)
-                            });
-                            this.dataModel[index].odds = this.dataModel[index].max_odds;
-                        }
+//                        if (FORMATNUMBER(this.dataModel[index].odds) > FORMATNUMBER(this.dataModel[index].max_odds)) {
+//                            _this.$notify.error({
+//                                title: '标题名称',
+//                                message: h('i', {style: 'color: teal'}, (LANG['赠率值不可大于最高赔率,已修改为最大值'] || '赠率值不可大于最高赔率,已修改为最大值') + this.dataModel[index].max_odds)
+//                            });
+//                            this.dataModel[index].odds = this.dataModel[index].max_odds;
+//                        }
                     }
                 }
                 let e = window.event || event;
@@ -466,13 +464,13 @@
 
                     } else {
                         // 批量设置赔率，判断批量设置的赔率值是否都大于被设置的值的最高赔率
-                        if (FORMATNUMBER(obj.value) > FORMATNUMBER(this.all_min_odds)) {
-                            _this.$notify.error({
-                                title: '标题名称',
-                                message: hc('i', {style: 'color: teal'}, (LANG['赠率值不可大于最高赔率,请修改后重试'] || '赠率值不可大于最高赔率,请修改后重试') + obj.value)
-                            });
-                            return;
-                        }
+//                        if (FORMATNUMBER(obj.value) > FORMATNUMBER(this.all_min_odds)) {
+//                            _this.$notify.error({
+//                                title: '标题名称',
+//                                message: hc('i', {style: 'color: teal'}, (LANG['赠率值不可大于最高赔率,请修改后重试'] || '赠率值不可大于最高赔率,请修改后重试') + obj.value)
+//                            });
+//                            return;
+//                        }
                     }
                 }
                 if (FORMATNUMBER(obj.value) < 0) {

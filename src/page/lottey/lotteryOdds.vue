@@ -142,6 +142,7 @@
             },
             //保存设置
             saveOdds(obj) {
+                console.log(obj)
                 let _this = this;
                 this.updated = false;
                 let oData = {};
