@@ -19,6 +19,7 @@
                                     </el-form-item>
                                 </div>
                                 <div class="grid-content">
+                                    {{typeof(globBase.maintaining)}}
                                     <el-form-item :label="LANG['系统维护中'] || '系统维护中'">
                                         <el-switch on-text="开" off-text="关" off-color="#C0CCDA" v-model="globBase.maintaining"
                                                    @change="setSwitch(globBase.maintaining)"></el-switch>
@@ -207,8 +208,17 @@
                 this.globlUrl = URL.api + ROUTES.GET.system.global;
 				this.$.autoAjax('get',this.globlUrl, '', {
 					ok: (res) => {
-						if (res.state === 0) {
+						if (res.state === 0 && res.data) {
 							this.globBase = res.data.base;
+						    //this.globBase.maintaining = false
+                            for(let k in this.globBase){
+                                if(this.globBase[k] =='false'){
+                                    this.globBase[k] = false
+                                }else if(this.globBase[k] =='true'){
+                                    this.globBase[k] = true
+                                }
+                                //this.globBase[k] ={'false':false,'true':true}[this.globBase[k]]||res.data.base[k]
+                            }
 							this.globBase.start_day = res.data.base.maintaining_start_time || sessionStorage.sysTime;
 							this.globBase.end_day = res.data.base.maintaining_end_time || sessionStorage.sysTime;
 							if (res.data.base.maintaining_start_time) {

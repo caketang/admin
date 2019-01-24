@@ -476,11 +476,9 @@
                 if (this.formType == "add") {
 					this.$.autoAjax('put',url,query,{
 						ok: (res) => {
-							if (res.state == 0 && res.data) {
-								_this.$message.success(LANG['恭喜您，新增第三方支付成功！'] || '恭喜您，新增第三方支付成功！');
-							} else {
-								_this.$message.error(res.msg + "," + (LANG['新增第三方支付失败，请稍候重试！'] || '新增第三方支付失败，请稍候重试！'));
-							}
+							res.state == 0 && res.data
+                                ? _this.$message.success(LANG['恭喜您，新增第三方支付成功！'] || '恭喜您，新增第三方支付成功！')
+                                : _this.$message.error(res.msg + "," + (LANG['新增第三方支付失败，请稍候重试！'] || '新增第三方支付失败，请稍候重试！'));
 							_this.updated = true;
 						},
 						p: () => {
@@ -493,11 +491,9 @@
                     query['id'] = parseInt(this.nowId);
 					this.$.autoAjax('put', url + '?id=' + parseInt(this.nowId), query, {
 						ok: (res) => {
-							if (res.state == 0 && res.data) {
-								_this.$message.success(LANG['恭喜您，第三方支付修改成功！'] || '恭喜您，第三方支付修改成功！');
-							} else {
-								_this.$message.error(res.msg + "," + (LANG['修改第三方支付失败，请稍候重试！'] || '修改第三方支付失败，请稍候重试！'));
-							}
+							res.state == 0 && res.data
+								?_this.$message.success(LANG['恭喜您，第三方支付修改成功！'] || '恭喜您，第三方支付修改成功！')
+                                :_this.$message.error(res.msg + "," + (LANG['修改第三方支付失败，请稍候重试！'] || '修改第三方支付失败，请稍候重试！'))
 							_this.updated = true;
 						},
 						p: () => {

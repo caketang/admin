@@ -59,9 +59,10 @@
                                 let obj = {
                                     key: i,
                                     id: list[i].id,
-                                    sort: list[i].sort,
+                                    sort:list[i].sort,
                                     show: true
                                 }
+                                list[i].sort = list[i].sort.split(',',1)[0]
                                 if(list[i].sub){
                                     obj.sub = [];
                                     let temp = list[i].sub;
@@ -85,6 +86,7 @@
                         console.log(e)
                     }
                 })
+
             },
             // 保存排序
             doSaveForm(obj){
