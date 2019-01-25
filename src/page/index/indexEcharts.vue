@@ -47,7 +47,7 @@
 								   @click="channelDays(7,'default')">{{LANG['移动PC下注占比'] || '移动PC下注占比'}}
 						</el-button>
 						<el-button size="mini" type="text" :class="{col1 :isActive}" @click="channelDays(7,'orders')">
-							{{LANG['游戏下注金额占比'] || '游戏下注金额占比'}}
+							{{LANG['彩票下注金额占比'] || '彩票下注金额占比'}}
 						</el-button>
 					</div>
 					<div class="w30 fl tRight">

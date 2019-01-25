@@ -19,7 +19,6 @@
                                     </el-form-item>
                                 </div>
                                 <div class="grid-content">
-                                    {{typeof(globBase.maintaining)}}
                                     <el-form-item :label="LANG['系统维护中'] || '系统维护中'">
                                         <el-switch on-text="开" off-text="关" off-color="#C0CCDA" v-model="globBase.maintaining"
                                                    @change="setSwitch(globBase.maintaining)"></el-switch>
