@@ -447,6 +447,9 @@ white-space: nowrap;
     /*border: 1px solid transparent;*/
     display: inline-block;
 }
+.el-loading-mask{
+    z-index: 99;
+}
 /*---------------------------我是分割线-------------------------*/
 /*
 ** 公用的状态标示颜色
