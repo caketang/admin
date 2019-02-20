@@ -104,47 +104,63 @@
                     },
                     {"prop": "name", "value": "", "label": "商户名称", "type": "text", "rules": [{"require": true}]},
                     {"prop": "parter", "value": "", "label": "商户编号", "type": "text", "ifVal": "101", "ifKey": "pay_id", "rules": [{"require": true}]},
-                     //薄情付财 ID4
-                    {
-                        "prop": "keyTwo",
-                        "value": "",
-                        "label": "应用密钥",
-                        "type": "password",
-                        "ifVal": "101", "ifKey": "pay_id",
-                        "rules": [{"require": true, "isDefault": true}]
-                    },
-                    //a支付
+                     //全银 ID4-5
                     {
                         "prop": "payKey",
                         "value": "",
-                        "label": "商户密钥",
+                        "label": "支付密钥",
                         "type": "password",
-                        "ifVal": "104", "ifKey": "pay_id",
+                        "ifVal": "106", "ifKey": "pay_id",
                         "rules": [{"require": true, "isDefault": true}]
                     },
                     {
                         "prop": "paySecret",
                         "value": "",
-                        "label": "支付密钥",
+                        "label": "应用密钥",
                         "type": "password",
-                        "ifVal": "104", "ifKey": "pay_id",
+                        "ifVal": "106", "ifKey": "pay_id",
                         "rules": [{"require": true, "isDefault": true}]
                     },
-                    //贝壳支付 7-8
+                    // 6 -7
                     {
-                        "prop": "account_id",
+                        "prop": "customerid",
                         "value": "",
-                        "label": "商户ID",
+                        "label": "支付ID",
                         "type": "password",
-                        "ifVal": "105", "ifKey": "pay_id",
+                        "ifVal": "107", "ifKey": "pay_id",
+                        "rules": [{"require": true, "isDefault": true}]
+                    },
+                    //捷达支付 8-
+                    {
+                        "prop": "alipay_merId",
+                        "value": "",
+                        "label": "支付ID",
+                        "type": "password",
+                        "ifVal": "108", "ifKey": "pay_id",
                         "rules": [{"require": true, "isDefault": true}]
                     },
                     {
-                        "prop": "key",
+                        "prop": "alipay_merKey",
                         "value": "",
                         "label": "支付密钥",
                         "type": "password",
-                        "ifVal": "105", "ifKey": "pay_id",
+                        "ifVal": "108", "ifKey": "pay_id",
+                        "rules": [{"require": true, "isDefault": true}]
+                    },
+                    {
+                        "prop": "wechat_merId",
+                        "value": "",
+                        "label": "微支付ID",
+                        "type": "password",
+                        "ifVal": "108", "ifKey": "pay_id",
+                        "rules": [{"require": true, "isDefault": true}]
+                    },
+                    {
+                        "prop": "wechat_merKey",
+                        "value": "",
+                        "label": "微支付密钥",
+                        "type": "password",
+                        "ifVal": "108", "ifKey": "pay_id",
                         "rules": [{"require": true, "isDefault": true}]
                     },
                     // 支付场景
@@ -438,31 +454,35 @@
                     }
                 }
                 switch (query['code']) {
-                    case 'bqzf':
-                        query['configs'] = {
-                            'merchant':query['parter'],
-                            'key': query['keyTwo']
-                        }
-                        break;
-                    case 'aabill':
+                    case 'quanyin':
                         query['configs'] = {
                             'payKey':query['payKey'],
                             'paySecret': query['paySecret']
                         }
                         break;
-                    case 'beke':
+                    case 'longcheng':
                         query['configs'] = {
-                            'account_id':query['account_id'],
-                            'key': query['key']
+                            'customerid':query['customerid'],
+                            'apikey': query['apikey']
+                        }
+                        break;
+                    case 'jieda':
+                        query['configs'] = {
+                            'alipay_merId':query['alipay_merId'],
+                            'alipay_merKey': query['alipay_merKey'],
+                            'wechat_merId': query['wechat_merId'],
+                            'wechat_merKey': query['wechat_merKey']
                         }
                         break;
                 }
-                delete query['keyTwo'];
-                delete query['parter'];
                 delete query['payKey'];
                 delete query['paySecret'];
-                delete query['account_id'];
-                delete query['key'];
+                delete query['customerid'];
+                delete query['apikey'];
+                delete query['alipay_merId'];
+                delete query['alipay_merKey'];
+                delete query['wechat_merId'];
+                delete query['wechat_merKey'];
                 query['pay_scene'] = query['pay_scene'].toString();
                 query['terminal'] = (query['terminal'].toString()).toUpperCase();
                 // 防止前台不填写金额直接传null过去，避免后台直接过滤null
@@ -699,14 +719,17 @@
 							res.data.money_day_stop = FORMATMONEY(res.data.money_day_stop).toString();
 							FORMVAL(res.data, _this.formConfig);
 							this.formConfig[1].value = res.data.pay_id;
-							if(res.data.pay_name === "BQZF"){
-								this.formConfig[4].value = res.data.configs.keyTwo || '';
-							}else if(res.data.pay_name === "AABILL"){
-								this.formConfig[5].value = res.data.configs.payKey || '';
-								this.formConfig[6].value = res.data.configs.paySecret || '';
-							}else if(res.data.pay_name === "BEKE"){
-								this.formConfig[7].value = res.data.configs.account_id || '';
-								this.formConfig[8].value = res.data.configs.key || '';
+							if(res.data.pay_name === "QUANYIN"){
+								this.formConfig[4].value = res.data.configs.payKey || '';
+								this.formConfig[5].value = res.data.configs.paySecret || '';
+							}else if(res.data.pay_name === "LONGCHENG"){
+								this.formConfig[6].value = res.data.configs.customerid || '';//customerid。apikey
+								this.formConfig[7].value = res.data.configs.apikey || '';
+							}else if(res.data.pay_name === "JIEDA"){
+								this.formConfig[8].value = res.data.configs.alipay_merId || '';
+								this.formConfig[9].value = res.data.configs.alipay_merKey || '';
+								this.formConfig[10].value = res.data.configs.wechat_merId || '';
+								this.formConfig[11].value = res.data.configs.wechat_merKey || '';
 							}
 							for (let k = 0; k < this.formConfig.length; k++) {
 								if (this.formConfig[k].prop == 'pay_scene') {
@@ -743,52 +766,6 @@
 						console.log(e)
 					}
 				})
-                // this.$http.get(URL.api + ROUTES.GET.cash.third.$ + "?id=" + parseInt(this.nowId), URLCONFIG).then((res) => {
-                //     if (res.data.state == 0 && res.data.data) {
-                //         _this.formTitel = "修改第三方支付";
-                //         _this.formType = "edit";
-                //         res.data.data.day_deact = FORMATMONEY(res.data.data.day_deact).toString();
-                //         res.data.data.money_day_stop = FORMATMONEY(res.data.data.money_day_stop).toString();
-                //         FORMVAL(res.data.data, _this.formConfig);
-                //         this.formConfig[1].value = res.data.data.pay_id;
-                //         if (res.data.data.pay_name === "FMF") {
-                //             this.formConfig[4].value = res.data.data.configs.key || '';
-                //             this.formConfig[5].value = res.data.data.configs.pub_key || '';
-                //             this.formConfig[6].value = res.data.data.configs.pri_key || '';
-                //         }else if(res.data.data.pay_name === "BQZF"){
-                //             this.formConfig[3].value = res.data.data.configs.merchant || '';
-                //             this.formConfig[7].value = res.data.data.configs.key || '';
-                //         }
-                //         for (let k = 0; k < this.formConfig.length; k++) {
-                //             if (this.formConfig[k].prop == 'pay_scene') {
-                //                 pay_scene = this.formConfig[k].list;
-                //                 pay_scene.splice(0, pay_scene.length);
-                //             }
-                //             if (this.formConfig[k].prop == 'terminal') {
-                //                 terminal = this.formConfig[k].list;
-                //                 terminal.splice(0, terminal.length);
-                //             }
-                //         }
-                //         for (let i in pay_scene_list) {
-                //             if (i === res.data.data.pay_id) {
-                //                 let tempTerminal = pay_scene_list[i].terminal.split(',');
-                //                 for (let m in tempTerminal) {
-                //                     terminal.push(tempTerminal[m]);
-                //                 }
-                //                 let tempPayScene = pay_scene_list[i].pay_scene.split(',');
-                //                 for (let n in tempPayScene) {
-                //                     pay_scene.push(tempPayScene[n]);
-                //                 }
-                //             }
-                //         }
-                //         _this.isEdit.state = true;
-                //         _this.formVisible.state = true;
-                //     } else {
-                //         _this.$message.error(_this.LANG['第三方支付信息请求失败，请稍后重试'] || '第三方支付信息请求失败，请稍后重试');
-                //     }
-                //     _this.loading = false;
-                // })
-
             },
 
             //查询
