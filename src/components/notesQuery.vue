@@ -45,7 +45,6 @@
 				<td>
 					<div class="cell">{{subTotalMoney.lose_earn}}</div>
 				</td>
-
 			</tr>
 			<tr slot="other" v-if="tableLength > 0 && (activeType === 'lottery' || activeType === 'fish')">
 				<td :colspan="activeType === 'lottery' ? 9 : 6">

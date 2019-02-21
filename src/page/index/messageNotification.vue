@@ -136,7 +136,7 @@
 									audioPlay.play();
 									audioPlay.onended = () => {
 										if ((localStorage.getItem('sound_line') === 'true') && (_this.autoMusic.root_deposit === 'true') && (_this.root_routers !== '/memberGetOut') && (offlines > 0)) { // 入款
-											audioPlay2.play();
+											audioPlay2.play()
 											audioPlay2.onended = () => {
 												if ((localStorage.getItem('sound_out') === 'true') && (_this.autoMusic.root_withdrawals === 'true') && (withdraws > 0) && (_this.root_routers !== '/offlineReceipts')) { // 出款
 													audioPlay3.play();
@@ -147,14 +147,14 @@
 										}
 									}
 								} else if ((localStorage.getItem('sound_line') === 'true') && (offlines > 0) && (_this.autoMusic.root_deposit === 'true') && (_this.root_routers !== '/memberGetOut')) {// 入款
-									audioPlay2.play();
+									audioPlay2.play()
 									audioPlay2.onended = () => {
 										if ((localStorage.getItem('sound_out') === 'true') && (withdraws > 0) && (_this.autoMusic.root_withdrawals === 'true') && (_this.root_routers !== '/offlineReceipts')) { // 出款
 											audioPlay3.play();
 										}
 									}
 								} else if ((localStorage.getItem('sound_out') === 'true') && (withdraws > 0) && (_this.autoMusic.root_withdrawals === 'true') && (_this.root_routers !== '/offlineReceipts')) { // 出款
-									audioPlay3.play();
+									audioPlay3.play()
 								}
 							}
 						}
