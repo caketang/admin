@@ -2,6 +2,14 @@
     <div id="indexEcharts" class="chart w100">
         <el-row :gutter="10">
             <!--顶部用户数据直观展示-->
+            <!--首充人数-->
+            <el-col :span="4">
+                <div class="indexData" style="background:#8B8AEE">
+                    <p class="num">
+                        {{parseInt(new_deposit_members) > 0 ? parseInt(new_deposit_members) : 0}}</p>
+                    <p class="textHide">{{LANG['首充人数'] || '首充人数'}}</p>
+                </div>
+            </el-col>
             <el-col :span="4">
                 <div class="indexData" style="background:#0fbed1">
                     <p class="num" :title="'今日活跃用户：'+active">{{active}}</p>
