@@ -27,17 +27,11 @@
                         <td>
                             <div class="cell">{{(parseFloat(allData.page_money_sum) / 100).toFixed(2)}}</div>
                         </td>
-                        <!--<td colspan="">-->
-                            <!--<div class="cell">{{(parseFloat(allData.page_coupon_sum) / 100).toFixed(2)}}</div>-->
-                        <!--</td>-->
                         <td colspan="9"></td>
                     </tr>
                     <tr slot="other" v-if="allData">
                         <td colspan="4" ><div class="cell tCent">{{LANG[' 总计'] || '总计'}}</div></td>
                         <td><div class="cell">{{(parseFloat(allData.total_money_sum) / 100).toFixed(2)}}</div></td>
-                        <!--<td colspan="">-->
-                            <!--<div class="cell">{{(parseFloat(allData.total_coupon_sum) / 100).toFixed(2)}}</div>-->
-                        <!--</td>-->
                         <td colspan="9"></td>
                     </tr>
             </tablegrid>
@@ -118,7 +112,15 @@
 		                {"label": "代理", "value": "2"}
                     ]},
                     {"prop":"username","value":"","type":"text","label":"用户名"},
-                    {"type":"dateTimeGroup","label":"操作时间","prop":[{"prop":"time_begin","value":"","label":"开始时间"},{"prop":"time_end","value":"","label":"结束时间"}]},
+                    {
+                        "type": "dateGroup",
+                        "label": "交易时间",
+                        "prop": [
+                            {"prop": "time_begin", "value": "", "label": "开始时间"},
+                            {"prop": "time_end", "value": "", "label": "结束时间"}
+                        ]
+                    },
+                   // {"type":"dateTimeGroup","label":"操作时间","prop":[{"prop":"time_begin","value":"","label":"开始时间"},{"prop":"time_end","value":"","label":"结束时间"}]},
                     {"prop":"type","value":"","label":"交易类型","type":"select","list":[]},
                     {"prop":"admin_user","value":"","label":"操作者","type":"text"}
                 ],
