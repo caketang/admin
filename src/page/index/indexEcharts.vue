@@ -2,18 +2,18 @@
     <div id="indexEcharts" class="chart w100">
         <el-row :gutter="10">
             <!--顶部用户数据直观展示-->
-            <!--首充人数-->
-            <el-col :span="4">
-                <div class="indexData" style="background:#8B8AEE">
-                    <p class="num">
-                        {{parseInt(new_deposit_members) > 0 ? parseInt(new_deposit_members) : 0}}</p>
-                    <p class="textHide">{{LANG['首充人数'] || '首充人数'}}</p>
-                </div>
-            </el-col>
             <el-col :span="4">
                 <div class="indexData" style="background:#0fbed1">
                     <p class="num" :title="'今日活跃用户：'+active">{{active}}</p>
                     <p class="textHide">{{LANG['今日活跃用户'] || '今日活跃用户'}}</p>
+                </div>
+            </el-col>
+            <!--首充人数-->
+            <el-col :span="4">
+                <div class="indexData" style="background:#99ABC6">
+                    <p class="num">
+                        {{new_deposit_members? new_deposit_members: 0}}</p>
+                    <p class="textHide">{{LANG['首充人数'] || '首充人数'}}</p>
                 </div>
             </el-col>
             <el-col class="border_bottom" :span="4">
@@ -33,24 +33,24 @@
                     <p class="textHide">{{LANG['今日总注单数'] || '今日总注单数'}}</p>
                 </div>
             </el-col>
-            <!--首充人数-->
-            <el-col :span="4">
-                <div class="indexData" style="background:#8B8AEE">
-                    <p class="num">
-                        {{parseInt(new_deposit_members) > 0 ? parseInt(new_deposit_members) : 0}}</p>
-                    <p class="textHide">{{LANG['首充人数'] || '首充人数'}}</p>
-                </div>
-            </el-col>
+            <!--&lt;!&ndash;首充人数&ndash;&gt;-->
+            <!--<el-col :span="4">-->
+                <!--<div class="indexData" style="background:#8B8AEE">-->
+                    <!--<p class="num">-->
+                        <!--{{new_deposit_members?new_deposit_members:0}}</p>-->
+                    <!--<p class="textHide">{{LANG['首充人数'] || '首充人数'}}</p>-->
+                <!--</div>-->
+            <!--</el-col>-->
             <!--注单总额-->
             <el-col :span="4">
                 <div class="indexData" style="background:#C9592D">
-                    <p class="num">{{parseInt(amount) > 0 ? parseInt(amount) / 100 : 0}}</p>
+                    <p class="num">{{amount?amount:0}}</p>
                     <p class="textHide">{{LANG['今日总注单金额'] || '今日总注单金额'}}</p>
                 </div>
             </el-col>
             <el-col class="border_bottom" :span="4">
                 <div class="indexData" style="background:#ff9269">
-                    <p class="num">{{parseInt(deposite) > 0 ? parseInt(deposite) / 100 : 0}}</p>
+                    <p class="num">{{deposite? deposite:0}}</p>
                     <p class="textHide">{{LANG['今日存款总金额'] || '今日存款总金额'}}</p>
                 </div>
             </el-col>
@@ -58,7 +58,7 @@
             <el-col :span="4">
                 <div class="indexData" style="background:#56C9C5">
                     <p class="num">
-                        {{parseInt(withdraw_money) > 0 ? parseInt(withdraw_money) / 100 : 0}}</p>
+                        {{withdraw_money?withdraw_money: 0}}</p>
                     <p class="textHide">{{LANG['提款总额'] || '提款总额'}}</p>
                 </div>
             </el-col>
@@ -66,7 +66,7 @@
             <el-col :span="4">
                 <div class="indexData" style="background:#ab8def">
                     <p class="num">
-                        {{parseInt(gross_profit) > 0 ? parseInt(gross_profit) / 100 : 0}}</p>
+                        {{gross_profit?gross_profit:0}}</p>
                     <p class="textHide">{{LANG['总输赢'] || '总输赢'}}</p>
                 </div>
             </el-col>
