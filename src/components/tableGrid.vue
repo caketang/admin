@@ -1126,14 +1126,12 @@
 										_this.totalBet = {};
 										if (res.attributes) {
 											if (res.attributes.subTotalBet) {
-
 												let obj = res.attributes.subTotalBet;
 												for (let k in obj) {
 													_this.subTotalBet[k] = obj[k];
 												}
 											}
 											if (res.attributes.totalBet) {
-
 												let obj = res.attributes.totalBet;
 												for (let k in obj) {
 													_this.totalBet[k] = obj[k];
@@ -1681,6 +1679,7 @@
 							}
 						}
 						if (_this.getData) {
+                            otherData.attributes = res.attributes
 							_this.$emit("get-table-data", {
 								"item": _this.tableDataColen,
 								"allData": otherData

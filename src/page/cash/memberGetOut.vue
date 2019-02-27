@@ -131,24 +131,6 @@
                             </el-form-item>
                         </el-col>
                     </el-row>
-                    <!--<el-row :gutter="22">-->
-                    <!--<el-col :span="4">-->
-                    <!--<div class="grid-content bg-purple"><span>{{LANG['今日取款次数'] || '今日取款次数'}}</span></div>-->
-                    <!--</el-col>-->
-                    <!--<el-col :span="8">-->
-                    <!--<el-form-item>-->
-                    <!--<span>{{editForm.today_withdraw_times}}</span>-->
-                    <!--</el-form-item>-->
-                    <!--</el-col>-->
-                    <!--<el-col :span="4">-->
-                    <!--<div class="grid-content bg-purple"><span>{{LANG['今日取款金额'] || '今日取款金额'}}</span></div>-->
-                    <!--</el-col>-->
-                    <!--<el-col :span="8">-->
-                    <!--<el-form-item>-->
-                    <!--<span>{{editForm.today_withdraw_money | filterMoneyIsNull}}</span>-->
-                    <!--</el-form-item>-->
-                    <!--</el-col>-->
-                    <!--</el-row>-->
                     <el-row :gutter="22">
                         <el-col :span="3">
                             <div class="grid-content bg-purple"><span>{{LANG['银行帐号'] || '银行帐号'}}</span></div>
@@ -220,19 +202,6 @@
                         </el-col>
                         <el-col :span="24" class="mb20">
                             <div class="grid-content bg-purple-dark tCent" style="color:#fff;">{{LANG['稽核信息'] || '稽核信息'}}</div>
-                            <!--<editTable-->
-                            <!--:columnsUrl="formColumnsUrl"-->
-                            <!--:tableData = "tableDate"-->
-                            <!--:pageSet="false"-->
-                            <!--:automation = "true"-->
-                            <!--@do-handle="doHandleDetail"></editTable>-->
-                            <!--<div class="el-dropdown-menu floatDiv" ref="floatDiv" id="tooltip" style="display: none">-->
-                            <!--<el-table :data="gridData" border>-->
-                            <!--<el-table-column v-for="(item,index) in gridDataCol" width="71" :key="index"-->
-                            <!--:prop="item.flag" :label="item.name"></el-table-column>-->
-                            <!--</el-table>-->
-
-                            <!--</div>-->
                             <el-table :data="tableDate.list" border class="tCent">
                                 <el-table-column width="210" label="交易时间">
                                     <template slot-scope="scope">
@@ -517,7 +486,8 @@
                 searchObj: {},
                 updateDate: "",
                 user_id: 0,
-                isShow: sessionStorage.user_withdraws_export == 'true' ? true : false
+                isShow: sessionStorage.user_withdraws_export == 'true' ? true : false,
+                exportForm:{}
             }
         },
         components: {
@@ -536,8 +506,8 @@
                 }
                 this.baseUrl = URL.api + ROUTES.GET.cash.withdraws;
                 this.columnsUrl = "static/json/cash/memberGetOut/columns.json";
-
-				this.$.autoAjax('get',URL.api + ROUTES.GET.user.level.list, '', {
+                _this.exportForm = {date_from:sessionStorage.sysTime + " 00:00:00",date_to:sessionStorage.sysTime + " 23:59:59",signature:1}
+                this.$.autoAjax('get',URL.api + ROUTES.GET.user.level.list, '', {
 					ok: (res) => {
 						if (res.state == 0 && res.data) {
 							let model = res.data;
@@ -600,6 +570,8 @@
                     this.searchObj[i] = temp[i];
                 }
                 this.tableUrl = this.baseUrl + this.addSearch(temp)
+                this.exportForm = temp
+                this.exportForm.signature = 1
             },
             //表格内按钮事件
             doHandle(e) {
@@ -854,47 +826,7 @@
 						this.loading = false;
 					}
 				})
-                // this.$http.get(formTableUrl, URLCONFIG).then((res) => {
-                //     if (res.data.state == 0 && res.data.data) {
-                //         this.auditData = res.data;
-                //         this.tableDate.level_config = res.data.data.level_config;
-                //         this.editForm.deposit_money = FORMATMONEY(res.data.data.deposit_money);
-                //         this.editForm.deposit_times = res.data.data.deposit_times;
-                //         this.editForm.withdraw_money = FORMATMONEY(res.data.data.withdraw_money);
-                //         this.editForm.withdraw_times = res.data.data.withdraw_times;
-                //         this.editForm.lose_earn = FORMATMONEY(res.data.data.lose_earn);
-                //         let model = res.data.data.list;
-                //         model.forEach(item => {
-                //             item.coupon_money = FORMATMONEY(item.coupon_money);
-                //             item.money = FORMATMONEY(item.money);
-                //             item.valid_bet = FORMATMONEY(item.valid_bet);
-                //             item.withdraw_bet_principal = FORMATMONEY(item.withdraw_bet_principal);
-                //             item.withdraw_bet_coupon = FORMATMONEY(item.withdraw_bet_coupon);
-                //             item.deduct_coupon = FORMATMONEY(item.deduct_coupon);
-                //             item.deduct_admin_fee = FORMATMONEY(item.deduct_admin_fee);
-                //             item.lose_earn = FORMATMONEY(item.lose_earn);
-                //             if (!item.withdraw_bet_coupon && !item.withdraw_bet_principal) {
-                //                 item.withdraw_bet_principal = FORMATMONEY(item.withdraw_bet);
-                //                 item.withdraw_bet_coupon = 0
-                //             }
-                //             if (item.is_pass) {
-                //                 item.is_pass = '是'
-                //             } else {
-                //                 item.is_pass = '否'
-                //             }
-                //         })
-                //         for (let i = 0; i < model.length; i++) {
-                //             this.tableDate.list.push(model[i]);
-                //         }
-                //     }
-                //     sum++;
-                //     if (sum === 2) {
-                //         this.loading = false;
-                //         this.editVisible = true;
-                //     }
-                // }).catch((e) => {
-                //     this.loading = false;
-                // });
+
                 let _this = this;
 
 				this.$.autoAjax('get',URL.api + ROUTES.GET.cash.withdraw.details.$(id), '', {
@@ -918,22 +850,6 @@
 						this.loading = false;
 					}
 				})
-                // this.$http.get(URL.api + ROUTES.GET.cash.withdraw.details.$(id), URLCONFIG).then((res) => { //  服务器 500
-                //     if (res.data.state == 0 && res.data.data) {
-                //         let model = res.data.data;
-                //         for (let k in model) {
-                //             _this.editForm[k] = model[k];
-                //         }
-                //         _this.editForm.comment = row.comment || '';
-                //     }
-                //     sum++;
-                //     if (sum === 2) {
-                //         this.loading = false;
-                //         this.editVisible = true;
-                //     }
-                // }).catch((e) => {
-                //     this.loading = false;
-                // });
             },
             //预备支付
             doPrepare(row) {
@@ -1072,19 +988,6 @@
                         break;
                 }
             },
-            //待处理
-//            doPending(row){
-//                let id = this.id;
-//                var _this = this;
-//                this.$http.patch(URL.api + ROUTES.PATCH.cash.withdraw.user.$("?id="+ id),JSON.stringify({"status":"pending"}),URLCONFIG).then((res) => {
-//                    if(res.state === 0){
-//                        _this.$message.success(LANG['拒绝成功'] || '拒绝成功');
-//                        _this.updated = !_this.updated;
-//                    }else{
-//                        _this.$message.error(LANG['拒绝失败'] || '拒绝失败');
-//                    }
-//                });
-//            },
             //获取表格数据
             getTableDatatwo(obj) {
                 this.sumShow = false;
@@ -1137,25 +1040,34 @@
                 let form = this.$children[0].$refs.editForm.model;
                 let _this = this;
                 if (form.date_from && form.date_to) {
-                    let url = URL.api + '/export/download/withdraw';
-
-					this.$.autoAjax('get',URL.api + '/dev/download/sign' + '?nonce=' + url, '', {
-						ok: (res) => {
-							if (res.data) {
-								_this.outUrl = url + _this.addSearch(_this.searchObj) + "&nonce=" + res.data.nonce + "&signature=" + res.data.signature + "&time=" + res.data.time + "&uuid=" + res.data.uuid;
-								_this.dialogVisible = true;
-							} else if (res.msg) {
-								_this.$message.error(res.msg);
-							} else {
-								_this.$message.error(LANG['数据导出失败，请稍后重试'] || '数据导出失败，请稍后重试');
-							}
-						},
-						p: () => {
-						},
-						error: e => {
-							console.log(e)
-						}
-					})
+                    //let url = URL.api + '/export/download/withdraw';
+                    this.$.autoAjax('get',ROUTES.GET.cash.withdraws,this.exportForm, {
+                        ok:(res) =>{
+                            if(res.state ===0 && res.data){
+                                window.location.href = res.data.url
+                            }
+                        },
+                        error: e => {
+                            this.$message.error(e.responseText.msg);
+                        }
+                    })
+//					this.$.autoAjax('get',URL.api + '/dev/download/sign' + '?nonce=' + url, '', {
+//						ok: (res) => {
+//							if (res.data) {
+//								_this.outUrl = url + _this.addSearch(_this.searchObj) + "&nonce=" + res.data.nonce + "&signature=" + res.data.signature + "&time=" + res.data.time + "&uuid=" + res.data.uuid;
+//								_this.dialogVisible = true;
+//							} else if (res.msg) {
+//								_this.$message.error(res.msg);
+//							} else {
+//								_this.$message.error(LANG['数据导出失败，请稍后重试'] || '数据导出失败，请稍后重试');
+//							}
+//						},
+//						p: () => {
+//						},
+//						error: e => {
+//							console.log(e)
+//						}
+//					})
                     // this.$http.get(URL.api + '/dev/download/sign' + '?nonce=' + url, URLCONFIG).then((res) => {
                     //     // 执行导出
                     //     if (res.data.data) {

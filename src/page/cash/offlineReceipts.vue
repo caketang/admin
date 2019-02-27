@@ -297,7 +297,8 @@
                 searchObj: {},
                 oDetail: null,
                 oDetailStatus: false,
-                isShow: sessionStorage.deposit_offlines_export == 'true' ? true : false
+                isShow: sessionStorage.deposit_offlines_export == 'true' ? true : false,
+                exportForm:{}
             }
         },
         components: {
@@ -327,6 +328,7 @@
                     this.searchConfig[5].value = this.$route.query.status
                     this.tableUrl = this.baseUrl + '?status=' + this.$route.query.status;
                 }
+                _this.exportForm = {date_from:sessionStorage.sysTime + " 00:00:00",date_to:sessionStorage.sysTime + " 23:59:59",signature:1}
                 // 获取层级
                 let levelUrl = URL.api + ROUTES.GET.user.level.list;
 				this.$.autoAjax('get',levelUrl, '', {
@@ -427,7 +429,6 @@
                         temp[k] = obj.item[k];
                     }
                 }
-
                 if (temp.money_to > 0) {
                     temp.money_from = temp.money_from * 100;
                     temp.money_to = temp.money_to * 100;
@@ -436,6 +437,8 @@
                     this.searchObj[i] = temp[i];
                 }
                 this.tableUrl = this.baseUrl + this.addSearch(temp)
+                this.exportForm = temp
+                this.exportForm.signature = 1
             },
             //详情
             doDetail(row) {
@@ -624,11 +627,9 @@
             },
             //重置查询
             resetForm() {
-                if(this.$route.query){
-                    this.tableUrl = this.baseUrl + '?status=' + this.$route.query.status;
-                } else {
-                    this.tableUrl = this.baseUrl + "?date_from=" + sessionStorage.sysTime + " 00:00:00&date_to=" + sessionStorage.sysTime + ' 23:59:59';
-                }
+                this.$route.query
+                    ? this.tableUrl = this.baseUrl + '?status=' + this.$route.query.status
+                    :this.tableUrl = this.baseUrl + "?date_from=" + sessionStorage.sysTime + " 00:00:00&date_to=" + sessionStorage.sysTime + ' 23:59:59';
             },
             openUserInformation(row) {
                 this.$router.push({path: "/memberManagement", query: {name: row.user_name}});
@@ -638,25 +639,35 @@
                 // 当前查询条件
                 let form = this.$children[0].$refs.editForm.model;
                 if (form.date_from && form.date_to) {
-                    let url = URL.api + '/export/download/offlines';
-                    let _this = this;
-					this.$.autoAjax('get',URL.api + '/dev/download/sign' + '?nonce=' + url, '', {
-						ok: (res) => {
-							if (res.data) {
-								this.outUrl = url + this.addSearch(this.searchObj) + "&nonce=" + res.data.nonce + "&signature=" + res.data.signature + "&time=" + res.data.time + "&uuid=" + res.data.uuid;
-								this.dialogVisible = true;
-							} else if (res.msg) {
-								_this.$message.error(res.msg);
-							} else {
-								_this.$message.error(LANG['数据导出失败，请稍后重试'] || '数据导出失败，请稍后重试');
-							}
-						},
-						p: () => {
-						},
-						error: e => {
-							console.log(e)
-						}
-					})
+                    this.$.autoAjax('get',ROUTES.GET.cash.offlines,this.exportForm, {
+                        ok:(res) =>{
+                            if(res.state ===0 && res.data){
+                                window.location.href = res.data.url
+                            }
+                        },
+                        error: e => {
+                            this.$message.error(e.responseText.msg);
+                        }
+                    })
+//                    let url = URL.api + '/export/download/offlines';
+//                    let _this = this;
+//					this.$.autoAjax('get',URL.api + '/dev/download/sign' + '?nonce=' + url, '', {
+//						ok: (res) => {
+//							if (res.data) {
+//								this.outUrl = url + this.addSearch(this.searchObj) + "&nonce=" + res.data.nonce + "&signature=" + res.data.signature + "&time=" + res.data.time + "&uuid=" + res.data.uuid;
+//								this.dialogVisible = true;
+//							} else if (res.msg) {
+//								_this.$message.error(res.msg);
+//							} else {
+//								_this.$message.error(LANG['数据导出失败，请稍后重试'] || '数据导出失败，请稍后重试');
+//							}
+//						},
+//						p: () => {
+//						},
+//						error: e => {
+//							console.log(e)
+//						}
+//					})
                 } else {
                     this.$message.error(LANG['必需选择时间才能导出'] || '必需选择时间才能导出');
                     return;
