@@ -497,7 +497,7 @@
 						console.log(e)
 					}
 				})
-                this.btnGroup = [{"txt": "手动存款", "fn": "manualDeposit", "id": 1},
+                this.btnGroup = [{"txt": "手动公司入款", "fn": "manualDeposit", "id": 1},
                     {"txt": "手动提款", "fn": "manualCash", "id": 2},
                     {"txt": "发放优惠", "fn": "grantDiscount", "id": 3},
                     {"txt": "手动减少余额", "fn": "artificialReduce", "id": 4},

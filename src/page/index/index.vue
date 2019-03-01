@@ -472,7 +472,7 @@
                 let _this = this;
                 this.$.autoAjax('patch', URL.api + ROUTES.PATCH.admin.pwd + "?id=" + sessionStorage.userId, formData, {
                     ok: (res) => {
-                        if (res.data.state == 0 && res.data.data) {
+                        if (res.state == 0 && res.data) {
                             _this.$message.success(LANG['密码修改成功'] || '密码修改成功');
                             _this.$router.push({path: '/login'});
                         } else {
@@ -482,22 +482,10 @@
                     p: () => {
                     },
                     error: e => {
-                        console.log(e)
+                        _this.$message.error(e.responseJSON.msg)
                     }
                 })
             },
-
-            // 	this.$http.patch(URL.api + ROUTES.PATCH.admin.pwd + "?id=" + sessionStorage.userId, JSON.stringify(formData), URLCONFIG).then((res) => {
-            // 		if (res.data.state == 0 && res.data.data) {
-            // 			_this.$message.success(LANG['密码修改成功'] || '密码修改成功');
-            // 			_this.$router.push({path: '/login'});
-            // 		} else {
-            // 			_this.$message.error(LANG['密码修改失败，请稍候重试！'] || '密码修改失败，请稍候重试！');
-            // 		}
-            // 	}).catch((e) => {
-            // 		_this.$message.error(LANG["未知错误，请稍后重试！"] || "未知错误，请稍后重试！");
-            // 	});
-            // },
             //获取时间
             getMyDate(str) {
                 var oDate = new Date(str),
