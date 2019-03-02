@@ -957,7 +957,7 @@
 												}
 											}
 											_this.total = res && res.attributes && res.attributes.total || 0;
-											_this.pageSize = res && res.attributes && res.attributes.size || 20;
+											_this.pageSize = res && res.attributes && res.attributes.page_size || 20;
 											_this.pageCount = Math.ceil(_this.total / _this.pageSize) ? Math.ceil(_this.total / _this.pageSize) : 1;
 											_this.currentPage = parseInt(res.attributes.page) ? parseInt(res.attributes.page) : 1;
 										}
@@ -1138,7 +1138,7 @@
 												}
 											}
 											_this.total = res &&res.attributes && res.attributes.total || 0;
-											_this.pageSize = res && res.attributes && res.attributes.size || 20;
+											_this.pageSize = res && res.attributes && res.attributes.page_size || 20;
 											_this.pageCount = Math.ceil(_this.total / _this.pageSize) ? Math.ceil(_this.total / _this.pageSize) : 1;
 											_this.currentPage = parseInt(res.attributes.page) ? parseInt(res.attributes.page) : 1;
 										}
@@ -1565,7 +1565,7 @@
 				this.$.autoAjax('get', this.baseUrl, '', {
 					ok: (res) => {
 						_this.total = res.attributes.total || 0;
-						_this.pageSize = res.attributes.size || 20;
+						_this.pageSize = res.attributes.page_size || 20;
 						_this.pageCount = Math.ceil(this.total / this.pageSize);
 						_this.currentPage = 1;
 						if (_this.getData) {
@@ -1648,7 +1648,7 @@
 				this.$.autoAjax('get', this.baseUrl, '', {
 					ok: (res) => {
 						_this.total = res.attributes.total || 0;
-						_this.pageSize = res.attributes.size || 20;
+						_this.pageSize = res.attributes.page_size || 20;
 						_this.pageCount = Math.ceil(this.total / this.pageSize);
 						_this.currentPage = res.attributes.page || 1;
 						let otherData = {};
