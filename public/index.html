@@ -1,7 +1,10 @@
 <!DOCTYPE html><html><head><meta charset=utf-8><meta http-equiv=pragma content=no-cache><meta http-equiv=cache-control content=no-cache><meta http-equiv=expires content=0><link rel="shortcut icon" id=webIco type=image/png href=""><script>//
         <!--# if expr="$this_is_undefined_vars" -->
+        var HTTP = window.location.href.split('//')[0]
+        var HOST = window.location.host.split('.')[1]+'.'+window.location.host.split('.')[2]
         var URL = {
-            'api': 'http://adminapi.viba.club',
+            api: HTTP + '//adminapi' + HOST,
+            //'api': 'http://adminapi.viba.club',
             //'api': 'http://adminapi.viba.work',
             //'api': 'https://adminapi.888fh.com',
             'title': "厅主管理系统",
@@ -9,6 +12,9 @@
             'quicknum': 10,
             'img': '',
             'rpi': ''
+        }
+        window.onload = function(){
+            console.log(URL.api)
         }
         //
         <!--# endif -->
