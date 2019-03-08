@@ -490,6 +490,7 @@
                 }
                 obj.formObj['picture'] = obj.formObj['images'].toString();
                 delete obj.formObj['images']
+                console.log(obj.formObj)
                 this.$.autoAjax('put',typeUrl, obj.formObj, {
                     ok: (res) => {
                         if (res.state === 2) {

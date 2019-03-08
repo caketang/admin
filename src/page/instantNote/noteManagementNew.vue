@@ -94,29 +94,6 @@
 						console.log(e)
 					}
 				})
-                // this.$http.get(URL.api + ROUTES.GET.games.games, URLCONFIG).then((res) => {
-                //     let data = res.data.data || [];
-                //     this.liveArr.splice(0,this.liveArr.length);
-                //     this.egameArr.splice(0,this.egameArr.length);
-				//
-                //     if (res.data.state === 0 && data) {
-                //         data.forEach((item) => {
-                //             this.gamesTypes.push(item);
-                //             if (item['game_type'] === 'live') {
-                //                 this.liveArr.push(item);
-                //             } else if (item['game_type'] === 'egame') {
-                //                 this.egameArr.push(item);
-                //             }
-				//
-                //         })
-                //     } else {
-                //         this.$message.error(LANG["未知错误，请稍后重试！"] || "未知错误，请稍后重试！");
-                //     }
-                //     if(str){
-                //         this.activeType  = this.getNotesCategorys(str);
-                //         this.toggle(this.activeType);
-                //     }
-                // })
             },
             // 点击事件
             toggle(type){

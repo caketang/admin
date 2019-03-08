@@ -779,18 +779,25 @@ export default [
 		component: resolve => require(['../page/index/index'], resolve),
 		name: '系统',
 		iconCls: 'iconfont icon-xitongguanli1',//图标样式class
-		children: [{
+		children: [
+		    {
 			path: '/sysLog',
 			component: resolve => require(['../page/systemSettings/sysLog'], resolve),
 			iconCls: '',
 			name: '后台操作日志'
-		},
+		    },
 			{
 				path: '/operationLog',
 				component: resolve => require(['../page/systemSettings/operationLog'], resolve),
 				iconCls: '',
 				name: '会员操作日志'
 			},
+            {
+                path: '/logInfo',
+                component: resolve => require(['../page/systemSettings/logInfo'], resolve),
+                iconCls: '',
+                name: '系统日志'
+            },
 			{
 				path: '/fieldSettings',
 				component: resolve => require(['../page/systemSettings/fieldSettings'], resolve),

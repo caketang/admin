@@ -1,11 +1,7 @@
 <template>
     <div id="agencyStatistics">
-        <!--<div class="search">-->
-        <!--<formEdit :formTitel="formTitel" :formVisible="formVisible" :formConfig="searchConfig" :type="type" :labelWidth="labelWidth" :isEdit="isEdit" @do-query="doQuery"></formEdit>-->
-        <!--</div>-->
         <el-col>
             <formEdit :formTitel="formTitel" :formVisible="formVisible" :formConfig="searchConfig" :type="searchType" :labelWidth="labelWidth" :isEdit="isEdit" @do-query="doQuery" @reset-form="resetForm" :showAdd="false"></formEdit>
-
         </el-col>
         <el-col>
             <tablegrid

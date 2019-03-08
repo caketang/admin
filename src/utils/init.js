@@ -381,8 +381,9 @@ global.ROUTES = {
 				},
 				admin: {
 					type: "/system/log/admin.operation"
-				}
-			},
+				},
+                info:"/system/log/info"
+            },
 			email: {
 				templates: "/system/email.templates",
 				template: "/system/email/template"
@@ -400,7 +401,7 @@ global.ROUTES = {
 			domain: '/system/domain',
 			website: {
 				style: '/system/website/style'
-			}
+			},
 		},
 		games: {
 			list: '/games/list',
@@ -893,8 +894,9 @@ global.ROUTES = {
 				two: "/login/two",
 				pt: '/admin/login/pt',
 				build: '/admin/login/build',
-				unbind: '/admin/login.unbind'
-			},
+				unbind: '/admin/login.unbind',
+                stsToken:"/login/sts-token"
+            },
 			logout: "/admin/logout"
 		},
 		cash: {
@@ -957,8 +959,7 @@ global.ROUTES = {
 		},
 		active: {
 			manual: "/active/manual"
-		}
-
+		},
 	},
 	PUT: {
 		state: {
@@ -1654,6 +1655,10 @@ global.ARRAYS = {
 		{"label": "启用", "value": 1},
 		{"label": "停用", "value": 0}
 	],
+    state4: [
+        {"label": "启用", "value": "enable"},
+        {"label": "停用", "value": "disable"}
+    ],
 	//帐号状态
 	accountState: [
 		{"label": "在线", "value": true},
@@ -2067,114 +2072,6 @@ global.NOTESQUERYCONFIG = {
 		// baseUrl: URL.api + '/order/fishing/'
 	}
 }
-
-// global.ROUTES = {
-//     GET: {
-//         account:{
-//             accountList:'/hall/list',
-// 			maintain:'/hall/maintain',
-//         },
-// 		accountBuild:{
-// 			config:'/hall/webset/config',
-// 			gameConfig:'/hall/game',
-// 			exist:"/hall/exist",
-// 			prefixexist:"/hall/prefixexist",
-// 			accountexist:"/hall/accountexist",
-// 			gameList:"/hall/game"
-//         },
-//         accountHall:{
-//             info:"/hall/info"
-//         },
-//         hall:{
-// 			accountlist:"/hall/accountlist",
-// 			webset:"/hall/webset/config"
-//         },
-// 		accountChild:{
-//             list:"/subaccount/list",
-// 			exit:"/subaccount/exist"
-//         },
-//         //角色列表
-// 		role:{
-// 			list:'/role/list',
-// 			info:'/role/info'
-//         },
-//         //查询
-//         accountHalluser:{
-//             user:"/hall/user"
-//         },
-//         //游戏账号管理
-// 		accountGameid:{
-//             gameList:"/game/partner",
-// 			accountList:"/game/accountlist"
-//         },
-//         //移动端管理
-// 		app:'/hall/app',
-//         game:{
-//             list:'/game/list'
-//         },
-//         lottery:{
-//             list:'/lottery/info',
-//             type:'/lottery/type',
-// 			result:'/lottery/result',
-// 			cancel:"/lottery/cancel",
-//             lhc:'/lottery/result'
-//         }
-//
-//
-//
-//
-//     },
-//     POST: {
-//         login:{
-// 			login:"/admin/login",
-// 			loginhall:"/admin/loginhall",
-//         }
-//     },
-//     PUT: {
-// 		accountBuild:{
-// 			addAdmin:"/hall"
-// 		},
-// 		accountChild:{
-// 		    info:'/subaccount/info'
-//         }
-//     },
-//     DELETE: {
-// 		accountChild:{
-// 			delete:'/subaccount/info'
-//         },
-//         accountRole:{
-// 		    info:'/role/info'
-//         }
-//
-//     },
-//     PATCH: {
-//         account:{
-// 			maintain:'/hall/maintain',
-//             info:'/hall/info',
-//             game:'/hall/game'
-//
-// 		},
-// 		accountChild:{
-//             status:'/subaccount/status',
-//             password:"/subaccount/password"
-//         },
-//         role:{
-//             info:'/role/info'
-//         },
-//         app:'/hall/app',
-//         game:{
-//             status:'/game/status',
-//             info:'/game/info',
-// 			maintain:'/game/maintain'
-//         },
-//         lottery:{
-//             info:'/lottery/info',
-// 			status:'/lottery/status',
-//             cancel:'/lottery/cancel',
-// 			lhc:"/lottery/lhc"
-//         }
-//     }
-// };
 global.islogin = {user: '', bank: '', record: '', order: '', userinfo: '', safe: '', msge: '', notice: ''};
 // 日期格式化
 Date.prototype.format = function (fmt, b) {

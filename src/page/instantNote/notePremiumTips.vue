@@ -117,17 +117,6 @@
 						console.log(e)
 					}
 				})
-				// this.$http.get(URL.api + ROUTES.GET.order.gamelist, URLCONFIG).then((res) => {
-				//     if(res.data.state === 0 && res.data.data)
-				//     {
-				//         for(let [val, item] of Object.entries(res.data.data))
-				//         {
-				//             this.searchConfig[4].list.push({label:item, value:val})
-				//         }
-				//     }else{
-				//         this.$message.error(LANG['获取游戏类型失败']  || '获取游戏类型失败');
-				//     }
-				// })
 			},
 			getTableData(obj) {
 				this.tableLength = 0;

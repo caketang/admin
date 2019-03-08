@@ -63,38 +63,6 @@
                         break*/
                 }
             },
-           /* //停用
-            doDisable(row){
-                this.nowId = row.id;
-                let _this = this;
-                this.$http.patch(URL.api+ROUTES.PATCH.user.games.third+"/"+parseInt(this.nowId),JSON.stringify({"state":false}),URLCONFIG).then((res)=>{
-                    if(res.data.state == 0 && res.data.data){
-                        debugger
-                        _this.optType = "停用";
-
-                        this.$message.success(LANG['恭喜您，第三方游戏帐户停用成功！'] || '恭喜您，第三方游戏帐户停用成功！');
-
-                    }else{
-                        this.$message.error(LANG['第三方游戏帐户停用失败，请稍后重试！'] || '第三方游戏帐户停用失败，请稍后重试！');
-                    }
-                });
-
-            },
-            //启用
-            Enable(row){
-                this.nowId = row.id;
-                let _this = this;
-                this.$http.patch(URL.api+ROUTES.PATCH.user.games.third+"/"+parseInt(this.nowId),JSON.stringify({"state":true}),URLCONFIG).then((res)=>{
-                    if(res.data.state == 0 && res.data.data){
-
-                        _this.optType = "启用";
-                        this.$message.success(LANG['恭喜您，第三方游戏帐户启用成功！'] || '恭喜您，第三方游戏帐户启用成功！');
-                    }else{
-                        this.$message.error(LANG['第三方游戏帐户启用失败，请稍后重试！'] || '第三方游戏帐户启用失败，请稍后重试！');
-                    }
-                });
-
-            },*/
             //查询
             doQuery(){
                 if(this.query.user_name){

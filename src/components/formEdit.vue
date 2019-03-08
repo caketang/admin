@@ -137,7 +137,8 @@
                         <!--<span class="help_gray" v-if="item.type == 'markdown' && textareaTest && textareaTest.type && editForm[item.prop].length && textareaTest.length && editForm[item.prop].length <= textareaTest.length" >当前还可以输入 <span>{{textareaTest.length-editForm[item.prop].length}}</span> 个字符</span>-->
                     </el-form-item>
                     <el-form-item :label="LANG[item.label] || item.label" v-if="(item.type =='upload') && (item.ifKey ? (editForm[item.ifKey] == item.ifVal) :true)" :prop="item.prop">
-                        <upload @response="doSaveFile" :keys="item.prop" :folder="item.folder" :isInit="imgInit" :arrList="item.value" :fileNum="item.fileNum"></upload>
+                        <!--<upload @response="doSaveFile" :keys="item.prop" :folder="item.folder" :isInit="imgInit" :arrList="item.value" :fileNum="item.fileNum"></upload>-->
+                        <upload @doUpload="doUpload" :keys="item.prop"></upload>
                     </el-form-item>
                 </div>
             </el-form>
@@ -306,7 +307,8 @@
                         </el-radio-group>
                     </el-form-item>
                     <el-form-item :label="LANG[item.label] || item.label" v-if="item.type =='upload' " :prop="item.prop">
-                        <upload  @response="doSaveFile" :keys="item.prop" :isInit="imgInit" :folder="item.folder"></upload>
+                        <upload @doUpload="doUpload" :keys="item.prop"></upload>
+                        <!--<upload  @response="doSaveFile" :keys="item.prop" :isInit="imgInit" :folder="item.folder"></upload>-->
                     </el-form-item>
                     <el-form-item :label="LANG[item.label] || item.label" v-if="item.type =='markdown' ">
                         <markdownEdit v-model="editForm[item.prop]" :id="item.prop" :config="item.config" @getContentLength="getconLength"></markdownEdit>
@@ -548,7 +550,8 @@
                     <markdownEdit v-model="editForm[item.prop]" :id="item.prop" :config="item.config" @getContentLength="getconLength"></markdownEdit>
                 </el-form-item>
                 <el-form-item :label="LANG[item.label] || item.label" v-if="(item.type =='upload') && (item.ifKey ? (editForm[item.ifKey] == item.ifVal) :true)" :prop="item.prop">
-                    <upload  @response="doSaveFile" :keys="item.prop" :folder="item.folder" :isInit="imgInit" :arrList="item.value" :fileNum="item.fileNum"></upload>
+                    <!--<upload  @response="doSaveFile" :keys="item.prop" :folder="item.folder" :isInit="imgInit" :arrList="item.value" :fileNum="item.fileNum"></upload>-->
+                    <upload @doUpload="doUpload" :keys="item.prop"></upload>
                 </el-form-item>
             </div>
             <el-form-item class="ml20">
@@ -942,6 +945,7 @@
             //保存FROM
             saveForm(str) {
                 this.$refs.editForm.validate((valid) => {
+                    console.log(valid)
                     if (valid) {
                         let statelist = {};
                         if(this.dateKey.length >0){
@@ -1450,12 +1454,17 @@
                 this.editForm[keyTwo] = FORMATDATEPICKER(e);
             },
             // 保存上传文件
-            doSaveFile(obj){
-                let list = obj.url || [];
-                this.editForm[obj.key] = [];
-                for(let k in list){
-                    this.editForm[obj.key].push(list[k]);
-                }
+//            doSaveFile(obj){
+//                let list = obj.url || [];
+//                this.editForm[obj.key] = [];
+//                for(let k in list){
+//                    this.editForm[obj.key].push(list[k]);
+//                }
+//            },
+            doUpload(o){
+                //this.editForm[o.key] =  o.file
+                this.editForm[o.key].push(o.file);
+                console.log(this.editForm)
             },
             // 域名配置列表
             changeUrl(keys, domainType){

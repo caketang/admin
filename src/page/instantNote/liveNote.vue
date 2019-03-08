@@ -1,7 +1,7 @@
 <template>
 	<div id="liveNote">
         <div class="search">
-            <formEdit 
+            <formEdit
                         :formVisible="formVisible"
                         :formConfig="searchConfig"
                         :type="type"
@@ -45,7 +45,7 @@
 <script>
     import formEdit from '../../components/formEdit.vue'
     import tableGrid from '../../components/tableGrid.vue'
-    /*import details from '../../components/detailsOfBets.vue'*/ 
+    /*import details from '../../components/detailsOfBets.vue'*/
 	export default{
       	data(){
             return {
@@ -72,7 +72,7 @@
                     {"type":"dateTimeGroup","label":"起始时间","prop":[{"prop":"start_time","value":"","label":"开始时间"},{"prop":"end_time","value":"","label":"结束时间"}]},
                    /* {"prop": "status", "value": "", "type": "select", "label": "状态","list":[{"label":"已结算", "value": 1},{"label":"未清算", "value": 3}]}, 暂时查不到*/
                 ],
-                
+
                 type: 'search',
                 isEdit: {  state: false},
                 labelWidth: "100px",
@@ -97,7 +97,7 @@
         components:{
             tablegrid: tableGrid,
             formEdit: formEdit,
-            
+
         },
         computed:{},
         watch:{},
@@ -148,24 +148,6 @@
 						console.log(e)
 					}
 				})
-                // this.$http.get(URL.api + '/games/list?category=1', URLCONFIG).then((res) => {
-                //     if (res.data.state == 0) {
-                //         // 清空列表防止重复
-                //         this.searchConfig[2]['list'] = [{ label: '全部', value: ''}];
-                //         for (let i of res.data.data) {
-                //             // 匹配LEBO视讯
-                //             if (i['name'] === 'LEBO') {
-                //                 let model = i['category']['LEBO']
-                //                 for (let j in model) {
-                //                     this.searchConfig[2]['list'].push({
-                //                         "label": model[j],
-                //                         "value": j
-                //                     });
-                //                 }
-                //             }
-                //         }
-                //     }
-                // })
             },
             openMember(obj) {
                 this.$router.push({path: "/memberManagement",query:{name: obj.user_name}});
@@ -174,7 +156,7 @@
                 this.Visible.state = true;
                 this.dataModel = obj;
             },
-           
+
             doQuery(obj) {
                 if(!this.showRefresh){
                     this.showRefresh = true;
@@ -184,10 +166,10 @@
             resetForm() {
                 if(this.showRefresh)
                 {
-                    
+
                     this.tableUrl = this.baseUrl +"?game_hall_id="+this.activeName+"&start_time=" + sessionStorage.dateTimeStart + "&end_time=" + sessionStorage.dateTimeEnd;
                 }
-                
+
             },
             // 获取总计小计
             getTableData(obj) {
@@ -226,7 +208,7 @@
     }
     .rightcontent{
         line-height: 36px;
-        float: right;  
+        float: right;
         margin-right:60px
     }
     .text {

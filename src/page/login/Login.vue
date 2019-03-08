@@ -150,6 +150,17 @@
                                                     offset: 40,
                                                     duration: 2000
                                                 });
+                                                //请求资源站
+                                                this.$.autoAjax('post', URL.api + ROUTES.POST.admin.login.stsToken,'', {
+                                                    ok:v => {
+                                                        if(v.state === 0 && v.data){
+                                                            URL.rpi = v.data.api_host + '/sts/file/upload'
+                                                            SETSESSIONSTORAGE('stsToken', v.data.stsToken)
+                                                        }else{
+                                                            _this.$message.error((LANG["获取资源站授权失败"] || "获取资源站授权失败"));
+                                                        }
+                                                    }
+                                                })
                                                 _this.$router.push({path: '/index'});
                                             } else if (resTwo.msg) {
                                                 _this.$message.error(resTwo.msg + "," + (LANG["登录失败，请稍后重试！"] || "登录失败，请稍后重试！"));

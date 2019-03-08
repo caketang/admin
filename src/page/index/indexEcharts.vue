@@ -33,14 +33,6 @@
                     <p class="textHide">{{LANG['今日总注单数'] || '今日总注单数'}}</p>
                 </div>
             </el-col>
-            <!--&lt;!&ndash;首充人数&ndash;&gt;-->
-            <!--<el-col :span="4">-->
-                <!--<div class="indexData" style="background:#8B8AEE">-->
-                    <!--<p class="num">-->
-                        <!--{{new_deposit_members?new_deposit_members:0}}</p>-->
-                    <!--<p class="textHide">{{LANG['首充人数'] || '首充人数'}}</p>-->
-                <!--</div>-->
-            <!--</el-col>-->
             <!--注单总额-->
             <el-col :span="4">
                 <div class="indexData" style="background:#C9592D">
@@ -611,8 +603,17 @@
             let _this = this;
             //定时请求
             if (localStorage.token) {
-                window.TIME1 = setInterval(function () {
-                    _this.init();
+                window.TIME1 = setInterval(() => {
+                    setTimeout(()=>{
+                        _this.init();
+                    }, 0)
+                }, 300000)
+            }
+            window.onload = function(){
+                setInterval(() => {
+                    setTimeout(()=>{
+                        _this.initStat()
+                    }, 0)
                 }, 300000);
             }
             this.init();

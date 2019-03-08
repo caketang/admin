@@ -226,15 +226,6 @@
 								   console.log(e)
 							   }
 						   })
-                           // this.$http.post(URL.api+ ROUTES.POST.commission.fee, JSON.stringify(data), URLCONFIG).then(res => {
-                           //     if (res.data.state !== undefined  && res.data.state === 0) {
-                           //         this.$message.success(LANG['恭喜您，新增手续费成功！'] || '恭喜您，新增手续费成功！');
-                           //         _this.updataTable=true;
-                           //     }else{
-                           //         this.$message.error(LANG['新增手续费失败，请稍候重试！'] || '新增手续费失败，请稍候重试！');
-                           //     }
-                           //     _this.formVisible = false;
-                           // });
                        } else if (this.formType === 'edit') {
                            let data = JSON.parse(JSON.stringify(this.editForm));
                            data.deposit_max = data.deposit_max*100;
@@ -256,15 +247,6 @@
 								   console.log(e)
 							   }
 						   })
-                           // this.$http.put(URL.api+ ROUTES.PUT.commission.fee+'?id='+parseInt(this.nowId),  JSON.stringify(data), URLCONFIG).then(res => {
-                           //     if (res.data.state !== undefined  && res.data.state === 0) {
-                           //         this.$message.success(LANG['恭喜您，手续费修改成功！'] || '恭喜您，手续费修改成功！');
-                           //         _this.updataTable=true;
-                           //     }else{
-                           //         this.$message.error('手续费修改失败，请稍候重试！');
-                           //     }
-                           //     _this.formVisible = false;
-                           // });
                        }
                    } else {
                        return false;
@@ -285,32 +267,6 @@
                     status:""
                 }
             },
-            //保存数据
-//            saveEditForm (obj) {
-//                this.updataTable=false;
-//                NProgress.start();
-//                if (this.formType === 'add') {
-//                    this.$http.post(URL.api+ ROUTES.POST.commission.fee, JSON.stringify(obj.formObj), URLCONFIG).then(res => {
-//                        NProgress.done();
-//                        if (res.data.state !== undefined  && res.data.state === 0) {
-//                            this.$message.success(LANG['恭喜您，新增手续费成功！'] || '恭喜您，新增手续费成功！');
-//                            this.updataTable=true;
-//                        }else{
-//                            this.$message.error(LANG['新增手续费失败，请稍候重试！'] || '新增手续费失败，请稍候重试！');
-//                        }
-//                    });
-//                } else if (this.formType === 'edit') {
-//                    this.$http.put(URL.api+ ROUTES.PUT.commission.fee+'/'+parseInt(this.nowId),  JSON.stringify(obj.formObj), URLCONFIG).then(res => {
-//                        NProgress.done();
-//                        if (res.data.state !== undefined  && res.data.state === 0) {
-//                            this.$message.success(LANG['恭喜您，手续费修改成功！'] || '恭喜您，手续费修改成功！');
-//                            this.updataTable=true;
-//                        }else{
-//                            this.$message.error('手续费修改失败，请稍候重试！');
-//                        }
-//                    });
-//                }
-//            },
             //表格按钮点击事件
             doHandle(item){
                 this.nowId = parseInt(item.row.id) || -1;

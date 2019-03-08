@@ -8,12 +8,11 @@ let a = {
 		obj.p = obj.p || function () {
 		}; //Public 公共的
 		obj.ok = obj.ok || function () {
-		};
-		if (sessionStorage.token && sessionStorage.userName) {
-			head['Authorization'] = sessionStorage.token;
 		}
-		// console.log(url)
-		let ajax = {
+        if (sessionStorage.token && sessionStorage.userName) {
+            head['Authorization'] = sessionStorage.token;
+        }
+        let ajax = {
 			type: type || 'post',
 			url: /^http|^\/\//.test(url) ? url : URL.api + url,
 			data: json !== '' && !!head["Content-Type"] && head["Content-Type"] === "application/json" ? JSON.stringify(json) : json,
@@ -65,6 +64,9 @@ let a = {
 						break;
 					case 500:
 						global.VUE.$router.push({path: 'errorPage', query: {code: status, url: nowUrl}});
+						setTimeout(()=>{
+                            global.VUE.$message.error(LANG['请求失败，请刷新页面后尝试'] || '请求失败，请刷新页面后尝试');
+                        },10000)
 						break;
 				}
 				!!obj.error ? obj.error(res) : console.log(res.status);

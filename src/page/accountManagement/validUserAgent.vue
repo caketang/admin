@@ -185,17 +185,6 @@
 							console.log(e)
 						}
 					})
-                    // this.$http.get(URL.api + '/dev/download/sign' + '?nonce=' + url, URLCONFIG).then((res)=>{
-                    //     if (res.data.data) {
-                    //         let url_code = export_flag === "agent" ? this.addSearch(this.searchObj) : this.addSearch(this.searchObjUser)
-                    //         this.outUrl = url + url_code + "&nonce=" + res.data.data.nonce + "&signature=" + res.data.data.signature + "&time="+ res.data.data.time + "&uuid=" + res.data.data.uuid;
-				     //        this.onDialogVisible = true;
-                    //     }else if(res.data.message){
-                    //         this.$message.error(res.data.message);
-                    //     } else {
-                    //         this.$message.error(LANG['数据导出失败，请稍后重试'] || '数据导出失败，请稍后重试');
-                    //     }
-                    // })
                 } else {
                     this.$message.error(LANG['必需选择时间才能导出'] || '必需选择时间才能导出');
 		            return;
@@ -216,7 +205,7 @@
         activated(){
             this.init();
         }
-        
+
     }
 </script>
 <style scopend>

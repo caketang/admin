@@ -110,15 +110,6 @@
 						console.log(e)
 					}
 				})
-                // this.$http.get(URL.api+ROUTES.GET.user.info.$(parseInt(this.id))+"?type=stat",URLCONFIG).then((res)=>{
-                //     if( res.data.state == 0 && res.data.data){
-                //         let model=res.data.data;
-                //         for(let i in model){
-                //             stat[i]= model[i];
-                //         }
-                //     }
-                //     this.loading = false;
-                // });
             },
             //刷新数据
             refreshModel(){

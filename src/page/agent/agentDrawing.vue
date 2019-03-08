@@ -158,8 +158,6 @@
                 let _this = this;
                 switch(obj.fn){
                     case "pay":
-//                        let aa = _this.nowId.toString()
-
                         this.$.autoAjax('patch',URL.api + ROUTES.PATCH.commission.withdrawal, {"status":2,"ids":_this.nowId.toString()}, {
                             ok: (res) => {
                                 _this.updated = false;
@@ -178,17 +176,6 @@
                                 console.log(e)
                             }
                         })
-                        // this.$http.patch(URL.api + ROUTES.PATCH.commission.withdrawal,JSON.stringify({"status":2,"ids":_this.nowId.toString()}),URLCONFIG).then((res) => {
-	                     //    _this.updated = false;
-                        //     if(res.data.state == 0 && res.data.data){
-                        //         //刷新数据
-                        //         this.$message.success(LANG["支付成功"] || '支付成功');
-                        //         _this.updated = true
-                        //     }else{
-                        //         this.$message.error(LANG["支付失败"] || '支付失败');
-                        //     }
-                        //     _this.loading = false;
-                        // })
                     break;
                     case "refuse":
 
