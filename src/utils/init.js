@@ -971,7 +971,8 @@ global.ROUTES = {
 			 */
 			function (name, ...args) {
 				return '/' + ['state', name, ...args].join('/');
-			}
+			},
+            tatus:'/agent/status'
 		},
 		wallet: {
 			recharge: {
