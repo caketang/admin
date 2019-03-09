@@ -210,7 +210,6 @@
                 // this.tableUrl = URL.api + ROUTES.GET.lottery.orders + "?type=" + this.playType;
                 this.baseUrl = URL.api + ROUTES.GET.lottery.orders;
                 //初始化彩票名称
-
                 this.$.autoAjax('get',URL.api + ROUTES.GET.lottery.types.$, '', {
                     ok: (res) => {
                         let model = res.data || [];
@@ -236,25 +235,6 @@
                         console.log(e)
                     }
                 })
-                // this.$http.get(URL.api + ROUTES.GET.lottery.types.$, URLCONFIG).then( (res) => {
-                //     let model = res.data.data || [];
-                //     this.searchConfig[3].list=[];
-                //     // if (model.length > 0) {
-                //         for (let i in model) {
-                //             if (model[i].pid != 0) {
-                //                 let state = model[i].state || "";
-                //                 let regular = _this.playType === "standard" ? /standard/ : /fast/;
-                //                 if (regular.test(state)) {
-                //                     this.searchConfig[3].list.push({
-                //                         "label": model[i].name,
-                //                         "value": model[i].id.toString(),
-                //                         "pid": model[i].pid
-                //                     })
-                //                 }
-                //             }
-                //         }
-                //     // }
-                // });
             },
             //切换彩票名称
             changeLottery(obj) {
@@ -306,25 +286,6 @@
                         console.log(e)
                     }
                 })
-                // this.$http.get(URL.api + ROUTES.GET.lottery.types.class.$(this.playType), URLCONFIG).then((res) => {
-                //     if (res.data.state == 0 && res.data.data) {
-                //         let model = res.data.data || [];
-                //         let lotteryPid = _this.lotteryPid;
-                //         _this.playTypeList = [];
-                //         for (let k in model) {
-                //             if (model[k].id == lotteryPid) {
-                //                 let data = model[k].sub || [];
-                //                 for (let n in data) {
-                //                     _this.searchConfig[4].list.push({
-                //                         "label": data[n].name,
-                //                         "value": data[n].id.toString()
-                //                     });
-                //                 }
-                //                 return;
-                //             }
-                //         }
-                //     }
-                // });
             },
             //切换玩法
             doChangePlay(str) {

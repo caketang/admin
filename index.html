@@ -11,7 +11,7 @@
         //
         <!--# if expr="$this_is_undefined_vars" -->
         var HTTP = window.location.href.split('//')[0]
-        var HOST = window.location.host.split('.')[1]+'.'+window.location.host.split('.')[2]
+        var HOST = window.location.host.split('.')[1] + '.' + window.location.host.split('.')[2]
         var URL = {
             api: HTTP + '//adminapi.' + HOST,
             //'api': 'http://adminapi.viba.club',
@@ -21,7 +21,7 @@
             'img': '',
             'rpi': ''
         }
-        window.onload = function(){
+        window.onload = function () {
             console.log(URL.api)
         }
         //

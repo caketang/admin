@@ -326,6 +326,12 @@ export default [
 				iconCls: '',
 				name: '彩票注单管理'
 			},
+            {
+				path: '/manualLottery',
+				component: resolve => require(['../page/lottey/manualLottery'], resolve),
+				iconCls: '',
+				name: '手动派彩'
+			},
 			{
 				path: '/lotterPeriodManagement',
 				component: resolve => require(['../page/lottey/lotterPeriodManagement'], resolve),

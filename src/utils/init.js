@@ -1342,9 +1342,9 @@ global.ROUTES = {
 		lottery: {
 			order: "/lottery/order",
 			switch: '/lottery/switch',
-			chase: '/lottery/chase/'
+			chase: '/lottery/chase/',
+            handSettle:'/lottery/handSettle'
 		},
-
 		user: {
 			level: {
 				layer: "/user/level/layer",
