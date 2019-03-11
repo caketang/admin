@@ -152,15 +152,15 @@
       "width": "80",
       "filters": [
         {
-          "text": "已存入",
+          "text": "审核中",
           "value": "paid"
         },
         {
-          "text": "未处理",
+          "text": "充值成功",
           "value": "pending"
         },
         {
-          "text": "已取消",
+          "text": "充值失败",
           "value": "canceled"
         }
       ],

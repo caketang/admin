@@ -215,8 +215,11 @@
                                     <template slot-scope="scope">
                                         <el-tooltip placement="right" effect="light">
                                             <div slot="content">
+                                                {{gridDataCol}}
                                                 <p v-for="(item,key) in gridDataCol" :key="key" :class="{mt10:key >0}">
-                                                    <el-tag type="primary">{{item.name}} :</el-tag>
+                                                    <a href="javacript:;">
+                                                        <el-tag type="primary" style="">{{item.name}} :</el-tag>
+                                                    </a>
                                                     <span class="pleft">{{item.valid_bet / 100}}</span></p>
                                             </div>
                                             <el-tag type="primary" size="small" style="min-width:60px;"

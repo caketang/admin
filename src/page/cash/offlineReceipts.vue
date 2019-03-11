@@ -212,9 +212,9 @@
                         "prop": "status", "value": "", "label": "交易状态", "type": "select",
                         "list": [
                             {"label": "全部", "value": "all"},
-                            {"label": "未处理", "value": "pending"},
-                            {"label": "已存入", "value": "paid"},
-                            {"label": "已取消", "value": "canceled"}]
+                            {"label": "审核中", "value": "pending"},
+                            {"label": "充值成功", "value": "paid"},
+                            {"label": "充值失败", "value": "canceled"}]
                     },
                     {
                         "prop": "bank_id", "value": "", "label": "存入银行", "type": "select",
