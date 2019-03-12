@@ -22,11 +22,20 @@
                         <el-radio class="radio" v-model="query.lottery_open_type" label="2">随 机</el-radio>
                     </el-col>
                     <el-col class="slNav" v-if="query.lottery_open_type=='1'">
-                        <label>杀率：
-                            <el-input placeholder="请输入内容" type="number" size="small" v-model="query.win_bet" class="w60">
-                                <template slot="append">%</template>
-                            </el-input>
-                        </label>
+                        <el-col>
+                            <label>杀 率：
+                                <el-input placeholder="请输入杀率" type="number" size="small" v-model="query.win_bet" class="w60">
+                                    <template slot="append">%</template>
+                                </el-input>
+                            </label>
+                        </el-col>
+                        <el-col class="mt10">
+                            <label>库 存：
+                                <el-input placeholder="请输入金额" type="number" size="small" v-model="query.max_lose_money" class="w60">
+                                </el-input>
+                            </label>
+                            <p class="help_gray" style="margin-left: 50px;">*提 示：库存指每期玩家最高盈利金额</p>
+                        </el-col>
                     </el-col>
                     <el-col class="slNav" v-if="query.lottery_open_type=='1'">
                         <span class="font14">温馨提示：杀率指的是厅主的盈利百分比,不得大于100，该值小于0，表示厅主输钱；该值大于0，表示厅主赢钱。</span>
@@ -61,7 +70,8 @@
                 query:{
                     id:'',
                     lottery_open_type:'1',
-                    win_bet:''
+                    win_bet:'',
+                    max_lose_money:''
                 },
             }
         },
@@ -94,6 +104,7 @@
                 this.dialogTitle = row.name;
                 this.query.id= row.id;
                 this.query.win_bet = row.win_bet;
+                this.query.max_lose_money = row.max_lose_money;
                 this.query.lottery_open_type = row.lottery_open_type;
             },
             //编辑提交
