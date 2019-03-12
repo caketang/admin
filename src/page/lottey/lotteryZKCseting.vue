@@ -34,7 +34,7 @@
                                 <el-input placeholder="请输入金额" type="number" size="small" v-model="query.max_lose_money" class="w60">
                                 </el-input>
                             </label>
-                            <p class="help_gray" style="margin-left: 50px;">*提 示：库存指每期玩家最高盈利金额</p>
+                            <p class="help_gray" style="margin-left: 50px;">*提 示：库存指每期玩家最高盈利金额,0 表示不控制</p>
                         </el-col>
                     </el-col>
                     <el-col class="slNav" v-if="query.lottery_open_type=='1'">
@@ -104,11 +104,12 @@
                 this.dialogTitle = row.name;
                 this.query.id= row.id;
                 this.query.win_bet = row.win_bet;
-                this.query.max_lose_money = row.max_lose_money;
+                this.query.max_lose_money = ((row.max_lose_money)/100).toFixed(2);
                 this.query.lottery_open_type = row.lottery_open_type;
             },
             //编辑提交
             doSubmit(){
+                this.query.max_lose_money = (this.query.max_lose_money)*100
                 this.$.autoAjax('patch',URL.api +'/plottery/info',this.query, {
                     ok: (res) => {
                         if(res.state === 0 && res.data){

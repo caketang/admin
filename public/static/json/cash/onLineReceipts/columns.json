@@ -13,7 +13,7 @@
             "disabled": true
         },
         {
-            "prop": "vender_name",
+            "prop": "channel_name",
             "label": "商户名称",
             "disabled": true,
             "width": "100"
