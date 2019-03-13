@@ -121,7 +121,7 @@
                         "ifVal": "106", "ifKey": "pay_id",
                         "rules": [{"require": true, "isDefault": true}]
                     },
-                    // 6 -7
+                    //龙城 6
                     {
                         "prop": "customerid",
                         "value": "",
@@ -130,7 +130,7 @@
                         "ifVal": "107", "ifKey": "pay_id",
                         "rules": [{"require": true, "isDefault": true}]
                     },
-                    //捷达支付 8-
+                    //捷达支付 7-10
                     {
                         "prop": "alipay_merId",
                         "value": "",
