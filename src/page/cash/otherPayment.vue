@@ -6,8 +6,8 @@
             size="tiny"
             :before-close="handleClose">
             <el-form ref="AddFormData" :model="AddFormData" label-width="120px" :rules="AddFormDataRules">
-                <el-form-item label="第三方支付平台" prop="pay_id">
-                    <el-select v-model="AddFormData.pay_id" placeholder="请选择支付平台" class="w80" clearable
+                <el-form-item label="第三方支付平台" prop="pay_id" class="w85">
+                    <el-select v-model="AddFormData.pay_id" placeholder="请选择支付平台" clearable class="w100"
                                :disabled= "AddFormConfig.disabled"
                                @change="changePay">
                         <el-option
@@ -20,32 +20,32 @@
                         </el-option>
                     </el-select>
                 </el-form-item>
-                <el-form-item label="商户名称" v-if="AddFormData.pay_id" prop="name">
-                    <el-input v-model="AddFormData.name" class="w80"></el-input>
+                <el-form-item label="商户名称" v-if="AddFormData.pay_id" prop="name" class="w85">
+                    <el-input v-model="AddFormData.name"></el-input>
                 </el-form-item>
-                <el-form-item :label="'(必填)'+item.name" v-if="AddFormData.pay_id" class="configs"
+                <el-form-item :label="'(必填)'+item.name" v-if="AddFormData.pay_id" class="configs w85"
                               :class="{'warn':AddFormData.configs[item.param]&&AddFormData.configs[item.param].length ==0}"
                               v-for="item,d in AddFormConfig.payConfigsList"
                               :key="d">
-                    <el-input v-model="AddFormData.configs[item.param]" class="w80"
+                    <el-input v-model="AddFormData.configs[item.param]"
                               @blur="ruleConfig(AddFormData.configs[item.param])"></el-input>
                 </el-form-item>
-                <el-form-item label="支付场景" v-if="AddFormData.pay_id" prop="pay_scene">
-                    <el-checkbox-group v-model="AddFormData.pay_scene" class="w80">
+                <el-form-item label="支付场景" v-if="AddFormData.pay_id" prop="pay_scene" class="w85">
+                    <el-checkbox-group v-model="AddFormData.pay_scene">
                         <el-checkbox :label="s.value" name="type" v-for="s,x in AddFormConfig.scenelist"
                                      :key="x">{{s.label}}
                         </el-checkbox>
                     </el-checkbox-group>
                 </el-form-item>
-                <el-form-item label="终端设备" v-if="AddFormData.pay_id" prop="terminal">
+                <el-form-item label="终端设备" v-if="AddFormData.pay_id" prop="terminal" class="w85">
                     <el-checkbox-group v-model="AddFormData.terminal">
                         <el-checkbox :label="cm.value" name="type" v-for="cm,z in AddFormConfig.terminalList"
                                      :key="z">{{cm.label}}
                         </el-checkbox>
                     </el-checkbox-group>
                 </el-form-item>
-                <el-form-item label="每日最高额度" v-if="AddFormData.pay_id" prop="day_deact">
-                    <el-input placeholder="请输入金额" v-model="AddFormData.day_deact" type="number" class="w80"
+                <el-form-item label="每日最高额度" v-if="AddFormData.pay_id" prop="day_deact" class="w85">
+                    <el-input placeholder="请输入金额" v-model="AddFormData.day_deact" type="number"
                               max="99999999"></el-input>
                 </el-form-item>
                 <el-form-item label="会员层级" v-if="AddFormData.pay_id" prop="levels">
@@ -55,11 +55,11 @@
                         </el-checkbox>
                     </el-checkbox-group>
                 </el-form-item>
-                <el-form-item label="排 序" v-if="AddFormData.pay_id" prop="sort">
-                    <el-input v-model="AddFormData.sort" class="w80" type="number"></el-input>
+                <el-form-item label="排 序" v-if="AddFormData.pay_id" prop="sort" class="w85" >
+                    <el-input v-model="AddFormData.sort" type="number"></el-input>
                 </el-form-item>
-                <el-form-item label="状 态" v-if="AddFormData.pay_id" prop="status">
-                    <el-select v-model="AddFormData.status" placeholder="请选择支付平台状态" class="w80">
+                <el-form-item label="状 态" v-if="AddFormData.pay_id" prop="status" class="w85">
+                    <el-select v-model="AddFormData.status" placeholder="请选择支付平台状态" class="w100">
                         <el-option :label="t.label" :value="t.value" v-for="t,i in AddFormConfig.statusList"
                                    :key="i"></el-option>
                     </el-select>
@@ -896,6 +896,9 @@
 </script>
 <style lang="less">
     #otherPayment {
+        .w85{
+            width: 85%;
+        }
         .addManage {
             float: right;
             margin-right: 10px;
