@@ -16,6 +16,7 @@
                     <span class="sucess">{{memberForm['agent_status']=='wait'?'待审核':memberForm['agent_status']=='enable'?"启用":"停用"}}</span>
                     <el-button type="primary" size="mini" @click="systemConfrim('changeStatus', 'enable')" v-if="memberForm['agent_status'] =='disable'">{{LANG['启用'] || '启用'}}</el-button>
                     <el-button type="primary" size="mini" @click="systemConfrim('changeStatus', 'disable')" v-if="memberForm['agent_status'] =='enable'">{{LANG['停用'] || '停用'}}</el-button>
+                    <el-button type="primary" size="mini" @click="systemConfrim('changeStatus', 'enable')" v-if="memberForm['agent_status'] =='wait'">{{LANG['启用'] || '启用'}}</el-button>
                 </el-col>
                 <el-col :span="6">
                     <span style="margin-right:10px">{{LANG['M令牌状态：'] || 'M令牌状态：'}}</span>
@@ -236,7 +237,6 @@
                     ok: (res) => {
                         if (res.data && res.state == 0) {
                             this.$message.success((obj.obj.val =='disable'?"停用":"启用")+"该会员代理功能成功");
-                            this.$message.error(this.LANG['权限设置失败，请稍后重试'] || '权限设置失败，请稍后重试');
                         }
                         this.loading = false;
                         this.init();

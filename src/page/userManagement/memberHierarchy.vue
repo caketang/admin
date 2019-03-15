@@ -3,13 +3,15 @@
         <div class="w100 main el-card box-card el-tabs">
             <div class="el-tabs__header clearfix" style="border:0;margin:0;">
                 <ul class="navTabs font14 el-tabs__nav w100">
-                    <li class="fl tCent el-tabs__item" style="padding:0;"><a href="javascript:;"
-                                                                             :class="{navOne:activeType}"
-                                                                             @click="navTabsChange1">{{LANG['层级管理'] || '层级管理'}}</a>
+                    <li class="fl tCent el-tabs__item" style="padding:0;">
+                        <a href="javascript:;"
+                           :class="{navOne:activeType}"
+                           @click="navTabsChange1">{{LANG['层级管理'] || '层级管理'}}</a>
                     </li>
-                    <li class="fl tCent el-tabs__item" style="padding:0;"><a href="javascript:;"
-                                                                             :class="{navTwo:!activeType}"
-                                                                             @click="navTabsChange2">{{LANG['会员查询'] || '会员查询'}}</a>
+                    <li class="fl tCent el-tabs__item" style="padding:0;">
+                        <a href="javascript:;"
+                           :class="{navTwo:!activeType}"
+                           @click="navTabsChange2">{{LANG['会员查询'] || '会员查询'}}</a>
                     </li>
                 </ul>
             </div>
@@ -33,7 +35,7 @@
                         <el-col>
                             <formEdit class="addLevers" :formTitel="formTitel" :formVisible="editVisible"
                                       :formConfig="formConfig" :type="type" :labelWidth="labelWidth" @get-form="getForm"
-                                      :isEdit="isEdit" :formType="formType"></formEdit>
+                                      :isEdit="isEdit" :formType="formType" :size="size"></formEdit>
                         </el-col>
                         <el-col>
                             <userLevelLayer :model="userLeve" @update-level="updateLevel"
@@ -113,6 +115,7 @@
     import confirm from '../../components/confirm.vue'
     import userLevelSet from '../../components/userLevelSet.vue'
     import memberHierarSet from '../../components/memberHierarSet.vue'
+
     export default {
         data() {
             return {
@@ -217,6 +220,7 @@
                         "rules": [{"max": 40}]
                     },
                 ],
+                size:'tiny',
                 type: "default",
                 formType: "",
                 formTitel: "",
@@ -345,7 +349,7 @@
                 // 跳转会员显示列表
                 colTwo: "",
                 updateKeys: "",
-                 params :{}
+                params: {}
             }
         },
         components: {
@@ -589,7 +593,7 @@
                             delete model[k];
                         }
                     }
-                    this.$.autoAjax('put', url,model, {
+                    this.$.autoAjax('put', url, model, {
                         ok: (res) => {
                             if (res.state === 0 && res.data) {
                                 if (_this.formType == "add") {
@@ -766,7 +770,7 @@
                 query.onlines = JSON.stringify(query.onlines);
                 this.loading = true;
 
-                this.$.autoAjax('put', URL.api + ROUTES.PUT.user.level.set + '/' + this.editForm.id,query, {
+                this.$.autoAjax('put', URL.api + ROUTES.PUT.user.level.set + '/' + this.editForm.id, query, {
                     ok: (res) => {
                         if (res.state == 0 && res.data) {
                             this.$message.success(this.LANG['恭喜您，会员层级设置成功！'] || '恭喜您，会员层级设置成功！');
@@ -808,7 +812,10 @@
                 }
                 this.updated = false;
 
-                this.$.autoAjax('put', URL.api + '/lottery/template.levels',{"tid": parseInt(this.limitform.id), "level_id": this.nowId}, {
+                this.$.autoAjax('put', URL.api + '/lottery/template.levels', {
+                    "tid": parseInt(this.limitform.id),
+                    "level_id": this.nowId
+                }, {
                     ok: (res) => {
                         if (res.state === 0 && res.data) {
                             this.$message.success(LANG["恭喜您，会员层级限额成功！"] || "恭喜您，会员层级限额成功！");

@@ -139,7 +139,7 @@
                 query.id = this.lotteryData.lottery_type
                 query.lottery_number = this.lottery_number
                 query.preset_code = this.manual
-                if(query.preset_code ==''|| !/[^\d\,]/g.test(query.preset_code)){
+                if(query.preset_code ==''|| /^\d{1}(,\d{1})*$/.test(query.preset_code)){
                     this.$.autoAjax('patch', URL.api + '/plottery/presetcode', query, {
                         ok: (res) => {
                             if (res.state == 0 && res.data) {
@@ -152,7 +152,7 @@
                         },
                         error: e => {
                             this.dialogVisible = false
-                            console.log(e);
+                            this.$message.error(e.responseJSON.msg)
                             this.updated = true;
                         }
                     })
@@ -160,8 +160,6 @@
                     this.$message.error('请检查预设彩果的开奖号码格式和长度是否符合规则')
                     this.updated = true;
                 }
-
-
             }
         },
         computed: {},
