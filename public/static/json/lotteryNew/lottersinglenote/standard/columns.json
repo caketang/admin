@@ -28,7 +28,7 @@
       "type":"date",
       "width":200
     },
-   
+
    {
      "prop":"order_number",
      "label":"注单号",
@@ -55,7 +55,7 @@
       "label":"投注内容",
       "disabled":true,
       "type":"lottory_play",
-      "width":200
+      "width":300
     },
     { "prop":"odds",
       "label":"赔率",

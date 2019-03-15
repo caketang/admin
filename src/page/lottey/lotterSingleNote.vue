@@ -173,13 +173,13 @@
                     valid_bet: 0
                 },
                 tableLength: 0,
-                formReset: false
+                formReset: false,
             }
         },
         components: {
             changeplay: changePlay,
             tablegrid: tableGrid,
-            formEdit,
+            formEdit:formEdit,
             notedetail: noteDetail,
             confirm: confirm
         },
@@ -188,23 +188,23 @@
             init() {
                 var _this = this;
                 this.playType = this.playType === "standard" ? "standard" : "fast";
+                this.$route.query.name
                 // 判断玩法
                 if (this.playType === "standard") {
                     // 标准
-                    if (this.$route.query.lotteryType) {
-                        this.tableUrl = URL.api + ROUTES.GET.lottery.orders + "?type=" + this.playType + "&lottery_id=" + this.$route.query.lotteryId + "&lottery_number=" + this.$route.query.lotteryNumber + "?date_from=" + sessionStorage.sysTime + "&date_to=" + sessionStorage.sysTime;
-                    } else {
-                        this.tableUrl = URL.api + ROUTES.GET.lottery.orders + "?type=" + this.playType + "&date_from=" + sessionStorage.dateTimeStart + "&date_to=" + sessionStorage.dateTimeEnd;
-                    }
+                    this.$route.query.name
+                        ?this.$route.query.lotteryType
+                            ?this.tableUrl = URL.api + ROUTES.GET.lottery.orders + "?type=" + this.playType + "&lottery_id=" + this.$route.query.lotteryId + "&lottery_number=" + this.$route.query.lotteryNumber + "?date_from=" + sessionStorage.sysTime + "&date_to=" + sessionStorage.sysTime
+                            :this.tableUrl = URL.api + ROUTES.GET.lottery.orders + "?type=" + this.playType + "&date_from=" + sessionStorage.dateTimeStart + "&date_to=" + sessionStorage.dateTimeEnd+ "&user_name=" +this.$route.query.name
+                        :this.$route.query.lotteryType
+                            ?this.tableUrl = URL.api + ROUTES.GET.lottery.orders + "?type=" + this.playType + "&lottery_id=" + this.$route.query.lotteryId + "&lottery_number=" + this.$route.query.lotteryNumber + "?date_from=" + sessionStorage.sysTime + "&date_to=" + sessionStorage.sysTime
+                            :this.tableUrl = URL.api + ROUTES.GET.lottery.orders + "?type=" + this.playType + "&date_from=" + sessionStorage.dateTimeStart + "&date_to=" + sessionStorage.dateTimeEnd;
                     this.columnsUrl = "static/json/lotteryNew/lottersinglenote/standard/columns.json";
-
                 } else {
                     // 快速
-                    if (this.$route.query.lotteryType) {
-                        this.tableUrl = URL.api + ROUTES.GET.lottery.orders + "?type=" + this.playType + "&lottery_id=" + this.$route.query.lotteryId + "&lottery_number=" + this.$route.query.lotteryNumber + "&play_type=" + this.$route.query.playName + "&date_from=" + sessionStorage.sysTime + "&date_to=" + sessionStorage.sysTime;
-                    } else {
-                        this.tableUrl = URL.api + ROUTES.GET.lottery.orders + "?type=" + this.playType + "&date_from=" + sessionStorage.dateTimeStart + "&date_to=" + sessionStorage.dateTimeEnd;
-                    }
+                    this.$route.query.lotteryType
+                        ?this.tableUrl = URL.api + ROUTES.GET.lottery.orders + "?type=" + this.playType + "&lottery_id=" + this.$route.query.lotteryId + "&lottery_number=" + this.$route.query.lotteryNumber + "&play_type=" + this.$route.query.playName + "&date_from=" + sessionStorage.sysTime + "&date_to=" + sessionStorage.sysTime
+                        :this.tableUrl = URL.api + ROUTES.GET.lottery.orders + "?type=" + this.playType + "&date_from=" + sessionStorage.dateTimeStart + "&date_to=" + sessionStorage.dateTimeEnd;
                     this.columnsUrl = "static/json/lotteryNew/lottersinglenote/quick/columns.json";
                 }
                 // this.tableUrl = URL.api + ROUTES.GET.lottery.orders + "?type=" + this.playType;
@@ -363,7 +363,6 @@
                     detailForm[i] = row[i]
                 }
             },
-            //确认删除
             doConfirm(obj) {
                 // let _this = this;
                 this.updated = false;
@@ -375,7 +374,6 @@
                 switch (obj.fn) {
                     case "doKillOrder":
                         this.loading = true;
-
                         this.$.autoAjax('patch',URL.api + ROUTES.PATCH.lottery.order + "/" + id, {"state": "canceled"}, {
                             ok: (res) => {
                                 if (res.state == 0 && res.data) {
@@ -392,18 +390,6 @@
                                 this.loading = false;
                             }
                         })
-//                         this.$http.patch(URL.api + ROUTES.PATCH.lottery.order + "/" + id, JSON.stringify({"state": "canceled"}), URLCONFIG).then((res) => {
-//                             if (res.data.state == 0 && res.data.data) {
-//                                 this.$message.success(LANG['恭喜您，撤销成功！'] || '恭喜您，撤销成功！');
-//                                 this.updated = true;
-//                             } else {
-//                                 res.data.data?this.$message.error(LANG['撤销失败，请稍候重试！'] || '撤销失败，请稍候重试！'):this.$message(res.data.msg);
-//                             }
-//                             this.loading = false;
-//                         }).catch((error) => {
-//                             this.loading = false;
-// //                            console.log(error);
-//                         });
                         break;
                 }
             },
@@ -440,15 +426,19 @@
         mounted() {
         },
         activated() {
-            if (this.$route.query.lotteryType) {
-                this.playType = this.$route.query.lotteryType;
-            } else {
-                this.playType = 'standard'
+            this.searchConfig[1]['value'] = '';
+                this.formType = 'update' + (Math.random() * 9 + 1);
+            if (this.$route.query.name) {
+                this.searchConfig[1]['value'] = this.$route.query.name;
             }
+            this.$route.query.lotteryType
+            ?this.playType = this.$route.query.lotteryType
+            :this.playType = 'standard';
             this.init();
         },
         deactivated() {
             this.$route.query.lotteryType = null;
+            this.searchConfig[1]['value'] = '';
         },
         created: function () {
             // 默认查看标准玩法

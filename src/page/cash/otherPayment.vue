@@ -8,6 +8,7 @@
             <el-form ref="AddFormData" :model="AddFormData" label-width="120px" :rules="AddFormDataRules">
                 <el-form-item label="第三方支付平台" prop="pay_id">
                     <el-select v-model="AddFormData.pay_id" placeholder="请选择支付平台" class="w80" clearable
+                               :disabled= "AddFormConfig.disabled"
                                @change="changePay">
                         <el-option
                             v-for="item in AddFormConfig.paylist"
@@ -22,10 +23,12 @@
                 <el-form-item label="商户名称" v-if="AddFormData.pay_id" prop="name">
                     <el-input v-model="AddFormData.name" class="w80"></el-input>
                 </el-form-item>
-                <el-form-item :label="'(必填)'+item.name" v-if="AddFormData.pay_id" class="configs" :class="{'warn':AddFormData.configs[item.param].length ==0}"
+                <el-form-item :label="'(必填)'+item.name" v-if="AddFormData.pay_id" class="configs"
+                              :class="{'warn':AddFormData.configs[item.param]&&AddFormData.configs[item.param].length ==0}"
                               v-for="item,d in AddFormConfig.payConfigsList"
                               :key="d">
-                    <el-input v-model="AddFormData.configs[item.param]" class="w80" @blur="ruleConfig(AddFormData.configs[item.param])"></el-input>
+                    <el-input v-model="AddFormData.configs[item.param]" class="w80"
+                              @blur="ruleConfig(AddFormData.configs[item.param])"></el-input>
                 </el-form-item>
                 <el-form-item label="支付场景" v-if="AddFormData.pay_id" prop="pay_scene">
                     <el-checkbox-group v-model="AddFormData.pay_scene" class="w80">
@@ -74,8 +77,6 @@
                           :updateKeys="updateKeys"
                           :addText="LANG['新增支付'] || '新增支付'" @do-query="doQuery" @reset-form="resetForm"></formEdit>
             </el-col>
-            <!--<el-button type="primary" class="addManage" @click="doAdd" v-text="LANG['新增支付'] || '新增支付'"-->
-            <!--size="small"></el-button>-->
         </div>
         <el-col v-if="!depositShow">
             <tablegrid
@@ -90,10 +91,6 @@
                 @do-handle="doHandle"></tablegrid>
         </el-col>
         <el-col>
-            <!--编辑界面-->
-            <!--<formEdit :formTitel="formTitel" :formVisible="formVisible" :formConfig="formConfig" :type="formType"-->
-            <!--:labelWidth="formLabelWidth" :isEdit="isEdit" @get-form="getForm" :formType="formType"-->
-            <!--@get-select="getSelect" @changeRadio="changeRadio"></formEdit>-->
         </el-col>
         <confirm :confirmConfig="confirmConfig" @do-confirm="doConfirm"></confirm>
         <el-col v-if="depositShow">
@@ -145,6 +142,7 @@
                     configs: {}
                 },
                 AddFormConfig: {
+                    disabled: false,
                     paylist: [],
                     scenelist: [],
                     scenelistall: ARRAYS.paymentScenariosOne,
@@ -155,7 +153,7 @@
                     levelslist: []
                 },
                 payList: [],
-                isError:false,
+                isError: false,
                 //新增配置
 
                 formVisible: {
@@ -337,16 +335,6 @@
                 // 存储查询条件
                 query: {},
                 updateKeys: '',
-
-                //name: '',
-//                pay_id: '',//第三方支付平台
-//                pay_scene: [],//支付场景
-//                terminal: [],//终端设备
-//                day_deact: '',//帐户使用限制设置
-//                sort: '',//排序
-//                levels: [],//开放层级
-//                status: '',//是否启用
-//                configs: {}
                 AddFormDataRules: {
                     pay_id: [
                         {required: true, message: '请选择新增支付平台', trigger: 'change'},
@@ -354,7 +342,7 @@
                     pay_scene: [
                         {type: 'array', required: true, message: '请选择第三方支付场景', trigger: 'change'}
                     ],
-                    day_deact:[
+                    day_deact: [
                         {required: true, message: '请输入每日充值最大金额', trigger: 'blur'}
                     ],
                     terminal: [
@@ -371,7 +359,8 @@
                     ],
                     name: [
                         {required: true, message: '请填写商户名称', trigger: 'blur'}]
-                }
+                },
+                formType:'',
             }
         },
         components: {
@@ -383,7 +372,6 @@
         methods: {
             init() {
                 this.searchConfig[0].list = [];
-                //this.formConfig[1].list = [];
                 let list2 = this.AddFormConfig.paylist;
                 let channel = this.searchConfig[0].list;
                 this.baseUrl = URL.api + ROUTES.GET.cash.thirds.$;
@@ -396,16 +384,6 @@
                             let model = res.data;
                             _this.payList = model;
                             for (let i in model) {
-                                // 支付 更新
-//                                if (model[i].code.toUpperCase() === 'BQZF') {
-//                                    _this.formConfig[4].ifVal = model[i].id.toString();
-//                                } else if (model[i].code.toUpperCase() === 'aabill') {
-//                                    _this.formConfig[5].ifVal = model[i].id.toString();
-//                                    _this.formConfig[6].ifVal = model[i].id.toString();
-//                                } else if (model[i].code.toUpperCase() === 'beke') {
-//                                    _this.formConfig[7].ifVal = model[i].id.toString();
-//                                    _this.formConfig[8].ifVal = model[i].id.toString();
-//                                }
                                 list2.push({
                                     "label": model[i].name,
                                     "code": model[i].code,
@@ -427,23 +405,12 @@
                 })
 //                // 获取层级
                 let levelUrl = URL.api + ROUTES.GET.user.level.list;
-                let _this = this //listLevels;
-//                for (let m = 0; m < this.formConfig.length; m++) {
-//                    if (this.formConfig[m].prop === 'levels') {
-//                        this.formConfig[m].list = [];
-//                        listLevels = this.formConfig[m];
-//                    }
-//                }
+                let _this = this
                 _this.searchConfig[5].list = [{"label": LANG['全部'] || '全部', "value": ''}];
                 this.$.autoAjax('get', levelUrl, '', {
                     ok: (res) => {
                         let model = res.data || [];
                         for (let k in model) {
-//                            listLevels.list.push(model[k].id.toString())
-//                            listLevels.Arr.push({
-//                                "label": model[k].name,
-//                                "value": model[k].id.toString()
-//                            });
                             _this.AddFormConfig.levelslist.push({
                                 "label": model[k].name,
                                 "value": model[k].id.toString()
@@ -505,7 +472,7 @@
                         })
                         _this.AddFormData.configs = {};
                         configList.forEach((c) => {
-                            _this.$set(_this.AddFormData.configs,c.param, '')
+                            _this.$set(_this.AddFormData.configs, c.param, '')
                         })
                         _this.AddFormConfig.scenelist = scenelist
                         _this.AddFormConfig.terminalList = terminalList
@@ -516,7 +483,7 @@
             AddPay(formName) {
                 this.$refs[formName].validate((valid) => {
                     if (valid) {
-                        this.getForm(this.AddFormData, 'add')
+                        this.getForm(this.AddFormData)
                     } else {
                         this.$message.error('请检查第三方支付配置数据是否填写完整');
                         return false;
@@ -524,12 +491,10 @@
                 });
 //
             },
-            ruleConfig(r){
-                if(r.length == 0){this.$message.error('第三方支付配置必须填写');}
-            },
-            //readio
-            changeRadio(item) {
-//                console.log(item);
+            ruleConfig(r) {
+                if (r.length == 0) {
+                    this.$message.error('第三方支付配置必须填写');
+                }
             },
             //表格数据按钮
             doHandle(item) {
@@ -589,7 +554,6 @@
                 } else {
                     this.$message.error(LANG['暂无交易记录'] || '暂无交易记录');
                 }
-//                this.$router.push({path:'/onLineReceipts',query:{app_id: parseInt(row['app_id']),app_id_time: FORMATDATEPICKER(new Date())}});
             },
             // 累计金额页面跳转
             usedMoney(row) {
@@ -612,11 +576,21 @@
             },
 //            // 新增支付渠道
             doAdd(formName) {
+                this.AddFormData = {
+                    name: '',
+                    pay_id: '',//第三方支付平台
+                    pay_scene: [],//支付场景
+                    terminal: [],//终端设备
+                    day_deact: '',//帐户使用限制设置
+                    sort: '',//排序
+                    levels: [],//开放层级
+                    status: '',//是否启用
+                    configs: {}
+                };
                 this.AddFormState = true
+                this.AddFormConfig.disabled = false;
+                this.formType = 'add'
                 this.AddFormTitle = this.LANG["新增第三方支付"] || "新增第三方支付";
-//                this.formTitel = this.LANG["新增第三方支付"] || "新增第三方支付";
-//                this.formVisible.state = true;
-//                this.formType = "add";
             },
             // 批量操作
             doOperation(obj) {
@@ -630,68 +604,19 @@
                 }
             },
             //保存数据
-            getForm(obj, type) {
-                console.log(obj)
+            getForm(obj) {
+                obj.day_deact = obj.day_deact*100;
                 this.updated = false;
-                let _this = this //str = "", query = {}, tempLevels = [];
+                let _this = this;
                 let url = URL.api + ROUTES.POST.cash.third.third;
-//                let arr = obj.formObj.levels;
-//                for (let k in obj.formObj) {
-//                    query[k] = obj.formObj[k];
-//                }
-//                for (let i = 0; i < this.formConfig[1].list.length; i++) {
-//                    if (this.formConfig[1].list[i].value === query['pay_id']) {
-//                        query['pay_name'] = this.formConfig[1].list[i].label;
-//                        query['code'] = this.formConfig[1].list[i].code;
-//                    }
-//                }
-//                switch (query['code']) {
-//                    case 'quanyin':
-//                        query['configs'] = {
-//                            'payKey': query['payKey'],
-//                            'paySecret': query['paySecret']
-//                        }
-//                        break;
-//                    case 'longcheng':
-//                        query['configs'] = {
-//                            'customerid': query['customerid'],
-//                            'apikey': query['apikey']
-//                        }
-//                        break;
-//                    case 'jieda':
-//                        query['configs'] = {
-//                            'alipay_merId': query['alipay_merId'],
-//                            'alipay_merKey': query['alipay_merKey'],
-//                            'wechat_merId': query['wechat_merId'],
-//                            'wechat_merKey': query['wechat_merKey']
-//                        }
-//                        break;
-//                }
-//                delete query['payKey'];
-//                delete query['paySecret'];
-//                delete query['customerid'];
-//                delete query['apikey'];
-//                delete query['alipay_merId'];
-//                delete query['alipay_merKey'];
-//                delete query['wechat_merId'];
-//                delete query['wechat_merKey'];
-//                query['pay_scene'] = query['pay_scene'].toString();
-//                query['terminal'] = (query['terminal'].toString()).toUpperCase();
-//                // 防止前台不填写金额直接传null过去，避免后台直接过滤null
-//                query.day_deact = FORMATMultiplyMoney(query.day_deact);
-//                //清掉空值
-//                for (let k in query.configs) {
-//                    if (query.configs[k] === '') {
-//                        delete query.configs[k];
-//                    }
-//                }
-                if (type == "add") {
+                if (this.formType == "add") {
                     this.$.autoAjax('put', url, obj, {
                         ok: (res) => {
                             res.state == 0 && res.data
                                 ? _this.$message.success(LANG['恭喜您，新增第三方支付成功！'] || '恭喜您，新增第三方支付成功！')
                                 : _this.$message.error(res.msg + "," + (LANG['新增第三方支付失败，请稍候重试！'] || '新增第三方支付失败，请稍候重试！'));
                             _this.updated = true;
+                            _this.AddFormState = false;
                         },
                         p: () => {
                         },
@@ -700,13 +625,13 @@
                         }
                     })
                 } else {
-                    query['id'] = parseInt(this.nowId);
-                    this.$.autoAjax('put', url + '?id=' + parseInt(this.nowId), query, {
+                    this.$.autoAjax('put', url + '?id=' + parseInt(this.nowId), obj, {
                         ok: (res) => {
                             res.state == 0 && res.data
                                 ? _this.$message.success(LANG['恭喜您，第三方支付修改成功！'] || '恭喜您，第三方支付修改成功！')
                                 : _this.$message.error(res.msg + "," + (LANG['修改第三方支付失败，请稍候重试！'] || '修改第三方支付失败，请稍候重试！'))
                             _this.updated = true;
+                            _this.AddFormState = false;
                         },
                         p: () => {
                         },
@@ -717,35 +642,6 @@
                 }
 
             },
-            // select下拉事件
-//            getSelect(obj) {
-//                console.log(obj)
-//                if (obj.key === 'pay_id') {
-//                    let payId = obj.obj.pay_id, pay_scene, terminal, _this = this, pay_scene_list = this.pay_scene_list;
-////                    for (let k = 0; k < this.formConfig.length; k++) {
-////                        if (this.formConfig[k].prop == 'pay_scene') {
-////                            pay_scene = this.formConfig[k].list;
-////                            pay_scene.splice(0, pay_scene.length);
-////                        }
-////                        if (this.formConfig[k].prop == 'terminal') {
-////                            terminal = this.formConfig[k].list;
-////                            terminal.splice(0, terminal.length);
-////                        }
-////                    }
-//                    for (let i in pay_scene_list) {
-//                        if (i === obj.obj[obj.key]) {
-//                            let tempTerminal = pay_scene_list[i].terminal.split(',');
-//                            for (let m in tempTerminal) {
-//                                terminal.push(tempTerminal[m]);
-//                            }
-//                            let tempPayScene = pay_scene_list[i].pay_scene.split(',');
-//                            for (let n in tempPayScene) {
-//                                pay_scene.push(tempPayScene[n]);
-//                            }
-//                        }
-//                    }
-//                }
-//            },
             doDisable(row) {
                 if (parseInt(row.id)) {
                     this.confirmConfig.state = true;
@@ -906,54 +802,56 @@
             },
             //编辑
             doEdit(row) {
-                this.loading = true;
-                this.nowId = row.id;
-                let _this = this, pay_scene_list = this.pay_scene_list, pay_scene, terminal;
-                this.$.autoAjax('get', URL.api + ROUTES.GET.cash.third.$ + "?id=" + parseInt(this.nowId), '', {
+                let _this = this,scenelist = [], terminalList = [], configList = [];
+                _this.formType = "edit"
+                _this.AddFormConfig.disabled = true;
+                _this.AddFormTitle = this.LANG["编辑第三方支付"] || "编辑第三方支付";
+                _this.loading = true;
+                _this.nowId = row.id;
+                _this.$.autoAjax('get', URL.api + ROUTES.GET.cash.third.$ + "?id=" + parseInt(this.nowId), '', {
                     ok: (res) => {
                         if (res.state == 0 && res.data) {
-                            _this.formTitel = "修改第三方支付";
-                            _this.formType = "edit";
-                            res.data.day_deact = FORMATMONEY(res.data.day_deact).toString();
-                            res.data.money_day_stop = FORMATMONEY(res.data.money_day_stop).toString();
-//                            FORMVAL(res.data, _this.formConfig);
-//                            this.formConfig[1].value = res.data.pay_id;
-//                            if (res.data.pay_name === "QUANYIN") {
-//                                this.formConfig[4].value = res.data.configs.payKey || '';
-//                                this.formConfig[5].value = res.data.configs.paySecret || '';
-//                            } else if (res.data.pay_name === "LONGCHENG") {
-//                                this.formConfig[6].value = res.data.configs.customerid || '';//customerid。apikey
-//                                this.formConfig[7].value = res.data.configs.apikey || '';
-//                            } else if (res.data.pay_name === "JIEDA") {
-//                                this.formConfig[8].value = res.data.configs.alipay_merId || '';
-//                                this.formConfig[9].value = res.data.configs.alipay_merKey || '';
-//                                this.formConfig[10].value = res.data.configs.wechat_merId || '';
-//                                this.formConfig[11].value = res.data.configs.wechat_merKey || '';
-//                            }
-//                            for (let k = 0; k < this.formConfig.length; k++) {
-//                                if (this.formConfig[k].prop == 'pay_scene') {
-//                                    pay_scene = this.formConfig[k].list;
-//                                    pay_scene.splice(0, pay_scene.length);
-//                                }
-//                                if (this.formConfig[k].prop == 'terminal') {
-//                                    terminal = this.formConfig[k].list;
-//                                    terminal.splice(0, terminal.length);
-//                                }
-//                            }
-                            for (let i in pay_scene_list) {
-                                if (i === res.data.pay_id) {
-                                    let tempTerminal = pay_scene_list[i].terminal.split(',');
-                                    for (let m in tempTerminal) {
-                                        terminal.push(tempTerminal[m]);
-                                    }
-                                    let tempPayScene = pay_scene_list[i].pay_scene.split(',');
-                                    for (let n in tempPayScene) {
-                                        pay_scene.push(tempPayScene[n]);
-                                    }
+                            _this.AddFormState = true
+                            let mode = res.data;
+                            _this.payList.forEach((item) => {
+                                if (item.id == mode.pay_id) {
+                                    configList = item.configs;//避免重复叠加
+                                    item.pay_scene.split(',').forEach((a) => {
+                                        _this.AddFormConfig.scenelistall.forEach((b) => {
+                                            if (a === b.value) {
+                                                scenelist.push(b)
+                                            }
+                                        })
+                                    })
+                                    item.terminal.split(',').forEach((a) => {
+                                        _this.AddFormConfig.terminalListall.forEach((b) => {
+                                            if (a === b.value) {
+                                                terminalList.push(b)
+                                            }
+                                        })
+                                    })
+                                    _this.AddFormData.configs = {};
+                                    setTimeout(()=>{
+                                        configList.forEach((c) => {
+                                            console.log(mode.configs[c.param])
+                                            _this.$set(_this.AddFormData.configs,c.param, mode.configs[c.param])
+                                        })
+                                    },500)
+                                    _this.AddFormConfig.scenelist = scenelist
+                                    _this.AddFormConfig.terminalList = terminalList
+                                    _this.AddFormConfig.payConfigsList = configList
                                 }
-                            }
-                            _this.isEdit.state = true;
-                            _this.formVisible.state = true;
+                            })
+                            setTimeout(()=>{
+                                _this.AddFormData.pay_id = mode.pay_id
+                                _this.AddFormData.pay_scene = mode.pay_scene
+                                _this.AddFormData.terminal = mode.terminal
+                                _this.AddFormData.day_deact = FORMATMONEY(mode.day_deact).toString()
+                                _this.AddFormData.name = mode.name
+                                _this.AddFormData.sort = mode.sort
+                                _this.AddFormData.status = mode.status == '1' ? 'enabled' : 'disabled'
+                                _this.AddFormData.levels = mode.levels.split(',')
+                            },400)
                         } else {
                             _this.$message.error(_this.LANG['第三方支付信息请求失败，请稍后重试'] || '第三方支付信息请求失败，请稍后重试');
                         }
@@ -966,7 +864,6 @@
                     }
                 })
             },
-
             //查询
             doQuery(obj) {
                 for (let k in obj.item) {
@@ -998,20 +895,21 @@
     }
 </script>
 <style lang="less">
-    #otherPayment{
+    #otherPayment {
         .addManage {
             float: right;
             margin-right: 10px;
             margin-top: 5px;
         }
-        .configs .el-form-item__label{
+        .configs .el-form-item__label {
             color: #d3903b;
         }
-        .warn{
-            input{
+        .warn {
+            input {
                 border-color: #d3903b;
             }
         }
     }
+
     /*.addManage{float:right;margin-right: 10px;margin-top:5px;}*/
 </style>

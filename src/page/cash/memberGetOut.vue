@@ -215,9 +215,8 @@
                                     <template slot-scope="scope">
                                         <el-tooltip placement="right" effect="light">
                                             <div slot="content">
-                                                {{gridDataCol}}
                                                 <p v-for="(item,key) in gridDataCol" :key="key" :class="{mt10:key >0}">
-                                                    <a href="javacript:;">
+                                                    <a href="javascript:;" @click="toLink(item['name-en'],scope.row.start_date,scope.row.end_date)">
                                                         <el-tag type="primary" style="">{{item.name}} :</el-tag>
                                                     </a>
                                                     <span class="pleft">{{item.valid_bet / 100}}</span></p>
@@ -490,7 +489,8 @@
                 updateDate: "",
                 user_id: 0,
                 isShow: sessionStorage.user_withdraws_export == 'true' ? true : false,
-                exportForm:{}
+                exportForm:{},
+                userName:'',
             }
         },
         components: {
@@ -698,30 +698,6 @@
                     this.confirmConfig.fn = "update";
                 }
             },
-            //取消
-            doRefuse(row) {
-                if (parseInt(row.id)) {
-                    this.confirmConfig.state = true;
-                    this.confirmConfig.msg = (this.LANG['确定取消吗?'] || '确定取消吗?');
-                    this.confirmConfig.fn = "refuse";
-                }
-            },
-            // 拒绝
-            doReject(row) {
-                if (parseInt(row.id)) {
-                    this.confirmConfig.state = true;
-                    this.confirmConfig.msg = (this.LANG['确定拒绝吗?'] || '确定拒绝吗?');
-                    this.confirmConfig.fn = "reject";
-                }
-            },
-            //确认支付
-            doPay(row) {
-                if (parseInt(row.id)) {
-                    this.confirmConfig.state = true;
-                    this.confirmConfig.msg = (this.LANG['确定支付吗?'] || '确定支付吗?');
-                    this.confirmConfig.fn = "pay";
-                }
-            },
             //关闭备注弹窗
             handleCloseMemo() {
                 this.dialogVisibleMemo = false;
@@ -769,6 +745,7 @@
             },
             //详情
             doDetail(row) {
+                this.userName = row.user_name
                 this.loading = true;
                 let sum = 0;
                 let id = parseInt(row.id);
@@ -854,20 +831,19 @@
 					}
 				})
             },
-            //预备支付
-            doPrepare(row) {
-                if (parseInt(row.id)) {
-                    this.confirmConfig.state = true;
-                    this.confirmConfig.msg = (this.LANG['确定预支付吗?'] || '确定预支付吗?');
-                    this.confirmConfig.fn = "prepare";
-                }
-            },
             //取消
             doRefuse(row) {
                 if (parseInt(row.id)) {
                     this.confirmConfig.state = true;
                     this.confirmConfig.msg = (this.LANG['确定取消吗?'] || '确定取消吗?');
                     this.confirmConfig.fn = "refuse";
+                }
+            },
+            //详情跳转
+            toLink(style,start,end){
+                this.editVisible = false;
+                if(style == 'lottery'){
+                    this.$router.push({path:'/lotterSingleNote',query:{name:this.userName,start:start,end:end}})
                 }
             },
             // 拒绝
