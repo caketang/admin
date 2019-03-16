@@ -23,12 +23,14 @@
                 <el-form-item label="商户名称" v-if="AddFormData.pay_id" prop="name" class="w85">
                     <el-input v-model="AddFormData.name"></el-input>
                 </el-form-item>
+                <!--<i class="fa fa-eye-slash" aria-hidden="true"></i> <i class="fa fa-eye" aria-hidden="true"></i>-->
                 <el-form-item :label="'(必填)'+item.name" v-if="AddFormData.pay_id" class="configs w85"
                               :class="{'warn':AddFormData.configs[item.param]&&AddFormData.configs[item.param].length ==0}"
                               v-for="item,d in AddFormConfig.payConfigsList"
                               :key="d">
-                    <el-input v-model="AddFormData.configs[item.param]"
+                    <el-input v-model="AddFormData.configs[item.param]" type="password"
                               @blur="ruleConfig(AddFormData.configs[item.param])"></el-input>
+                    <i class="fa fa-eye-slash" aria-hidden="true" style="position: absolute;right: 10px;top:10px;"></i>
                 </el-form-item>
                 <el-form-item label="支付场景" v-if="AddFormData.pay_id" prop="pay_scene" class="w85">
                     <el-checkbox-group v-model="AddFormData.pay_scene">
@@ -833,7 +835,6 @@
                                     _this.AddFormData.configs = {};
                                     setTimeout(()=>{
                                         configList.forEach((c) => {
-                                            console.log(mode.configs[c.param])
                                             _this.$set(_this.AddFormData.configs,c.param, mode.configs[c.param])
                                         })
                                     },500)

@@ -7,6 +7,7 @@
 				  :isEdit="isEdit"
 				  @do-query="doQuery"
 				  @reset-form="resetForm"
+                  :size="size"
 				  @add-new="AddNew"
 				  :addText="LANG['新增账户'] ||'新增账户'"></formEdit>
 		<div class="search" v-if="!fullscreenLoading">
@@ -23,7 +24,7 @@
 		</el-col>
 		<el-col>
 			<!--编辑界面-->
-			<formEdit :formTitel="formTitel" :formVisible="editVisible" :formConfig="formConfig" :type="type"
+			<formEdit :formTitel="formTitel" :formVisible="editVisible" :formConfig="formConfig" :type="type" :size="size"
 					  :labelWidth="labelWidth" @get-form="getForm" :isEdit="isEdit" :formType="formType"></formEdit>
 		</el-col>
 
@@ -75,6 +76,7 @@
 					}],
 				updateType: "",
 //                //弹窗相关
+                size:"small",
 				formConfig: [
 					{
 						"prop": "usage",
@@ -176,26 +178,7 @@
 						console.log(e)
 					}
 				})
-
-				// this.$http.get(URL.api + ROUTES.GET.allBanks, URLCONFIG).then((res) => {
-				// 	if (res.data.state == 0 && res.data.data.length) {
-				// 		let model = res.data.data || [];
-				// 		let list = _this.formConfig[1].list;
-				// 		let search = _this.searchConfig[1].list;
-				// 		if (model.length > 0) {
-				// 			for (let i  in model) {
-				// 				list.push({"label": model[i].name, "value": model[i].id});
-				// 				search.push({"label": model[i].name, "value": model[i].id});
-				// 			}
-				// 		}
-				// 		_this.fullscreenLoading = false;
-				// 	}
-				// 	;
-				//
-				// })
-
 				//获取会员层级
-
 				this.$.autoAjax('get', URL.api + ROUTES.GET.user.level.list, '', {
 					ok: (res) => {
 						if (res.state == 0 && res.data) {
@@ -219,22 +202,6 @@
 						console.log(e)
 					}
 				})
-				// this.$http.get(URL.api + ROUTES.GET.user.level.list, URLCONFIG).then((res) => {
-				// 	if (res.data.state == 0 && res.data.data) {
-				// 		let model = res.data.data || [];
-				// 		for (let k in model) {
-				// 			_this.formConfig[0].list.push(model[k].id.toString())
-				// 			_this.formConfig[0].Arr.push({
-				// 				"label": model[k].name,
-				// 				"value": model[k].id.toString()
-				// 			});
-				// 			_this.searchConfig[2].list.push({
-				// 				"label": model[k].name,
-				// 				"value": model[k].id.toString()
-				// 			});
-				// 		}
-				// 	}
-				// })
 			},
 			//新增
 			AddNew() {
@@ -248,17 +215,6 @@
 				let _this = this;
 				this.fullscreenLoading = true;
 				_this.updated = false;
-				//obj.formObj.id = this.nowId;
-				/* let str = "";
-				 let arr = [];
-				 let Arr = this.formConfig[0].Arr;
-				 for (let i in  Arr) {
-					 for (let k in obj.formObj.level) {
-						 if (Arr[i].label == obj.formObj.level[k]) {
-							 arr.push(Arr[i].val);
-						 }
-					 }
-				 }*/
 				if (parseInt(obj.formObj.limit_day_max) > 0) {
 					obj.formObj.limit_day_max = obj.formObj.limit_day_max * 100;
 				}
@@ -301,19 +257,6 @@
 						error: e => {
 						}
 					})
-
-					// this.$http.put(URL.api + ROUTES.PUT.cash.bank.account+"?id="+this.nowId, JSON.stringify(query), URLCONFIG).then((res) => {
-					// 	if (res.data.state == 0 && res.data.data) {
-					// 		_this.$message.success(LANG['修改收款账户成功'] || '修改收款账户成功')
-					// 	} else if (res.data.state == 2003 && res.data.data) {
-					// 		_this.$message.error(LANG['无修改权限!'] || '无修改权限!')
-					// 	} else if (res.data.state == 1002 && res.data.data) {
-					// 		_this.$message.error(LANG['相同的银行账号已经存在!'] || '相同的银行账号已经存在!')
-					// 	} else {
-					// 		_this.$message.error(LANG[res.data.msg] || res.data.msg)
-					// 	}
-					// 	_this.updated = true;
-					// })
 				}
 				if (this.formType == "add") {
 					this.$.autoAjax('put',URL.api + ROUTES.POST.cash.bank.account, query, {
@@ -335,19 +278,6 @@
 							console.log(e)
 						}
 					})
-
-					// this.$http.put(URL.api + ROUTES.POST.cash.bank.account, JSON.stringify(query), URLCONFIG).then((res) => {
-					// 	if (res.data.state == 0 && res.data.data) {
-					// 		_this.$message.success(LANG['新增收款账户成功'] || '新增收款账户成功')
-					//
-					// 	} else if (res.data.state == 1002 && res.data.data) {
-					// 		_this.$message.error(LANG['相同的银行账号已经存在!'] || '相同的银行账号已经存在!')
-					// 	} else {
-					// 		_this.$message.error(LANG[res.data.msg] || res.data.msg)
-					//
-					// 	}
-					// 	_this.updated = true;
-					// })
 				}
 				this.fullscreenLoading = false;
 				_this.formType = "";

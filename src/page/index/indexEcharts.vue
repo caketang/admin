@@ -24,7 +24,7 @@
             <el-col class="border_bottom" :span="4">
                 <div class="indexData" style="background:#ff6360">
                     <p class="num" :title="'今日上线用户数：'+online">{{online}}</p>
-                    <p class="textHide">{{LANG['今日上线用户数'] || '今日上线用户数'}}</p>
+                    <p class="textHide">{{LANG['当前在线用户数'] || '当前在线用户数'}}</p>
                 </div>
             </el-col>
             <el-col class="border_bottom" :span="4">
@@ -672,8 +672,8 @@
     }
 
     .chart .num {
-        font-size: 38px;
-        font-weight: 200;
+        font-size:1.8em;
+        font-weight: 400;
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
