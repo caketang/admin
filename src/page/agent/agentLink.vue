@@ -23,7 +23,6 @@
     import tableGrid from '../../components/tableGrid.vue'
     import formEdit from '../../components/formEdit.vue'
     import confirm from '../../components/confirm.vue'
-
     export default {
         data() {
             return {

@@ -154,8 +154,9 @@
                                                 this.$.autoAjax('post', URL.api + ROUTES.POST.admin.login.stsToken,'', {
                                                     ok:v => {
                                                         if(v.state === 0 && v.data){
-                                                            URL.rpi = v.data.api_host + '/sts/file/upload'
+//                                                            URL.rpi = v.data.api_host + '/sts/file/upload'
                                                             SETSESSIONSTORAGE('stsToken', v.data.stsToken)
+                                                            SETSESSIONSTORAGE('URL_RPI', v.data.api_host + '/sts/file/upload')
                                                         }else{
                                                             _this.$message.error((LANG["获取资源站授权失败"] || "获取资源站授权失败"));
                                                         }

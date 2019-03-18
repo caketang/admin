@@ -39,6 +39,12 @@
             "disabled": true
         },
         {
+            "prop": "vaild_count",
+            "label": "注册人数",
+            "width": "100",
+            "disabled": true
+        },
+        {
             "prop": "remark",
             "label": "备注",
             "width": "200",

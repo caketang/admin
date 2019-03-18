@@ -35,6 +35,14 @@
                                 </el-input>
                             </label>
                             <p class="help_gray" style="margin-left: 50px;">*提 示：库存指每期玩家最高盈利金额,0 表示不控制</p>
+                            <div class="block">
+                                <span class="demonstration">默认</span>
+                                <el-date-picker
+                                    v-model="value3"
+                                    type="datetimerange"
+                                    placeholder="选择时间范围">
+                                </el-date-picker>
+                            </div>
                         </el-col>
                     </el-col>
                     <el-col class="slNav" v-if="query.lottery_open_type=='1'">
@@ -73,6 +81,7 @@
                     win_bet:'',
                     max_lose_money:''
                 },
+                value3:[]
             }
         },
         components: {

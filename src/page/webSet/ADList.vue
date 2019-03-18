@@ -37,7 +37,7 @@
         </el-row>
         <!--新增-->
         <el-col :span="24">
-            <formEdit :formTitel="formTitel" :formVisible="editVisible" :formConfig="formConfig" :type="type"
+            <formEdit :formTitel="formTitel" :formVisible="editVisible" :formConfig="formConfig" :type="type" :size="size"
                       :labelWidth="labelWidth" @get-form="getForm" :isEdit="isEdit" :formType="formType"></formEdit>
         </el-col>
         <el-col>
@@ -143,6 +143,7 @@
                     },
 
                 ],
+                size:'small',
                 labelWidth: "110px",
                 type: "default",
                 formTitel: "",
@@ -312,8 +313,8 @@
                 this.loading = true;
                 let _this = this;
                 _this.isEdit.state = false;
-                let fromDataUrl = URL.api + ROUTES.GET.copywriter.carousel + "/" + parseInt(this.nowId);
-                this.$.autoAjax('get',fromDataUrl,'', {
+                let fromDataUrl = URL.api + ROUTES.GET.copywriter.carousel;
+                this.$.autoAjax('get',fromDataUrl,parseInt(this.nowId), {
                     ok: (res) => {
                         if (res.state == 0 && res.data) {
                             _this.isEdit.state = true;
@@ -422,10 +423,10 @@
                         break;
                     case "apply":
                         let applyddata = {
-                            "approve": "applying",
+                            "approve": "pass",
                             "pf": this.pf,
                             "language_id": parseInt(obj.obj.language_id),
-                            "position": obj.obj.position
+                            "position": obj.obj.position,
                         }
 
                         this.$.autoAjax('patch', URL.api + ROUTES.PUT.copywriter.carousel + "/" + parseInt(this.nowId), applyddata,{
