@@ -193,13 +193,12 @@
             //批量操作分层
             all_select_data(obj) {
                 this.updated = false;
-                let arrOne = [], _this = this;
-                let lists = obj.rows || [];
+                let arrOne = [], _this = this,lists = obj.rows || [];
                 for (let k = 0; k < lists.length; k++) {
-                    let tempOne = []
+                    let tempOne = {}
                     if (FORMATNUMBER(obj.level) > 0 && obj.level !== obj.rows[k].lid && obj.rows[k].lock == '0') {
-                        tempOne.push(lists[k].id);
-                        tempOne.push(obj.level);
+                        tempOne[lists[k].id] = obj.level
+//                        tempOne[1] = obj.level
                         arrOne.push(tempOne);
                     } else if (obj.level == obj.rows[k].lid) {
                         this.$message.error(LANG['不可移动到相同层级！'] || '不可移动到相同层级！');
@@ -208,7 +207,7 @@
                     }
                 }
                 if (arrOne.length != 0) {
-                    this.$.autoAjax('patch', URL.api + '/user/info/level', JSON.stringify({list: arrOne}), {
+                    this.$.autoAjax('patch', URL.api + '/user/info/level', {list: arrOne}, {
                         ok: (res) => {
                             if (res.state === 0 && res.data && res.data.fail && res.data.fail.length === 0) {
                                 this.$notify.info({
@@ -235,13 +234,14 @@
             //批量操作锁定
             all_switch_data(obj) {
                 this.updated = false;
-                let arrTwo = [];
+                let arrTwo = {};
                 let lists = obj.rows || []
                 for (let j = 0; j < lists.length; j++) {
                     let tempTwo = [];
                     if (obj.lock !== obj.rows[j].lock) {
-                        tempTwo.push(lists[j].id);
-                        tempTwo.push(lists[j].lock == '1' ? '0' : '1');
+
+                        tempTwo[lists[j].id] = lists[j].lock == '1' ? '0' : '1'
+                        //tempTwo.push(lists[j].lock == '1' ? '0' : '1');
                         arrTwo.push(tempTwo);
                     }
                 }
@@ -254,11 +254,9 @@
                 });
             },
             lockDialogEdit() {
-                let _this = this;
-                let arrTwo = this.arrTwo;
-                let obj = this.arrTwoObj;
+                let _this = this,arrTwo = this.arrTwo,obj = this.arrTwoObj;
                 arrTwo.length > 0 ?
-                    this.$.autoAjax('patch', URL.api + '/user/level/lock', JSON.stringify({list: arrTwo}), {
+                    this.$.autoAjax('patch', URL.api + '/user/level/lock', {list: arrTwo}, {
                         ok: (res) => {
                             if (res.state === 0 && res.data && res.data.fail && res.data.fail.length === 0) {
                                 obj.lock == '1' ? this.$notify.info({

@@ -682,25 +682,6 @@ export default [
 				iconCls: '',
 				name: '下级佣金统计'
 			},
-			// {
-			//     path: '/agencyStatistics',
-			//     component: resolve => require(['../page/agent/agencyStatistics'], resolve),
-			//     iconCls: '',
-			//     name: '代理统计' // 先隐藏代理统计
-			// },
-			// {
-			//     path:'/validatedUser',
-			//     component: resolve => require(['../page/agent/validatedUser'], resolve),
-			//     iconCls: '',
-			//     name: '有效用户'
-			// },
-			//  {
-			//     path:'/userDetails',
-			//     component: resolve => require(['../page/agent/agentUserDetails'], resolve),
-			//     iconCls: '',
-			//     hidden: true,
-			//     name: '有效用户'
-			// },
 			{
 				path: '/agentLink',
 				component: resolve => require(['../page/agent/agentLink'], resolve),
