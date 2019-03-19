@@ -28,7 +28,7 @@
             </tablegrid>
         </el-col>
         <el-col v-insertTip>
-            <formEdit :formTitel="formTitel" :formVisible="formVisible" :formConfig="formConfig" :type="type" :labelWidth="labelWidth" :isEdit="isEdit" @get-form="getForm" :formType="formType" @change-radio="changeRadio"></formEdit>
+            <formEdit :formTitel="formTitel" :formVisible="formVisible" :formConfig="formConfig" :type="type" :labelWidth="labelWidth" :isEdit="isEdit" @get-form="getForm" :formType="formType" :size="size" @change-radio="changeRadio"></formEdit>
         </el-col>
         <el-col>
             <confirm :confirmConfig="confirmConfig" @do-confirm="doConfirm"></confirm>
@@ -70,7 +70,7 @@
                 //新增修改
                 type:"default",
                 formTitel:"",
-                labelWidth:"90px",
+                labelWidth:"110px",
                 isEdit: {
                     state:false
                 },
@@ -104,7 +104,7 @@
                     {"prop":"cover","value":[],"action":URL.img,"folder":"active",
                         //上传图片列表  list-type:[text/picture/picture-card]
                         "list":[],
-                        "type":"upload","label":"优惠活动页","listType":"picture"},
+                        "type":"upload","label":"优惠活动页","listType":"picture","rules":[{"require":true}]},
                     {"prop":"sort","value":"","label":"排序","type":"text","rules":[{"require":true},{"integer":true}]},
                     {"prop":"open_mode","value":"","type":"radioGroup","label":"打开方式","radioInput":true,
                         "list":[
@@ -125,6 +125,7 @@
                             {"label":"停用","value":"disabled"}],
                         "rules":[{"require":true}]},
                 ],
+                size:"small",
                 editflag:false,
                 nowId:-1,
                 //删除确认

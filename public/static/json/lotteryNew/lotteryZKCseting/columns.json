@@ -17,11 +17,12 @@
             "disabled": true,
             "filters":[{"text":"杀率控制", "value": "1"},{"text":"随机控制", "value": "2"}]
         },
-        {
-            "prop": "win_bet",
-            "label": "杀率（%）",
-            "width": "200",
-            "disabled": true
+        { "prop":"win_bet1,start_time,end_time,win_bet2",
+            "label":"定义杀率(%)/起止时间/默认杀率(%)",
+            "delimiter":"-",
+            "width":"280",
+            "type":"connect",
+            "disabled":true
         },
         {
             "label": "操作",
