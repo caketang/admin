@@ -321,7 +321,7 @@
                 let _this = this,lockData ={},lockArr = [];
                 lockData[row.row.id] = row.row.lock
                 lockArr.push(lockData)
-                this.$.autoAjax('patch', this.lockUrl, {lockLevel:lockArr}, {
+                this.$.autoAjax('patch', this.lockUrl, {list:lockArr}, {
                     ok: (res) => {
                         let mode = res.data
                         if (mode !== null || mode.length > 0) {
