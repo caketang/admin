@@ -206,6 +206,7 @@
 //						this.$message(LANG['提示：已锁定层级的会员不会被移动分层。'] || '提示：已锁定层级的会员不会被移动分层。');
                     }
                 }
+                console.log(arrOne)
                 if (arrOne.length != 0) {
                     this.$.autoAjax('patch', URL.api + '/user/info/level', {list: arrOne}, {
                         ok: (res) => {
@@ -289,11 +290,11 @@
             //表格内分层
             doSelsect(row) {
                 this.updated = false;
-                let _this = this;
-                let level = {}
-                level[row.row.id] = row.row.lid//[{list: [[row.row.id, row.row.lid]]}]
+                let _this = this,level = {},levelArr = [];
+                level[row.row.id] = row.row.lid
+                levelArr.push(level)
                 row.row.lock == "1" ? this.$message(LANG['用户：' + row.row.name + '会员层级已锁定，不可操作会员分层！'] || '用户：' + row.row.name + '会员层级已锁定，不可操作会员分层！') :
-                    this.$.autoAjax('patch', this.infoUrl, {list:level}, {
+                    this.$.autoAjax('patch', this.infoUrl, {list:levelArr}, {
                         ok: (res) => {
                             let mode = res.data
                             if (mode !== null || mode.length > 0) {
@@ -317,16 +318,16 @@
             //表格内锁定
             doLock(row) {
                 this.updated = false;
-                let _this = this;
-                let lockLevel ={}// [{list: [[row.row.id, row.row.lock]]}]
-                lockLevel.row.row.id = row.row.lock//[{list: [[row.row.id, row.row.lock]]}]
-                this.$.autoAjax('patch', this.lockUrl, {lockLevel:lockLevel}, {
+                let _this = this,lockData ={},lockArr = [];
+                lockData[row.row.id] = row.row.lock
+                lockArr.push(lockData)
+                this.$.autoAjax('patch', this.lockUrl, {lockLevel:lockArr}, {
                     ok: (res) => {
                         let mode = res.data
                         if (mode !== null || mode.length > 0) {
-                            row.row.lock == 1 ? _this.$message.success(LANG['用户：' + row.row.name + '锁定操作成功'] || '用户：' + row.row.name + '锁定操作成功') :
-                                _this.$message.success(LANG['用户：' + row.row.name + '解锁操作成功'] || '用户：' + row.row.name + '解锁操作成功');
-
+                            row.row.lock == '1'
+                                ? _this.$message.success(LANG['用户：' + row.row.name + '锁定操作成功'] || '用户：' + row.row.name + '锁定操作成功')
+                                : _this.$message.success(LANG['用户：' + row.row.name + '解锁操作成功'] || '用户：' + row.row.name + '解锁操作成功');
                             this.updated = true;
                         } else {
                             _this.$message.error(LANG['未知错误，请稍后重试！'] || '未知错误，请稍后重试！');
