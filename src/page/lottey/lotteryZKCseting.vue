@@ -171,7 +171,7 @@
             },
             //编辑提交
             doSubmit() {
-                this.query.win_bet.max_lose_money1 = (this.query.win_bet.max_lose_money2) * 100
+                this.query.win_bet.max_lose_money1 = (this.query.win_bet.max_lose_money1) * 100
                 this.query.win_bet.max_lose_money2 = (this.query.win_bet.max_lose_money2) * 100
                 this.$.autoAjax('patch', URL.api + '/plottery/info', this.query, {
                     ok: (res) => {
