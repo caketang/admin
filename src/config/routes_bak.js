@@ -694,12 +694,12 @@ export default [
 				iconCls: '',
 				name: '代理提款'
 			},
-			// {
-			// 	path: '/dailyWages',
-			// 	component: resolve => require(['../page/agent/dailyWages'], resolve),
-			// 	iconCls: '',
-			// 	name: '日工资管理'
-			// }
+            {
+				path: '/dailyWages',
+				component: resolve => require(['../page/agent/dailyWages'], resolve),
+				iconCls: '',
+				name: '日工资管理'
+			}
 		]
 	},
 	{

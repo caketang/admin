@@ -221,8 +221,6 @@
                             }
                             _this.updated = true;
                         },
-                        p: () => {
-                        },
                         error: e => {
                             console.log(e)
                         }
@@ -234,12 +232,11 @@
             //批量操作锁定
             all_switch_data(obj) {
                 this.updated = false;
-                let arrTwo = {};
+                let arrTwo = [];
                 let lists = obj.rows || []
                 for (let j = 0; j < lists.length; j++) {
-                    let tempTwo = [];
+                    let tempTwo = {};
                     if (obj.lock !== obj.rows[j].lock) {
-
                         tempTwo[lists[j].id] = lists[j].lock == '1' ? '0' : '1'
                         //tempTwo.push(lists[j].lock == '1' ? '0' : '1');
                         arrTwo.push(tempTwo);
@@ -293,9 +290,10 @@
             doSelsect(row) {
                 this.updated = false;
                 let _this = this;
-                let level = [{list: [[row.row.id, row.row.lid]]}]
+                let level = {}
+                level[row.row.id] = row.row.lid//[{list: [[row.row.id, row.row.lid]]}]
                 row.row.lock == "1" ? this.$message(LANG['用户：' + row.row.name + '会员层级已锁定，不可操作会员分层！'] || '用户：' + row.row.name + '会员层级已锁定，不可操作会员分层！') :
-                    this.$.autoAjax('patch', this.infoUrl, level[0], {
+                    this.$.autoAjax('patch', this.infoUrl, {list:level}, {
                         ok: (res) => {
                             let mode = res.data
                             if (mode !== null || mode.length > 0) {
@@ -320,8 +318,9 @@
             doLock(row) {
                 this.updated = false;
                 let _this = this;
-                let lockLevel = [{list: [[row.row.id, row.row.lock]]}]
-                this.$.autoAjax('patch', this.lockUrl, lockLevel[0], {
+                let lockLevel ={}// [{list: [[row.row.id, row.row.lock]]}]
+                lockLevel.row.row.id = row.row.lock//[{list: [[row.row.id, row.row.lock]]}]
+                this.$.autoAjax('patch', this.lockUrl, {lockLevel:lockLevel}, {
                     ok: (res) => {
                         let mode = res.data
                         if (mode !== null || mode.length > 0) {
@@ -344,80 +343,6 @@
                     "clear": true,
                 });
             },
-            // 发送会员层级更新
-//			getLevelPosts(obj, type) {
-//				this.updated = false;
-//				let arrOne = [], arrTwo = [], _this = this, nums = 0, state = false;
-//				let lists = type === 'select' ? (obj.rows || []) : (obj.dataList || []);
-//				if (type === 'select') {
-//					for (let k = 0; k < lists.length; k++) {
-//						let tempOne = [], tempTwo = [];
-//						if (FORMATNUMBER(obj.level) > 0) {
-//							tempOne.push(lists[k].id);
-//							tempOne.push(obj.level);
-//							arrOne.push(tempOne);
-//						}
-//						tempTwo.push(lists[k].id);
-//						tempTwo.push(obj.lock);
-//						arrTwo.push(tempTwo);
-//					}
-//				} else {
-//					for (let j = 0; j < lists.length; j++) {
-//						let tempOne = [], tempTwo = [];
-//						tempOne.push(lists[j].id);
-//						tempOne.push(lists[j].lid);
-//						arrOne.push(tempOne);
-//						tempTwo.push(lists[j].id);
-//						tempTwo.push(lists[j].lock);
-//						arrTwo.push(tempTwo);
-//					}
-//				}
-//				if (FORMATNUMBER(obj.level) > 0 || type === 'all') {
-//					this.$http.patch(URL.api + '/user/info/level', JSON.stringify({list: arrOne}), URLCONFIG).then((res) => {
-//						if (res.data.state === 0 && res.data.data && res.data.data.fail && res.data.data.fail.length === 0) {
-//							nums++;
-//							this.$notify.info({title: LANG['消息'] || '消息', message: LANG['会员层级批量操作成功'] || '会员层级批量操作成功'});
-//						} else if (res.data.state === 0 && res.data.data && res.data.data.success && (res.data.data.success.length > res.data.data.fail.length)) {
-//							this.$message.error(LANG['会员层级批量修改部份成功，请核对后重新提交'] || '会员层级批量修改部份成功，请核对后重新提交');
-//						} else {
-//							this.$message.error(LANG['会员层级批量修改失败，请稍后重试'] || '会员层级批量修改失败，请稍后重试');
-//						}
-//						_this.updated = true;
-//					}).catch((e) => {
-//						console.log(e);
-//					})
-//				}
-//				this.$http.patch(URL.api + '/user/level/lock', JSON.stringify({list: arrTwo}), URLCONFIG).then((res) => {
-//					if (res.data.state === 0 && res.data.data && res.data.data.fail && res.data.data.fail.length === 0) {
-//						nums++;
-//						this.$notify.info({title: LANG['消息'] || '消息', message: LANG['会员批量锁定操作成功'] || '会员批量锁定操作成功'});
-//					} else if (res.data.state === 0 && res.data.data && res.data.data.success && (res.data.data.success.length > res.data.data.fail.length)) {
-//						this.$message.error(LANG['会员层级批量锁定操作部份成功，请核对后重新提交'] || '会员层级批量锁定操作部份成功，请核对后重新提交');
-//					} else {
-//						this.$message.error(LANG['会员批量锁定操作失败，请稍后重试'] || '会员批量锁定操作失败，请稍后重试');
-//					}
-//					_this.updated = true;
-//				}).catch((e) => {
-//
-//				})
-//				if (nums === 2) {
-//					state = true;
-//				}
-//				this.$emit("save-data", {
-//					"item": obj,
-//					"state": state
-//				});
-//			},
-            //批量锁定
-//			saveAllDate(obj) {
-//				console.log(obj)
-//				this.getLevelPosts(obj, 'select');
-//			},
-            // 保存层级
-//			saveDate(obj) {
-//				console.log(obj);
-//				this.getLevelPosts(obj, 'all');
-//			}
         },
         computed: {},
         mounted() {
