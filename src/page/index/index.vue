@@ -93,7 +93,7 @@
                                 </el-date-picker>
                             </div>
                         </li> -->
-                        <li>{{time}}</li>
+                        <li class="ml20">{{time}}</li>
                         <li class="ml20">{{timeTxt}}</li>
                     </ul>
                 </div>
