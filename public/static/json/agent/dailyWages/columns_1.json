@@ -72,7 +72,7 @@
                 {
                     "btnType": "text",
                     "label": "发放",
-                    "fn": "doRescission"
+                    "fn": "doGrant"
                 }
             ]
         },

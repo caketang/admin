@@ -171,8 +171,8 @@
                     {
                         "prop": "treaty_status", "value": "", "label": "状 态", "type": "select",
                         "list": [
-                            {"label": "已签约", "value": 'enable'},
-                            {"label": "未签约", "value": 'disable'},
+                            {"label": "已签约", "value": 'yes'},
+                            {"label": "未签约", "value": 'no'},
                         ]
                     }
                 ],
@@ -237,7 +237,8 @@
                 visible: {
                     state: false,
                     text: '',
-                    data: []
+                    data: [],
+                    type:''
                 },
                 restaurants: [],
             }
@@ -254,28 +255,56 @@
                     case "doRescission":
                         this.doRescission(item.row)
                         break
+                    case "doGrant":
+                        this.doGrant(item.row)
+                        break
                 }
             },
             //确认提示操作
             doConfirm() {
-                this.visible.state = false;
-                let data = this.visible.data, query = {id: data.id, treaty_status: 'release'}, _this = this;
-                this.$.autoAjax('post', URL.api + ROUTES.POST.user.release, query, {
-                    ok: v => {
-                        if (v.state === 0 && v.data) {
-                            _this.$message.success(v.msg);
-                            _this.updated = true;
-                        }
-                    },
-                    error: e => {
-                        _this.$message.error(e.responseJSON.msg);
-                    }
-                })
+                switch (this.visible.type) {
+                    case "remove":
+                        this.visible.state = false;
+                        let data = this.visible.data, query = {id: data.id, treaty_status: 'release'}, _this = this;
+                        this.$.autoAjax('post', URL.api + ROUTES.POST.user.release, query, {
+                            ok: v => {
+                                if (v.state === 0 && v.data) {
+                                    _this.$message.success(v.msg);
+                                    _this.updated = true;
+                                }
+                            },
+                            error: e => {
+                                _this.$message.error(e.responseJSON.msg);
+                            }
+                        })
+                        break
+                    case "grant"://
+                        this.$.autoAjax('post', URL.api + ROUTES.POST.cash.manual, {id:this.visible.data.id}, {
+                            ok: v => {
+                                if (v.state === 0 && v.data) {
+                                    _this.$message.success(v.msg);
+                                }
+                            },
+                            error: e => {
+                                _this.$message.error(e.responseJSON.msg);
+                            }
+                        })
+                        break;
+                }
+
             },
             doRescission(data) {
                 this.visible.data = data;
                 this.visible.text = '确定和一级代理：' + data.agent_name + '解约吗？'
                 this.visible.state = true;
+                this.visible.type = 'remove';
+            },
+            //发放
+            doGrant(d){
+                this.visible.data = d;
+                this.visible.state = true
+                this.visible.text = '确认发放代理：' + d.agent_name + '的日工资吗'
+                this.visible.type = 'grant';
             },
             //查询
             doQuery(obj) {

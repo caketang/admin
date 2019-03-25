@@ -225,6 +225,7 @@ global.ROUTES = {
                 list: "/treaty/list",
                 like:"/agent/like",
                 report:'/treaty/report'
+
             },
             origin: "/user/register/types",
             list: "/user/list",
@@ -936,7 +937,9 @@ global.ROUTES = {
             // 批量存提 返水
             allrebate: "/cash/manual.batch.rebate",
             // 批量存提 发放优惠
-            allactivity: "/cash/manual.batch.activity"
+            allactivity: "/cash/manual.batch.activity",
+            //手动派发日工资
+            manual:'/treaty/manual'
 
         },
         message: {

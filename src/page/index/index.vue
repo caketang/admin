@@ -79,7 +79,21 @@
                     </ul>
                     <msg-notification></msg-notification>
                     <ul>
-                        <li class="ml20">{{time}}</li>
+                        <!-- <li class="ml20">
+                            <div class="block">
+                                <el-date-picker
+                                    v-model="value5"
+                                    type="datetimerange"
+                                    :picker-options="pickerOptions2"
+                                    range-separator="至"
+                                    start-placeholder="开始日期"
+                                    end-placeholder="结束日期"
+                                    default-time="12:00:00"
+                                    align="right">
+                                </el-date-picker>
+                            </div>
+                        </li> -->
+                        <li>{{time}}</li>
                         <li class="ml20">{{timeTxt}}</li>
                     </ul>
                 </div>
@@ -90,7 +104,7 @@
 
         </el-col>
         <el-col :span="24" class="main">
-            <table cellspacing=0   cellpadding=0   class="container_tabel w100">
+            <table cellspacing=0     cellpadding=0     class="container_tabel w100">
                 <tr>
                     <!--左侧导航栏-->
                     <td v-if="menu_type == 'left' && showMenu" class="navLeft" valign="top" :width="parTd">
@@ -160,6 +174,35 @@
             return {
                 LANG,
                 URL,
+                value5:'',
+                pickerOptions2: {
+                    shortcuts: [
+                        {
+                        text: '最近一周',
+                        onClick(picker) {
+                        const end = new Date();
+                        const start = new Date();
+                        start.setTime(start.getTime() - 3600 * 1000 * 24 * 7);
+                        picker.$emit('pick', [start, end]);
+                        }
+                    }, {
+                        text: '最近十天',
+                        onClick(picker) {
+                        const end = new Date();
+                        const start = new Date();
+                        start.setTime(start.getTime() - 3600 * 1000 * 24 * 10);
+                        picker.$emit('pick', [start, end]);
+                        }
+                    }, {
+                        text: '最近三十天',
+                        onClick(picker) {
+                        const end = new Date();
+                        const start = new Date();
+                        start.setTime(start.getTime() - 3600 * 1000 * 24 * 30);
+                        picker.$emit('pick', [start, end]);
+                        }
+                    }],
+                },
                 userName: "",
                 navSwitch: false,
                 sysName: '后台管理系统',
@@ -231,7 +274,7 @@
                 },
                 doConfirmLogin: false,
                 documentTitle: '',
-                showMenu: true
+                showMenu: true,
             }
         },
         components: {

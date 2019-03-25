@@ -46,7 +46,9 @@
                 {
                     "btnType": "text",
                     "label": "解约",
-                    "fn": "doRescission"
+                    "fn": "doRescission",
+                    "prop":"status",
+                    "val":"enable"
                 }
             ]
         },

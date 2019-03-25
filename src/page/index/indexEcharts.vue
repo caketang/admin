@@ -311,7 +311,7 @@
                     member_two: false,
                     report_one: false,
                     report_two: false
-                }
+                },
             }
         },
         components: {
