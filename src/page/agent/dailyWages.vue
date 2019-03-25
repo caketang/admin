@@ -1,6 +1,6 @@
 <template>
     <div id="dailyWagesAndReportform">
-        <el-tabs v-model="activeName" @tab-click="changMenu">
+        <el-tabs v-model="activeName" @tab-click="changMenu(activeName)">
             <el-tab-pane label="日工资列表" name="first"></el-tab-pane>
             <el-tab-pane label="日工资报表" name="second"></el-tab-pane>
         </el-tabs>
@@ -165,15 +165,14 @@
                 ],
                 //报表
                 searchConfigStatement:[
-                    {"type":"dateTimeGroup","label":"投注时间","prop":[{"prop":"date_from","value":"","label":"开始时间"}, {"prop":"date_to","value":"","label":"结束时间"}]},
+                    {"type":"dateTimeGroup","label":"投注时间","prop":[{"prop":"start_time","value":"","label":"开始时间"}, {"prop":"end_time","value":"","label":"结束时间"}]},
                     {"prop": "issue", "value": "", "label": "期 数", "type": "number"},
-                    {"prop": "title", "value": "", "type": "text", "label": "代理帐号"},
+                    {"prop": "name", "value": "", "type": "text", "label": "代理帐号"},
                     {
-                        "prop": "status", "value": "", "label": "状 态", "type": "select",
+                        "prop": "treaty_status", "value": "", "label": "状 态", "type": "select",
                         "list": [
-                            {"label": "启 用", "value": 'enable'},
-                            {"label": "禁 用", "value": 'disable'},
-                            {"label": "删 除", "value": 'delete'}
+                            {"label": "已签约", "value": 'enable'},
+                            {"label": "未签约", "value": 'disable'},
                         ]
                     }
                 ],
@@ -244,17 +243,10 @@
             }
         },
         methods: {
-            init() {
-                this.columnsUrl = "/static/json/agent/dailyWages/columns.json"
-                this.tableUrl = URL.api + ROUTES.GET.user.agent.list;
-                this.baseUrl = URL.api + ROUTES.GET.user.agent.list;
-                //日工资报表
-                this.columnsUrl_1 = "/static/json/agent/dailyWages/columns_1.json"
-                this.tableUrl_1 = URL.api + ROUTES.GET.user.agent.report;
-                this.baseUrl_1 = URL.api + ROUTES.GET.user.agent.report;
-            },
             changMenu(data){
-                console.log(data)
+                if(data =="second"){
+                    this.tableUrl_1 = URL.api + ROUTES.GET.user.agent.report + "?start_time=" + sessionStorage.dateTimeStart + "&end_time=" + sessionStorage.dateTimeEnd;
+                }
             },
             //表格按钮点击事件
             doHandle(item) {
@@ -291,10 +283,12 @@
             },
             //报表查询
             doQueryStatement(obj) {
-                this.tableUrl = this.baseUrl + this.addSearch(obj.item);
+                console.log(obj)
+                this.tableUrl_1 = this.baseUrl_1 + this.addSearch(obj.item);
             },
             resetForm() {
                 this.tableUrl = this.baseUrl;
+                this.tableUrl_1 = this.baseUrl_1;
             },
             handleClose() {
                 this.dialogVisible = false;
@@ -385,7 +379,13 @@
         mounted() {
         },
         created() {
-            this.init()
+            this.columnsUrl = "/static/json/agent/dailyWages/columns.json"
+            this.tableUrl = URL.api + ROUTES.GET.user.agent.list;
+            this.baseUrl = URL.api + ROUTES.GET.user.agent.list;
+            //日工资报表
+            this.columnsUrl_1 = "/static/json/agent/dailyWages/columns_1.json"
+            this.tableUrl_1 = URL.api + ROUTES.GET.user.agent.report;
+            this.baseUrl_1 = URL.api + ROUTES.GET.user.agent.report;
         }
     }
 </script>
