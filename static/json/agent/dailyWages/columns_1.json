@@ -1,0 +1,86 @@
+{
+    "columns": [
+        {
+            "prop": "id",
+            "label": "ID",
+            "sortable": true
+        },
+        {
+            "prop": "issue",
+            "label": "期 数",
+            "disabled": true,
+            "width": 200
+        },
+        {
+            "prop": "title",
+            "label": "标 题",
+            "disabled": true,
+            "width": 200
+        },
+        {
+            "prop": "pname",
+            "label": "一级代理",
+            "disabled": true,
+            "width": 200
+        },
+        {
+            "prop": "standard_team_valid_bet",
+            "label": "团队有效投注",
+            "type":"divisionMoney",
+            "disabled": true,
+            "width": 200
+        },
+        {
+            "prop": "standard_team_deposit",
+            "label": "团队充值",
+            "type":"divisionMoney",
+            "disabled": true,
+            "width": 200
+        },
+        {
+            "prop": "standard_team_valid_user",
+            "label": "团队有效会员",
+            "disabled": true,
+            "width": 200
+        },
+        {
+            "prop": "standard_team_loss",
+            "label": "团队亏损",
+            "type":"divisionMoney",
+            "disabled": true,
+            "width": 200
+        },
+        {
+            "prop": "proportion",
+            "label": "日工资比例",
+            "disabled": true,
+            "width": 200
+        },
+        {
+            "prop": "money",
+            "label": "日工资",
+            "disabled": true,
+            "type":"divisionMoney",
+            "width": 200
+        },
+        {
+            "disabled": true,
+            "label": "操 作",
+            "type": "button",
+            "width": "230",
+            "btnGroup": [
+                {
+                    "btnType": "text",
+                    "label": "发放",
+                    "fn": "doRescission"
+                }
+            ]
+        },
+        {
+            "prop": "created_at",
+            "label": "最近操作",
+            "disabled": true,
+            "width": 200
+        }
+    ]
+}

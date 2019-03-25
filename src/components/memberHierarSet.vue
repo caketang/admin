@@ -206,7 +206,6 @@
 //						this.$message(LANG['提示：已锁定层级的会员不会被移动分层。'] || '提示：已锁定层级的会员不会被移动分层。');
                     }
                 }
-                console.log(arrOne)
                 if (arrOne.length != 0) {
                     this.$.autoAjax('patch', URL.api + '/user/info/level', {list: arrOne}, {
                         ok: (res) => {

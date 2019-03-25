@@ -17,6 +17,10 @@
                     :tableCheck="false"
                     :pageSet="true"
                     :tableIndex="false"
+                    :autoshowRefresh="true"
+                    :showExport="isShow"
+                    :automation="true"
+                    @export-data="exportData"
                     :updated="updated"
                     :getData="true"
                     :isCreated="true"
@@ -147,7 +151,9 @@
                 withdraw_bet_principal: 0,
                 from_edit_money: {},
                 popKey: '',
-                updateKeys: ''
+                updateKeys: '',
+                isShow: sessionStorage.deposit_offlines_export == 'true' ? true : false,
+                exportForm:{}
             }
         },
         components:{
@@ -169,12 +175,12 @@
                     setTimeout(()=>{
                         this.updateKeys = 'time_begin,' + (query.day_begin || '') + ',time_end,' + (query.day_end || '') + ',user_type,' + (query.type || '') + ',username,' + (query.member_name || '');
                         this.tableUrl = this.baseUrl + this.addSearch(query);
+                        this.exportForm = query
                     },500);
                 } else {
                     this.tableUrl = URL.api + '/cash/manual.records';
                 }
                 // 获取存提交易类型
-
 				this.$.autoAjax('get',URL.api + ROUTES.GET.cash.record.type, '', {
 					ok: (res) => {
 						if (res.data && res.state == 0) {
@@ -193,20 +199,6 @@
 						console.log(e)
 					}
 				})
-                // this.$http.get(URL.api + ROUTES.GET.cash.record.type, URLCONFIG).then((res) => {
-                //     if (res.data.data && res.data.state == 0) {
-                //         let model= res.data.data || [];
-                //         for(let i in model){
-                //             this.searchConfig[3].list.push({
-                //                 "label": model[i].name,
-                //                 "value": parseInt(model[i].id, 10)
-                //             });
-                //         }
-                //     }
-                // })
-                .catch((error) => {
-
-                })
             },
             //表格内按钮事件
             doHandle(row){
@@ -278,25 +270,14 @@
 						console.log(e)
 					}
 				})
-                // this.$http.patch(URL.api + '/cash/manual.comment/' + parseInt(this.nowId), params, URLCONFIG).then((res) => {
-                //     if (res.data.state === 0 && res.data.data) {
-                //       this.updated = true;
-                //       this.$message.success(msg + (LANG['打码量修改成功'] || '打码量修改成功'));
-                //     } else if(res.data.state){
-                //         this.$message.error(msg + (LANG['打码量修改失败'] || '打码量修改失败') + res.data.msg);
-                //     } else {
-                //       this.$message.error(msg + (LANG['打码量修改失败'] || '打码量修改失败'));
-                //     }
-                //     this.$refs.from_edit_money.resetFields();
-                // });
             },
             doWriteRemarks(row){
                 this.dialogVisibleMemo = true;
                 this.memoText = row.memo;
             },
-            //接收快捷日期数据
             doQuery(obj){
                 this.tableUrl = this.baseUrl + this.addSearch(obj.item);
+                this.exportForm = obj.item;
             },
              //重置查询
             resetForm(){
@@ -348,6 +329,46 @@
                      } else {
                         callback();
                     }
+                }
+            },
+            // 导出数据
+            exportData() {
+                // 当前查询条件 signature = 1
+                let form = this.$children[0].$refs.editForm.model;
+                this.exportForm.signature = 1
+                if (form.time_begin && form.time_end) {
+                    this.$.autoAjax('get',this.baseUrl,this.exportForm, {
+                        ok:(res) =>{
+                            if(res.state ===0 && res.data){
+                                window.location.href = res.data.url
+                            }
+                        },
+                        error: e => {
+                            this.$message.error(e.responseText.msg);
+                        }
+                    })
+//                    let url = URL.api + '/export/download/offlines';
+//                    let _this = this;
+//					this.$.autoAjax('get',URL.api + '/dev/download/sign' + '?nonce=' + url, '', {
+//						ok: (res) => {
+//							if (res.data) {
+//								this.outUrl = url + this.addSearch(this.searchObj) + "&nonce=" + res.data.nonce + "&signature=" + res.data.signature + "&time=" + res.data.time + "&uuid=" + res.data.uuid;
+//								this.dialogVisible = true;
+//							} else if (res.msg) {
+//								_this.$message.error(res.msg);
+//							} else {
+//								_this.$message.error(LANG['数据导出失败，请稍后重试'] || '数据导出失败，请稍后重试');
+//							}
+//						},
+//						p: () => {
+//						},
+//						error: e => {
+//							console.log(e)
+//						}
+//					})
+                } else {
+                    this.$message.error(LANG['必需选择时间才能导出'] || '必需选择时间才能导出');
+                    return;
                 }
             },
             //修改备注内容

@@ -160,16 +160,16 @@
                         "placeholder": "请输入描述",
                         "rules": [{"max": 40}]
                     },
-                    {
-                        "type": "dateGroup", "label": "会员加入时间", "prop": [
-                        {"prop": "register_stime", "value": "", "label": "开始时间"},
-                        {"prop": "register_etime", "value": "", "label": "结束时间"}]
-                    },
-                    {
-                        "type": "dateGroup", "label": "存款时间", "prop": [
-                        {"prop": "deposit_stime", "value": "", "label": "开始时间"},
-                        {"prop": "deposit_etime", "value": "", "label": "结束时间"}]
-                    },
+//                    {
+//                        "type": "dateGroup", "label": "会员加入时间", "prop": [
+//                        {"prop": "register_stime", "value": "", "label": "开始时间"},
+//                        {"prop": "register_etime", "value": "", "label": "结束时间"}]
+//                    },
+//                    {
+//                        "type": "dateGroup", "label": "存款时间", "prop": [
+//                        {"prop": "deposit_stime", "value": "", "label": "开始时间"},
+//                        {"prop": "deposit_etime", "value": "", "label": "结束时间"}]
+//                    },
                     {
                         "type": "numberGroup", "label": "区间存款总额", "prop": [
                         {"prop": "deposit_min", "value": '', "type": "number",},
@@ -632,11 +632,11 @@
                 let _this = this;
                 setTimeout(() => {
                     FORMVAL(row, _this.formConfig);
-                    _this.formConfig[4].prop[0].value = FORMATMONEY(row['deposit_min']).toString();
-                    _this.formConfig[4].prop[1].value = FORMATMONEY(row['deposit_max']).toString();
-                    _this.formConfig[6].value = FORMATMONEY(row['deposit_money']).toString();
-                    _this.formConfig[7].value = FORMATMONEY(row['max_deposit_money']).toString();
-                    _this.formConfig[9].value = FORMATMONEY(row['withdraw_count']).toString();
+                    _this.formConfig[2].prop[0].value = FORMATMONEY(row['deposit_min']).toString();
+                    _this.formConfig[2].prop[1].value = FORMATMONEY(row['deposit_max']).toString();
+                    _this.formConfig[4].value = FORMATMONEY(row['deposit_money']).toString();
+                    _this.formConfig[5].value = FORMATMONEY(row['max_deposit_money']).toString();
+                    _this.formConfig[7].value = FORMATMONEY(row['withdraw_count']).toString();
                     _this.formType = "edit";
                     _this.isEdit.state = true;
                     _this.editVisible.state = true;

@@ -126,14 +126,14 @@
                 totalData:{},
                 //加载状态
                 loading: false,
-                //总条数
-                total: 0,
-                //每次页条数
-                pageSize: 10,
-                //总页数
-                pageCount: 0,
-                //当前页
-                currentPage: 0
+//                //总条数
+//                total: 0,
+//                //每次页条数
+//                pageSize: 10,
+//                //总页数
+//                pageCount: 0,
+//                //当前页
+//                currentPage: 0
 
             }
         },
@@ -177,12 +177,11 @@
                     this.loading = true;
 					this.$.autoAjax('get',this.tableUrl, '', {
 						ok: (res) => {
-							console.log(res)
-							if(res.state === 0 && res.data.length){
-								_this.total = res.attributes.total || 10;
-								_this.pageSize = res.attributes.size || 50;
-								_this.pageCount = Math.ceil(this.total / this.pageSize);
-								_this.currentPage = res.attributes.number || 1;
+							if(res.state === 0 && res.data){
+//								_this.total = res.attributes.total || 10;
+//								_this.pageSize = res.attributes.size || 50;
+//								_this.pageCount = Math.ceil(this.total / this.pageSize);
+//								_this.currentPage = res.attributes.number || 1;
 								this.dataModel = res.data;
 								this.totalData = res.attributes
 //
@@ -197,93 +196,59 @@
 
 						}
 					})
-
-//                     this.$http.get(this.tableUrl,URLCONFIG).then((res) => {
-//                         console.log(res)
-//                         if(res.data.state === 0 && res.data.data.length){
-//                             _this.total = res.data.attributes.total || 10;
-//                             _this.pageSize = res.data.attributes.size || 50;
-//                             _this.pageCount = Math.ceil(this.total / this.pageSize);
-//                             _this.currentPage = res.data.attributes.number || 1;
-//                             this.dataModel = res.data.data;
-//                             this.totalData = res.data.attributes
-// //
-//                         }
-//                         _this.loading = false;
-//                     }).catch((e)=>{
-//                         _this.loading = false;
-//                         _this.$message.error(LANG['未知错误 ，请稍后重试！'] || '未知错误 ，请稍后重试！')
-//                     });
                 }
             },
             //切换页数
             doCurrentChange(v){
-                this.loading = true;
-                let total = this.total;
-                let pageSize = 50;
-                let pageCount = this.pageCount;
-                this.currentPage = v;
-                this.dataModel = [];
-                let dataModel = this.dataModel;
-                let page = 0;
-                let _this = this
-                page = Math.ceil((pageSize * pageCount) / total) || 1;
-                let index = this.tableUrl.indexOf('?');
-                if (index === -1) {
-                    this.tableUrl = this.tableUrl + "?page=" + v + "&page_size=50";
-                } else {
-                    let n = this.tableUrl.indexOf('page=');
-                    if (n > 0) {
-                        this.tableUrl = this.tableUrl.replace(/page=\d+/, "page=" + v);
-                    } else {
-                        this.tableUrl = this.tableUrl + "&page=" + v + "&page_size=50";
-                    }
-                }
-
-				this.$.autoAjax('get', URL.api + ROUTES.GET, '', {
-					ok: (res) => {
-						_this.total = res.attributes.total || 10;
-						_this.pageSize = res.attributes.size || 50;
-						_this.pageCount = Math.ceil(this.total / this.pageSize);
-						_this.currentPage = res.attributes.number || 1;
-						let tableDate = res.data || res.data.list || [];
-						for (let i in tableDate) {
-							_this.dataModel.push(tableDate[i])
-						}
-						_this.loading = false;
-					},
-					p: () => {
-					},
-					error: e => {
-						_this.loading = false;
-						_this.$message.error(LANG['未知错误，请稍后重试'] || '未知错误，请稍后重试');
-
-					}
-				})
-
-                // this.$http.get(this.tableUrl, URLCONFIG).then((res) => {
-                //     _this.total = res.data.attributes.total || 10;
-                //     _this.pageSize = res.data.attributes.size || 50;
-                //     _this.pageCount = Math.ceil(this.total / this.pageSize);
-                //     _this.currentPage = res.data.attributes.number || 1;
-                //     let tableDate = res.data.data || res.data.data.list || [];
-                //     for (let i in tableDate) {
-                //         _this.dataModel.push(tableDate[i])
-                //     }
-                //     _this.loading = false;
-                // }).catch((e)=>{
-                //     _this.loading = false;
-                //     _this.$message.error(LANG['未知错误，请稍后重试'] || '未知错误，请稍后重试');
-                // })
+//                this.loading = true;
+//                let total = this.total;
+//                let pageSize = 50;
+//                let pageCount = this.pageCount;
+//                this.currentPage = v;
+//                this.dataModel = [];
+//                let dataModel = this.dataModel;
+//                let page = 0;
+//                let _this = this
+//                page = Math.ceil((pageSize * pageCount) / total) || 1;
+//                let index = this.tableUrl.indexOf('?');
+//                if (index === -1) {
+//                    this.tableUrl = this.tableUrl + "?page=" + v + "&page_size=50";
+//                } else {
+//                    let n = this.tableUrl.indexOf('page=');
+//                    if (n > 0) {
+//                        this.tableUrl = this.tableUrl.replace(/page=\d+/, "page=" + v);
+//                    } else {
+//                        this.tableUrl = this.tableUrl + "&page=" + v + "&page_size=50";
+//                    }
+//                }
+//
+//				this.$.autoAjax('get', URL.api + ROUTES.GET, '', {
+//					ok: (res) => {
+//						_this.total = res.attributes.total || 10;
+//						_this.pageSize = res.attributes.size || 50;
+//						_this.pageCount = Math.ceil(this.total / this.pageSize);
+//						_this.currentPage = res.attributes.number || 1;
+//						let tableDate = res.data || res.data.list || [];
+//						for (let i in tableDate) {
+//							_this.dataModel.push(tableDate[i])
+//						}
+//						_this.loading = false;
+//					},
+//					p: () => {
+//					},
+//					error: e => {
+//						_this.loading = false;
+//						_this.$message.error(LANG['未知错误，请稍后重试'] || '未知错误，请稍后重试');
+//
+//					}
+//				})
             },
-            showMember()
-            {
+            showMember(){
                 this.$emit('showAgent',{
                     type: 'member',
                 })
             },
-            showAgent()
-            {
+            showAgent(){
                 this.$emit('showAgent',{
                     type: 'agent',
                 })

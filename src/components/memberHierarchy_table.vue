@@ -14,8 +14,6 @@
                         <col></col>
                         <col></col>
                         <col></col>
-                        <col></col>
-                        <col></col>
                         <col width=10%></col>
                     </colgroup>
                     <thead>
@@ -26,7 +24,7 @@
                         <th colspan="1" rowspan="2" class="el-table_1_column_36 is-leaf">
                             <div class="cell">{{LANG['描述'] || '描述'}}</div>
                         </th>
-                        <th colspan="8" rowspan="1" class="el-table_1_column_36 is-leaf">
+                        <th colspan="6" rowspan="1" class="el-table_1_column_36 is-leaf">
                             <div class="cell">{{LANG['加入条件'] || '加入条件'}}</div>
                         </th>
                         <th colspan="1" rowspan="2" class="el-table_1_column_36 is-leaf">
@@ -42,12 +40,12 @@
                     </tr>
                     <tr>
                         <!--新增区间存款-->
-                        <th colspan="1" rowspan="1" class="el-table_1_column_36 is-leaf">
-                            <div class="cell">{{LANG['会员加入时间'] || '会员加入时间'}}</div>
-                        </th>
-                        <th colspan="1" rowspan="1" class="el-table_1_column_36 is-leaf">
-                            <div class="cell">{{LANG['存款时间'] || '存款时间'}}<br/></div>
-                        </th>
+                        <!--<th colspan="1" rowspan="1" class="el-table_1_column_36 is-leaf">-->
+                            <!--<div class="cell">{{LANG['会员加入时间'] || '会员加入时间'}}</div>-->
+                        <!--</th>-->
+                        <!--<th colspan="1" rowspan="1" class="el-table_1_column_36 is-leaf">-->
+                            <!--<div class="cell">{{LANG['存款时间'] || '存款时间'}}<br/></div>-->
+                        <!--</th>-->
                         <th colspan="1" rowspan="1" class="el-table_1_column_37_column_38 is-leaf">
                             <div class="cell">{{LANG['区间存款总额'] || '区间存款总额'}}</div>
                         </th>

@@ -123,6 +123,8 @@
                                                 sessionStorage.timeOut = model.expire ? parseInt(model.expire) * 1000 : 0;
                                                 sessionStorage.timeOutString = model.expire ? new Date(parseInt(model.expire) * 1000) : 0;
                                                 sessionStorage.refresh_token = model.refresh_token;
+                                                //日工资分成比例
+                                                sessionStorage.site_wage_max = model.site.site_wage_max.toString();
                                                 SETSESSIONSTORAGE('token', model.token);
                                                 SETSESSIONSTORAGE('stsToken', model.stsToken);
                                                 // 当前用户的操作权限

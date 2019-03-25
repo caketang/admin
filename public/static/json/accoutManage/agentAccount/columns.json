@@ -95,7 +95,7 @@
       "width":"150",
       "disabled":true,
       "btnGroup":[
-        {"btnType":"text","label":"资料","fn":"doDetial"},
+        {"btnType":"text","label":"查看推荐码","fn":"doDetial"},
         {"btnType":"text","label":"启用","fn":"doEnable","prop":"status","val":3},
         {"btnType":"text","label":"停用","fn":"doDisable","prop":"status","val":1}]
     }]
