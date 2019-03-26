@@ -125,22 +125,22 @@
         },
         methods: {
             init() {
-                this.tableUrl = this.furl + "&agent_id=" + this.id + "&type=agent"
+                this.tableUrl = this.furl + "&pid=" + this.id + "&type=agent"
                 this.columnsUrl = '../../../../static/json/statement/sumStatement/levelAgentcolumns.json'
             },
             handleClick(obj) {
                 if (obj == "agent") {
-                    this.tableUrl = this.furl + "&agent_id=" + this.id + "&type=agent"
+                    this.tableUrl = this.furl + "&pid=" + this.id + "&type=agent"
                     this.columnsUrl = '../../../../static/json/statement/sumStatement/levelAgentcolumns.json'
                 }
                 if (obj == "user") {
-                    this.tableUrl = this.furl + "&agent_id=" + this.id + "&type=user";
+                    this.tableUrl = this.furl + "&pid=" + this.id + "&type=user";
                     this.columnsUrl = '../../../../static/json/statement/sumStatement/membercolumns.json'
                 }
             },
             doHandle(obj) {
                 if (obj.row.id) {
-                    this.tableUrl = this.furl + "&agent_id=" + obj.row.id + "&type=agent"
+                    this.tableUrl = this.furl + "&pid=" + obj.row.id + "&type=agent"
                     this.$emit('update:id', obj.row.id);
                     this.$emit('update:name', obj.row.name);
                     if (this.$parent.$parent.$parent.$parent.pushUrls) {
