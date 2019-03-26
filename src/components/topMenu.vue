@@ -103,7 +103,7 @@
     #topMenu {
         .menu {
             height: 30px;
-            min-width: 1000px;
+            min-width: 1200px;
             line-height: 40px;
             z-index: 999;
         }
