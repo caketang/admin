@@ -59,7 +59,6 @@
 </template>
 <script>
     import tableGrid from '../../../components/tableGrid.vue'
-
     export default {
         data() {
             return {
@@ -117,7 +116,7 @@
                 }
             },
             openMember(obj) {
-                this.tableUrl = this.baseUrl + "&agent_id=" + obj.id + "&type=user"
+                this.tableUrl = this.baseUrl + "&pid=" + obj.id + "&type=user"
                 this.columnsUrl = '../../../../static/json/statement/sumStatement/membercolumns.json';
                 if (this.$parent.$parent.pushUrls) {
                     this.$parent.$parent.pushUrls({name: obj.name, url: this.tableUrl, type: 'agent'});
@@ -129,12 +128,12 @@
                 this.allData = {};
                 if (obj.allData && obj.allData.attributes) {
                     let model = obj.allData.attributes;
-                    this.sumShow = true;
+                    this.sumShow = false;
                     for (let i in model) {
                         this.allData[i] = model[i];
                     }
                 } else {
-                    this.sumShow = false;
+                    this.sumShow = true;
                 }
             },
         },

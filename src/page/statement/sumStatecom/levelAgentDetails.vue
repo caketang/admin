@@ -3,11 +3,10 @@
         <el-col>
             <span>报表详情{{title}}</span>
         </el-col>
-        <el-radio-group v-model="activeName" class="mb10" @change="handleClick">
-            <el-radio label="agent">代理</el-radio>
-            <el-radio label="user">会员</el-radio>
-        </el-radio-group>
-
+        <!--<el-radio-group v-model="activeName" class="mb10" @change="handleClick">-->
+            <!--<el-radio label="agent">代理</el-radio>-->
+            <!--<el-radio label="user">会员</el-radio>-->
+        <!--</el-radio-group>-->
         <tablegrid
             :columnsUrl="columnsUrl"
             :tableUrl="tableUrl"
@@ -69,7 +68,7 @@
         data() {
             return {
                 LANG,
-                activeName: 'agent',
+//                activeName: 'agent',
                 columnsUrl: '',
                 tableUrl: '',
                 updated: false,
@@ -125,22 +124,22 @@
         },
         methods: {
             init() {
-                this.tableUrl = this.furl + "&pid=" + this.id + "&type=agent"
+                this.tableUrl = this.furl + "&pid=" + this.id + "&type=level"
                 this.columnsUrl = '../../../../static/json/statement/sumStatement/levelAgentcolumns.json'
             },
-            handleClick(obj) {
-                if (obj == "agent") {
-                    this.tableUrl = this.furl + "&pid=" + this.id + "&type=agent"
-                    this.columnsUrl = '../../../../static/json/statement/sumStatement/levelAgentcolumns.json'
-                }
-                if (obj == "user") {
-                    this.tableUrl = this.furl + "&pid=" + this.id + "&type=user";
-                    this.columnsUrl = '../../../../static/json/statement/sumStatement/membercolumns.json'
-                }
-            },
+//            handleClick(obj) {
+//                if (obj == "agent") {
+//                    this.tableUrl = this.furl + "&pid=" + this.id + "&type=agent"
+//                    this.columnsUrl = '../../../../static/json/statement/sumStatement/levelAgentcolumns.json'
+//                }
+//                if (obj == "user") {
+//                    this.tableUrl = this.furl + "&pid=" + this.id + "&type=user";
+//                    this.columnsUrl = '../../../../static/json/statement/sumStatement/membercolumns.json'
+//                }
+//            },
             doHandle(obj) {
                 if (obj.row.id) {
-                    this.tableUrl = this.furl + "&pid=" + obj.row.id + "&type=agent"
+                    this.tableUrl = this.furl + "&pid=" + obj.row.id + "&type=level"
                     this.$emit('update:id', obj.row.id);
                     this.$emit('update:name', obj.row.name);
                     if (this.$parent.$parent.$parent.$parent.pushUrls) {
@@ -155,16 +154,17 @@
             },
             //取表数据
             getTableData(obj) {
+                console.log(obj)
                 this.allData = {};
-                if (obj.allData.data.length && obj.allData.attributes) {
+                if (obj.allData && obj.allData.attributes) {
                     let model = obj.allData.attributes;
-                    this.sumShow = true;
+                    this.sumShow = false;
                     for (let i in model) {
                         this.allData[i] = model[i];
                     }
 
                 } else {
-                    this.sumShow = false;
+                    this.sumShow = true;
                 }
 
             },
