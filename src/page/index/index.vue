@@ -4,13 +4,8 @@
             :span="24"
             v-if="showMenu"
             class="header"
-            :class="{left_header:menu_type =='left',top_header:menu_type =='top'}"
-        >
-            <el-col
-                :span="4"
-                class="logo"
-                :class="{left_menu_logo:menu_type =='left',top_menu_logo:menu_type =='top'}"
-            >
+            :class="{left_header:menu_type =='left',top_header:menu_type =='top'}">
+            <el-col :span="4" class="logo" :class="{left_menu_logo:menu_type =='left',top_menu_logo:menu_type =='top'}">
                 <a href="javascript:;" @click="goIndex">
                     <img :src="logoUrl" width="auto" height="40px" class="logoImg" v-if="logoUrl">
                     <i class="iconfont ml20 font24 icon-37750 font28" v-else></i>
@@ -929,9 +924,6 @@
     .pcddMain .header .logo strong,
     .pcddMain .header .logo i {
         vertical-align: middle;
-    }
-    .pcddMain .header_top_nav{
-        min-width: 1200px;
     }
     .pcddMain .header_top_nav,
     .pcddMain .header_top_menu {
