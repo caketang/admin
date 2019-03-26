@@ -18,7 +18,7 @@
             "width": 200
         },
         {
-            "prop": "pname",
+            "prop": "agent_name",
             "label": "一级代理",
             "disabled": true,
             "width": 200
@@ -64,6 +64,22 @@
             "width": 200
         },
         {
+            "prop": "status",
+            "label": "状 态",
+            "disabled": true,
+            "width": 150,
+            "filters": [
+                {
+                    "text": "未发放",
+                    "value": "no"
+                },
+                {
+                    "text": "已发放",
+                    "value": "yes"
+                }
+            ]
+        },
+        {
             "disabled": true,
             "label": "操 作",
             "type": "button",
@@ -72,7 +88,9 @@
                 {
                     "btnType": "text",
                     "label": "发放",
-                    "fn": "doGrant"
+                    "fn": "doGrant",
+                    "prop":"status",
+                    "val":"no"
                 }
             ]
         },

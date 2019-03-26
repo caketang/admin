@@ -9,27 +9,27 @@
       "disabled": true
     },
     {
-      "prop": "bet_times",
+      "prop": "bet_times_sum",
       "label": "总投注笔数",
       "disabled": true,
        "width":"100"
     },
     {
-      "prop": "bet_money",
+      "prop": "bet_money_sum",
       "label": "总投注金额",
       "disabled": true,
       "width":"150",
       "type":"divisionMoney"
     },
     {
-      "prop": "valid_bet",
+      "prop": "valid_bet_sum",
       "label": "总有效投注金额",
       "disabled": true,
        "width":"150",
       "type":"divisionMoney"
     },
     {
-      "prop": "lose_earn",
+      "prop": "profit_loss_sum",
       "label": "输赢",
       "disabled": true,
       "setred": true,
@@ -37,14 +37,14 @@
       "type":"divisionMoney"
     },
     {
-      "prop": "bonus",
+      "prop": "bonus_sum",
       "label": "彩金",
       "disabled": true,
        "width":"150",
       "type":"divisionMoney,fours"
     },
     {
-      "prop": "contri",
+      "prop": "contri_sum",
       "label": "贡献",
       "disabled": true,
        "width":"150",

@@ -155,11 +155,10 @@
                     {"prop": "title", "value": "", "type": "text", "label": "标 题"},
                     {"prop": "name", "value": "", "type": "text", "label": "代理名称"},
                     {
-                        "prop": "status", "value": "", "label": "状 态", "type": "select",
+                        "prop": "treaty_status", "value": "", "label": "状 态", "type": "select",
                         "list": [
-                            {"label": "启 用", "value": 'enable'},
-                            {"label": "禁 用", "value": 'disable'},
-                            {"label": "删 除", "value": 'delete'}
+                            {"label": "已签约", "value": 'signing'},
+                            {"label": "未签约", "value": 'release'},
                         ]
                     }
                 ],
@@ -171,8 +170,8 @@
                     {
                         "prop": "treaty_status", "value": "", "label": "状 态", "type": "select",
                         "list": [
-                            {"label": "已签约", "value": 'yes'},
-                            {"label": "未签约", "value": 'no'},
+                            {"label": "已发放", "value": 'yes'},
+                            {"label": "未发放", "value": 'no'},
                         ]
                     }
                 ],

@@ -161,6 +161,7 @@
                 <div class="tCent sortData">
                     <h3>{{LANG['今日盈利金额前十名'] || '今日盈利金额前十名'}}</h3>
                     <div v-if="!state.profitShow" class="noDataTable">{{LANG['暂无数据'] || '暂无数据'}}</div>
+                    <el-col :span="24" class="tRight"><a href="javascript:;" @click="toSumStatement" class="state_blue"><i class="icon el-icon-more"></i></a></el-col>
                     <tablegrid
                         class="sortTable mt20"
                         v-if="state.profitShow"
@@ -219,7 +220,6 @@
     import echarts from '../../components/charts/echarts.vue'
     import editTable from '../../components/tableGrid.vue';
     import tableGrid from '../../components/tableGrid.vue';
-
     export default {
         data() {
             return {
@@ -322,6 +322,7 @@
         watch: {
             '$route'(to, from) {//监听路由改变
                 $('#indexEcharts').find('.tablesOverall').css('width', 'auto').find('table').css('min-width', '0px');
+
             },
         },
         methods: {
@@ -377,28 +378,7 @@
             },
             // 今日统计  今日活跃用户 新增用户等按钮初始化
             initStat() {
-                var _this = this;
-                this.$.autoAjax('get', URL.api + ROUTES.GET.stat.today, '', {
-                    ok: (res) => {
-                        if (res.state == 0 && res.data) {
-                            _this.active = res.data.active_members || 0;
-                            _this.newly = res.data.new_members || 0;
-                            _this.online = res.data.online_members || 0;
-                            _this.deposite = res.data.deposit_money || 0;
-                            _this.orders = res.data.bet_times || 0;
-                            _this.amount = res.data.bet_money || 0;
-                            //_this.profit = res.data.withdraw_money || 0;
-                            _this.gross_profit = res.data.gross_profit || 0;
-                            _this.new_deposit_members = res.data.new_deposit_members || 0;
-                            _this.withdraw_money = res.data.withdraw_money || 0;
-                        }
-                    },
-                    p: () => {
-                    },
-                    error: e => {
-                        console.log(e)
-                    }
-                })
+                this.getToday()
             },
             //游戏对比统计方法 7天跟30天统计
             channelDays(val, type) {
@@ -598,6 +578,43 @@
                     }
                 })
             },
+            getToday(data){
+                let _this = this,query = data?data:'';
+                this.$.autoAjax('get', URL.api + ROUTES.GET.stat.today, query, {
+                    ok: (res) => {
+                        if (res.state == 0 && res.data) {
+                            _this.active = res.data.active_members || 0;
+                            _this.newly = res.data.new_members || 0;
+                            _this.online = res.data.online_members || 0;
+                            _this.deposite = res.data.deposit_money || 0;
+                            _this.orders = res.data.bet_times || 0;
+                            _this.amount = res.data.bet_money || 0;
+                            //_this.profit = res.data.withdraw_money || 0;
+                            _this.gross_profit = res.data.gross_profit || 0;
+                            _this.new_deposit_members = res.data.new_deposit_members || 0;
+                            _this.withdraw_money = res.data.withdraw_money || 0;
+                        }
+                    },
+                    p: () => {
+                    },
+                    error: e => {
+                        console.log(e)
+                    }
+                })
+            },
+            changeDate(date){
+                let d = date.split('至'),obj = {}
+                if(d.length){
+                    obj.date_from = d[0]
+                    obj.date_to = d[1]
+                    this.getToday(obj)
+                }else {
+                    this.getToday()
+                }
+            },
+            toSumStatement(){
+                this.$router.push({path: "/sumStatement"});
+            }
         },
         mounted() {
             let _this = this;
@@ -616,6 +633,7 @@
                     }, 0)
                 }, 300000);
             }
+            EVENT.$on('changeIndexDate', this.changeDate);
             this.init();
         },
         created() {

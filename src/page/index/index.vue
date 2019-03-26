@@ -1,8 +1,16 @@
 <template>
     <el-row class="pcddMain w100" id="home" v-loading="loading">
-        <el-col :span="24" v-if="showMenu" class="header"
-                :class="{left_header:menu_type =='left',top_header:menu_type =='top'}">
-            <el-col :span="4" class="logo" :class="{left_menu_logo:menu_type =='left',top_menu_logo:menu_type =='top'}">
+        <el-col
+            :span="24"
+            v-if="showMenu"
+            class="header"
+            :class="{left_header:menu_type =='left',top_header:menu_type =='top'}"
+        >
+            <el-col
+                :span="4"
+                class="logo"
+                :class="{left_menu_logo:menu_type =='left',top_menu_logo:menu_type =='top'}"
+            >
                 <a href="javascript:;" @click="goIndex">
                     <img :src="logoUrl" width="auto" height="40px" class="logoImg" v-if="logoUrl">
                     <i class="iconfont ml20 font24 icon-37750 font28" v-else></i>
@@ -30,23 +38,35 @@
                             <div class="sound-content sound-content-switch">
                                 <p>
                                     {{LANG['消息提示'] || '消息提示'}}
-                                    <el-switch v-model="isOpenSound_message" @change="isOpenSoundFn_message"
-                                               class="volSwitch"></el-switch>
+                                    <el-switch
+                                        v-model="isOpenSound_message"
+                                        @change="isOpenSoundFn_message"
+                                        class="volSwitch"
+                                    ></el-switch>
                                 </p>
                                 <p>
                                     {{LANG['入款提示'] || '入款提示'}}
-                                    <el-switch v-model="isOpenSound_line" @change="isOpenSoundFn_line"
-                                               class="volSwitch"></el-switch>
+                                    <el-switch
+                                        v-model="isOpenSound_line"
+                                        @change="isOpenSoundFn_line"
+                                        class="volSwitch"
+                                    ></el-switch>
                                 </p>
                                 <p>
                                     {{LANG['出款提示'] || '出款提示'}}
-                                    <el-switch v-model="isOpenSound_out" @change="isOpenSoundFn_out"
-                                               class="volSwitch"></el-switch>
+                                    <el-switch
+                                        v-model="isOpenSound_out"
+                                        @change="isOpenSoundFn_out"
+                                        class="volSwitch"
+                                    ></el-switch>
                                 </p>
                                 <p>
                                     {{LANG['新优惠申请提示'] || '新优惠申请提示'}}
-                                    <el-switch v-model="isOpenSound_rebate " @change="isOpenSoundFn_rebate"
-                                               class="volSwitch"></el-switch>
+                                    <el-switch
+                                        v-model="isOpenSound_rebate "
+                                        @change="isOpenSoundFn_rebate"
+                                        class="volSwitch"
+                                    ></el-switch>
                                 </p>
                             </div>
                             <div class="title">{{LANG['语言设置'] || '语言设置'}}</div>
@@ -79,20 +99,23 @@
                     </ul>
                     <msg-notification></msg-notification>
                     <ul>
-                        <!-- <li class="ml20">
+                        <li class="ml20" v-if="changIndexDataShow">
                             <div class="block">
+                                <span class="demonstration">时间区间：</span>
                                 <el-date-picker
-                                    v-model="value5"
-                                    type="datetimerange"
-                                    :picker-options="pickerOptions2"
+                                    v-model="changIndexData"
+                                    type="daterange"
+                                    align="right"
+                                    size="small"
+                                    unlink-panels
                                     range-separator="至"
                                     start-placeholder="开始日期"
                                     end-placeholder="结束日期"
-                                    default-time="12:00:00"
-                                    align="right">
-                                </el-date-picker>
+                                    @change="changIndexFn"
+                                    :picker-options="pickerOptions2"
+                                ></el-date-picker>
                             </div>
-                        </li> -->
+                        </li>
                         <li class="ml20">{{time}}</li>
                         <li class="ml20">{{timeTxt}}</li>
                     </ul>
@@ -101,32 +124,42 @@
             <div class="header_top_menu" v-if="menu_type == 'top' && showMenu">
                 <topMenu class="top_menu" :menu="navSwitch"></topMenu>
             </div>
-
         </el-col>
         <el-col :span="24" class="main">
-            <table cellspacing=0     cellpadding=0     class="container_tabel w100">
+            <table cellspacing="0" cellpadding="0" class="container_tabel w100">
                 <tr>
                     <!--左侧导航栏-->
                     <td v-if="menu_type == 'left' && showMenu" class="navLeft" valign="top" :width="parTd">
                         <!-- :class="{'isMinNav': !isHide}"-->
                         <leftMenu :menu="navSwitch"></leftMenu>
                     </td>
-                    <td valign="top" class="contRight w100 "
-                        :class="{top_contRight: (menu_type == 'top' && showMenu),left_contRight: (menu_type =='left' && showMenu),pd10: !showMenu}">
+                    <td
+                        valign="top"
+                        class="contRight w100"
+                        :class="{top_contRight: (menu_type == 'top' && showMenu),left_contRight: (menu_type =='left' && showMenu),pd10: !showMenu}"
+                    >
                         <!--右侧内容模块-->
                         <el-row>
-                            <el-col class="navTitle" :span="24" v-if="$route.name !=='首页' && $route.name !== 'error'">
+                            <el-col
+                                class="navTitle"
+                                :span="24"
+                                v-if="$route.name !=='首页' && $route.name !== 'error'"
+                            >
                                 <!-- 导航标题 -->
-                                <strong> | </strong><span>{{LANG[$route.name] || $route.name}}</span>
+                                <strong>|</strong>
+                                <span>{{LANG[$route.name] || $route.name}}</span>
                                 <el-tooltip class="item" effect="light" content="添加到快捷菜单" placement="right">
-                                    <a href="javascript:;" class="ml10" @click="addQuickMenu"><i
-                                        class="iconfont font16 icon-shoucangjia" style="color:#ff8040;"
-                                        v-if="showAddMenu"></i><i class="iconfont font16 icon-shoucang1"
-                                                                  style="color:#ff8040;" v-else></i></a>
+                                    <a href="javascript:;" class="ml10" @click="addQuickMenu">
+                                        <i
+                                            class="iconfont font16 icon-shoucangjia"
+                                            style="color:#ff8040;"
+                                            v-if="showAddMenu"
+                                        ></i>
+                                        <i class="iconfont font16 icon-shoucang1" style="color:#ff8040;" v-else></i>
+                                    </a>
                                 </el-tooltip>
                                 <!--<a :href="$route.path" target="_blank" class="">{{LANG['新窗口打开本页'] || '新窗口打开本页'}}</a>-->
                                 <el-tooltip class="item" effect="light" content="新窗口打开此页" placement="right">
-
                                     <a :href="$route.path+'?open=1'" target="_blank" @click="addNewWin()">
                                         <i class="iconfont font16 icon-dakaixinchuangkou"></i>
                                     </a>
@@ -146,8 +179,16 @@
             </table>
         </el-col>
         <el-col>
-            <formEdit :formTitel="formTitel" :formVisible="formVisible" :formConfig="formConfig" :type="type"
-                      :labelWidth="labelWidth" :isEdit="isEdit" @get-form="getForm" size="small"></formEdit>
+            <formEdit
+                :formTitel="formTitel"
+                :formVisible="formVisible"
+                :formConfig="formConfig"
+                :type="type"
+                :labelWidth="labelWidth"
+                :isEdit="isEdit"
+                @get-form="getForm"
+                size="small"
+            ></formEdit>
         </el-col>
         <el-col>
             <confirm :confirmConfig="confirmConfig" @do-confirm="doConfirm"></confirm>
@@ -158,76 +199,102 @@
     </el-row>
 </template>
 <script type="text/ecmascript-6">
-    import leftMenu from '../../components/leftMenu.vue';
-    import topMenu from '../../components/topMenu.vue';
-    import langeage from '../../components/language.vue';
-    import formEdit from '../../components/formEdit.vue';
-    import confirm from '../../components/confirm.vue';
-    import msgNotification from './messageNotification.vue';
-    import theme from '../../components/theme.vue';
+    import leftMenu from "../../components/leftMenu.vue";
+    import topMenu from "../../components/topMenu.vue";
+    import langeage from "../../components/language.vue";
+    import formEdit from "../../components/formEdit.vue";
+    import confirm from "../../components/confirm.vue";
+    import msgNotification from "./messageNotification.vue";
+    import theme from "../../components/theme.vue";
     import ElCol from "element-ui/packages/col/src/col";
 
-    var selTheme = '';
+    var selTheme = "";
     //require('./themeMode/default.css');//默认皮肤文件;
     export default {
         data() {
             return {
                 LANG,
                 URL,
-                value5:'',
                 pickerOptions2: {
                     shortcuts: [
                         {
-                        text: '最近一周',
-                        onClick(picker) {
-                        const end = new Date();
-                        const start = new Date();
-                        start.setTime(start.getTime() - 3600 * 1000 * 24 * 7);
-                        picker.$emit('pick', [start, end]);
+                            text: "昨 天",
+                            onClick(picker) {
+                                const end = new Date();
+                                const start = new Date();
+                                start.setTime(start.getTime() - 3600 * 1000 * 24 * 1);
+                                picker.$emit("pick", [start, end]);
+                            }
+                        },
+                        {
+                            text: "最近一周",
+                            onClick(picker) {
+                                const end = new Date();
+                                const start = new Date();
+                                start.setTime(start.getTime() - 3600 * 1000 * 24 * 7);
+                                picker.$emit("pick", [start, end]);
+                            }
+                        },
+                        {
+                            text: "最近十天",
+                            onClick(picker) {
+                                const end = new Date();
+                                const start = new Date();
+                                start.setTime(start.getTime() - 3600 * 1000 * 24 * 10);
+                                picker.$emit("pick", [start, end]);
+                            }
+                        },
+                        {
+                            text: "最近一个月",
+                            onClick(picker) {
+                                const end = new Date();
+                                const start = new Date();
+                                start.setTime(start.getTime() - 3600 * 1000 * 24 * 30);
+                                picker.$emit("pick", [start, end]);
+                            }
                         }
-                    }, {
-                        text: '最近十天',
-                        onClick(picker) {
-                        const end = new Date();
-                        const start = new Date();
-                        start.setTime(start.getTime() - 3600 * 1000 * 24 * 10);
-                        picker.$emit('pick', [start, end]);
-                        }
-                    }, {
-                        text: '最近三十天',
-                        onClick(picker) {
-                        const end = new Date();
-                        const start = new Date();
-                        start.setTime(start.getTime() - 3600 * 1000 * 24 * 30);
-                        picker.$emit('pick', [start, end]);
-                        }
-                    }],
+                    ]
                 },
+                changIndexData: "",
+                changIndexDataShow:true,
                 userName: "",
                 navSwitch: false,
-                sysName: '后台管理系统',
-                theme: '主题',
+                sysName: "后台管理系统",
+                theme: "主题",
                 //管理后台的LOGO的地址
-                logoUrl: '',
-//                logodefault:URL.logoIcon,
+                logoUrl: "",
+                //                logodefault:URL.logoIcon,
                 logoImgType: true,
                 //音量切换
                 command: true,
-                currentPathNameParent: '',
+                currentPathNameParent: "",
                 dialogVisible: false,
-                parTd: '70',
+                parTd: "70",
                 isHide: true,
                 //修改密码
                 formConfig: [
-                    {"prop": "old-pw", "value": "", "type": "password", "label": "旧密码", "rules": [{"require": true}]},
-                    {"prop": "password", "value": "", "type": "password", "label": "密码", "rules": [{"require": true}]},
                     {
-                        "prop": "repeatPassword",
-                        "value": "",
-                        "label": "确认密码",
-                        "type": "repeatPassword",
-                        "rules": [{"require": true}]
-                    }],
+                        prop: "old-pw",
+                        value: "",
+                        type: "password",
+                        label: "旧密码",
+                        rules: [{require: true}]
+                    },
+                    {
+                        prop: "password",
+                        value: "",
+                        type: "password",
+                        label: "密码",
+                        rules: [{require: true}]
+                    },
+                    {
+                        prop: "repeatPassword",
+                        value: "",
+                        label: "确认密码",
+                        type: "repeatPassword",
+                        rules: [{require: true}]
+                    }
+                ],
                 type: "default",
                 formTitel: "",
                 labelWidth: "90px",
@@ -251,7 +318,7 @@
                 //表格消息
                 tableText: Array,
                 //主题皮肤
-                cssUrl: '',
+                cssUrl: "",
                 //登出确认
                 confirmConfig: {
                     state: false,
@@ -273,9 +340,9 @@
                     fn: ""
                 },
                 doConfirmLogin: false,
-                documentTitle: '',
-                showMenu: true,
-            }
+                documentTitle: "",
+                showMenu: true
+            };
         },
         components: {
             ElCol,
@@ -288,24 +355,34 @@
             topMenu: topMenu
         },
         watch: {
-            '$route'(to, from) {//监听路由改变
-                this.currentPathName = to.name;
-                this.showAddMenu = false;
-                for (let k in QUICKCD) {
-                    if (to.path === k) {
-                        this.showAddMenu = true;
+            $route: {
+                handler(to, from) {
+                    //监听路由改变
+                    this.currentPathName = to.name;
+                    this.showAddMenu = false;
+                    for (let k in QUICKCD) {
+                        if (to.path === k) {
+                            this.showAddMenu = true;
+                        }
                     }
-                }
-                //清除定时刷新
-                if (to.name != "首页") {
-                    window.clearInterval(window.TIME1);
-                }
-            }
+                    //清除定时刷新
+                    if (to.path != '/index') {
+                        this.changIndexDataShow = false
+                        window.clearInterval(window.TIME1);
+                    }else{
+                        this.changIndexDataShow = true
+                    }
+                },
+                //是否绑定初始值
+                immediate: true,
+                //深度监听
+                deep: true
+            },
         },
         methods: {
             //新增窗口修改窗口title
             addNewWin() {
-                window.localStorage['openNewWindow'] = 'openNewWindow';
+                window.localStorage["openNewWindow"] = "openNewWindow";
             },
             init() {
                 if (this.$route.query && this.$route.query.open) {
@@ -313,16 +390,18 @@
                 } else {
                     this.showMenu = true;
                 }
-                if (typeof(localStorage.getItem('sound')) === "undefined") {
-                    localStorage.setItem('sound', 'true');
+                if (typeof localStorage.getItem("sound") === "undefined") {
+                    localStorage.setItem("sound", "true");
                 }
-                this.logoUrl = URL.logoImg ? (URL.img + URL.logoImg) : '';
+                this.logoUrl = URL.logoImg ? URL.img + URL.logoImg : "";
                 this.menu_type = localStorage.menu_type || "left";
                 this.userName = sessionStorage.userName || "";
-                this.isOpenSound_message = localStorage.sound_message === 'true' ? true : false;
-                this.isOpenSound_line = localStorage.sound_line === 'true' ? true : false;
-                this.isOpenSound_out = localStorage.sound_out === 'true' ? true : false;
-                this.isOpenSound_rebate = localStorage.sound_rebate === 'true' ? true : false;
+                this.isOpenSound_message =
+                    localStorage.sound_message === "true" ? true : false;
+                this.isOpenSound_line = localStorage.sound_line === "true" ? true : false;
+                this.isOpenSound_out = localStorage.sound_out === "true" ? true : false;
+                this.isOpenSound_rebate =
+                    localStorage.sound_rebate === "true" ? true : false;
                 let _this = this;
                 if (!sessionStorage.sysTime) {
                     sessionStorage.sysTime = FORMATDATEPICKER(new Date());
@@ -332,19 +411,20 @@
                         emulateJson: true,
                         headers: {
                             "Content-Type": "application/json",
-//                            "Authorization": "Bearer " + sessionStorage.token
-                            "Authorization": sessionStorage.token
+                            //                            "Authorization": "Bearer " + sessionStorage.token
+                            Authorization: sessionStorage.token
                         },
                         validateStatus: function (status) {
                             return status;
                         }
                     };
                     if (sessionStorage.langkey) {
-                        URLCONFIG.headers['Accept-Language'] = LANGHEAD[sessionStorage.langkey];
+                        URLCONFIG.headers["Accept-Language"] =
+                            LANGHEAD[sessionStorage.langkey];
                     }
                 } else {
-//                    this.$message(LANG['登录超时，请重新登录！'] || '登录超时，请重新登录！');
-                    this.$router.push('/login');
+                    //                    this.$message(LANG['登录超时，请重新登录！'] || '登录超时，请重新登录！');
+                    this.$router.push("/login");
                     return;
                 }
                 if (sessionStorage.routers) {
@@ -356,9 +436,9 @@
                 this.command = true;
                 //检测localstorage是否有openNewWindow这个值 如果有就修改窗口title
                 this.documentTitle = document.title;
-                if (this.$route.query.open == '1') {
+                if (this.$route.query.open == "1") {
                     document.title = this.$route.name;
-                    window.localStorage.removeItem('openNewWindow');
+                    window.localStorage.removeItem("openNewWindow");
                 } else {
                     document.title = this.documentTitle;
                 }
@@ -366,35 +446,40 @@
             //取得导航时间
             getSysTime() {
                 let _this = this;
-                if (this.$route.path !== '/login') {
-                    this.$.autoAjax('get', URL.api + ROUTES.GET.timezone, '', {
-                        ok: (res) => {
+                if (this.$route.path !== "/login") {
+                    this.$.autoAjax("get", URL.api + ROUTES.GET.timezone, "", {
+                        ok: res => {
                             if (res.state == 0 && res.data) {
                                 //取得时区
                                 let t = res.data.time || "";
                                 let zone = res.data.zone || "";
                                 let str = res.data.p || "";
-                                t = t.replace(/\+.*$/, '').replace(/T/, ' ');
-                                let now = (new Date(t)).valueOf();
+                                t = t.replace(/\+.*$/, "").replace(/T/, " ");
+                                let now = new Date(t).valueOf();
                                 clearInterval(window.TIMEZONE);
                                 window.TIMEZONE = setInterval(function () {
                                     now += 1000;
                                     _this.time = zone + " ( " + str + " ) " + _this.getMyDate(now);
                                     sessionStorage.dateTime = now.toString();
                                     sessionStorage.sysTime = FORMATDATEPICKER(now);
-                                    sessionStorage.dateTimeStart = FORMATDATEPICKER(now) + ' 00:00:00';
-                                    sessionStorage.dateTimeEnd = FORMATDATEPICKER(now) + ' 23:59:59';
-                                }, 1000)
+                                    sessionStorage.dateTimeStart =
+                                        FORMATDATEPICKER(now) + " 00:00:00";
+                                    sessionStorage.dateTimeEnd =
+                                        FORMATDATEPICKER(now) + " 23:59:59";
+                                }, 1000);
                             }
                         },
-                        p: (p) => {
+                        p: p => {
                         },
                         error: e => {
-                            console.log(e)
+                            console.log(e);
                         }
-                    })
+                    });
                 }
-
+            },
+            //选择时间首页展示统计数据
+            changIndexFn(obj){
+                EVENT.$emit('changeIndexDate', obj);
             },
             change_menu_type(i) {
                 this.menu_type = i;
@@ -402,38 +487,38 @@
                 location.reload(true);
             },
             isOpenSoundFn_message(v) {
-                localStorage.setItem('sound_message', v.toString());
+                localStorage.setItem("sound_message", v.toString());
             },
             isOpenSoundFn_line(v) {
-                localStorage.setItem('sound_line', v.toString());
+                localStorage.setItem("sound_line", v.toString());
             },
             isOpenSoundFn_out(v) {
-                localStorage.setItem('sound_out', v.toString());
+                localStorage.setItem("sound_out", v.toString());
             },
             isOpenSoundFn_rebate(v) {
-                localStorage.setItem('sound_rebate', v.toString());
+                localStorage.setItem("sound_rebate", v.toString());
             },
             //获取主题
             getTheme(url) {
-                let style = document.createElement('link');
+                let style = document.createElement("link");
                 style.setAttribute("rel", "stylesheet");
                 style.setAttribute("href", url.theme);
                 style.onerror = function () {
-                    this.$message.error = (LANG["主题加载超时"] || "主题加载超时");
+                    this.$message.error = LANG["主题加载超时"] || "主题加载超时";
                 };
-                document.getElementsByTagName('HEAD')[0].appendChild(style);
+                document.getElementsByTagName("HEAD")[0].appendChild(style);
             },
             doOnerror() {
                 this.logoImgType = false;
             },
             //返回首页
             goIndex() {
-                this.$router.push({"path": "/index"});
+                this.$router.push({path: "/index"});
             },
             //退出登录
             logout() {
                 this.confirmConfig.state = true;
-                this.confirmConfig.msg = (this.LANG['确认要退出吗？'] || '确认要退出吗？');
+                this.confirmConfig.msg = this.LANG["确认要退出吗？"] || "确认要退出吗？";
                 this.confirmConfig.fn = "loginout";
             },
             //确认登出
@@ -443,30 +528,30 @@
                     uid: sessionStorage.userId,
                     username: sessionStorage.userName,
                     refresh_token: sessionStorage.refresh_token
-                }
+                };
                 if (obj.fn == "loginout") {
-                    this.$.autoAjax('post', URL.api + ROUTES.POST.admin.logout, query, {
-                        ok: (res) => {
+                    this.$.autoAjax("post", URL.api + ROUTES.POST.admin.logout, query, {
+                        ok: res => {
                             if (res.state == 0 && res.data) {
                                 sessionStorage.token = "";
                                 if (JUMPCONFIG && JUMPCONFIG.path) {
-                                    JUMPCONFIG.path = '';
+                                    JUMPCONFIG.path = "";
                                 }
                                 window.clearInterval(window.TIME1);
                                 this.$notify.success({
-                                    message: '你已安全退出登录！',
+                                    message: "你已安全退出登录！",
                                     offset: 40,
                                     duration: 3000
                                 });
-                                this.$router.push('/login');
+                                this.$router.push("/login");
                             }
                         },
                         p: () => {
                         },
                         error: e => {
-                            console.log(e)
+                            console.log(e);
                         }
-                    })
+                    });
                     if (obj.fn == "volSwitch") {
                         localStorage.msgSound = !this.command;
                         this.command = !this.command;
@@ -479,7 +564,7 @@
             doShowLogin(obj) {
                 this.loading = true;
                 if (obj.fn == "doLogin") {
-                    this.$router.push('/login');
+                    this.$router.push("/login");
                 }
             },
             //用户下接点击
@@ -502,32 +587,40 @@
             },
             //修改密码事件
             updatePass() {
-                this.formTitel = LANG['修改系统登录密码'] || '修改系统登录密码';
+                this.formTitel = LANG["修改系统登录密码"] || "修改系统登录密码";
                 this.formVisible.state = true;
             },
             //修改密码请求
             getForm(obj) {
                 let formData = {
-                    "old-pw": obj.formObj['old-pw'],
-                    "new-pw": obj.formObj['password'],
-                    "user_name": sessionStorage.userName
+                    "old-pw": obj.formObj["old-pw"],
+                    "new-pw": obj.formObj["password"],
+                    user_name: sessionStorage.userName
                 };
                 let _this = this;
-                this.$.autoAjax('patch', URL.api + ROUTES.PATCH.admin.pwd + "?id=" + sessionStorage.userId, formData, {
-                    ok: (res) => {
-                        if (res.state == 0 && res.data) {
-                            _this.$message.success(LANG['密码修改成功'] || '密码修改成功');
-                            _this.$router.push({path: '/login'});
-                        } else {
-                            _this.$message.error(LANG['密码修改失败，请稍候重试！'] || '密码修改失败，请稍候重试！');
+                this.$.autoAjax(
+                    "patch",
+                    URL.api + ROUTES.PATCH.admin.pwd + "?id=" + sessionStorage.userId,
+                    formData,
+                    {
+                        ok: res => {
+                            if (res.state == 0 && res.data) {
+                                _this.$message.success(LANG["密码修改成功"] || "密码修改成功");
+                                _this.$router.push({path: "/login"});
+                            } else {
+                                _this.$message.error(
+                                    LANG["密码修改失败，请稍候重试！"] ||
+                                    "密码修改失败，请稍候重试！"
+                                );
+                            }
+                        },
+                        p: () => {
+                        },
+                        error: e => {
+                            _this.$message.error(e.responseJSON.msg);
                         }
-                    },
-                    p: () => {
-                    },
-                    error: e => {
-                        _this.$message.error(e.responseJSON.msg)
                     }
-                })
+                );
             },
             //获取时间
             getMyDate(str) {
@@ -538,23 +631,34 @@
                     oHour = oDate.getHours(),
                     oMin = oDate.getMinutes(),
                     oSen = oDate.getSeconds(),
-                    oTime = oYear + '-' + this.getzf(oMonth) + '-' + this.getzf(oDay) + ' ' + this.getzf(oHour) + ':' + this.getzf(oMin) + ':' + this.getzf(oSen);//最后拼接时间
+                    oTime =
+                        oYear +
+                        "-" +
+                        this.getzf(oMonth) +
+                        "-" +
+                        this.getzf(oDay) +
+                        " " +
+                        this.getzf(oHour) +
+                        ":" +
+                        this.getzf(oMin) +
+                        ":" +
+                        this.getzf(oSen); //最后拼接时间
                 return oTime;
             },
             //补0操作
             getzf(num) {
                 if (parseInt(num) < 10) {
-                    num = '0' + num;
+                    num = "0" + num;
                 }
                 return num;
             },
             //网站初始化设置
             doWebSet() {
-                this.$router.push({path: '/loginsettings'});
+                this.$router.push({path: "/loginsettings"});
             },
             settingClick: function (e) {
                 e.stopPropagation();
-                this.isShowSettingWrap = !this.isShowSettingWrap
+                this.isShowSettingWrap = !this.isShowSettingWrap;
             },
             // 添加快捷菜单
             addQuickMenu() {
@@ -563,7 +667,11 @@
                 let success = -1;
                 let _this = this;
                 for (let i = 0; i < QUICKMENU.length; i++) {
-                    if (i > 3 && QUICKMENU[i].children && QUICKMENU[i].children.length > 0) {
+                    if (
+                        i > 3 &&
+                        QUICKMENU[i].children &&
+                        QUICKMENU[i].children.length > 0
+                    ) {
                         let childs = QUICKMENU[i].children;
                         for (let k in childs) {
                             if (childs[k].path === tempQuick.path) {
@@ -572,9 +680,11 @@
                                     delete QUICKCD[childs[k].path];
                                     QUICKMENU[5].children.splice(temp.quickmenukey, 1);
                                     _this.showAddMenu = false;
-                                    localStorage.removeItem('quickmenu');
+                                    localStorage.removeItem("quickmenu");
                                     localStorage.quickmenu = JSON.stringify(QUICKCD);
-                                    this.$message.success(LANG['快捷菜单删除成功'] || '快捷菜单删除成功');
+                                    this.$message.success(
+                                        LANG["快捷菜单删除成功"] || "快捷菜单删除成功"
+                                    );
                                     return;
                                 } else {
                                     if (QUICKMENU[5].children.length >= URL.quicknum) {
@@ -585,9 +695,11 @@
                                     QUICKMENU[5].children.push(childs[k]);
                                     QUICKCD[childs[k].path] = childs[k];
                                     _this.showAddMenu = true;
-                                    localStorage.removeItem('quickmenu');
+                                    localStorage.removeItem("quickmenu");
                                     localStorage.quickmenu = JSON.stringify(QUICKCD);
-                                    this.$message.success(LANG['快捷菜单添加成功'] || '快捷菜单添加成功');
+                                    this.$message.success(
+                                        LANG["快捷菜单添加成功"] || "快捷菜单添加成功"
+                                    );
                                     return;
                                 }
                             }
@@ -598,7 +710,7 @@
             // 检查快捷菜单是否已存在
             checkQuickMenu(path) {
                 let obj = {
-                    quickmenukey: '',
+                    quickmenukey: "",
                     del: false
                 };
                 let num = 0;
@@ -620,14 +732,14 @@
             },
             // 获取路由对象
             getRouters($router) {
-                $router.forEach((v) => {
+                $router.forEach(v => {
                     this.setRoutesList(v);
                     if (v.children && v.children.length > 0) {
-                        v.children.forEach((val) => {
-                            this.setRoutesList(val, 'two');
-                        })
+                        v.children.forEach(val => {
+                            this.setRoutesList(val, "two");
+                        });
                     }
-                })
+                });
             },
             // 跟据路由写值
             setRoutesList(obj, str) {
@@ -636,22 +748,26 @@
                     if (obj.path === routes[j].path && obj.name === routes[j].name) {
                         let list = obj.action || [];
                         routes[j].action = [];
-                        list.forEach((vOne) => {
+                        list.forEach(vOne => {
                             routes[j].action.push(vOne);
                         });
-                    } else if (routes[j].children && routes[j].children.length > 0 && str === 'two') {
+                    } else if (
+                        routes[j].children &&
+                        routes[j].children.length > 0 &&
+                        str === "two"
+                    ) {
                         for (let k = 0; k < routes[j].children.length; k++) {
-                            if ((obj.path) === routes[j].children[k].path) {
+                            if (obj.path === routes[j].children[k].path) {
                                 let listTwo = obj.action || [];
                                 routes[j].children[k].action = [];
-                                listTwo.forEach((vTwo) => {
+                                listTwo.forEach(vTwo => {
                                     routes[j].children[k].action.push(vTwo);
-                                })
+                                });
                             }
                         }
                     }
                 }
-            },
+            }
         },
         mounted() {
             let _this = this;
@@ -660,27 +776,31 @@
                 _this.getSysTime();
             }, 10 * 60 * 1000);
             $(function () {
-                let tableH = document.getElementsByClassName('container_tabel')[0], navLeftH = null;
-                if (localStorage.menu_type == 'left') {
-                    navLeftH = document.getElementsByClassName('nav-box')[0] || '';
+                let tableH = document.getElementsByClassName("container_tabel")[0],
+                    navLeftH = null;
+                if (localStorage.menu_type == "left") {
+                    navLeftH = document.getElementsByClassName("nav-box")[0] || "";
                 }
 
                 //横版适应高度
                 function minFn() {
                     if (tableH.style.minHeight) {
-                        tableH.style.minHeight = window.innerHeight + 'px';
-                        localStorage.menu_type == 'left' ? navLeftH.style.minHeight = window.innerHeight + 'px' : ''
+                        tableH.style.minHeight = window.innerHeight + "px";
+                        localStorage.menu_type == "left"
+                            ? (navLeftH.style.minHeight = window.innerHeight + "px")
+                            : "";
                     }
-                };
+                }
+
                 minFn();
-                $(window).on('load resize', function () {
+                $(window).on("load resize", function () {
                     minFn();
                     let wHeight = window.innerHeight;
-                    $('html').css('min-height', wHeight);
+                    $("html").css("min-height", wHeight);
                 });
-            })
+            });
 
-            $('body').on('click', () => {
+            $("body").on("click", () => {
                 this.isShowSettingWrap = false;
             });
         },
@@ -690,41 +810,39 @@
         directives: {
             settingWrapHeight: {
                 bind: function (el) {
-                    el.addEventListener('click', (e) => {
+                    el.addEventListener("click", e => {
                         e.stopPropagation();
-                    })
+                    });
                     const fn = () => {
-                        el.style.height = window.innerHeight - 70 + 'px';
-                        el.style.maxHeight = window.innerHeight - 70 + 'px';
-                        el.style.overflow = 'auto';
-                    }
+                        el.style.height = window.innerHeight - 70 + "px";
+                        el.style.maxHeight = window.innerHeight - 70 + "px";
+                        el.style.overflow = "auto";
+                    };
                     fn();
-                    window.onresize = () => (fn())
+                    window.onresize = () => fn();
                 }
             }
         },
         destroyed() {
             window.msgTimer = null;
         }
-    }
+    };
 </script>
 <style>
-    /*---滚动条的共用样式--*/
     .pcddMain .pd10 {
         padding: 10px;
     }
-
     .settingWrap {
         position: fixed;
         top: 44px;
         right: 1px;
         z-index: 1000;
-        background-color: #FFFFFF;
+        background-color: #ffffff;
         padding: 10px;
         width: 200px;
         border: 1px solid #dfe6ec;
         color: #48576a;
-        box-shadow: -5px 8px 19px #D3DCE6;
+        box-shadow: -5px 8px 19px #d3dce6;
     }
 
     .settingWrap .title {
@@ -739,24 +857,27 @@
         text-align: left;
     }
 
-    .fade-enter-active, .fade-leave-active {
-        transition: right .2s
+    .fade-enter-active,
+    .fade-leave-active {
+        transition: right 0.2s;
     }
 
-    .fade-enter, .fade-leave-to {
-        right: -201px
+    .fade-enter,
+    .fade-leave-to {
+        right: -201px;
     }
 
-    /*****************/
-    .pcddMain {
-        /*min-width: 860px;*/
+    .block {
+        height: 38px;
+        line-height: 38px;
     }
-
+    .block .el-input{
+        font-size:14px;
+    }
     .pcddMain .header .icon-zhuti {
         padding-bottom: 4px;
         vertical-align: middle;
     }
-
     .pcddMain .header {
         min-width: 880px;
         position: fixed;
@@ -764,30 +885,23 @@
         right: 0;
         z-index: 1000;
     }
-
     .pcddMain .top_header {
         line-height: 40px;
         height: 80px;
     }
-
     .pcddMain .left_header {
         line-height: 44px;
         height: 44px;
     }
-
     .pcddMain .header .volSwitch {
         margin-left: 20px;
-        /*top: -46px;*/
     }
-
     .pcddMain .header .sound-content {
         height: 45px;
     }
-
     .pcddMain .header .sound-content-switch {
         height: 165px;
     }
-
     .pcddMain .header .webSetting .webSetPath {
         color: #48576a;
     }
@@ -812,24 +926,15 @@
         vertical-align: middle;
     }
 
-    .pcddMain .header .logo strong, .pcddMain .header .logo i {
+    .pcddMain .header .logo strong,
+    .pcddMain .header .logo i {
         vertical-align: middle;
     }
-
-    /*.pcddMain .header .logo .backHome {*/
-    /*display: block;*/
-    /*width: 100%;*/
-    /*height: 100%;*/
-    /*text-decoration: none;*/
-    /*}*/
-
-    .pcddMain .header .headNav {
-        /*min-width: 950px;*/
+    .pcddMain .header_top_nav{
+        min-width: 1200px;
     }
-
     .pcddMain .header_top_nav,
     .pcddMain .header_top_menu {
-        /*min-width: 1000px;*/
         height: 40px;
     }
 
@@ -842,13 +947,7 @@
         min-width: 24px;
         display: block;
     }
-
-    .pcddMain .main {
-        /*min-width: 1130px;*/
-    }
-
     .pcddMain .main table {
-        /*width: 100%;*/
         border-style: none;
     }
 
@@ -867,7 +966,6 @@
         padding-top: 44px;
         width: 70px;
         min-width: 70px;
-
     }
 
     /*右侧内容快*/
@@ -878,7 +976,6 @@
     .pcddMain .main table .top_contRight {
         padding: 85px 8px 0 8px;
         /*min-width: 1200px;*/
-
     }
 
     .pcddMain .main table .left_contRight {

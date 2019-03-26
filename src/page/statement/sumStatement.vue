@@ -130,20 +130,20 @@
                         this.detailslabel = '代理报表详情' + this.label
                         this.levelList.push({name: '直属代理', "url": this.detailsUrl});
                         break
-                    case "member":
-                        this.showtype = "member";
+                    case "user":
+                        this.showtype = "user";
                         this.homeform = false;
                         this.isDetail = true;
-                        this.detailsUrl = this.tableUrl + "&type=member";
+                        this.detailsUrl = this.tableUrl + "&type=user";
                         this.detailslabel = '直属会员报表详情' + this.label
                         this.levelList.push({name: '直属会员'});
                         break
-                    case "level_agent":
+                    case "level":
 
                         this.homeform = false
                         this.isDetail = false;
                         this.levelAgent = true;
-                        this.detailsUrl = this.tableUrl + "&type=level_agent";
+                        this.detailsUrl = this.tableUrl + "&type=level";
                         this.detailslabel = this.label
                         this.levelList.push({name: '层级代理', "url": this.detailsUrl});
                         break

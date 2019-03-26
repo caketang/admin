@@ -35,7 +35,6 @@ import '../static/ueditor/lang/zh-cn/zh-cn'
 //引入自定义主题
 // import '../theme/index.css'
 Vue.prototype.$ = $;
-
 global.$ = $;
 import { Loading } from 'element-ui';
 global.EVENT = new Vue();

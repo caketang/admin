@@ -18,22 +18,18 @@
             "width": 200
         },
         {
-            "prop": "status",
+            "prop": "treaty_status",
             "label": "状 态",
             "disabled": true,
             "width": 150,
             "filters": [
                 {
-                    "text": "启 用",
-                    "value": "enable"
+                    "text": "未签约",
+                    "value": "release"
                 },
                 {
-                    "text": "禁 用",
-                    "value": "disable"
-                },
-                {
-                    "text": "删 除",
-                    "value": "delete"
+                    "text": "已签约",
+                    "value": "signing"
                 }
             ]
         },
@@ -47,8 +43,8 @@
                     "btnType": "text",
                     "label": "解约",
                     "fn": "doRescission",
-                    "prop":"status",
-                    "val":"enable"
+                    "prop":"treaty_status",
+                    "val":"signing"
                 }
             ]
         },
