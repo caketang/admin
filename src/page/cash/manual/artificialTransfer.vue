@@ -42,7 +42,11 @@
                                                @click="doHandle(item.fn,scope.row)" style="margin-right: 10px; margin-left: 0px;">
                                     </el-button>
                                 </div>
-                                <div v-if="scope.row['name'] != '主钱包' && scope.row['name'] != '总余额'">
+                                <div v-if="scope.row['name'] == '代理钱包'">
+                                    <el-button size="small" type="text" v-text="LANG['转入主钱包'] || '转入主钱包'"
+                                               @click="doHandle('childToMaster',scope.row)"></el-button>
+                                </div>
+                                <div v-if="scope.row['name'] != '主钱包' && scope.row['name'] != '代理钱包' && scope.row['name'] != '总余额'">
                                     <el-button size="small" type="text" v-text="LANG['子转主钱包'] || '子转主钱包'"
                                                @click="doHandle('childToMaster',scope.row)"></el-button>
                                     <el-button size="small" type="text" v-text="LANG['主转子钱包'] || '主转子钱包'"
@@ -544,12 +548,13 @@
 							this.note.truename = res.data.truename || '';
 							this.note.comment = res.data.comment || '';
 
-							let primaryAccount = res.data.primary;
-							let tableDate = res.data.secondary;
+							let primaryAccount = res.data.primary,tableDate = res.data.secondary,benefit = res.data.benefit[0];
 							let totalArr = {"name": "总余额", "balance": res.data.total_balance};
 							this.userCont.name = res.data.username;
 							this.userCont.uid = res.data.uid;
-							tableDate.forEach(function (json) {
+                            benefit.status = true;
+                            primaryAccount.push(benefit);
+							tableDate.forEach((json)=>{
 								primaryAccount.push(json);
 							});
 							this.tableDate = primaryAccount;

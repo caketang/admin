@@ -100,6 +100,7 @@
                         <el-col :span="12" class="item">
                             <el-form-item :label="LANG['手机'] || '手机'" :prop="permissions['mobile']?'':'mobile'">
                                 <el-input v-model="baseFrom['mobile']" :disabled="permissions['mobile']"></el-input>
+                                <el-tag type="primary" >{{(baseFromSafe['mobile'] == "1" ? "已验证" : "未验证")}}</el-tag>
                             </el-form-item>
                         </el-col>
                         <el-col :span="12" class="item">
@@ -400,7 +401,10 @@
                 baseFromSafe: {},
                 baseRules: {
                     email: [{validator: validateEmail,trigger: 'blur,change'}],
-                    truename: [{validator: validateHans,trigger: 'blur,change'}],
+                    truename: [
+                        {validator: validateHans,trigger: 'blur,change'},
+                        { min: 2, max: 7, message: '长度在 2 到 7 个字符', trigger: 'blur' }
+                        ],
                     mobile: [{validator: validateMobile,trigger: 'blur,change'}],
                     qq: [{validator: validateNumber,trigger: 'blur,change'}],
                     skype: [{validator: validateWeixinSkype,trigger: 'blur,change'}],

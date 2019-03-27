@@ -14,7 +14,7 @@
             </el-col>
             <el-col class="border1">
                 <el-form :model="accountFrom" label-width="100px" >
-                    <el-col :span="12" class="item">
+                    <el-col :span="24" class="item">
                         <el-form-item :label="LANG['主帐户'] || '主帐户'">
                             <span>{{accountFrom['balance'] | formatMoney}}</span>
                         </el-form-item>
@@ -24,11 +24,11 @@
                             <span>{{accountFrom['freeze_withdraw'] | formatMoney}}</span>
                         </el-form-item>
                     </el-col>
-                    <!-- <el-col :span="12" class="item">
-                        <el-form-item :label="LANG['追号冻结'] || '追号冻结'">
-                            <span>{{accountFrom['freeze_append'] | formatMoney}}</span>
+                    <el-col :span="12" class="item">
+                        <el-form-item :label="LANG['代理钱包'] || '代理钱包'">
+                            <span>{{accountFrom['benefit_balance'] | formatMoney}}</span>
                         </el-form-item>
-                    </el-col> -->
+                    </el-col>
                     <!-- S.渲染子钱包 -->
                     <!-- 不确定子钱包个数，确保最后一个子钱包能占满整行 -->
                     <el-col v-for="(item, index) in accountFrom.children" :span="(index % 2 === 0 && index === accountFrom.children.length - 1) ? 24 : 12" class="item" :key="item.game_type">
