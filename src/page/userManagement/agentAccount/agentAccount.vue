@@ -18,14 +18,14 @@
             </div>
             <el-col>
                 <tablegrid
-                        :columnsUrl="columnsUrl"
-                        :tableUrl="tableUrl"
-                        :tableCheck="true"
-                        :isCreated="isCreated"
-                        :tabOperation="tabOperation"
-                        :updated="updated"
-                        @do-operation="doOperation"
-                        @do-handle="doHandle"></tablegrid>
+                    :columnsUrl="columnsUrl"
+                    :tableUrl="tableUrl"
+                    :tableCheck="true"
+                    :isCreated="isCreated"
+                    :tabOperation="tabOperation"
+                    :updated="updated"
+                    @do-operation="doOperation"
+                    @do-handle="doHandle"></tablegrid>
             </el-col>
         </div>
 
@@ -79,7 +79,6 @@
                     </el-form-item>
                     <el-form-item :label="LANG['有效会员数'] || '有效会员数'" prop="valid_user" v-if="showDetail">
                         <el-input v-model="editForm.valid_user" type="number">
-                            <template slot="append">%</template>
                         </el-input>
                     </el-form-item>
                     <el-form-item :label="LANG['体育退佣百分比'] || '体育退佣百分比'" prop="bkge_percent" v-if="showDetail">
@@ -470,8 +469,8 @@
                             query['rebet_percent'] = rebet_percent === "|||" ? "" : rebet_percent;
                             query['earn_start'] = parseInt(query['earn_start'], 10) * 100;
                             query['valid_bet_start'] = parseInt(query['valid_bet_start'], 10) * 100;
-
-                            this.$.autoAjax('put',URL.api + ROUTES.PUT.user.agent.$,query, {
+                            query.rebate = {key:''};
+                            this.$.autoAjax('put', URL.api + ROUTES.PUT.user.agent.$, query, {
                                 ok: (res) => {
                                     console.log(res);
                                     if (res.state == 0 && res.data) {
@@ -505,8 +504,8 @@
                                 password: query.password,
                                 comment: query.comment,
                             } = this.editForm);
-
-                            this.$.autoAjax('put',URL.api + ROUTES.PUT.user.agent.$,query, {
+                            query.rebate = {key:''};
+                            this.$.autoAjax('put', URL.api + ROUTES.PUT.user.agent.$, query, {
                                 ok: (res) => {
                                     if (res.state == 0 && res.data) {
                                         _this.$message.success(LANG[res.msg] || res.msg);
@@ -575,7 +574,7 @@
                 query.ids = dataId;
                 query.status = 1;
 
-                this.$.autoAjax('patch',URL.api + ROUTES.PATCH.user.agent.$,query, {
+                this.$.autoAjax('patch', URL.api + ROUTES.PATCH.user.agent.$, query, {
                     ok: (res) => {
                         if (res.state == 0 && res.data) {
                             _this.$message.success(LANG['启用成功'] || '启用成功')
@@ -638,7 +637,7 @@
                 //     } else {
                 //         _this.$message.error(LANG['停用失败'] || '停用失败');
                 //     }
-				//
+                //
                 // })
             },
             //批量表格按钮事件
@@ -711,7 +710,7 @@
                         query.ids = dataId;
                         query.status = 1;
 
-                        this.$.autoAjax('patch',URL.api + ROUTES.PATCH.user.agent.$,query, {
+                        this.$.autoAjax('patch', URL.api + ROUTES.PATCH.user.agent.$, query, {
                             ok: (res) => {
                                 if (res.state == 0 && res.data) {
                                     _this.$message.success(LANG['启用成功'] || '启用成功')
@@ -751,7 +750,7 @@
                         query.ids = dataId;
                         query.status = 3;
 
-                        this.$.autoAjax('patch',URL.api + ROUTES.PATCH.user.agent.$,query, {
+                        this.$.autoAjax('patch', URL.api + ROUTES.PATCH.user.agent.$, query, {
                             ok: (res) => {
                                 if (res.state == 0 && res.data) {
                                     _this.updated = true;
@@ -791,7 +790,7 @@
             },
             //查询
             doQuery(obj) {
-                let temp = this.localQuery ={};
+                let temp = this.localQuery = {};
                 for (let k in obj.item) {
                     if (k === 'similar') {
                         temp[k] = obj.item[k] ? 1 : 0;
@@ -829,15 +828,15 @@
             retrunPage() {
                 if (!this.$route.query.id && !this.$route.query.type) {
                     let updateKeys = '';
-                    for(let i in this.localQuery){
-                        if(this.localQuery[i]){
+                    for (let i in this.localQuery) {
+                        if (this.localQuery[i]) {
                             updateKeys = updateKeys + i + ',' + this.localQuery[i] + ',';
                         }
                     }
-                    setTimeout(()=>{
+                    setTimeout(() => {
                         this.agentHigher = updateKeys;
-                    },500)
-                    this.tableUrl = this.baseUrl +  this.addSearch(this.localQuery);
+                    }, 500)
+                    this.tableUrl = this.baseUrl + this.addSearch(this.localQuery);
                     this.isCreated = true;
                     this.isDetail = false;
                 } else {
@@ -900,7 +899,7 @@
                     this.updated = true;
                 }, 500)
                 this.searchConfig[1]['value'] = this.$route.query.name;
-            }else if (this.$route.query.id) {
+            } else if (this.$route.query.id) {
                 this.doDetial({id: this.$route.query.id, type: this.$route.query.type})
             } else {
                 this.tableUrl = URL.api + ROUTES.GET.user.agent.$

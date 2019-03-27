@@ -2,7 +2,7 @@
     <div id="memberHierarchy_table">
         <div id="tableSingle" :class="scrollClass" ref="tableSingle" :style="tableWidth">
             <div id="tables">
-                <table cellspacing="0" cellpadding="0" border="0" class="el-table el-table__header el-table--border">
+                <table cellspacing="0" cellpadding="0" border="1" class="el-table-data">
                     <colgroup>
                         <col width=10%></col>
                         <col width=10%></col>
@@ -18,50 +18,50 @@
                     </colgroup>
                     <thead>
                     <tr>
-                        <th colspan="1" rowspan="2" class="el-table_1_column_36 is-leaf">
+                        <th colspan="1" rowspan="2" class="">
                             <div class="cell">{{LANG['层级名称'] || '层级名称'}}</div>
                         </th>
-                        <th colspan="1" rowspan="2" class="el-table_1_column_36 is-leaf">
+                        <th colspan="1" rowspan="2" class="">
                             <div class="cell">{{LANG['描述'] || '描述'}}</div>
                         </th>
-                        <th colspan="6" rowspan="1" class="el-table_1_column_36 is-leaf">
+                        <th colspan="6" rowspan="1" class="">
                             <div class="cell">{{LANG['加入条件'] || '加入条件'}}</div>
                         </th>
-                        <th colspan="1" rowspan="2" class="el-table_1_column_36 is-leaf">
+                        <th colspan="1" rowspan="2" class="">
                             <div class="cell">{{LANG['会员人数'] || '会员人数'}}</div>
                         </th>
                         <!--新增备注-->
-                        <th colspan="1" rowspan="2" class="el-table_1_column_36 is-leaf">
+                        <th colspan="1" rowspan="2" class="">
                             <div class="cell">{{LANG['备注'] || '备注'}}<br/></div>
                         </th>
-                        <th colspan="1" rowspan="2" class="el-table_1_column_36 is-leaf">
+                        <th colspan="1" rowspan="2" class="">
                             <div class="cell">{{LANG['操作'] || '操作'}}<br/></div>
                         </th>
                     </tr>
                     <tr>
                         <!--新增区间存款-->
-                        <!--<th colspan="1" rowspan="1" class="el-table_1_column_36 is-leaf">-->
+                        <!--<th colspan="1" rowspan="1" class="">-->
                             <!--<div class="cell">{{LANG['会员加入时间'] || '会员加入时间'}}</div>-->
                         <!--</th>-->
-                        <!--<th colspan="1" rowspan="1" class="el-table_1_column_36 is-leaf">-->
+                        <!--<th colspan="1" rowspan="1" class="">-->
                             <!--<div class="cell">{{LANG['存款时间'] || '存款时间'}}<br/></div>-->
                         <!--</th>-->
-                        <th colspan="1" rowspan="1" class="el-table_1_column_37_column_38 is-leaf">
+                        <th colspan="1" rowspan="1" class="">
                             <div class="cell">{{LANG['区间存款总额'] || '区间存款总额'}}</div>
                         </th>
-                        <th colspan="1" rowspan="1" class="el-table_1_column_37_column_38 is-leaf">
+                        <th colspan="1" rowspan="1" class="">
                             <div class="cell">{{LANG['存款次数'] || '存款次数'}}</div>
                         </th>
-                        <th colspan="1" rowspan="1" class="el-table_1_column_37_column_38 is-leaf">
+                        <th colspan="1" rowspan="1" class="">
                             <div class="cell">{{LANG['存款总额'] || '存款总额'}}</div>
                         </th>
-                        <th colspan="1" rowspan="1" class="el-table_1_column_37_column_38 is-leaf">
+                        <th colspan="1" rowspan="1" class="">
                             <div class="cell">{{LANG['最大存款额'] || '最大存款额'}}</div>
                         </th>
-                        <th colspan="1" rowspan="1" class="el-table_1_column_37_column_38 is-leaf">
+                        <th colspan="1" rowspan="1" class="">
                             <div class="cell">{{LANG['提款次数'] || '提款次数'}}</div>
                         </th>
-                        <th colspan="1" rowspan="1" class="el-table_1_column_37_column_38 is-leaf">
+                        <th colspan="1" rowspan="1" class="">
                             <div class="cell">{{LANG['提款总额'] || '提款总额'}}</div>
                         </th>
                     </tr>
@@ -280,28 +280,45 @@
         },
     }
 </script>
-<style scoped>
-    .cell {
-        text-align: center;
+<style scoped lang="less">
+    #memberHierarchy_table{
+        .el-table-data{
+            border-color: #e9ecf3;
+            font-size:14px;
+            color:#303133;
+            th{
+                background:#F2F6FC;
+                line-height: 40px;
+                height: 40px;
+                color:#606266;
+            }
+            tr:hover{
+                background: #F2F6FC;
+            }
+        }
+        .cell {
+            text-align: center;
+        }
+
+        .el-table .cell .sucess_text {
+            color: #13CE66
+        }
+
+        .el-table .cell .danger_text {
+            color: #FF4949
+        }
+
+        .scrollX #tables {
+            /*min-width: 1920px;*/
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+
+        .scrollX #tables table {
+            /*min-width: 1800px;*/
+            overflow-x: auto;
+            white-space: nowrap;
+        }
     }
 
-    .el-table .cell .sucess_text {
-        color: #13CE66
-    }
-
-    .el-table .cell .danger_text {
-        color: #FF4949
-    }
-
-    .scrollX #tables {
-        /*min-width: 1920px;*/
-        overflow-x: auto;
-        white-space: nowrap;
-    }
-
-    .scrollX #tables table {
-        /*min-width: 1800px;*/
-        overflow-x: auto;
-        white-space: nowrap;
-    }
 </style>

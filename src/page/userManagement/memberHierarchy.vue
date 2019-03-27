@@ -1,3 +1,4 @@
+
 <template>
     <div id="memberHierarchy" class="page clearfix" v-loading="loading">
         <div class="w100 main el-card box-card el-tabs">
@@ -115,7 +116,6 @@
     import confirm from '../../components/confirm.vue'
     import userLevelSet from '../../components/userLevelSet.vue'
     import memberHierarSet from '../../components/memberHierarSet.vue'
-
     export default {
         data() {
             return {
@@ -147,10 +147,10 @@
                     {
                         "prop": "name",
                         "value": "",
-                        "type": "text",
+                        "type": "select",
                         "label": "层级名称",
-                        "placeholder": "请输入2到20个字符长度的名称",
-                        "rules": [{"require": true, "max": 20, "min": 2}]
+                        "placeholder": "请选择会员层级",
+                        "list":[]
                     },
                     {
                         "prop": "memo",
