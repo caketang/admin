@@ -1,8 +1,45 @@
 {
     "columns": [
         {
+            "prop": "level",
+            "label": "会员层级",
+            "filters": [
+                {
+                    "value": "1",
+                    "text": "VIP 1"
+                },{
+                    "value": "2",
+                    "text": "VIP 2"
+                },{
+                    "value": "3",
+                    "text": "VIP 3"
+                },{
+                    "value": "4",
+                    "text": "VIP 4"
+                },{
+                    "value": "5",
+                    "text": "VIP 5"
+                },{
+                    "value": "6",
+                    "text": "VIP 6"
+                },{
+                    "value": "7",
+                    "text": "VIP 7"
+                },{
+                    "value": "8",
+                    "text": "VIP 8"
+                },{
+                    "value": "9",
+                    "text": "VIP 9"
+                },{
+                    "value": "10",
+                    "text": "VIP 10"
+                }
+            ]
+        },
+        {
             "prop": "name",
-            "label": "层级名称"
+            "label": "层级别称"
         },
         {
             "prop": "memo",

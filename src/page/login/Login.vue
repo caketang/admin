@@ -191,6 +191,7 @@
                 SETSESSIONSTORAGE('deposit', 'false');
                 SETSESSIONSTORAGE('withdrawals', 'false');
                 SETSESSIONSTORAGE('rebate', 'false');
+                SETSESSIONSTORAGE('agentWithdraw', 'false');
                 $router.forEach((v) => {
                     this.setRoutesList(v);
                     if (v.children && v.children.length > 0) {
@@ -211,6 +212,9 @@
                     }
                     if (obj.path === '/memberGetOut' && obj.action.length > 0) {
                         SETSESSIONSTORAGE('withdrawals', 'true');
+                    }
+                    if (obj.path === '/agentDrawing' && obj.action.length > 0) {
+                        SETSESSIONSTORAGE('agentWithdraw', 'true');
                     }
                     if (obj.path === '/apply' && obj.action.length > 0) {
                         SETSESSIONSTORAGE('rebate', 'true');

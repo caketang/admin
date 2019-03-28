@@ -20,7 +20,10 @@
                     <div class="cell  tCent" v-text="LANG['输赢'] || '输赢'"></div>
                 </th>
                 <th colspan="2" rowspan="1" class="el-table_1_column_36 is-leaf">
-                    <div class="cell  tCent" v-text="LANG['彩金'] || '彩金'"></div>
+                    <div class="cell  tCent" v-text="LANG['总中奖金额'] || '总中奖金额'"></div>
+                </th>
+                <th colspan="2" rowspan="1" class="el-table_1_column_36 is-leaf">
+                    <div class="cell  tCent" v-text="LANG['活动礼金'] || '活动礼金'"></div>
                 </th>
                 <th colspan="2" rowspan="1" class="el-table_1_column_36 is-leaf">
                     <div class="cell  tCent" v-text="LANG['贡献'] || '贡献'"></div>
@@ -54,6 +57,11 @@
                     <div class="cell tCent">
                         <span
                             :class="{state_danger: parseFloat(item.lose_earn) < 0 }">{{item.lose_earn | formatMoney}}</span>
+                    </div>
+                </td>
+                <td colspan="2" class="el-table_1_column_19">
+                    <div class="cell tCent">
+                        <span>{{item.send_prize_sum | formatMoney(4)}}</span>
                     </div>
                 </td>
                 <td colspan="2" class="el-table_1_column_19">
@@ -92,6 +100,11 @@
                     <div class="cell tCent">
                         <span
                             :class="{state_danger: parseFloat(totalData.lose_earn) < 0 }">{{totalData.lose_earn | formatMoney}}</span>
+                    </div>
+                </td>
+                <td colspan="2" class="el-table_1_column_19">
+                    <div class="cell tCent">
+                        <span>{{totalData.send_prize | formatMoney(4)}}</span>
                     </div>
                 </td>
                 <td colspan="2" class="el-table_1_column_19">

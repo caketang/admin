@@ -1591,6 +1591,18 @@ global.ARRAYS = {
         {"label": "H5", "value": "h5"},
         {"label": "其他", "value": "reserved"}
     ],
+    LEVELSLIST:[
+        {"label": "VIP 1", "value": "1"},
+        {"label": "VIP 2", "value": "2"},
+        {"label": "VIP 3", "value": "3"},
+        {"label": "VIP 4", "value": "4"},
+        {"label": "VIP 5", "value": "5"},
+        {"label": "VIP 6", "value": "6"},
+        {"label": "VIP 7", "value": "7"},
+        {"label": "VIP 8", "value": "8"},
+        {"label": "VIP 9", "value": "9"},
+        {"label": "VIP 10", "value": "10"},
+    ],
     //代理注册来源
     PALYORIGINL: [
         {"label": "全部", "value": ""},

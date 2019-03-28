@@ -37,8 +37,15 @@
       "type":"divisionMoney"
     },
     {
+      "prop": "send_prize_sum",
+      "label": "中奖金额",
+      "disabled": true,
+       "width":"150",
+      "type":"divisionMoney,fours"
+    },
+    {
       "prop": "bonus_sum",
-      "label": "彩金",
+      "label": "活动礼金",
       "disabled": true,
        "width":"150",
       "type":"divisionMoney,fours"

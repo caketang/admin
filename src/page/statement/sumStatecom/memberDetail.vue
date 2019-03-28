@@ -12,7 +12,6 @@
                 :tableCheck="false"
                 :pageSet="true"
                 :tableIndex="false"
-                @do-handle="doHandle"
                 :showRefresh="false">
                 <!-- 汇总 -->
                 <tr :span="12" class="sumdiv ml20" slot="other" v-if="sumShow">
@@ -40,6 +39,11 @@
                         <div class="cell">
                             <span class="font16 "
                                   :class="{state_danger: parseFloat(allData.lose_earn) < 0 }">{{allData.lose_earn | formatMoney}} </span>
+                        </div>
+                    </td>
+                    <td colspan="1">
+                        <div class="cell">
+                            <span class="font16 ">{{allData.send_prize | formatMoney(4)}} </span>
                         </div>
                     </td>
                     <td colspan="1">
@@ -107,33 +111,17 @@
                     this.columnsUrl = '../../../../static/json/statement/sumStatement/agentcolumns.json'
                 }
             },
-            doHandle(item) {
-                switch (item.fn) {
-                    case "openMember" :
-                        this.openMember(item.row);
-                        break;
-
-                }
-            },
-            openMember(obj) {
-                this.tableUrl = this.baseUrl + "&pid=" + obj.id + "&type=user"
-                this.columnsUrl = '../../../../static/json/statement/sumStatement/membercolumns.json';
-                if (this.$parent.$parent.pushUrls) {
-                    this.$parent.$parent.pushUrls({name: obj.name, url: this.tableUrl, type: 'agent'});
-                }
-
-            },
             //取表数据
             getTableData(obj) {
                 this.allData = {};
                 if (obj.allData && obj.allData.attributes) {
                     let model = obj.allData.attributes;
-                    this.sumShow = false;
+                    if(obj.item.length) this.sumShow = true;
                     for (let i in model) {
                         this.allData[i] = model[i];
                     }
                 } else {
-                    this.sumShow = true;
+                    this.sumShow = false;
                 }
             },
         },

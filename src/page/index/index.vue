@@ -48,7 +48,7 @@
                                     ></el-switch>
                                 </p>
                                 <p>
-                                    {{LANG['出款提示'] || '出款提示'}}
+                                    {{LANG['会员出款提示'] || '会员出款提示'}}
                                     <el-switch
                                         v-model="isOpenSound_out"
                                         @change="isOpenSoundFn_out"
@@ -56,13 +56,21 @@
                                     ></el-switch>
                                 </p>
                                 <p>
-                                    {{LANG['新优惠申请提示'] || '新优惠申请提示'}}
+                                    {{LANG['代理出款提示'] || '代理出款提示'}}
                                     <el-switch
-                                        v-model="isOpenSound_rebate "
-                                        @change="isOpenSoundFn_rebate"
+                                        v-model="sound_agent_out"
+                                        @change="isOpenSoundAgentFn_out"
                                         class="volSwitch"
                                     ></el-switch>
                                 </p>
+                                <!--<p>-->
+                                    <!--{{LANG['新优惠申请提示'] || '新优惠申请提示'}}-->
+                                    <!--<el-switch-->
+                                        <!--v-model="isOpenSound_rebate "-->
+                                        <!--@change="isOpenSoundFn_rebate"-->
+                                        <!--class="volSwitch"-->
+                                    <!--&gt;</el-switch>-->
+                                <!--</p>-->
                             </div>
                             <div class="title">{{LANG['语言设置'] || '语言设置'}}</div>
                             <div class="langeage-content">
@@ -325,6 +333,7 @@
                 isOpenSound_message: true,
                 isOpenSound_line: true,
                 isOpenSound_out: true,
+                sound_agent_out: true,
                 isOpenSound_rebate: true,
                 showAddMenu: false,
                 //导航状态开关
@@ -395,6 +404,7 @@
                     localStorage.sound_message === "true" ? true : false;
                 this.isOpenSound_line = localStorage.sound_line === "true" ? true : false;
                 this.isOpenSound_out = localStorage.sound_out === "true" ? true : false;
+                this.sound_agent_out = localStorage.sound_agent_out === "true" ? true : false;
                 this.isOpenSound_rebate =
                     localStorage.sound_rebate === "true" ? true : false;
                 let _this = this;
@@ -489,6 +499,9 @@
             },
             isOpenSoundFn_out(v) {
                 localStorage.setItem("sound_out", v.toString());
+            },
+            isOpenSoundAgentFn_out(v) {
+                localStorage.setItem("sound_agent_out", v.toString());
             },
             isOpenSoundFn_rebate(v) {
                 localStorage.setItem("sound_rebate", v.toString());

@@ -4,8 +4,6 @@
       "prop": "name",
       "label": "代理帐号",
       "width":"100",
-      "type":"link",
-      "fn":"openMember",
       "disabled": true
     },
     {
@@ -37,8 +35,15 @@
       "type":"divisionMoney"
     },
     {
+      "prop": "send_prize_sum",
+      "label": "中奖金额",
+      "disabled": true,
+      "width":"150",
+      "type":"divisionMoney"
+    },
+    {
       "prop": "bonus_sum",
-      "label": "彩金",
+      "label": "活动礼金",
       "disabled": true,
       "width":"150",
       "type":"divisionMoney,fours"

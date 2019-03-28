@@ -145,12 +145,19 @@
                 //新增会员层级
                 formConfig: [
                     {
-                        "prop": "name",
+                        "prop": "level",
                         "value": "",
                         "type": "select",
-                        "label": "层级名称",
+                        "label": "会员层级",
                         "placeholder": "请选择会员层级",
-                        "list":[]
+                        "list":ARRAYS.LEVELSLIST
+                    },
+                    {
+                        "prop": "name",
+                        "value": "",
+                        "type": "text",
+                        "label": "层级别称",
+                        "placeholder": "请输入会员层级别称",
                     },
                     {
                         "prop": "memo",

@@ -43,18 +43,31 @@
                 </el-badge>
             </el-tooltip>
         </li>
+        <!-- 代理出款 -->
+        <li v-if="autoMusic.root_agent === 'true'">
+            <a href="javascript:;" style="display: none">
+                <audio id='audioPlay3' src='../../../static/music/chukuan.wav'></audio>
+            </a>
+            <el-tooltip class="item" effect="light" :content="LANG['代理提现'] || '代理提现' " placement="bottom">
+                <el-badge :value="agentWithdraw" class="item" rel="wobble-vertical">
+                    <a href="javascript:;" class="el-dropdown-link" @click="agentDrawing">
+                        <span class="font14">{{LANG['代理出款'] || '代理出款'}}</span>
+                    </a>
+                </el-badge>
+            </el-tooltip>
+        </li>
         <!-- 新优惠申请 -->
         <!--<li v-if="autoMusic.root_rebate === 'true'">-->
-            <!--<a href="javascript:;" style="display: none">-->
-                <!--<audio id='audioPlay3' src="../../../static/music/gsrk.wav"></audio>-->
-            <!--</a>-->
-            <!--<el-tooltip class="item" effect="light" :content="LANG['优惠申请'] || '优惠申请'" placement="bottom">-->
-                <!--<el-badge :value="rebate" class="item" rel="wobble-vertical">-->
-                    <!--<a href="javascript:;" class="el-dropdown-link" @click="doRebate">-->
-                        <!--<span class="font14">{{LANG['优惠'] || '优惠'}}</span>-->
-                    <!--</a>-->
-                <!--</el-badge>-->
-            <!--</el-tooltip>-->
+        <!--<a href="javascript:;" style="display: none">-->
+        <!--<audio id='audioPlay3' src="../../../static/music/gsrk.wav"></audio>-->
+        <!--</a>-->
+        <!--<el-tooltip class="item" effect="light" :content="LANG['优惠申请'] || '优惠申请'" placement="bottom">-->
+        <!--<el-badge :value="rebate" class="item" rel="wobble-vertical">-->
+        <!--<a href="javascript:;" class="el-dropdown-link" @click="doRebate">-->
+        <!--<span class="font14">{{LANG['优惠'] || '优惠'}}</span>-->
+        <!--</a>-->
+        <!--</el-badge>-->
+        <!--</el-tooltip>-->
         <!--</li>-->
     </ul>
 </template>
@@ -68,8 +81,15 @@
                 oMessage: 0,
                 offlines: 0,
                 withdraws: 0,
+                agentWithdraw: 0,
                 rebate: 0,
-                autoMusic: {root_common:'',root_deposit: '', root_withdrawals: '', root_rebate: ''},
+                autoMusic: {
+                    root_common: '',
+                    root_deposit: '',
+                    root_withdrawals: '',
+                    root_rebate: '',
+                    root_agent: ''
+                },
                 root_routers: "",
                 startTime: 0,
                 num: 0
@@ -85,6 +105,7 @@
                 this.autoMusic.root_deposit = sessionStorage.deposit || '';
                 this.autoMusic.root_withdrawals = sessionStorage.withdrawals || '';
                 this.autoMusic.root_rebate = sessionStorage.rebate || '';
+                this.autoMusic.root_agent = sessionStorage.agentWithdraw || '';
                 this.root_routers = this.$route.path;
             },
             //系统消息跳转
@@ -96,6 +117,9 @@
             },
             offlineReceipts() {
                 this.$router.push({path: '/offlineReceipts', query: {status: 'pending'}});
+            },
+            agentDrawing() {
+                this.$router.push({path: '/agentDrawing', query: {status: 'pending'}});
             },
             doRebate() {
                 this.$router.push({path: '/apply'});
@@ -117,45 +141,68 @@
                             _this.oMessage = FORMATINT(res.data.common) || 0;
                             _this.offlines = FORMATINT(res.data.offline_deposit) || 0;
                             _this.withdraws = FORMATINT(res.data.withdraw) || 0;
+                            _this.agentWithdraw = FORMATINT(res.data.agent_withdraw) || 0;
                             //优惠
                             _this.rebate = FORMATINT(res.data.rebate) || 0;
-                            let oMessage = _this.oMessage, offlines = _this.offlines, withdraws = _this.withdraws, rebate = _this.rebate;
+                            let oMessage = _this.oMessage, offlines = _this.offlines, withdraws = _this.withdraws,
+                                rebate = _this.rebate, agentWithdraw = _this.agentWithdraw
                             localStorage.setItem('msgNum', this.oMessage)
-                            let audioPlay = document.querySelector('#audioPlay'),audioPlay1 = '', audioPlay2 = '', audioPlay3 = '';
+                            let audioPlay = document.querySelector('#audioPlay'), audioPlay1 = '', audioPlay2 = '',
+                                audioPlay3 = '';
                             if (this.autoMusic.root_withdrawals) {
                                 audioPlay1 = document.querySelector('#audioPlay1');//会员提现
                             }
                             if (this.autoMusic.root_deposit === 'true') {
                                 audioPlay2 = document.querySelector('#audioPlay2');//公司入款
                             }
+                            if (this.autoMusic.root_agent === 'true') {
+                                audioPlay3 = document.querySelector('#audioPlay3');//代理提现
+                            }
 //                            if (this.autoMusic.root_rebate === 'true') {
 //                                audioPlay3 = document.querySelector('#audioPlay3');//优惠申请
 //                            }
                             //消息
-                            if (oMessage || offlines || withdraws || rebate) {
+                            if (oMessage || offlines || withdraws || rebate || agentWithdraw) {
                                 if ((localStorage.getItem('sound_message') === 'true') && (oMessage > 0)) {
                                     audioPlay.play();
                                     audioPlay.onended = () => {
-                                        if ((localStorage.getItem('sound_line') === 'true') && (_this.autoMusic.root_deposit === 'true')&& (offlines > 0)) { // 入款
+                                        if ((localStorage.getItem('sound_line') === 'true') && (_this.autoMusic.root_deposit === 'true') && (offlines > 0)) { // 入款
                                             audioPlay2.play();
                                             audioPlay2.onended = () => {
                                                 if ((localStorage.getItem('sound_out') === 'true') && (_this.autoMusic.root_withdrawals === 'true') && (withdraws > 0)) { // 出款
                                                     audioPlay1.play();
+                                                    audioPlay1.onended = () => {
+                                                        if ((localStorage.getItem('sound_agent_out') === 'true') && (_this.autoMusic.root_agent === 'true') && (agentWithdraw > 0)) { // 代理出款
+                                                            audioPlay3.play();
+                                                        }
+                                                    }
                                                 }
                                             }
                                         } else if ((localStorage.getItem('sound_out') === 'true') && (withdraws > 0) && (_this.autoMusic.root_withdrawals === 'true')) { // 出款
                                             audioPlay1.play();
+                                        }else if ((localStorage.getItem('sound_agent_out') === 'true') && (agentWithdraw > 0) && (_this.autoMusic.root_agent === 'true')) { // 代理出款
+                                            audioPlay3.play();
                                         }
                                     }
                                 } else if ((localStorage.getItem('sound_line') === 'true') && (offlines > 0) && (_this.autoMusic.root_deposit === 'true')) {// 入款
                                     audioPlay2.play();
                                     audioPlay2.onended = () => {
-                                        if ((localStorage.getItem('sound_out') === 'true') && (withdraws > 0) && (_this.autoMusic.root_withdrawals === 'true') ) { // 出款
+                                        if ((localStorage.getItem('sound_out') === 'true') && (withdraws > 0) && (_this.autoMusic.root_withdrawals === 'true')) { // 出款
                                             audioPlay1.play();
+                                            audioPlay1.onended = () => {
+                                                if ((localStorage.getItem('sound_agent_out') === 'true') && (_this.autoMusic.root_agent === 'true') && (agentWithdraw > 0)) { // 代理出款
+                                                    audioPlay3.play();
+                                                }
+                                            }
                                         }
                                     }
                                 } else if ((localStorage.getItem('sound_out') === 'true') && (withdraws > 0) && (_this.autoMusic.root_withdrawals === 'true')) { // 出款
                                     audioPlay1.play();
+                                    audioPlay1.onended = () => {
+                                        if ((localStorage.getItem('sound_agent_out') === 'true') && (_this.autoMusic.root_agent === 'true') && (agentWithdraw > 0)) { // 代理出款
+                                            audioPlay3.play();
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -194,7 +241,7 @@
                 this.num = 0;
             } else {
                 window.msgTimer = setInterval(() => {
-                    setTimeout(()=>{
+                    setTimeout(() => {
                         if (this.$route.path !== '/login') {
                             this.getMsg();
                         }

@@ -47,6 +47,11 @@
                 </td>
                 <td colspan="1">
                     <div class="cell">
+                        <span class="font16 ">{{allData.send_prize | formatMoney(4)}} </span>
+                    </div>
+                </td>
+                <td colspan="1">
+                    <div class="cell">
                         <span class="font16 ">{{allData.bonus | formatMoney(4)}} </span>
                     </div>
                 </td>
@@ -154,17 +159,16 @@
             },
             //取表数据
             getTableData(obj) {
-                console.log(obj)
                 this.allData = {};
                 if (obj.allData && obj.allData.attributes) {
                     let model = obj.allData.attributes;
-                    this.sumShow = false;
+                    if(obj.item.length) this.sumShow = true;
                     for (let i in model) {
                         this.allData[i] = model[i];
                     }
 
                 } else {
-                    this.sumShow = true;
+                    this.sumShow = false;
                 }
 
             },

@@ -2120,6 +2120,11 @@
 		.el-table th, .el-table td {
 			min-width: 60px;
 		}
+        .el-table{
+            tr:hover{
+                background: #F2F6FC;
+            }
+        }
 		/*表格*/
 		.el-table .cell, .el-table th > div {
 			padding-left: 4px;

@@ -1,7 +1,19 @@
 <template>
     <div id="agentDrawing" class="clearfix" v-loading="loading">
         <div class="search">
-            <formEdit :formTitel="formTitel" :showAdd=false :formVisible="formVisible" :formConfig="searchConfig" :type="type" :labelWidth="labelWidth" :isEdit="isEdit" @do-query="doQuery" @reset-form="resetForm"></formEdit>
+            <formEdit :formTitel="formTitel"
+                      :showAdd=false
+                      :formType="formType"
+                      :formVisible="formVisible"
+                      :formConfig="searchConfig"
+                      :type="type"
+                      :labelWidth="labelWidth"
+                      :initDate="initDate"
+                      :isEdit="isEdit"
+                      :updateDate="updateDate"
+                      @do-query="doQuery"
+                      @reset-form="resetForm">
+            </formEdit>
         </div>
         <el-col>
             <tablegrid
@@ -34,10 +46,12 @@
                 formTitel: "",
                 labelWidth: "90px",
                 isEdit: {},
+                updateDate: "",
                 formVisible: {
                     state: false
                 },
-                searchConfig: [{"prop": "agent_name", "value": "", "type": "text", "label": "代理用户名"},
+                searchConfig: [
+                    {"prop": "agent_name", "value": "", "type": "text", "label": "代理用户名"},
                     {
                         "type": "dateGroup",
                         "label": "起止时间",
@@ -51,7 +65,7 @@
                         "prop": "status", "value": "", "label": "状态", "type": "select",
                         "list": [{"label": "待处理", "value": "pending"},
                             {"label": "已支付", "value": "paid"},
-                            {"label": "已拒绝","value": "refused" }]
+                            {"label": "已取消","value": "refused" }]
                     },
                     {"prop": "no", "value": "", "type": "text", "label": "订单号"},
                 ],
@@ -72,6 +86,9 @@
                     msg:"",
                     fn:""
                 },
+                formType: "",
+                // 是否初始化时间
+                initDate: false,
             }
         },
         components: {
@@ -82,9 +99,12 @@
         },
         methods: {
             init(){
+                // 判断query是否有值
+                if (JSON.stringify(this.$route.query) == "{}") {
+                    this.tableUrl = URL.api + ROUTES.GET.commission.withdrawal + "?time_begin=" + sessionStorage.dateTimeStart + "&time_end=" + sessionStorage.dateTimeEnd;
+                }
                 this.columnsUrl="/static/json/agent/agentDrawing/columns.json"
-                this.tableUrl=URL.api + ROUTES.GET.commission.withdrawal + "?time_begin=" + sessionStorage.dateTimeStart + "&time_end=" + sessionStorage.dateTimeEnd;
-                this.baseUrl=URL.api + ROUTES.GET.commission.withdrawal;
+                this.baseUrl = URL.api + ROUTES.GET.commission.withdrawal;
             },
             doHandle(item){
                 this.updated = false;
@@ -371,6 +391,21 @@
         },
         created(){
             this.init()
+        },
+        activated() {
+            this.formType = 'update' + (Math.random() * 9 + 1);
+            if (this.$route.query.status) {
+                let arrs = [];
+                if (this.$route.query.status === 'pending') {
+                    arrs.push('待处理');
+                }
+                this.searchConfig[2]['value'] = arrs[0];
+                this.initDate = true;
+                this.tableUrl = URL.api + ROUTES.GET.commission.withdrawal + "?status=" + this.$route.query.status;
+            }
+        },
+        deactivated() {
+            this.$route.query.status = null;
         }
     }
 </script>
