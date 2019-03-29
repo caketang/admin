@@ -47,11 +47,15 @@
             "sortable": true
         },
         {
-            "prop": "deposit_min,deposit_max",
-            "label": "区间存款总额",
+            "prop": "advance_money",
+            "label": "充值总额",
             "sortable": true,
-            "type": "connect",
-            "delimiter": "-"
+            "type": "divisionMoney"
+        },
+        {
+            "prop": "advance_valid_bet",
+            "label": "打码量",
+            "sortable": true
         },
         {
             "prop": "deposit_times",

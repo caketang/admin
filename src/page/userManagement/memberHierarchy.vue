@@ -144,7 +144,7 @@
                 tableData: [],
                 //新增会员层级
                 formConfig: [
-                    {
+                    {//0
                         "prop": "level",
                         "value": "",
                         "type": "select",
@@ -152,14 +152,14 @@
                         "placeholder": "请选择会员层级",
                         "list":ARRAYS.LEVELSLIST
                     },
-                    {
+                    {//1
                         "prop": "name",
                         "value": "",
                         "type": "text",
                         "label": "层级别称",
                         "placeholder": "请输入会员层级别称",
                     },
-                    {
+                    {//2
                         "prop": "memo",
                         "value": "",
                         "type": "textarea",
@@ -167,58 +167,58 @@
                         "placeholder": "请输入描述",
                         "rules": [{"max": 40}]
                     },
-//                    {
-//                        "type": "dateGroup", "label": "会员加入时间", "prop": [
-//                        {"prop": "register_stime", "value": "", "label": "开始时间"},
-//                        {"prop": "register_etime", "value": "", "label": "结束时间"}]
-//                    },
-//                    {
-//                        "type": "dateGroup", "label": "存款时间", "prop": [
-//                        {"prop": "deposit_stime", "value": "", "label": "开始时间"},
-//                        {"prop": "deposit_etime", "value": "", "label": "结束时间"}]
-//                    },
-                    {
-                        "type": "numberGroup", "label": "区间存款总额", "prop": [
-                        {"prop": "deposit_min", "value": '', "type": "number",},
-                        {"prop": "deposit_max", "value": '', "type": "number"}],
-                        "rules": [{"require": true, "varMax": 99999999}, {"moreZero": true}]
+                    {//3
+                        "prop": "advance_money",
+                        "value": "",
+                        "type": "number",
+                        "label": "充值金额",
+                        "placeholder": "请输入晋级充值金额",
+                        "rules": [{"require": true}, {"varMax": 99999999}, {"moreZero": true}]
                     },
-                    {
+                    {//4
+                        "prop": "advance_valid_bet",
+                        "value": "",
+                        "type": "number",
+                        "label": "打码量",
+                        "placeholder": "请输入晋级打码量",
+                        "rules": [{"require": true, "max": 9, "min:": 1}, {"moreZero": true, "integer": true}]
+                    },
+                    {//5
                         "prop": "deposit_times",
                         "value": "",
                         "label": "存款次数",
                         "type": "number",
                         "rules": [{"require": true, "max": 9, "min:": 1}, {"moreZero": true, "integer": true}]
                     },
-                    {
+                    {//6
                         "prop": "deposit_money",
                         "value": "",
                         "label": "存款总额",
                         "type": "number",
                         "rules": [{"require": true}, {"varMax": 99999999}, {"moreZero": true}]
                     },
-                    {
+                    {//7
                         "prop": "max_deposit_money",
                         "value": "",
                         "label": "最大存款额",
                         "type": "number",
                         "rules": [{"require": true, "max": 9, "min:": 1}, {"varMax": 99999999}, {"moreZero": true}]
                     },
-                    {
+                    {//8
                         "prop": "withdraw_times",
                         "value": "",
                         "label": "提款次数",
                         "type": "number",
                         "rules": [{"require": true, "max": 9, "min:": 1}, {"moreZero": true, "integer": true}]
                     },
-                    {
+                    {//9
                         "prop": "withdraw_count",
                         "value": "",
                         "label": "提款总额",
                         "type": "number",
                         "rules": [{"require": true, "max": 9, "min:": 1}, {"varMax": 99999999}, {"moreZero": true}]
                     },
-                    {
+                    {//10
                         "prop": "comment",
                         "value": "",
                         "type": "textarea",
@@ -334,23 +334,6 @@
 
                 //会员搜索
                 members: '',
-//                LevelsearchConfig: [{
-//                    "prop": "members",
-//                    "value": "",
-//                    "type": "textarea",
-//                    "clean":true,
-//                    "label": "用户名",
-//                    "placeholder": LANG["多用户之间用英文逗号隔开"] || "多用户之间用英文逗号隔开",
-//                    "width": "300"
-//                },],
-//                Leveltype: "search",
-//                LevellabelWidth: "60px",
-//                LevelformVisible: {
-//                    state: false
-//                },
-//                LevelisEdit: {
-//                    state: false
-//                },
                 //会员表格是否显示
                 LevelTableShow: false,
                 // 跳转会员显示列表
@@ -571,28 +554,30 @@
             },
             //保存新增表格
             getForm(obj) {
+                console.log(obj)
                 let str = "";
                 let url = "";
                 let model = {};
-                for (let k in obj.formObj) {
-                    model[k] = obj.formObj[k];
-                }
+//                for (let k in obj.formObj) {
+//                    model[k] = obj.formObj[k];
+//                }
                 let _this = this;
-                model.withdraw_times = parseInt(model.withdraw_times);
-                model.withdraw_count = FORMATMultiplyMoney(model.withdraw_count);
-                model.deposit_times = parseInt(model.deposit_times);
-                model.deposit_money = FORMATMultiplyMoney(model.deposit_money);//deposit_money
-                model.max_deposit_money = FORMATMultiplyMoney(model.max_deposit_money);
-                model.deposit_min = FORMATMultiplyMoney(model.deposit_min);
-                model.deposit_max = FORMATMultiplyMoney(model.deposit_max);
-                model.deposit_etime = FORMATDATEPICKER(model.deposit_etime);
-                model.deposit_stime = FORMATDATEPICKER(model.deposit_stime);
-                model.register_etime = FORMATDATEPICKER(model.register_etime);
-                model.register_stime = FORMATDATEPICKER(model.register_stime);
+                model.level = obj.formObj.level
+                model.name = obj.formObj.name
+                model.memo = obj.formObj.memo
+                model.advance_money = FORMATMultiplyMoney(obj.formObj.advance_money);//deposit_money
+                model.advance_valid_bet = obj.formObj.advance_valid_bet
+                model.deposit_times = obj.formObj.deposit_times
+                model.deposit_money = FORMATMultiplyMoney(obj.formObj.deposit_money);
+                model.max_deposit_money = FORMATDATEPICKER(obj.formObj.deposit_etime);
+                model.withdraw_times = obj.formObj.withdraw_times
+                model.withdraw_count = FORMATDATEPICKER(obj.formObj.withdraw_count);
+                model.comment = obj.formObj.comment
+               // model.register_stime = FORMATDATEPICKER(model.register_stime);
                 this.formType == "add" ? url = URL.api + ROUTES.PUT.user.level.$ : url = URL.api + ROUTES.PUT.user.level.$ + '/' + this.nowId;
-                if (model.deposit_max / 100 > _this.formConfig[4].rules[0].varMax) {
-                    _this.$message.error('区间存款总额不能大于' + _this.formConfig[4].rules[0].varMax)
-                } else {
+//                if (model.deposit_max / 100 > _this.formConfig[4].rules[0].varMax) {
+//                    _this.$message.error('区间存款总额不能大于' + _this.formConfig[4].rules[0].varMax)
+//                } else {
                     this.updated = false;
                     this.loading = true;
                     for (let k in model) {
@@ -628,22 +613,29 @@
                             console.log(e.responseJSON.msg)
                         }
                     })
-                }
+//                }
             },
             //编辑
             doEdit(row) {
+                console.log(row)
                 this.loading = true;
                 this.formType = "";
                 this.nowId = row.id;
                 this.formTitel = "修改会员层级";
                 let _this = this;
                 setTimeout(() => {
-                    FORMVAL(row, _this.formConfig);
-                    _this.formConfig[2].prop[0].value = FORMATMONEY(row['deposit_min']).toString();
-                    _this.formConfig[2].prop[1].value = FORMATMONEY(row['deposit_max']).toString();
-                    _this.formConfig[4].value = FORMATMONEY(row['deposit_money']).toString();
-                    _this.formConfig[5].value = FORMATMONEY(row['max_deposit_money']).toString();
-                    _this.formConfig[7].value = FORMATMONEY(row['withdraw_count']).toString();
+//                    FORMVAL(row, _this.formConfig);
+                    _this.formConfig[0].value = row['level'];
+                    _this.formConfig[1].value = row['name'];
+                    _this.formConfig[2].value = row['memo'];
+                    _this.formConfig[3].value = FORMATMONEY(row['advance_money']).toString();
+                    _this.formConfig[4].value = row['advance_valid_bet'];
+                    _this.formConfig[5].value = row['deposit_times']
+                    _this.formConfig[6].value = FORMATMONEY(row['deposit_money']).toString();
+                    _this.formConfig[7].value = FORMATMONEY(row['max_deposit_money']).toString();
+                    _this.formConfig[8].value = row['withdraw_times']
+                    _this.formConfig[9].value = FORMATMONEY(row['withdraw_count']).toString();
+                    _this.formConfig[10].value = row['comment'];
                     _this.formType = "edit";
                     _this.isEdit.state = true;
                     _this.editVisible.state = true;

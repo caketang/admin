@@ -15,6 +15,7 @@
                         <col></col>
                         <col></col>
                         <col></col>
+                        <col></col>
                         <col width=10%></col>
                     </colgroup>
                     <thead>
@@ -28,7 +29,7 @@
                         <th colspan="1" rowspan="2">
                             <div class="cell">{{LANG['描述'] || '描述'}}</div>
                         </th>
-                        <th colspan="6" rowspan="1">
+                        <th colspan="7" rowspan="1">
                             <div class="cell">{{LANG['加入条件'] || '加入条件'}}</div>
                         </th>
                         <th colspan="1" rowspan="2">
@@ -50,8 +51,14 @@
                         <!--<th colspan="1" rowspan="1">-->
                             <!--<div class="cell">{{LANG['存款时间'] || '存款时间'}}<br/></div>-->
                         <!--</th>-->
+                        <!--<th colspan="1" rowspan="1">-->
+                            <!--<div class="cell">{{LANG['区间存款总额'] || '区间存款总额'}}</div>-->
+                        <!--</th>-->
                         <th colspan="1" rowspan="1">
-                            <div class="cell">{{LANG['区间存款总额'] || '区间存款总额'}}</div>
+                            <div class="cell">{{LANG['充值总额'] || '充值总额'}}</div>
+                        </th>
+                        <th colspan="1" rowspan="1">
+                            <div class="cell">{{LANG['打码量'] || '打码量'}}</div>
                         </th>
                         <th colspan="1" rowspan="1">
                             <div class="cell">{{LANG['存款次数'] || '存款次数'}}</div>

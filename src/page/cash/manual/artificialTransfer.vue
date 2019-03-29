@@ -719,7 +719,6 @@
                 if (!this.judgmentProp(formInline_prop)) {
                     return;
                 }
-
                 //对输入数值参数进行转换
                 formData.amount = formData.amount?formData.amount.toFixed(2) * 100:'';
                 formData.play_code = formData.play_code?formData.play_code.toFixed(2) * 100:'';
@@ -741,8 +740,9 @@
 					p: () => {
 					},
 					error: e => {
-						console.log(e)
-					}
+                        this.$message.error(e.responseJSON.msg);
+                        this.formControlBtn.deposit_boolean = false;
+                    }
 				})
             },
             //手动提款
@@ -792,7 +792,8 @@
 					p: () => {
 					},
 					error: e => {
-						console.log(e)
+                        this.$message.error(e.responseJSON.msg);
+                        this.formControlBtn.cash_boolean = false;
 					}
 				})
             },
@@ -850,8 +851,9 @@
 					p: () => {
 					},
 					error: e => {
-						console.log(e)
-					}
+                        this.$message.error(e.responseJSON.msg);
+                        this.formControlBtn.discount_boolean = false;
+                    }
 				})
             },
             //手动减少余额
@@ -889,7 +891,8 @@
 					p: () => {
 					},
 					error: e => {
-						console.log(e)
+                        this.$message.error(e.responseJSON.msg);
+                        this.formControlBtn.reduce_boolean = false;
 					}
 				})
             },
@@ -937,7 +940,8 @@
 					p: () => {
 					},
 					error: e => {
-						console.log(e)
+                        this.$message.error(e.responseJSON.msg);
+                        this.formControlBtn.add_boolean = false;
 					}
 				})
             },
@@ -981,7 +985,8 @@
 					p: () => {
 					},
 					error: e => {
-						console.log(e)
+                        this.$message.error(e.responseJSON.msg);
+                        this.formControlBtn.rebate_boolean = false;
 					}
 				})
             },
@@ -1027,7 +1032,8 @@
 					p: () => {
 					},
 					error: e => {
-						console.log(e)
+                        this.$message.error(e.responseJSON.msg);
+                        this.formControlBtn.childtomaster_boolean = false;
 					}
 				})
             },
@@ -1076,7 +1082,8 @@
 					p: () => {
 					},
 					error: e => {
-						console.log(e)
+                        this.$message.error(e.responseJSON.msg);
+                        this.formControlBtn.mastertochild_boolean = false;
 					}
 				})
             },

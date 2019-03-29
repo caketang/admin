@@ -198,7 +198,6 @@
                         })
                     break;
                     case "refuse":
-
                         this.$.autoAjax('patch',URL.api + ROUTES.PATCH.commission.withdrawal,{"status":3,"ids":_this.nowId.toString()}, {
                             ok: (res) => {
                                 if(res.state == 0 && res.data){
@@ -216,22 +215,8 @@
                                 console.log(e)
                             }
                         })
-                        // this.$http.patch(URL.api + ROUTES.PATCH.commission.withdrawal,JSON.stringify({"status":3,"ids":_this.nowId.toString()}),URLCONFIG).then((res) => {
-                        //     if(res.data.state == 0 && res.data.data){
-                        //         //刷新数据
-                        //         this.$message.success(LANG["取消成功"] || '取消成功');
-                        //         _this.updated = true
-                        //     }else{
-                        //         this.$message.error(LANG["取消失败"] || '取消失败');
-                        //     }
-                        //     _this.loading = false;
-                        // })
                     break;
                     case "doBatchPay":
-                        // if(_this.selection.length == 0){
-                        //     this.$message.error(LANG["请选择一条数据"] || '请选择一条数据');
-                        //     return;
-                        // }
                         let payid = [];
                         for(let oLi in _this.selection){
                             let oStatus =   _this.selection[oLi].status;
@@ -271,29 +256,11 @@
                                     console.log(e)
                                 }
                             })
-                            // this.$http.patch(URL.api + ROUTES.PATCH.commission.withdrawal,JSON.stringify(payObj),URLCONFIG).then((res) => {
-                            //     if(res.data.state == 0 && res.data.data){
-                            //         let success_list = res.data.data.success;
-                            //         //刷新数据
-                            //         _this.$message.success(LANG["批量" + success_list.length + "条数据支付成功"] || '批量' + success_list.length + '条数据支付成功');
-                            //         _this.updated  = true;
-                            //         //清空选中的数据
-                            //         this.selection=[];
-                            //     }else{
-                            //         _this.$message.error(LANG["批量支付失败"] || '批量支付失败');
-                            //         //清空选中的数据
-                            //         _this.selection=[];
-                            //     }
-                            // })
                         }else{
                             this.$message.error(LANG['没有未处理的申请'] || '没有未处理的申请')
                         }
                         break;
                     case "doBatchRefuse":
-                        // if(_this.selection.length == 0){
-                        //     this.$message.error(LANG["请选择一条数据"] || '请选择一条数据');
-                        //     return;
-                        // };
                         let id = [];
                         for(let oLi in _this.selection){
                             let oStatus =   _this.selection[oLi].status;
@@ -302,9 +269,6 @@
                             }
 
                         }
-//                        let id = _this.selection.filter(function(i){
-//                            return i.status === "1";
-//                        })
                         if(id.length > 0) {
                             let ids = '';
                             if (id.length === 1) {

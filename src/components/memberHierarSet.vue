@@ -101,7 +101,7 @@
                 levelsList: [],
                 // 下接数据更新
                 listKey: "",
-                listArr: [],
+                listArr:[],
                 lockType: '',
                 //选中的行数据
                 mode: [],
@@ -126,7 +126,6 @@
         },
         methods: {
             init(str) {
-                this.loading = true;
 //				this.tableUrl = URL.api + ROUTES.GET.user.level.group;
                 this.baseUrl = URL.api + ROUTES.GET.user.level.group;
                 //锁定
@@ -149,30 +148,35 @@
                 this.infoUrl = URL.api + ROUTES.PATCH.user.info.infoLevel;
                 this.navSelect = false;
                 this.listKey = "id";
+//                this.listArr.push({
+//                    "value": "",
+//                    "label": "默认：不操作"
+//                })
+                this.listArr = global.ARRAYS.LEVELSLIST
                 //会员层级列表
-                let levlsListUrl = URL.api + ROUTES.GET.user.levelsList;
-                this.$.autoAjax('get', levlsListUrl, '', {
-                    ok: (res) => {
-                        let mode = res.data;
-                        this.listArr.splice(0, this.listArr.length);
-                        this.listArr.push({
-                            "value": "",
-                            "label": "默认：不操作"
-                        })
-                        for (let i in res.data) {
-                            this.listArr.push({
-                                "value": mode[i].id,
-                                "label": mode[i].name
-                            })
-                        }
-                        this.loading = false;
-                    },
-                    p: () => {
-                    },
-                    error: e => {
-                        this.$message.error(LANG['未知错误，请点击“刷新”按钮后，重试'] || '未知错误，请点击“刷新”按钮后，重试');
-                    }
-                })
+//                let levlsListUrl = URL.api + ROUTES.GET.user.levelsList;
+//                this.$.autoAjax('get', levlsListUrl, '', {
+//                    ok: (res) => {
+//                        let mode = res.data;
+//                        this.listArr.splice(0, this.listArr.length);
+//                        this.listArr.push({
+//                            "value": "",
+//                            "label": "默认：不操作"
+//                        })
+////                        for (let i in res.data) {
+////                            this.listArr.push({
+////                                "value": mode[i].id,
+////                                "label": mode[i].name
+////                            })
+////                        }
+//                        this.loading = false;
+//                    },
+//                    p: () => {
+//                    },
+//                    error: e => {
+//                        this.$message.error(LANG['未知错误，请点击“刷新”按钮后，重试'] || '未知错误，请点击“刷新”按钮后，重试');
+//                    }
+//                })
             },
             handleCloselockDialog() {
                 this.lockDialogShow = false;
