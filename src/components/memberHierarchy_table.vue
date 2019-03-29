@@ -18,7 +18,7 @@
                         <col></col>
                         <col width=10%></col>
                     </colgroup>
-                    <thead>
+                    <thead v-if="dataModel.length !== 0">
                     <tr>
                         <th colspan="1" rowspan="2">
                             <div class="cell">{{LANG['会员层级'] || '会员层级'}}</div>
@@ -80,12 +80,15 @@
                     <tr v-for="(col,index) in dataModel">
                         <td class="el-table_1_column_19" v-for="(item,key) in columnList">
                             <div class="cell" v-if="item.type != 'button'">
-                                <span v-if="item.type === 'link'" @click="doHandle(col,item.fn)" class="success">
-                                    <el-button size="small" v-if="col[item.prop]" @click="doHandle(item,col.fn)"
-                                               type="text"
-                                               v-text="col[item.prop]"></el-button>
+                                <div v-if="item.type === 'link'" @click="doHandle(col,item.fn)" class="success">
+                                    <a href="javascript:;" v-if="col[item.prop]" @click="doHandle(item,col.fn)" class="state_blue">
+                                        {{col[item.prop]}}
+                                    </a>
+                                    <!--<el-button size="small" v-if="col[item.prop]" @click="doHandle(item,col.fn)"-->
+                                               <!--type="text"-->
+                                               <!--v-text="col[item.prop]"></el-button>-->
                                     <span v-if="!col[item.prop]">{{col[item.prop]}}</span>
-                                </span>
+                                </div>
                                 <span
                                     v-if="item.filters == undefined && item.type !='date' && item.type != 'divisionMoney' && item.type !=='link'">{{col[item.prop]}}</span>
                                 <span
@@ -100,9 +103,11 @@
                                 </span>
                                 <span
                                     v-if="item.type == 'divisionMoney'">{{isNaN(parseInt(col[item.prop])) ? 0 : parseInt(col[item.prop]) / 100}}</span>
-                                <span v-if="item.filters != undefined"
-                                      :class="{sucess_text: (col[item.prop] == 1),danger_text:(col[item.prop] == 0)}">{{col[item.prop] | formatSex(item.filters)}}</span>
-                                <span class="defutFont" v-if="col['t_default'] == '0'">[ {{LANG['默认'] || '默认'}} ]</span>
+                                <div style="line-height: 24px">
+                                   <span v-if="item.filters != undefined"
+                                         :class="{sucess_text: (col[item.prop] == 1),danger_text:(col[item.prop] == 0)}">{{col[item.prop] | formatSex(item.filters)}}</span>
+                                    <p class="defutFont" v-if="col['t_default'] == '0'">[ {{LANG['默认'] || '默认'}} ]</p>
+                                </div>
                             </div>
                             <div v-if="item.type == 'button' && col['t_default'] === '1'" class="cell">
                                 <div v-for="btn in item.btnGroup" style="float:left;margin-left:5px;">
@@ -132,7 +137,6 @@
 </template>
 <script>
     import Vue from 'vue'
-
     Vue.filter("formatDate", function (v, format) {
         if (parseInt(v).toString().length == 10) {
             v = parseInt(v) * 1000;
