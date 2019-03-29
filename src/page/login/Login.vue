@@ -14,6 +14,10 @@
                            type="password" rows="2" validateevent="true" class="el-input__inner" @keyup.13="doLogin">
                 </div>
             </el-form-item>
+            <el-form-item prop="gocode" v-if="!validate">
+                <el-input type="text" v-model="loginForm.gocode" auto-complete="off"
+                          :placeholder="LANG['请输入动态安全码'] || '请输入动态安全码'"></el-input>
+            </el-form-item>
             <el-form-item prop="checked" v-if="!validate">
                 <el-checkbox v-model="loginForm.checked" style="color:#fff;">{{LANG['记住密码'] || '记住密码'}}</el-checkbox>
             </el-form-item>
@@ -37,6 +41,7 @@
                 loginForm: {
                     username: "",
                     password: "",
+                    gocode: "",
                     code: "",
                     checked: true,
                     uid: 0,
@@ -50,9 +55,9 @@
                         {required: true, message: LANG['请输入密码'] || '请输入密码', trigger: "blur"},
                         {min: 3, max: 10, message: LANG['密码在3位至10位'] || '密码在3位至10位', trigger: "blur"}
                     ],
-//                    code:[
-//                        {required: true, message: LANG['请输入M令牌的验证码'] || '请输入M令牌的验证码', trigger: "blur"},
-//                        {min: 6, max: 6, message: LANG['请输入6位验证码'] || '请输入6位验证码', trigger: "blur"}]
+                    gocode: [
+                        {required: false, message: LANG['请输入6位动态安全验证码'] || '请输入6位动态安全验证码', trigger: "blur"},
+                        {min: 6, max: 6, message: LANG['请输入6位验证码'] || '请输入6位验证码', trigger: "blur"}]
                 },
                 //是否需要验证
                 validate: false,
@@ -153,13 +158,13 @@
                                                     duration: 2000
                                                 });
                                                 //请求资源站
-                                                this.$.autoAjax('post', URL.api + ROUTES.POST.admin.login.stsToken,'', {
-                                                    ok:v => {
-                                                        if(v.state === 0 && v.data){
+                                                this.$.autoAjax('post', URL.api + ROUTES.POST.admin.login.stsToken, '', {
+                                                    ok: v => {
+                                                        if (v.state === 0 && v.data) {
 //                                                            URL.rpi = v.data.api_host + '/sts/file/upload'
                                                             SETSESSIONSTORAGE('stsToken', v.data.stsToken)
                                                             SETSESSIONSTORAGE('URL_RPI', v.data.api_host + '/sts/file/upload')
-                                                        }else{
+                                                        } else {
                                                             _this.$message.error((LANG["获取资源站授权失败"] || "获取资源站授权失败"));
                                                         }
                                                     }

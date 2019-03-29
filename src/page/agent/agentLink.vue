@@ -1,5 +1,11 @@
 <template>
     <div id="agentLink" class="clearfix" v-loading="loading">
+        <!--搜索-->
+        <label class="state_info">
+            <span>用户名：</span>
+            <el-input v-model="name" placeholder="请输入用户名" class="intW" size="small"></el-input>
+            <el-button type="primary" size="small" @click="toSearch"><i class="icon el-icon-search"></i>查 询</el-button>
+        </label>
         <el-col v-if="!loading">
             <tablegrid
                 :columnsUrl="columnsUrl"
@@ -7,8 +13,7 @@
                 :updated="updated"
                 :isCreated="true"
                 :pageSet="false"
-                :showRefresh="true"
-                @do-handle="doHandle"></tablegrid>
+                :showRefresh="true"></tablegrid>
         </el-col>
         <el-col v-if="!loading">
             <formEdit :formTitel="formTitel" :formVisible="editVisible" :formConfig="formConfig" :type="type"
@@ -23,6 +28,7 @@
     import tableGrid from '../../components/tableGrid.vue'
     import formEdit from '../../components/formEdit.vue'
     import confirm from '../../components/confirm.vue'
+
     export default {
         data() {
             return {
@@ -32,7 +38,9 @@
                 //表格相关
                 columnsUrl: "",
                 tableUrl: "",
+                baseUrl:"",
                 updated: false,
+                name: '',
                 //当前操作数据ID
                 nowId: -1,
                 //当前表单类型
@@ -76,7 +84,10 @@
         methods: {
             init() {
                 this.columnsUrl = "/static/json/agent/agentLink/columns.json"
-                this.tableUrl = URL.api + ROUTES.GET.commission.links;
+                this.baseUrl = URL.api + ROUTES.GET.user.agent.domain;
+                this.$route.query.name
+                    ? this.tableUrl = URL.api + ROUTES.GET.user.agent.domain + '?name=' + this.$route.query.name
+                    : this.tableUrl = URL.api + ROUTES.GET.user.agent.domain
             },
             //保存弹窗数据
             getForm(obj) {
@@ -104,26 +115,11 @@
                             _this.$message.error(LANG['代理链接修改失败，请稍候重试！'] || '代理链接修改失败，请稍候重试！');
                         }
                     })
-//                } else {
-//                    url = URL.api + ROUTES.PUT.commission.link
                 }
             },
-            //表格按钮点击事件
-            doHandle(item) {
-                this.nowId = parseInt(item.row.id);
-                switch (item.fn) {
-                    case "doEdit":
-                        this.doEdit(item.row)
-                        break
-                    case "doDelete":
-                        this.doDelete(item.row)
-                        break
-//                    case "doEnabled":
-//                        this.doEnabled(item.row)
-//                        break
-//                    case "doDisabled":
-//                        this.doDisabled(item.row)
-//                        break
+            toSearch() {
+                if(this.name){
+                   this.tableUrl = this.baseUrl+this.addSearch({name:this.name})
                 }
             },
             //编辑
@@ -145,7 +141,7 @@
                 let name = row.domain;
                 this.nowId = row.id;
                 this.confirmConfig.state = true;
-                this.confirmConfig.msg = (this.LANG['确定删除'] || '确定删除') + " '" + row.name +'的链接'+row.domain+"' " + (this.LANG['吗？'] || '吗？');
+                this.confirmConfig.msg = (this.LANG['确定删除'] || '确定删除') + " '" + row.name + '的链接' + row.domain + "' " + (this.LANG['吗？'] || '吗？');
                 this.confirmConfig.fn = "delete";
             },
             //确认删除
@@ -173,45 +169,6 @@
                             }
                         })
                         break;
-//                    case "edit":
-//                        console.log('pppp')
-////                        this.$.autoAjax('patch',URL.api + ROUTES.PATCH.commission.link.$$+'?id='+(this.nowId),{status:'1',id : parseInt(this.nowId)}, {
-////                            ok: (res) => {
-////                                if (res.state === 0 && res.data) {
-////                                    _this.$message.success(LANG['恭喜您，修改成功！'] || '恭喜您，修改成功！');
-////                                    _this.updated = true;
-////                                } else {
-////                                    _this.$message.error(LANG['代理链接修改失败，请稍候重试！'] || '代理链接修改失败，请稍候重试！');
-////                                }
-////                                this.loading = false;
-////                            },
-////                            p: () => {
-////                            },
-////                            error: e => {
-////                                this.loading = false;
-////                                _this.$message.error(LANG['代理链接修改失败，请稍候重试！'] || '代理链接修改失败，请稍候重试！');
-////                            }
-////                        })
-//                        break;
-//                    case "disabled":
-//                        this.$.autoAjax('patch',URL.api + ROUTES.PATCH.commission.link.$$+'?id='+(this.nowId),{status:'0',id : parseInt(this.nowId)}, {
-//                            ok: (res) => {
-//                                if (res.data.state === 0 && res.data.data) {
-//                                    _this.$message.success(LANG['恭喜您，代理链接停用成功！'] || '恭喜您，代理链接停用成功！');
-//                                    _this.updated = true;
-//                                } else {
-//                                    _this.$message.error(LANG['代理链接停用失败，请稍候重试！'] || '代理链接停用失败，请稍候重试！');
-//                                }
-//                                this.loading = false;
-//                            },
-//                            p: () => {
-//                            },
-//                            error: e => {
-//                                this.loading = false;
-//                                _this.$message.error(LANG['代理链接停用失败，请稍候重试！'] || '代理链接停用失败，请稍候重试！');
-//                            }
-//                        })
-//                        break;
                 }
                 _this.formType = "";
             },

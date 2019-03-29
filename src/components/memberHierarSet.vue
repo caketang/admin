@@ -101,7 +101,7 @@
                 levelsList: [],
                 // 下接数据更新
                 listKey: "",
-                listArr:[],
+                listArr: [],
                 lockType: '',
                 //选中的行数据
                 mode: [],
@@ -126,17 +126,16 @@
         },
         methods: {
             init(str) {
+                this.loading = true;
 //				this.tableUrl = URL.api + ROUTES.GET.user.level.group;
                 this.baseUrl = URL.api + ROUTES.GET.user.level.group;
                 //锁定
                 this.lockUrl = URL.api + ROUTES.PATCH.user.level.lock;
                 //获取路由
                 this.lid = FORMATNUMBER(this.$route.query.level);
-                if ((this.$route.query && (this.$route.query.coltwo === true)) || this.activeName === 'searLevel') {
-                    this.columnsUrl = "/static/json/accoutManage/memberHierarSet/columnsTwo.json";
-                } else {
-                    this.columnsUrl = "/static/json/accoutManage/memberHierarSet/columns.json";
-                }
+                (this.$route.query && (this.$route.query.coltwo === true)) || (this.activeName === 'searLevel')
+            ? this.columnsUrl = "/static/json/accoutManage/memberHierarSet/columnsTwo.json"
+            :this.columnsUrl = "/static/json/accoutManage/memberHierarSet/columns.json"
                 this.lid > 0 ? (this.tableUrl = this.baseUrl + '/?lid=' + this.lid) : (this.tableUrl = this.baseUrl);
                 if (str) {
                     this.updated = false;
@@ -148,35 +147,30 @@
                 this.infoUrl = URL.api + ROUTES.PATCH.user.info.infoLevel;
                 this.navSelect = false;
                 this.listKey = "id";
-//                this.listArr.push({
-//                    "value": "",
-//                    "label": "默认：不操作"
-//                })
-                this.listArr = global.ARRAYS.LEVELSLIST
                 //会员层级列表
-//                let levlsListUrl = URL.api + ROUTES.GET.user.levelsList;
-//                this.$.autoAjax('get', levlsListUrl, '', {
-//                    ok: (res) => {
-//                        let mode = res.data;
-//                        this.listArr.splice(0, this.listArr.length);
-//                        this.listArr.push({
-//                            "value": "",
-//                            "label": "默认：不操作"
-//                        })
-////                        for (let i in res.data) {
-////                            this.listArr.push({
-////                                "value": mode[i].id,
-////                                "label": mode[i].name
-////                            })
-////                        }
-//                        this.loading = false;
-//                    },
-//                    p: () => {
-//                    },
-//                    error: e => {
-//                        this.$message.error(LANG['未知错误，请点击“刷新”按钮后，重试'] || '未知错误，请点击“刷新”按钮后，重试');
-//                    }
-//                })
+                let levlsListUrl = URL.api + ROUTES.GET.user.levelsList;
+                this.$.autoAjax('get', levlsListUrl, '', {
+                    ok: (res) => {
+                        let mode = res.data;
+                        this.listArr.splice(0, this.listArr.length);
+                        this.listArr.push({
+                            "value": "",
+                            "label": "默认：不操作"
+                        })
+                        for (let i in res.data) {
+                            this.listArr.push({
+                                "value": mode[i].id,
+                                "label": mode[i].name
+                            })
+                        }
+                        this.loading = false;
+                    },
+                    p: () => {
+                    },
+                    error: e => {
+                        this.$message.error(LANG['未知错误，请点击“刷新”按钮后，重试'] || '未知错误，请点击“刷新”按钮后，重试');
+                    }
+                })
             },
             handleCloselockDialog() {
                 this.lockDialogShow = false;
@@ -292,23 +286,22 @@
             },
             //表格内分层
             doSelsect(row) {
-                this.updated = false;
                 let _this = this,level = {},levelArr = [];
                 level[row.row.id] = row.row.lid
                 levelArr.push(level)
                 row.row.lock == "1" ? this.$message(LANG['用户：' + row.row.name + '会员层级已锁定，不可操作会员分层！'] || '用户：' + row.row.name + '会员层级已锁定，不可操作会员分层！') :
                     this.$.autoAjax('patch', this.infoUrl, {list:levelArr}, {
                         ok: (res) => {
-                            let mode = res.data
-                            if (mode !== null || mode.length > 0) {
-                                _this.$message.success(LANG['用户：' + row.row.name + '分层操作成功'] || '用户：' + row.row.name + '分层操作成功');
-                                this.updated = true;
-                            } else {
-                                _this.$message.error(LANG['未知错误，请稍后重试！'] || '未知错误，请稍后重试！');
-                                this.updated = true;
+                            if(res.state === 0 && res.data){
+                                let mode = res.data
+                                if (mode !== null || mode.length > 0) {
+                                    _this.updated = true;
+                                    _this.$message.success(LANG['用户：' + row.row.name + '分层操作成功'] || '用户：' + row.row.name + '分层操作成功');
+                                } else {
+                                    _this.updated = true;
+                                    _this.$message.error(LANG['未知错误，请稍后重试！'] || '未知错误，请稍后重试！');
+                                }
                             }
-                        },
-                        p: () => {
                         },
                         error: e => {
                             console.log(e)

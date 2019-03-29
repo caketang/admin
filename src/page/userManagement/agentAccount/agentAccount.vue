@@ -30,10 +30,10 @@
         </div>
 
         <!--资料-->
-        <el-col v-if="isDetail">
-            <agentAccountDetail :agent-id="rowId" @return-page="retrunPage"
-                                :agent-type="agentType"></agentAccountDetail>
-        </el-col>
+        <!--<el-col v-if="isDetail">-->
+            <!--<agentAccountDetail :agent-id="rowId" @return-page="retrunPage"-->
+                                <!--:agent-type="agentType"></agentAccountDetail>-->
+        <!--</el-col>-->
         <!--新增-->
 
         <el-col>
@@ -145,7 +145,7 @@
 <script>
     //    import datepicker from '../../../components/datepicker.vue'
     import tableGrid from '../../../components/tableGrid.vue'
-    import agentAccountDetail from './agentAccountDetail.vue'
+//    import agentAccountDetail from './agentAccountDetail.vue'
     import formEdit from '../../../components/formEdit.vue'
     import confirm from '../../../components/confirm.vue';
 
@@ -403,7 +403,7 @@
         },
         components: {
             tablegrid: tableGrid,
-            agentAccountDetail: agentAccountDetail,
+//            agentAccountDetail: agentAccountDetail,
             formEdit: formEdit,
             confirm: confirm,
         },
@@ -486,15 +486,6 @@
                                     console.log(e)
                                 }
                             })
-                            // this.$http.put(URL.api + ROUTES.PUT.user.agent.$, JSON.stringify(query), URLCONFIG).then((res) => {
-                            // 	console.log(res);
-                            //     if (res.data.data.state == 0 && res.data.data.data) {
-                            //         _this.$message.success(LANG[res.data.data.msg] || res.data.msg);
-                            //     } else {
-                            //         _this.$message.error(LANG[res.data.data.msg] || res.data.msg);
-                            //     }
-                            //     _this.updated = true;
-                            // });
                         }
                         if (this.editForm.type == "1") {
                             ({
@@ -520,14 +511,6 @@
                                     console.log(e)
                                 }
                             })
-                            // this.$http.put(URL.api + ROUTES.PUT.user.agent.$, JSON.stringify(query), URLCONFIG).then((res) => {
-                            //     if (res.data.state == 0 && res.data.data) {
-                            //         _this.$message.success(LANG[res.data.msg] || res.data.msg);
-                            //     } else {
-                            //         _this.$message.error(LANG[res.data.msg] || res.data.msg);
-                            //     }
-                            //     _this.updated = true;
-                            // })
                         }
                         this.resetForms();
                     } else {
@@ -589,14 +572,6 @@
                         console.log(e)
                     }
                 })
-                // this.$http.patch(URL.api + ROUTES.PATCH.user.agent.$, JSON.stringify(query), URLCONFIG).then((res) => {
-                //     if (res.data.state == 0 && res.data.data) {
-                //         _this.$message.success(LANG['启用成功'] || '启用成功')
-                //         _this.updated = true;
-                //     } else {
-                //         _this.$message.error(LANG['启用失败'] || '启用失败')
-                //     }
-                // })
             },
             //批量停用
             doDisable(rows, flag) {
@@ -680,18 +655,14 @@
             //批量停用
             doDisable(rows, flag) {
                 this.confirmConfig.state = true;
-                if (flag) {
-                    this.confirmConfig.msg = (this.LANG['确定批量停用吗'] || '确定批量停用吗');
-                }
-                else {
-                    this.confirmConfig.msg = (this.LANG['确定停用吗'] || '确定停用吗');
-                }
+                flag
+                    ? this.confirmConfig.msg = (this.LANG['确定批量停用吗'] || '确定批量停用吗')
+                    :this.confirmConfig.msg = (this.LANG['确定停用吗'] || '确定停用吗');
                 this.confirmConfig.fn = "disable";
                 this.confirmConfig.obj = rows;
                 this.confirmConfig.flag = flag;
             },
             doConfirm(obj) {
-
                 this.fullscreenLoading = true;
                 let _this = this;
                 let dataId = [];
@@ -709,7 +680,6 @@
                         }
                         query.ids = dataId;
                         query.status = 1;
-
                         this.$.autoAjax('patch', URL.api + ROUTES.PATCH.user.agent.$, query, {
                             ok: (res) => {
                                 if (res.state == 0 && res.data) {
@@ -726,15 +696,6 @@
                                 console.log(e)
                             }
                         })
-                        // this.$http.patch(URL.api + ROUTES.PATCH.user.agent.$, JSON.stringify(query), URLCONFIG).then((res) => {
-                        //     if (res.data.state == 0 && res.data.data) {
-                        //         _this.$message.success(LANG['启用成功'] || '启用成功')
-                        //         _this.updated = true;
-                        //     } else {
-                        //         _this.$message.error(LANG['启用失败'] || '启用失败')
-                        //     }
-                        //     _this.fullscreenLoading = false
-                        // })
                         break;
                     case "disable":
 
@@ -749,7 +710,6 @@
                         }
                         query.ids = dataId;
                         query.status = 3;
-
                         this.$.autoAjax('patch', URL.api + ROUTES.PATCH.user.agent.$, query, {
                             ok: (res) => {
                                 if (res.state == 0 && res.data) {
@@ -766,27 +726,19 @@
                                 console.log(e)
                             }
                         })
-                        // this.$http.patch(URL.api + ROUTES.PATCH.user.agent.$, JSON.stringify(query), URLCONFIG).then((res) => {
-                        //     if (res.data.state == 0 && res.data.data) {
-                        //         _this.updated = true;
-                        //         _this.$message.success(LANG['停用成功'] || '停用成功');
-                        //     } else {
-                        //         _this.$message.error(LANG['停用失败'] || '停用失败');
-                        //     }
-                        //     _this.fullscreenLoading = false
-                        // })
                         break;
                 }
             },
 
             //查看详情
             doDetial(row) {
-                this.agentType = parseInt(row.type);
-                this.isCreated = false;
-                this.isDetail = true;
-                if (row.id) {
-                    this.rowId = parseInt(row.id, 10);
-                }
+                this.$router.push({path:'/agentLink',query:{name:row.name}})
+//                this.agentType = parseInt(row.type);
+//                this.isCreated = false;
+//                this.isDetail = true;
+//                if (row.id) {
+//                    this.rowId = parseInt(row.id, 10);
+//                }
             },
             //查询
             doQuery(obj) {

@@ -13,10 +13,32 @@
             "disabled": true
         },
         {
+            "prop": "code",
+            "label": "推荐码",
+            "width": "100",
+            "disabled": true
+        },
+        {
             "prop": "domain",
-            "label": "地址",
+            "label": "推荐链接地址",
             "width": "300",
             "disabled": true
+        },
+        {
+            "prop": "type",
+            "label": "推荐码属性",
+            "width": "300",
+            "disabled": true,
+            "filters": [
+                {
+                    "text": "代理推荐码",
+                    "value": "agent"
+                },
+                {
+                    "text": "会员推荐码",
+                    "value": "user"
+                }
+            ]
         },
         {
             "prop": "status",
@@ -49,38 +71,6 @@
             "label": "备注",
             "width": "200",
             "disabled": true
-        },
-        {
-            "label": "操作",
-            "type": "button",
-            "width": "210",
-            "disabled": true,
-            "btnGroup": [
-                {
-                    "btnType": "text",
-                    "label": "修改",
-                    "fn": "doEdit"
-                },
-                {
-                    "btnType": "text",
-                    "label": "删除",
-                    "fn": "doDelete"
-                },
-                {
-                    "btnType": "text",
-                    "label": "启用",
-                    "fn": "doEnabled",
-                    "prop": "status",
-                    "val": "0"
-                },
-                {
-                    "btnType": "text",
-                    "label": "停用",
-                    "fn": "doDisabled",
-                    "prop": "status",
-                    "val": "1"
-                }
-            ]
         }
     ]
 }

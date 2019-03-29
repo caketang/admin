@@ -224,7 +224,8 @@ global.ROUTES = {
                 valid: "/user/valid/agent.ship",
                 list: "/treaty/list",
                 like:"/agent/like",
-                report:'/treaty/report'
+                report:'/treaty/report',
+                domain:'/domain/list'
 
             },
             origin: "/user/register/types",

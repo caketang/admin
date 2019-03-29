@@ -350,7 +350,6 @@
     import editTable from '../../components/editTable.vue'
     import formEdit from '../../components/formEdit.vue'
     import confirm from '../../components/confirm.vue';
-
     export default {
         data() {
             return {

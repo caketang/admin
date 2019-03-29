@@ -21,6 +21,7 @@
                     :tableUrl="tableUrl"
                     :tableIndex="false"
                     :tableCheck = "true"
+                    :autoshowRefresh="true"
                     :tabOperation="tabOperation"
                     @do-operation="doOperation"
                     @do-handle="doHandle"

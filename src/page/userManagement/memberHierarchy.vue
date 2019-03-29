@@ -158,6 +158,7 @@
                         "type": "text",
                         "label": "层级别称",
                         "placeholder": "请输入会员层级别称",
+                        "rules": [{"require": true}, {"moreZero": true}]
                     },
                     {//2
                         "prop": "memo",
@@ -554,14 +555,7 @@
             },
             //保存新增表格
             getForm(obj) {
-                console.log(obj)
-                let str = "";
-                let url = "";
-                let model = {};
-//                for (let k in obj.formObj) {
-//                    model[k] = obj.formObj[k];
-//                }
-                let _this = this;
+                let str = "",url = "",model = {},_this = this;
                 model.level = obj.formObj.level
                 model.name = obj.formObj.name
                 model.memo = obj.formObj.memo

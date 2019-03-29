@@ -166,13 +166,10 @@
                     },
                     {
                         "prop": "type",
-                        "value": "",
+                        "value": "1",
                         "label": "账号体系",
                         "type": "select",
-                        "list": [{'label': '全部', 'value': ''}, {'label': '会员', 'value': '1'}, {
-                            'label': '代理',
-                            'value': '2'
-                        }]
+                        "list": [{'label': '会员', 'value': '1'}]
                     },
                     {"prop": "member_name", "value": "", "type": "text", "label": "用户名", 'placeholder': "请输入用户名"},
                 ],

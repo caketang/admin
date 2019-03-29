@@ -298,12 +298,8 @@
             },
             openUserInformation(row) {
                 // 根据user_type的类型来判断跳转的是会员或代理
-                if (row.user_type == '1') {
-                    this.$router.push({path: "/memberManagement",query:{name: row.username}});
-                } else {
-                    this.$router.push({path: "/agentAccount",query: {agent_name: row.username}});
-
-                }
+                row.user_type == '1'?this.$router.push({path: "/memberManagement",query:{name: row.username}})
+                    :this.$router.push({path: "/agentAccount",query: {agent_name: row.username}})
             },
             // 小记和总记
             getTableData(obj) {
