@@ -655,8 +655,8 @@
             //批量停用
             doDisable(rows, flag) {
                 this.confirmConfig.state = true;
-                flag
-                    ? this.confirmConfig.msg = (this.LANG['确定批量停用吗'] || '确定批量停用吗')
+                flag?
+                    this.confirmConfig.msg = (this.LANG['确定批量停用吗'] || '确定批量停用吗')
                     :this.confirmConfig.msg = (this.LANG['确定停用吗'] || '确定停用吗');
                 this.confirmConfig.fn = "disable";
                 this.confirmConfig.obj = rows;
