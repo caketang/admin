@@ -56,7 +56,7 @@
                         {min: 3, max: 10, message: LANG['密码在3位至10位'] || '密码在3位至10位', trigger: "blur"}
                     ],
                     gocode: [
-                        {required: false, message: LANG['请输入6位动态安全验证码'] || '请输入6位动态安全验证码', trigger: "blur"},
+                        {required: true, message: LANG['请输入6位动态安全验证码'] || '请输入6位动态安全验证码', trigger: "blur"},
                         {min: 6, max: 6, message: LANG['请输入6位验证码'] || '请输入6位验证码', trigger: "blur"}]
                 },
                 //是否需要验证
@@ -97,7 +97,9 @@
                     if (valid) {
                         this.$.autoAjax('post', URL.api + ROUTES.POST.admin.login.one, {
                             "username": _this.loginForm.username,
-                            "password": _this.loginForm.password, "mac": localStorage.uuid
+                            "password": _this.loginForm.password,
+                            "gocode": _this.loginForm.gocode,
+                            "mac": localStorage.uuid
                         }, {
                             ok: res => {
                                 if (res.state == 0 && res.data) {
