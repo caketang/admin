@@ -56,7 +56,7 @@
                         {min: 3, max: 10, message: LANG['密码在3位至10位'] || '密码在3位至10位', trigger: "blur"}
                     ],
                     gocode: [
-                        {required: true, message: LANG['请输入6位动态安全验证码'] || '请输入6位动态安全验证码', trigger: "blur"},
+                        {required: false, message: LANG['请输入6位动态安全验证码'] || '请输入6位动态安全验证码', trigger: "blur"},
                         {min: 6, max: 6, message: LANG['请输入6位验证码'] || '请输入6位验证码', trigger: "blur"}]
                 },
                 //是否需要验证
