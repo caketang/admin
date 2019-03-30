@@ -29,8 +29,11 @@
                         <th colspan="1" rowspan="2">
                             <div class="cell">{{LANG['描述'] || '描述'}}</div>
                         </th>
-                        <th colspan="7" rowspan="1">
-                            <div class="cell">{{LANG['加入条件'] || '加入条件'}}</div>
+                        <th colspan=2 rowspan="1">
+                            <div class="cell">{{LANG['晋级条件'] || '晋级条件'}}</div>
+                        </th>
+                        <th colspan="5" rowspan="1">
+                            <div class="cell">{{LANG['层级限制'] || '层级限制'}}</div>
                         </th>
                         <th colspan="1" rowspan="2">
                             <div class="cell">{{LANG['会员人数'] || '会员人数'}}</div>
