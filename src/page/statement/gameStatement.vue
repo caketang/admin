@@ -52,7 +52,7 @@
                         {"prop":"date_from","value":"","label":"开始时间"},
                         {"prop":"date_to","value":"","label":"结束时间"}
                     ]},
-                    {"prop":"type","value":"user","label":"账号体系","type":"select","list":[{'label':'会员','value':'user'},{'label':'代理','value':'agent'}],"rules":[{"require":true}]},
+                    {"prop":"type","value":"user","label":"账号体系","type":"select","list":[{'label':'会员','value':'user'}],"rules":[{"require":true}]},
                     {"prop":"user_name","value":"","type":"text","label":"用户名"},
                     //ID4
                     {
