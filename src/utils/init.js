@@ -226,7 +226,8 @@ global.ROUTES = {
                 like:"/agent/like",
                 report:'/treaty/report',
                 domain:'/domain/list',
-                line:'/state/line'
+                line:'/state/line',
+                level:'/agent/level/index'
             },
             origin: "/user/register/types",
             list: "/user/list",
@@ -866,7 +867,8 @@ global.ROUTES = {
             register: '/user/register',
             test: '/user/test',
             treaty:"/treaty/add",
-            release:'/treaty/release'
+            release:'/treaty/release',
+            level:'/agent/level/update'
         },
         wallet: {
             recharge: '/wallet/recharge',

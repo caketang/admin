@@ -432,18 +432,25 @@ export default [
         component: resolve => require(['../page/index/index'], resolve),
         name: '用户',
         iconCls: 'iconfont icon-yonghuguanli',//图标样式class
-        children: [{
-            path: '/memberManagement',
-            component: resolve => require(['../page/userManagement/memberManagement/memberManagement'], resolve),
-            iconCls: '',
-            name: '会员管理'
-        },
+        children: [
+            {
+                path: '/memberManagement',
+                component: resolve => require(['../page/userManagement/memberManagement/memberManagement'], resolve),
+                iconCls: '',
+                name: '会员管理'
+            },
             {
                 path: '/memberHierarchy',
                 component: resolve => require(['../page/userManagement/memberHierarchy'], resolve),
                 iconCls: '',
                 name: '会员层级'
 
+            },
+            {
+                path: '/agentLink',
+                component: resolve => require(['../page/agent/agentLink'], resolve),
+                iconCls: '',
+                name: '代理推广链接'
             },
             {
                 path: '/memberHierarSet',
@@ -500,12 +507,12 @@ export default [
                 iconCls: '',
                 name: '有效用户'
             },
-            {
-                path: '/otherMembers',
-                component: resolve => require(['../page/accountManagement/otherMembers'], resolve),
-                iconCls: '',
-                name: '第三方会员查询'
-            },
+            // {
+            //     path: '/otherMembers',
+            //     component: resolve => require(['../page/accountManagement/otherMembers'], resolve),
+            //     iconCls: '',
+            //     name: '第三方会员查询'
+            // },
             {
                 path: '/childAccount',
                 component: resolve => require(['../page/userManagement/childAccount'], resolve),
@@ -645,30 +652,30 @@ export default [
         name: '佣金',
         iconCls: 'iconfont icon-yongjin',//图标样式class
         children: [
-            {
-                path: '/commissionFeeset',
-                component: resolve => require(['../page/agent/commissionFeeset'], resolve),
-                iconCls: '',
-                name: '退佣手续费'
-            },
-            {
-                path: '/CommissionSet',
-                component: resolve => require(['../page/agent/commissionSet'], resolve),
-                iconCls: '',
-                name: '代理退佣比例'
-            },
-            {
-                path: '/agentSettlementSet',
-                component: resolve => require(['../page/agent/agentSettlementSet'], resolve),
-                iconCls: '',
-                name: '退佣设定'
-            },
-            {
-                path: '/RefundCommissionPeriod',
-                component: resolve => require(['../page/agent/refundCommissionPeriod'], resolve),
-                iconCls: '',
-                name: '退佣期数'
-            },
+            // {
+            //     path: '/commissionFeeset',
+            //     component: resolve => require(['../page/agent/commissionFeeset'], resolve),
+            //     iconCls: '',
+            //     name: '退佣手续费'
+            // },
+            // {
+            //     path: '/CommissionSet',
+            //     component: resolve => require(['../page/agent/commissionSet'], resolve),
+            //     iconCls: '',
+            //     name: '代理退佣比例'
+            // },
+            // {
+            //     path: '/agentSettlementSet',
+            //     component: resolve => require(['../page/agent/agentSettlementSet'], resolve),
+            //     iconCls: '',
+            //     name: '退佣设定'
+            // },
+            // {
+            //     path: '/RefundCommissionPeriod',
+            //     component: resolve => require(['../page/agent/refundCommissionPeriod'], resolve),
+            //     iconCls: '',
+            //     name: '退佣期数'
+            // },
             // {
             // 	path: '/RefundCommissionPeriod_child',
             // 	component: resolve => require(['../page/agent/refundCommissionPeriod_child'], resolve),
@@ -676,36 +683,37 @@ export default [
             // 	hidden: true,
             // 	name: '退佣期数'
             // },
+            // {
+            //     path: '/CommissionIncomeQuery',
+            //     component: resolve => require(['../page/agent/commissionIncomeQuery'], resolve),
+            //     iconCls: '',
+            //     name: '退佣查询'
+            // },
+            // {
+            //     path: '/subAgentRebate',
+            //     component: resolve => require(['../page/agent/subAgentRebate'], resolve),
+            //     iconCls: '',
+            //     name: '下级佣金统计'
+            // },
+
+            // {
+            //     path: '/agentDrawing',
+            //     component: resolve => require(['../page/agent/agentDrawing'], resolve),
+            //     iconCls: '',
+            //     name: '代理提款'
+            // },
             {
-                path: '/CommissionIncomeQuery',
-                component: resolve => require(['../page/agent/commissionIncomeQuery'], resolve),
+                path: '/agentRebate',
+                component: resolve => require(['../page/agent/agentRebate'], resolve),
                 iconCls: '',
-                name: '退佣查询'
-            },
-            {
-                path: '/subAgentRebate',
-                component: resolve => require(['../page/agent/subAgentRebate'], resolve),
-                iconCls: '',
-                name: '下级佣金统计'
-            },
-            {
-                path: '/agentLink',
-                component: resolve => require(['../page/agent/agentLink'], resolve),
-                iconCls: '',
-                name: '代理推广链接'
-            },
-            {
-                path: '/agentDrawing',
-                component: resolve => require(['../page/agent/agentDrawing'], resolve),
-                iconCls: '',
-                name: '代理提款'
-            },
-            {
-                path: '/dailyWages',
-                component: resolve => require(['../page/agent/dailyWages'], resolve),
-                iconCls: '',
-                name: '日工资管理'
+                name: '代理退佣'
             }
+            // {
+            //     path: '/dailyWages',
+            //     component: resolve => require(['../page/agent/dailyWages'], resolve),
+            //     iconCls: '',
+            //     name: '日工资管理'
+            // }
         ]
     },
     {
