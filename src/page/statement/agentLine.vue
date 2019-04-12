@@ -57,17 +57,17 @@
                         <td colspan="1">
                             <div class="cell">
                             <span class="font16 "
-                                  :class="{state_danger: parseFloat(allData.send_prize_sum) < 0 }">{{allData.send_prize_sum | formatMoney}} </span>
+                                  :class="{state_danger: parseFloat(allData.profit_loss_sum) < 0 }">{{allData.profit_loss_sum | formatMoney}} </span>
+                            </div>
+                        </td>
+                        <td colspan="1">
+                            <div class="cell">
+                                <span class="font16 ">{{allData.send_prize_sum | formatMoney(4)}} </span>
                             </div>
                         </td>
                         <td colspan="1">
                             <div class="cell">
                                 <span class="font16 ">{{allData.bonus_sum | formatMoney(4)}} </span>
-                            </div>
-                        </td>
-                        <td colspan="1">
-                            <div class="cell">
-                                <span class="font16 ">{{allData.bonus | formatMoney(4)}} </span>
                             </div>
                         </td>
                         <td colspan="1">
