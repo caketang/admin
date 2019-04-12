@@ -211,63 +211,6 @@
 						console.log(e)
 					}
 				})
-				// this.$http.get(tablUrl + '/' + this.periodsView.id, URLCONFIG).then((res) => {
-				// 	if(res.data && res.data.state === 0 && res.data.data){
-                 //        //获取是保底费还是线路费
-                 //        _this.fee_type = res.data.data.fee_type;
-                 //        let list = res.data.data.costitems || [];
-                 //        let temp = {receivable:0,receipts:0};
-                 //        _this.nowBaodifei = FORMATNUMBER(list[0].receipts);
-                 //        for(let i=0;i<list.length;i++){
-                 //            _this.lineFeeData.push({
-                 //                created: list[i].created,
-                 //                fee_scale: list[i].fee_scale,
-                 //                id: list[i].id,
-                 //                item_name: list[i].item_name,
-                 //                quantity: list[i].quantity?list[i].quantity:1,
-                 //                receipts: list[i].receipts,
-                 //                receivable: FORMATNUMBER(list[i].quantity?list[i].quantity:1) * FORMATNUMBER(list[i].fee_scale),
-                 //                receive_id: list[i].receive_id,
-                 //                updated: list[i].updated
-                 //            });
-                 //            temp.receivable = FORMATNUMBER(temp.receivable) + FORMATNUMBER(_this.lineFeeData[i].receivable);
-                 //            temp.receipts = FORMATNUMBER(temp.receipts) + FORMATNUMBER(_this.lineFeeData[i].receipts);
-                 //        }
-                 //        if(_this.fee_type === "mincost"){
-                 //            temp.receipts = temp.receipts - _this.nowBaodifei;
-                 //            _this.costStatistics[0].label = "合计（SSL证书费+其它费用）";
-                 //        }else{
-                 //            _this.costStatistics[0].label = "线路费合计";
-                 //        }
-                 //        _this.feeSum.receivable = FORMATMONEY(temp.receivable) > 0 ? FORMATMONEY(temp.receivable) : 0.00;
-                 //        _this.feeSum.receipts = FORMATMONEY(temp.receipts) > 0 ? FORMATMONEY(temp.receipts) : 0.00;
-				//
-                 //        // 总合计
-                 //        _this.costStatistics[0].val = 0;
-                 //        _this.costStatistics[1].val = 0;
-                 //        _this.costStatistics[2].val = 0;
-                 //        _this.costStatistics[0].val = _this.feeSum.receipts;
-                 //        _this.RoyaltyFeeDataAll = 0;
-                 //        //游戏抽成
-				// 		for(let n in res.data.data.items){
-                 //            _this.RoyaltyFeeData[n] = res.data.data.items[n];
-                 //            _this.RoyaltyFeeDataAll  += FORMATNUMBER(res.data.data.items[n].received);
-				// 		}
-                 //        _this.RoyaltyFeeDataAll = FORMATMONEY(_this.RoyaltyFeeDataAll);
-                 //        if(_this.fee_type === 'mincost'){
-                 //            if(FORMATNUMBER(_this.RoyaltyFeeDataAll) > FORMATNUMBER(_this.nowBaodifei)){
-                 //                _this.costStatistics[1].label = "游戏抽成费合计";
-                 //                _this.costStatistics[1].val = FORMATNUMBER(_this.RoyaltyFeeDataAll);
-                 //            }else{
-                 //                _this.costStatistics[1].label = "保底费";
-                 //                _this.costStatistics[1].val = FORMATMONEY(_this.nowBaodifei) > 0 ? FORMATMONEY(_this.nowBaodifei) : 0.00;
-                 //            }
-                 //        }else{
-                 //            _this.costStatistics[1].val = FORMATNUMBER(_this.RoyaltyFeeDataAll);
-                 //        }
-                 //        _this.costStatistics[2].val  = (FORMATNUMBER(_this.costStatistics[0].val) + FORMATNUMBER(_this.costStatistics[1].val)).toFixed(2);
-				// 	};
-				// });
 			},
 			blackPgUp() {
 				this.$router.push({path: '/deliveryStatement'});

@@ -8,7 +8,6 @@
                     :tableUrl="tableUrl"
                     :tableCheck="true"
                     :pageSet="true"
-
                     :tabOperation="tabOperation"
                     :updated="updated"
                     @do-operation="doOperation"

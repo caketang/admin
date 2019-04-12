@@ -84,23 +84,23 @@
                 <el-col :span="24" class="mt10 borStyle bankStyle">
                     <div>
                         <h3>银行账户:</h3>
-                        <el-col :span="8">{{LANG['存款银行'] || '存款银行'}} :<span
-                            v-if="Detailcontent.pay_bank_info">{{Detailcontent.pay_bank_info.bank}}</span>
+                        <el-col :span="8">{{LANG['存款银行'] || '存款银行'}} :
+                            <span v-if="Detailcontent.pay_bank_info">{{Detailcontent.pay_bank_info.bank}}</span>
                         </el-col>
-                        <el-col :span="8">{{LANG['存款账号'] || '存款账号'}} ：<span
-                            v-if="Detailcontent.pay_bank_info">{{Detailcontent.pay_bank_info.card}}</span>
+                        <el-col :span="8">{{LANG['存款账号'] || '存款账号'}} ：
+                            <span v-if="Detailcontent.pay_bank_info">{{Detailcontent.pay_bank_info.card}}</span>
                         </el-col>
-                        <el-col :span="8">{{LANG['存款户名'] || '存款户名'}} ：<span
-                            v-if="Detailcontent.pay_bank_info">{{Detailcontent.pay_bank_info.name}}</span>
+                        <el-col :span="8">{{LANG['存款户名'] || '存款户名'}} ：
+                            <span v-if="Detailcontent.pay_bank_info">{{Detailcontent.pay_bank_info.name}}</span>
                         </el-col>
-                        <el-col :span="8">{{LANG['收款银行'] || '收款银行'}} :<span
-                            v-if="Detailcontent.receive_bank_info">{{Detailcontent.receive_bank_info.bank}}</span>
+                        <el-col :span="8">{{LANG['收款银行'] || '收款银行'}} :
+                            <span v-if="Detailcontent.receive_bank_info">{{Detailcontent.receive_bank_info.bank}}</span>
                         </el-col>
-                        <el-col :span="8">{{LANG['收款账号'] || '收款账号'}} ：<span
-                            v-if="Detailcontent.receive_bank_info">{{Detailcontent.receive_bank_info.card}}</span>
+                        <el-col :span="8">{{LANG['收款账号'] || '收款账号'}} ：
+                            <span v-if="Detailcontent.receive_bank_info">{{Detailcontent.receive_bank_info.card}}</span>
                         </el-col>
-                        <el-col :span="8">{{LANG['收款户名'] || '收款户名'}} ：<span
-                            v-if="Detailcontent.receive_bank_info">{{Detailcontent.receive_bank_info.accountname}}</span>
+                        <el-col :span="8">{{LANG['收款户名'] || '收款户名'}} ：
+                            <span v-if="Detailcontent.receive_bank_info">{{Detailcontent.receive_bank_info.accountname}}</span>
                         </el-col>
                     </div>
                 </el-col>

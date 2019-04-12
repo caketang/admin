@@ -225,8 +225,8 @@ global.ROUTES = {
                 list: "/treaty/list",
                 like:"/agent/like",
                 report:'/treaty/report',
-                domain:'/domain/list'
-
+                domain:'/domain/list',
+                line:'/state/line'
             },
             origin: "/user/register/types",
             list: "/user/list",
@@ -247,7 +247,8 @@ global.ROUTES = {
                     return '/' + ['user/info', name, ...args].join('/');
                 },
             },
-            newInfo: '/user/info'
+            newInfo: '/user/info',
+            testPlay:'/agent/testagent/get'
         },
         state: {
             summary: "/state/summary",
@@ -851,6 +852,7 @@ global.ROUTES = {
                     }
                 }
             },
+            testPlay:'/agent/testagent/set',
             bind: '/user/bind',
             bank: {
                 password: {

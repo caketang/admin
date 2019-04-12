@@ -534,23 +534,11 @@
 						console.log(e)
 					}
 				})
-                // this.$http.get(URL.api + ROUTES.GET.user.newInfo+"?id="+parseInt(this.id) + "&type=base", URLCONFIG).then((res) => {
-                //     if (res.data.state == 0 && res.data.data) {
-                //         this.baseFrom = res.data.data;
-                //         this.tagsForm.formUsername = res.data.data.username;
-                //         this.baseFromSafe = res.data.data.safe;
-                //     }
-                //     this.loading = false;
-                // })
-                .catch((e)=>{
-                    this.loading = false;
-                });
             },
             // 获取选择列表所需列表
             getSelectList() {
                 let userTagsList = this.userTagsList;
                 //取标签数据
-
 				this.$.autoAjax('get',URL.api + ROUTES.GET.user.labels, '', {
 					ok: (res) => {
 						if (res.state == 0) {
@@ -569,36 +557,6 @@
 						console.log(e)
 					}
 				})
-                // this.$http.get(URL.api + ROUTES.GET.user.labels, URLCONFIG).then((res) => {
-                //     if (res.data.state == 0) {
-                //         let model = res.data.data
-                //         for (let i in model) {
-                //             userTagsList.push({
-                //                 "label": model[i].title,
-                //                 "value": model[i].id
-                //             });
-                //         }
-                //     }
-                // });
-
-
-                // 暂时在会员详情资料里面取消分级
-                //取会员层级
-
-
-                // let MemberLevelList = this.MemberLevelList;
-                // this.$http.get(URL.api + ROUTES.GET.user.levels, URLCONFIG).then((res) => {
-                //     if (res.data.state == 0) {
-                //         let model = res.data.data;
-                //         for (let i in model) {
-                //             MemberLevelList.push({
-                //                 "label": model[i].name,
-                //                 "value": model[i].id.toString(),
-                //                 "id": model[i].id
-                //             })
-                //         }
-                //     }
-                // });
             },
             // 获取安全问题
             getQuestionList() {
@@ -622,17 +580,6 @@
 						console.log(e)
 					}
 				})
-                // this.$http.get(URL.api + '/user/info/question', URLCONFIG).then((res) => {
-                //     if (res.data.state == 0) {
-                //         let model = res.data.data.data
-                //         for (let i in model) {
-                //             this.questionList.push({
-                //                 "label": model[i].question,
-                //                 "value": model[i].id
-                //             });
-                //         }
-                //     }
-                // });
             },
             //添加标签
             addTags() {
@@ -659,17 +606,6 @@
 						console.log(e)
 					}
 				})
-                // this.$http.put(URL.api + ROUTES.PUT.user.label.bind + "?id=" + parseInt(this.id, 10), JSON.stringify({"tag": parseInt(this.tagsForm.userTags, 10)}), URLCONFIG).then((res) => {
-                //     if (res.data.state == 0 && res.data.data) {
-                //         this.$message.success(this.LANG['恭喜您，会员打标签成功！'] || '恭喜您，会员打标签成功！');
-                //         this.tagsVisible = false;
-                //         this.init();
-                //     } else if (res.data.state === 4001) {
-                //         this.$message.error(LANG["请至少选择一个标签！"] || "请至少选择一个标签！");
-                //     } else {
-                //         this.$message.error(this.LANG['会员打标签失败，请稍后重试！'] || '会员打标签失败，请稍后重试！');
-                //     }
-                // })
             },
             //重置登录密码
             resetLoginPass() {
@@ -697,40 +633,6 @@
                 }
                 this.adjustmentVisible = true;
             },
-            //保存会员等级调整    --暂时取消调级
-            // saveAdjustment() {
-            //     let level = this.adjustmentForm.MemberLevel;
-            //     this.$refs.adjustmentForm.validate((valid) => {
-            //         if (valid) {
-            //             this.baseFrom.memberType = level;
-            //             this.$http.patch(URL.api + ROUTES.PATCH.user.info.level, JSON.stringify({
-            //                 "list": [
-            //                     [parseInt(this.id), parseInt(this.adjustmentForm.MemberLevel)]
-            //                 ]
-            //             }), URLCONFIG).then((res) => {
-            //                 if (res.data.state == 0 && res.data.data.success.length > 0) {
-            //                     this.$message.success(this.LANG['恭喜您，会员等级调整成功！'] || '恭喜您，会员等级调整成功！');
-            //                     this.adjustmentVisible = false;
-            //                     this.init();
-            //                     // let MemberLevelList = this.MemberLevelList;
-            //                     // for(let i in MemberLevelList){
-            //                     //     if(MemberLevelList[i].value == level){
-            //                     //         _this.baseFrom['user_level'] = MemberLevelList[i].label;
-            //                     //     }
-            //                     // }
-            //                 } else {
-            //                     this.$message.error(this.LANG['会员等级调整失败，请稍后重试！'] || '会员等级调整失败，请稍后重试！');
-            //                 }
-            //             });
-            //             this.resetAdjustmentForm();
-            //         }
-            //     })
-            // },
-            // //重置会员等级调整FROM   --暂时取消会员调级
-            // resetAdjustmentForm() {
-            //     this.$refs.adjustmentForm.resetFields();
-            //     this.adjustmentVisible = false
-            // },
             //保存密码
             savePass() {
                 let pass = this.passForm.password;
@@ -754,17 +656,6 @@
 									console.log(e)
 								}
 							})
-
-                            // this.$http.patch(URL.api + ROUTES.PATCH.user.info.loginword + "?id=" + parseInt(this.id), JSON.stringify({"pw-new": this.passForm.password}), URLCONFIG).then((res) => {
-                            //     //debugger;
-                            //     if (res.data.state == 0 && res.data.data) {
-                            //         this.$message.success(this.LANG['恭喜您，登录密码修改成功！'] || '恭喜您，登录密码修改成功！');
-                            //         this.tagsVisible = false;
-                            //         this.baseFrom['login_pwd'] = pass;
-                            //     } else {
-                            //         this.$message.error(this.LANG['登录密码修改失败，请稍后重试！'] || '登录密码修改失败，请稍后重试！');
-                            //     }
-                            // });
                         }
                         if ( this.passSelect == '2') {
                             console.log('hahahha---')
@@ -783,14 +674,6 @@
 									console.log(e)
 								}
 							})
-                            // this.$http.patch(URL.api + ROUTES.PATCH.user.info.password + "?id=" + parseInt(this.id), JSON.stringify({"pw-new": this.passForm.password}), URLCONFIG).then((res) => {
-                            //     if (res.data.state == 0 && res.data.data) {
-                            //         this.$message.success(this.LANG['恭喜您，提款密码修改成功！'] || '恭喜您，提款密码修改成功！');
-                            //         this.baseFrom['withdraw_pwd'] = pass;
-                            //     } else {
-                            //         this.$message.error(this.LANG['提款密码修改失败，请稍后重试！'] || '提款密码修改失败，请稍后重试！');
-                            //     }
-                            // });
                         }
                         this.resetPassForm();
                     }
@@ -800,35 +683,6 @@
                 this.$refs.passForm.resetFields();
                 this.passVisible = false;
             },
-            // //添加所属代理
-            // doSetAgent() {
-            //     this.agentVisible = true
-            // },
-            // //保存所属代理
-            // saveAgent() {
-            //     // let _this = this;
-            //     let addAgent = this.agentForm.addAgent;
-            //     this.$refs.agentForm.validate((valid) => {
-            //         if (valid) {
-            //             this.$http.patch(URL.api + ROUTES.PATCH.user.info.agent + "?id=" + parseInt(this.id), JSON.stringify({
-            //                 "agent": this.agentForm.addAgent
-            //             }), URLCONFIG).then((res) => {
-            //                 if (res.data.state == 0 && res.data.data) {
-            //                     this.$message.success(this.LANG['恭喜您，所属代理修改成功！'] || '恭喜您，所属代理修改成功！');
-            //                     this.baseFrom['agent'] = addAgent;
-            //                 } else {
-            //                     this.$message.error(this.LANG[res.data.message] || res.data.message);
-            //                 }
-            //             });
-            //         }
-            //     })
-            //     this.resetAgentForm();
-            // },
-            // //重置添加代理FORM
-            // resetAgentForm() {
-            //     this.$refs.agentForm.resetFields();
-            //     this.agentVisible = false;
-            // },
             //保存基础数据
             saveModel() {
                 let obj = {
@@ -854,7 +708,6 @@
                 this.$refs.baseFrom.validate((valid) => {
                     if (valid) {
                         this.loading = true;
-
 						this.$.autoAjax('patch',URL.api + ROUTES.PATCH.user.info.base + "?id=" + parseInt(this.id),obj, {
 							ok: (res) => {
 								if (res.state == 0 && res.data) {
@@ -874,21 +727,6 @@
 								console.log(e)
 							}
 						})
-                        // this.$http.patch(URL.api + ROUTES.PATCH.user.info.base + "?id=" + parseInt(this.id), JSON.stringify(obj), URLCONFIG).then((res) => {
-                        //     if (res.data.state == 0 && res.data.data) {
-                        //         this.$message.success(this.LANG['恭喜您，会员资料修改成功！'] || '恭喜您，会员资料修改成功！');
-                        //         // _this.baseFrom[''] = addAgent;
-                        //     } else if(res.data.state == 405){
-                        //         this.$message.error(this.LANG['会员资料修改失败,权限不足'] || '会员资料修改失败,权限不足');
-                        //     }else{
-                        //         this.$message.error(this.LANG[res.data.msg] || res.data.msg);
-                        //     }
-                        //     this.init();
-                        //     this.loading = false;
-                        // })
-                        .catch((e)=>{
-                            this.loading = false;
-                        });
                     }
 
                 })

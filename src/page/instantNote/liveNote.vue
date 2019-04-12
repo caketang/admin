@@ -129,7 +129,7 @@
 							// 清空列表防止重复
 							this.searchConfig[2]['list'] = [{ label: '全部', value: ''}];
 							for (let i of res.data) {
-								// 匹配LEBO视讯
+								// 匹配游戏视讯
 								if (i['name'] === 'LEBO') {
 									let model = i['category']['LEBO']
 									for (let j in model) {

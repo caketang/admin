@@ -48,7 +48,8 @@
                     </el-form-item>
                     <el-form-item :label="LANG['标签'] || '标签'" prop="lid">
                         <el-select v-model="labelform.lid" :placeholder="LANG['请选择标签'] || '请选择标签'">
-                            <el-option v-for="(item,index) in labelList" :key="index" :label="item.label" :value="item.value">
+                            <el-option v-for="(item,index) in labelList" :key="index" :label="item.label"
+                                       :value="item.value">
                             </el-option>
                         </el-select>
                     </el-form-item>
@@ -66,14 +67,17 @@
                     <div style="border-bottom: 1px solid #ccc; line-hieght: 30px;">彩票</div>
                     <!--<div>注意：默认不选择就不会限额</div>-->
                     <!-- <el-form-item :label="LANG['彩票'] || '彩票'">  -->
-                        <el-radio-group v-model="limitform.id">
-                            <div v-for="(item, index) in limitList" :key="index" style="margin: 5px 0; height: 20px;">
-                                <div class="fl">
-                                    <el-radio :label="item.id"><span></span></el-radio>
-                                </div>
-                                <div @click="gotoLotteryOdds(item.id, item.name)" style="float: left;width: 400px; height: 20px; font-size: 14px; line-height: 20px; margin-left: 15px; cursor: pointer;">{{item.name}}</div>
+                    <el-radio-group v-model="limitform.id">
+                        <div v-for="(item, index) in limitList" :key="index" style="margin: 5px 0; height: 20px;">
+                            <div class="fl">
+                                <el-radio :label="item.id"><span></span></el-radio>
                             </div>
-                        </el-radio-group>
+                            <div @click="gotoLotteryOdds(item.id, item.name)"
+                                 style="float: left;width: 400px; height: 20px; font-size: 14px; line-height: 20px; margin-left: 15px; cursor: pointer;">
+                                {{item.name}}
+                            </div>
+                        </div>
+                    </el-radio-group>
                     <!-- </el-form-item> -->
                 </el-form>
                 <span slot="footer" class="dialog-footer">
@@ -99,6 +103,7 @@
     import memberManagementDetial from './memberManagementDetial.vue'
     import formEdit from '../../../components/formEdit.vue'
     import confirm from '../../../components/confirm.vue'
+
     export default {
         data() {
             return {
@@ -112,9 +117,9 @@
                 columnsUrl: "",
                 //批量操作按钮
                 tabOperation: [{
-                        "label": "批量踢线",
-                        "fn": "doOffline"
-                    },
+                    "label": "批量踢线",
+                    "fn": "doOffline"
+                },
                     {
                         "label": "批量停用",
                         "fn": "doStop"
@@ -136,7 +141,8 @@
                 formVisible: {
                     state: false
                 },
-                searchConfig: [{
+                searchConfig: [
+                    {
                         "prop": "similar",
                         "value": "",
                         "type": "checkbox",
@@ -157,7 +163,7 @@
                     },
                     {
                         "prop": "online",
-                        "value": '1',
+                        "value": '',
                         "label": "在线状态",
                         "type": "select",
                         "list": ARRAYS.onlineState1,
@@ -165,7 +171,7 @@
                     },
                     {
                         "prop": "state",
-                        "value": '1',
+                        "value": '',
                         "label": "帐号状态",
                         "type": "select",
                         "list": [
@@ -274,7 +280,7 @@
                 limitList: [],
                 cancelLimitVisible: true,
                 // 子钱包显示数据
-                hoverData:[],
+                hoverData: [],
                 // 存储查询条件
                 query: {},
                 updateKeys: ''
@@ -299,11 +305,10 @@
                         "id": this.routeQuery.userId
                     });
                 }
-
                 // 检测this.$route.query各个属性是否有值是否有值，正常路由进来
-                if(JSON.stringify(this.$route.query) == "{}"){
-                    this.query = {"online": '1',"state": '1'};
-                    this.tableUrl = URL.api + ROUTES.GET.user.list + this.addSearch({"online": '1',"state": '1'});
+                if (JSON.stringify(this.$route.query) == "{}") {
+                    this.query = {"online": '1', "state": '1'};
+                    this.tableUrl = URL.api + ROUTES.GET.user.list + this.addSearch({"online": '1', "state": '1'});
                 }
                 this.columnsUrl = "/static/json/accoutManage/memberManagement/columns.json"
                 this.getLables();
@@ -322,14 +327,13 @@
                     // 这里需要判断的原因是因为ele-ui的组件传回来的值时false和true，而后台只接受int类型的参数，所以在这里转换
                     if (i === "similar") {
                         query[i] = obj.item[i] ? 1 : 0;
-                    } else if(i === 'agent_id'){
+                    } else if (i === 'agent_id') {
                         // 是否勾选直属用户
                         query['agent_id'] = obj.item[i] ? 0 : null;
-                    }else if(obj.item[i] || obj.item[i] == 0){
-                            query[i] = obj.item[i];
+                    } else if (obj.item[i] || obj.item[i] == 0) {
+                        query[i] = obj.item[i];
                     }
                 }
-
                 // 搜索框去掉余额的搜索，这里余额的金额转换注释掉
                 // query.balance_from = query.balance_from == "" ? "" : query.balance_from * 100;
                 // query.balance_to = query.balance_to == "" ? "" : query.balance_to * 100;
@@ -343,98 +347,59 @@
             getLables() {
                 // 获取会员标签列表
 
-				this.$.autoAjax('get',URL.api + ROUTES.GET.user.labels, '', {
-					ok: (res) => {
-						this.labelList = [];
-						this.searchConfig[9].list = [];
+                this.$.autoAjax('get', URL.api + ROUTES.GET.user.labels, '', {
+                    ok: (res) => {
+                        this.labelList = [];
+                        this.searchConfig[9].list = [];
 
-						let model = res.data
-						this.searchConfig[9].list.push({
-							"label": "全部",
-							"value": ""
-						});
-						for (let i in model) {
-							this.labelList.push({
-								"label": model[i].title,
-								"value": model[i].id
-							});
-							this.searchConfig[9].list.push({
-								"label": model[i].title,
-								"value": model[i].title
-							})
-						}
-					},
-					p: () => {
-					},
-					error: e => {
-						console.log(e)
-					}
-				})
-                // this.$http.get(URL.api + ROUTES.GET.user.labels, URLCONFIG).then((res) => {
-                //     // 防止列表重复加载
-                //     this.labelList = [];
-                //     this.searchConfig[9].list = [];
-				//
-                //     let model = res.data.data
-                //     this.searchConfig[9].list.push({
-                //         "label": "全部",
-                //         "value": ""
-                //     });
-                //     for (let i in model) {
-                //         this.labelList.push({
-                //             "label": model[i].title,
-                //             "value": model[i].id
-                //         });
-                //         this.searchConfig[9].list.push({
-                //             "label": model[i].title,
-                //             "value": model[i].title
-                //         })
-                //     }
-                // })
-                .catch(function(err) {
-//                    console.log(err)
+                        let model = res.data
+                        this.searchConfig[9].list.push({
+                            "label": "全部",
+                            "value": ""
+                        });
+                        for (let i in model) {
+                            this.labelList.push({
+                                "label": model[i].title,
+                                "value": model[i].id
+                            });
+                            this.searchConfig[9].list.push({
+                                "label": model[i].title,
+                                "value": model[i].title
+                            })
+                        }
+                    },
+                    p: () => {
+                    },
+                    error: e => {
+                        console.log(e)
+                    }
                 })
             },
             // 获取彩票模版（限额操作用）
             getLimitModel() {
 
-				this.$.autoAjax('get',URL.api + ROUTES.GET.lottery.template, '', {
-					ok: (res) => {
-						if (res.state === 0) {
-							this.limitList = [];
-							let model = res.data;
-							for (let i of model) {
-								// 派出默认的彩票模版
-								if (i.t_id != "1") {
-									this.limitList.push({
-										"id": parseInt(i.t_id),
-										"name": i.t_name
-									})
-								}
-							}
-						}
-					},
-					p: () => {
-					},
-					error: e => {
-						console.log(e)
-					}
-				})
-                // this.$http.get(URL.api + ROUTES.GET.lottery.template, URLCONFIG).then((res) => {
-                //     if (res.data.state === 0) {
-                //         this.limitList = [];
-                //         let model = res.data.data;
-                //         for (let i of model) {
-                //             // 派出默认的彩票模版
-                //             if (i.t_id != "1") {
-                //                 this.limitList.push({
-                //                     "id": parseInt(i.t_id),
-                //                     "name": i.t_name
-                //                 })
-                //             }
-                //         }
-                //     }
-                // })
+                this.$.autoAjax('get', URL.api + ROUTES.GET.lottery.template, '', {
+                    ok: (res) => {
+                        if (res.state === 0) {
+                            this.limitList = [];
+                            let model = res.data;
+                            for (let i of model) {
+                                // 派出默认的彩票模版
+                                if (i.t_id != "1") {
+                                    this.limitList.push({
+                                        "id": parseInt(i.t_id),
+                                        "name": i.t_name
+                                    })
+                                }
+                            }
+                        }
+                    },
+                    p: () => {
+                    },
+                    error: e => {
+                        console.log(e)
+                    }
+                })
             },
             //表格内按钮事件
             doHandle(e) {
@@ -492,63 +457,48 @@
                 }
             },
             // 显示子钱包
-            showSubPurse(i){
+            showSubPurse(i) {
                 let row = i.row;
                 this.hoverData = [];
                 let hoverData = this.hoverData;
-
-				this.$.autoAjax('get',URL.api + '/cash/funds/secondary?wallet_id=' + parseInt(row.wallet_id), '', {
-					ok: (res) => {
-						if (res.state == 0 && res.data) {
-							let list = res.data || [];
-							for(let k in list){
-								hoverData.push({
-									"label": list[k].gameType,
-									"value": FORMATMONEY(list[k].balance)
-								});
-							}
-						} else {
-							this.$message.error(LANG["会员打标签失败！"] || "会员打标签失败！");
-						}
-					},
-					p: () => {
-					},
-					error: e => {
-						console.log(e)
-					}
-				})
-                // this.$http.get(URL.api + '/cash/funds/secondary?wallet_id=' + parseInt(row.wallet_id), URLCONFIG).then((res) => {
-                //     if (res.data.state == 0 && res.data.data) {
-                //         let list = res.data.data || [];
-                //         for(let k in list){
-                //             hoverData.push({
-                //                 "label": list[k].gameType,
-                //                 "value": FORMATMONEY(list[k].balance)
-                //             });
-                //         }
-                //     } else {
-                //         this.$message.error(LANG["会员打标签失败！"] || "会员打标签失败！");
-                //     }
-                // });
-
+                this.$.autoAjax('get', URL.api + '/cash/funds/secondary?wallet_id=' + parseInt(row.wallet_id), '', {
+                    ok: (res) => {
+                        if (res.state == 0 && res.data) {
+                            let list = res.data || [];
+                            for (let k in list) {
+                                hoverData.push({
+                                    "label": list[k].gameType,
+                                    "value": FORMATMONEY(list[k].balance)
+                                });
+                            }
+                        } else {
+                            this.$message.error(LANG["会员打标签失败！"] || "会员打标签失败！");
+                        }
+                    },
+                    p: () => {
+                    },
+                    error: e => {
+                        console.log(e)
+                    }
+                })
             },
             //打标签
             doAddLabel(row) {
                 this.nowId = row.id;
                 this.labelVisible = true;
                 this.labelform.name = row["username"];
-                if(row.tags){
-                    for(let k=0; k<this.labelList.length; k++){
-                        if(this.labelList[k].label === row["tags"]){
+                if (row.tags) {
+                    for (let k = 0; k < this.labelList.length; k++) {
+                        if (this.labelList[k].label === row["tags"]) {
                             this.labelform.lid = this.labelList[k].value.toString();
                         }
                     }
-                }else{
+                } else {
                     this.labelform.lid = '';
                 }
             },
             // 取消标签
-            doCancelLabel(row){
+            doCancelLabel(row) {
                 this.nowId = parseInt(row.id);
                 if (parseInt(row.id)) {
                     this.confirmConfig.state = true;
@@ -560,39 +510,26 @@
             saveLabels() {
                 this.updated = false;
 
-				this.$.autoAjax('put',URL.api + ROUTES.PUT.user.label.bind + '?id=' + parseInt(this.nowId, 10), {"tag": parseInt(this.labelform.lid, 10)}, {
-					ok: (res) => {
-						if (res.state == 0 && res.data) {
-							this.$message.success(LANG["恭喜您，会员打标签成功！"] || "恭喜您，会员打标签成功！");
-							this.labelVisible = false;
-							this.updated = true;
-						} else if (res.state === 4001) {
-							this.$message.error(LANG["请至少选择一个标签！"] || "请至少选择一个标签！");
-						} else if(res.state == 405){
-							this.$message.error(LANG["打标签失败，权限不足"] || "打标签失败，权限不足！");
-						} else {
-							this.$message.error(LANG["会员打标签失败！"] || "会员打标签失败！");
-						}
-					},
-					p: () => {
-					},
-					error: e => {
-						console.log(e)
-					}
-				})
-                // this.$http.put(URL.api + ROUTES.PUT.user.label.bind + '?id=' + parseInt(this.nowId, 10), JSON.stringify({"tag": parseInt(this.labelform.lid, 10)}), URLCONFIG).then((res) => {
-                //     if (res.data.state == 0 && res.data.data) {
-                //         this.$message.success(LANG["恭喜您，会员打标签成功！"] || "恭喜您，会员打标签成功！");
-                //         this.labelVisible = false;
-                //         this.updated = true;
-                //     } else if (res.data.state === 4001) {
-                //         this.$message.error(LANG["请至少选择一个标签！"] || "请至少选择一个标签！");
-                //     } else if(res.data.state == 405){
-                //         this.$message.error(LANG["打标签失败，权限不足"] || "打标签失败，权限不足！");
-                //     } else {
-                //         this.$message.error(LANG["会员打标签失败！"] || "会员打标签失败！");
-                //     }
-                // })
+                this.$.autoAjax('put', URL.api + ROUTES.PUT.user.label.bind + '?id=' + parseInt(this.nowId, 10), {"tag": parseInt(this.labelform.lid, 10)}, {
+                    ok: (res) => {
+                        if (res.state == 0 && res.data) {
+                            this.$message.success(LANG["恭喜您，会员打标签成功！"] || "恭喜您，会员打标签成功！");
+                            this.labelVisible = false;
+                            this.updated = true;
+                        } else if (res.state === 4001) {
+                            this.$message.error(LANG["请至少选择一个标签！"] || "请至少选择一个标签！");
+                        } else if (res.state == 405) {
+                            this.$message.error(LANG["打标签失败，权限不足"] || "打标签失败，权限不足！");
+                        } else {
+                            this.$message.error(LANG["会员打标签失败！"] || "会员打标签失败！");
+                        }
+                    },
+                    p: () => {
+                    },
+                    error: e => {
+                        console.log(e)
+                    }
+                })
             },
             //资料
             doDetial(row) {
@@ -605,18 +542,18 @@
             returnPage() {
                 this.updateKeys = '';
                 let updateKeys = '';
-                for(let i in this.query){
+                for (let i in this.query) {
                     if (i === "similar") {
-                        updateKeys = updateKeys + i + ',' + (this.query[i]? true : false) + ',';
-                    } else if(i === 'agent_id'){
+                        updateKeys = updateKeys + i + ',' + (this.query[i] ? true : false) + ',';
+                    } else if (i === 'agent_id') {
                         updateKeys = updateKeys + i + ',' + (this.query[i] === 0 ? true : false) + ',';
-                    } else if(this.query[i]){
+                    } else if (this.query[i]) {
                         updateKeys = updateKeys + i + ',' + this.query[i] + ',';
                     }
                 }
-                setTimeout(()=>{
+                setTimeout(() => {
                     this.updateKeys = updateKeys;
-                },500)
+                }, 500)
                 this.isDetail = false;
                 this.isCreated = true;
                 this.tableUrl = this.baseUrl + this.addSearch(this.query);
@@ -651,31 +588,22 @@
                 }
                 let ids = ids_arr.join(',');
 
-				this.$.autoAjax('patch',URL.api + ROUTES.PATCH.user.info.$, {"ids": ids, "operation": 3}, {
-					ok: (res) => {
-						if (res.state == 0 && res.data) {
-							_this.$message.success(LANG["恭喜您，所选会员踢线成功！"] || "恭喜您，所选会员踢线成功！");
-						} else if(res.state == 405){
-							_this.$message.error(LANG["所选会员踢线失败,权限不足！"] || "所选会员踢线失败,权限不足！");
-						} else {
-							_this.$message.error(LANG["所选会员踢线失败,请稍后重试！"] || "所选会员踢线失败,请稍后重试！");
-						}
-					},
-					p: () => {
-					},
-					error: e => {
-						console.log(e)
-					}
-				})
-                // this.$http.patch(URL.api + ROUTES.PATCH.user.info.$, JSON.stringify({"ids": ids, "operation": 3}), URLCONFIG).then((res) => {
-                //     if (res.data.state == 0 && res.data.data) {
-                //         _this.$message.success(LANG["恭喜您，所选会员踢线成功！"] || "恭喜您，所选会员踢线成功！");
-                //     } else if(res.data.state == 405){
-                //         _this.$message.error(LANG["所选会员踢线失败,权限不足！"] || "所选会员踢线失败,权限不足！");
-                //     } else {
-                //         _this.$message.error(LANG["所选会员踢线失败,请稍后重试！"] || "所选会员踢线失败,请稍后重试！");
-                //     }
-                // })
+                this.$.autoAjax('patch', URL.api + ROUTES.PATCH.user.info.$, {"ids": ids, "operation": 3}, {
+                    ok: (res) => {
+                        if (res.state == 0 && res.data) {
+                            _this.$message.success(LANG["恭喜您，所选会员踢线成功！"] || "恭喜您，所选会员踢线成功！");
+                        } else if (res.state == 405) {
+                            _this.$message.error(LANG["所选会员踢线失败,权限不足！"] || "所选会员踢线失败,权限不足！");
+                        } else {
+                            _this.$message.error(LANG["所选会员踢线失败,请稍后重试！"] || "所选会员踢线失败,请稍后重试！");
+                        }
+                    },
+                    p: () => {
+                    },
+                    error: e => {
+                        console.log(e)
+                    }
+                })
             },
             //批量停用
             doStop() {
@@ -687,31 +615,22 @@
                 }
                 let ids = ids_arr.join(',');
 
-				this.$.autoAjax('', URL.api + ROUTES.GET, {"ids": ids, "operation": 2}, {
-					ok: (res) => {
-						if (res.state == 0 && res.data) {
-							_this.$message.success(LANG["恭喜您，所选会员踢线成功！"] || "恭喜您，所选会员踢线成功！");
-						} else if(res.state == 405){
-							_this.$message.error(LANG["所选会员踢线失败,权限不足！"] || "所选会员踢线失败,权限不足！");
-						} else {
-							_this.$message.error(LANG["所选会员踢线失败,请稍后重试！"] || "所选会员踢线失败,请稍后重试！");
-						}
-					},
-					p: () => {
-					},
-					error: e => {
-						console.log(e)
-					}
-				})
-                // this.$http.patch(URL.api + ROUTES.PATCH.user.info.$, JSON.stringify({"ids": ids, "operation": 2}), URLCONFIG).then((res) => {
-                //     if (res.data.state == 0 && res.data.data) {
-                //         _this.$message.success(LANG["恭喜您，所选会员踢线成功！"] || "恭喜您，所选会员踢线成功！");
-                //     } else if(res.data.state == 405){
-                //         _this.$message.error(LANG["所选会员踢线失败,权限不足！"] || "所选会员踢线失败,权限不足！");
-                //     } else {
-                //         _this.$message.error(LANG["所选会员踢线失败,请稍后重试！"] || "所选会员踢线失败,请稍后重试！");
-                //     }
-                // })
+                this.$.autoAjax('', URL.api + ROUTES.GET, {"ids": ids, "operation": 2}, {
+                    ok: (res) => {
+                        if (res.state == 0 && res.data) {
+                            _this.$message.success(LANG["恭喜您，所选会员踢线成功！"] || "恭喜您，所选会员踢线成功！");
+                        } else if (res.state == 405) {
+                            _this.$message.error(LANG["所选会员踢线失败,权限不足！"] || "所选会员踢线失败,权限不足！");
+                        } else {
+                            _this.$message.error(LANG["所选会员踢线失败,请稍后重试！"] || "所选会员踢线失败,请稍后重试！");
+                        }
+                    },
+                    p: () => {
+                    },
+                    error: e => {
+                        console.log(e)
+                    }
+                })
             },
             //批量调整余额
             doAllAdjustedBalance() {
@@ -754,37 +673,25 @@
                     case "cancelLabel":
                         this.updated = false;
 
-						this.$.autoAjax('put',URL.api + ROUTES.PUT.user.label.bind + '?id=' + parseInt(this.nowId, 10),{"tag": 0}, {
-							ok: (res) => {
-								if (res.state == 0 && res.data) {
-									this.$message.success(LANG["恭喜您，会员标签取消成功！"] || "恭喜您，会员标签取消成功！");
-									this.labelVisible = false;
-									this.updated = true;
-								} else if(res.state == 405){
-									this.$message.error(LANG["会员标签取消失败,权限不足！"] || "会员标签取消失败,权限不足！");
-								}else {
-									this.$message.error(LANG["会员标签取消失败！"] || "会员标签取消失败！");
-								}
-							},
-							p: () => {
-							},
-							error: e => {
-								console.log(e)
-							}
-						})
-                        // this.$http.put(URL.api + ROUTES.PUT.user.label.bind + '?id=' + parseInt(this.nowId, 10), JSON.stringify({"tag": 0}), URLCONFIG).then((res) => {
-                        //     if (res.data.state == 0 && res.data.data) {
-                        //         this.$message.success(LANG["恭喜您，会员标签取消成功！"] || "恭喜您，会员标签取消成功！");
-                        //         this.labelVisible = false;
-                        //         this.updated = true;
-                        //     } else if(res.data.state == 405){
-                        //         this.$message.error(LANG["会员标签取消失败,权限不足！"] || "会员标签取消失败,权限不足！");
-                        //     }else {
-                        //         this.$message.error(LANG["会员标签取消失败！"] || "会员标签取消失败！");
-                        //     }
-                        // })
+                        this.$.autoAjax('put', URL.api + ROUTES.PUT.user.label.bind + '?id=' + parseInt(this.nowId, 10), {"tag": 0}, {
+                            ok: (res) => {
+                                if (res.state == 0 && res.data) {
+                                    this.$message.success(LANG["恭喜您，会员标签取消成功！"] || "恭喜您，会员标签取消成功！");
+                                    this.labelVisible = false;
+                                    this.updated = true;
+                                } else if (res.state == 405) {
+                                    this.$message.error(LANG["会员标签取消失败,权限不足！"] || "会员标签取消失败,权限不足！");
+                                } else {
+                                    this.$message.error(LANG["会员标签取消失败！"] || "会员标签取消失败！");
+                                }
+                            },
+                            p: () => {
+                            },
+                            error: e => {
+                                console.log(e)
+                            }
+                        })
                         break;
-
                 }
             },
             //doSendMsg 发送消息
@@ -804,23 +711,25 @@
                 this.updateKeys = '';
                 let query = {};
                 if (!this.$route.query.agent && !this.$route.query.name && !this.$route.query.level) {
-                    this.query = {"online": '1',"state": '1'};
-                    this.tableUrl = URL.api + ROUTES.GET.user.list + this.addSearch({"online": '1',"state": '1'});
-                    query.online = '1';
-                    query.state = '1';
-                    setTimeout(()=>{
-                        this.updateKeys = 'online,1,state,1,register_from,,register_to,,';
-                    },500)
+                    this.query = {"online": '', "state": ''};
+                    //注释的内容为在线状态 在线和帐号状态 启用
+                    //this.tableUrl = URL.api + ROUTES.GET.user.list + this.addSearch({"online": '1', "state": '1'});
+                    this.tableUrl = URL.api + ROUTES.GET.user.list
+//                    query.online = '1';
+//                    query.state = '1';
+//                    setTimeout(() => {
+//                        this.updateKeys = 'online,1,state,1,register_from,,register_to,,';
+//                    }, 500)
                 } else {
-                    setTimeout(()=>{
+                    setTimeout(() => {
                         this.updateKeys = 'redirect,,';
-                    },500);
+                    }, 500);
                 }
                 this.query = query;
             },
             //调整余额
             doAdjustedBalance(row) {
-                this.$router.push({path: "/manual",query: {username: row["username"], role: "1"}});
+                this.$router.push({path: "/manual", query: {username: row["username"], role: "1"}});
             },
             //跳转代理页面
             openAgentInformation(row) {
@@ -832,134 +741,106 @@
             },
             // 跳转现金流水
             doFundDetails(row) {
-                this.$router.push({path: "/fundDetails",query: {username: row.username}});
+                this.$router.push({path: "/fundDetails", query: {username: row.username}});
             },
             // 会员账号的启用和停用
             doEnabled(row) {
                 this.updated = false;
 
-				this.$.autoAjax('put',URL.api + ROUTES.PUT.user.setting + parseInt(row.id), {"ids": row.id.toString(), "state": 1}, {
-					ok: (res) => {
-						if (res.state != undefined && res.state == 0) {
-							this.$message.success(this.LANG['会员帐号启用成功'] || '会员帐号启用成功');
-							this.updated = true;
-						} else if (res.state == 4003 || res.state == 405) {
-							this.$message.error(this.LANG['会员帐号启用失败，权限不足'] || '会员帐号启用失败，权限不足');
-						} else {
-							this.$message.error(this.LANG['会员帐号启用失败，请稍后重试'] || '会员帐号启用失败，请稍后重试');
-						}
-					},
-					p: () => {
-					},
-					error: e => {
-						console.log(e)
-					}
-				})
-                // this.$http.put(URL.api + ROUTES.PUT.user.setting + parseInt(row.id), JSON.stringify({"ids": row.id.toString(), "state": 1}), URLCONFIG).then((res) => {
-                //     if (res.data.state != undefined && res.data.state == 0) {
-                //         this.$message.success(this.LANG['会员帐号启用成功'] || '会员帐号启用成功');
-                //         this.updated = true;
-                //     } else if (res.data.state == 4003 || res.data.state == 405) {
-                //          this.$message.error(this.LANG['会员帐号启用失败，权限不足'] || '会员帐号启用失败，权限不足');
-                //     } else {
-                //         this.$message.error(this.LANG['会员帐号启用失败，请稍后重试'] || '会员帐号启用失败，请稍后重试');
-                //     }
-                // })
+                this.$.autoAjax('put', URL.api + ROUTES.PUT.user.setting + parseInt(row.id), {
+                    "ids": row.id.toString(),
+                    "state": 1
+                }, {
+                    ok: (res) => {
+                        if (res.state != undefined && res.state == 0) {
+                            this.$message.success(this.LANG['会员帐号启用成功'] || '会员帐号启用成功');
+                            this.updated = true;
+                        } else if (res.state == 4003 || res.state == 405) {
+                            this.$message.error(this.LANG['会员帐号启用失败，权限不足'] || '会员帐号启用失败，权限不足');
+                        } else {
+                            this.$message.error(this.LANG['会员帐号启用失败，请稍后重试'] || '会员帐号启用失败，请稍后重试');
+                        }
+                    },
+                    p: () => {
+                    },
+                    error: e => {
+                        console.log(e)
+                    }
+                })
             },
             doDisabled(row) {
                 this.updated = false;
 
-				this.$.autoAjax('put',URL.api + ROUTES.PUT.user.setting + parseInt(row.id), {"ids": row.id.toString(),'state': 0}, {
-					ok: (res) => {
-						if (res.state != undefined && res.state == 0) {
-							this.$message.success(this.LANG['会员帐号停用成功'] || '会员帐号停用成功');
-							this.updated = true;
-						} else if (res.state == 4003 || res.state == 405) {
-							this.$message.error(this.LANG['会员帐号停用失败，权限不足'] || '会员帐号停用失败，权限不足');
-						} else {
-							this.$message.error(this.LANG['会员帐号停用失败，请稍后重试'] || '会员帐号停用失败，请稍后重试');
-						}
-					},
-					p: () => {
-					},
-					error: e => {
-						console.log(e)
-					}
-				})
-                // this.$http.put(URL.api + ROUTES.PUT.user.setting + parseInt(row.id), JSON.stringify({"ids": row.id.toString(), 'state': 0}), URLCONFIG).then((res) => {
-                //     if (res.data.state != undefined && res.data.state == 0) {
-                //         this.$message.success(this.LANG['会员帐号停用成功'] || '会员帐号停用成功');
-                //         this.updated = true;
-                //     } else if (res.data.state == 4003 || res.data.state == 405) {
-                //          this.$message.error(this.LANG['会员帐号停用失败，权限不足'] || '会员帐号停用失败，权限不足');
-                //     } else {
-                //         this.$message.error(this.LANG['会员帐号停用失败，请稍后重试'] || '会员帐号停用失败，请稍后重试');
-                //     }
-                // })
+                this.$.autoAjax('put', URL.api + ROUTES.PUT.user.setting + parseInt(row.id), {
+                    "ids": row.id.toString(),
+                    'state': 0
+                }, {
+                    ok: (res) => {
+                        if (res.state != undefined && res.state == 0) {
+                            this.$message.success(this.LANG['会员帐号停用成功'] || '会员帐号停用成功');
+                            this.updated = true;
+                        } else if (res.state == 4003 || res.state == 405) {
+                            this.$message.error(this.LANG['会员帐号停用失败，权限不足'] || '会员帐号停用失败，权限不足');
+                        } else {
+                            this.$message.error(this.LANG['会员帐号停用失败，请稍后重试'] || '会员帐号停用失败，请稍后重试');
+                        }
+                    },
+                    p: () => {
+                    },
+                    error: e => {
+                        console.log(e)
+                    }
+                })
             },
             // 封号
             doSeal(row) {
                 this.updated = false;
 
-				this.$.autoAjax('put',URL.api + ROUTES.PUT.user.setting + parseInt(row.id), {"ids": row.id.toString(), 'state': 4},{
-					ok: (res) => {
-						if (res.state != undefined && res.state == 0) {
-							this.$message.success(this.LANG['会员帐号封号成功'] || '会员帐号封号成功');
-							this.updated = true;
-						} else if (res.state == 4003 || res.state == 405) {
-							this.$message.error(this.LANG['会员帐号封号失败，权限不足'] || '会员帐号封号失败，权限不足');
-						} else {
-							this.$message.error(this.LANG['会员帐号封号失败，请稍后重试'] || '会员帐号封号失败，请稍后重试');
-						}
-					},
-					p: () => {
-					},
-					error: e => {
-						console.log(e)
-					}
-				})
-                // this.$http.put(URL.api + ROUTES.PUT.user.setting + parseInt(row.id), JSON.stringify({"ids": row.id.toString(), 'state': 4}), URLCONFIG).then((res) => {
-                //     if (res.data.state != undefined && res.data.state == 0) {
-                //         this.$message.success(this.LANG['会员帐号封号成功'] || '会员帐号封号成功');
-                //         this.updated = true;
-                //     } else if (res.data.state == 4003 || res.data.state == 405) {
-                //         this.$message.error(this.LANG['会员帐号封号失败，权限不足'] || '会员帐号封号失败，权限不足');
-                //     } else {
-                //         this.$message.error(this.LANG['会员帐号封号失败，请稍后重试'] || '会员帐号封号失败，请稍后重试');
-                //     }
-                // })
+                this.$.autoAjax('put', URL.api + ROUTES.PUT.user.setting + parseInt(row.id), {
+                    "ids": row.id.toString(),
+                    'state': 4
+                }, {
+                    ok: (res) => {
+                        if (res.state != undefined && res.state == 0) {
+                            this.$message.success(this.LANG['会员帐号封号成功'] || '会员帐号封号成功');
+                            this.updated = true;
+                        } else if (res.state == 4003 || res.state == 405) {
+                            this.$message.error(this.LANG['会员帐号封号失败，权限不足'] || '会员帐号封号失败，权限不足');
+                        } else {
+                            this.$message.error(this.LANG['会员帐号封号失败，请稍后重试'] || '会员帐号封号失败，请稍后重试');
+                        }
+                    },
+                    p: () => {
+                    },
+                    error: e => {
+                        console.log(e)
+                    }
+                })
             },
             // 解封
             doUnlock(row) {
                 this.updated = false;
 
-				this.$.autoAjax('put',URL.api + ROUTES.PUT.user.setting + parseInt(row.id), {"ids": row.id.toString(), 'state': 1}, {
-					ok: (res) => {
-						if (res.state != undefined && res.state == 0) {
-							this.$message.success(this.LANG['会员帐号解封成功'] || '会员帐号解封成功');
-							this.updated = true;
-						} else if (res.state == 4003 || res.state == 405) {
-							this.$message.error(this.LANG['会员帐号解封失败，权限不足'] || '会员帐号解封失败，权限不足');
-						} else {
-							this.$message.error(this.LANG['会员帐号解封失败，请稍后重试'] || '会员帐号解封失败，请稍后重试');
-						}
-					},
-					p: () => {
-					},
-					error: e => {
-						console.log(e)
-					}
-				})
-                // this.$http.put(URL.api + ROUTES.PUT.user.setting + parseInt(row.id), JSON.stringify({"ids": row.id.toString(), 'state': 1}), URLCONFIG).then((res) => {
-                //     if (res.data.state != undefined && res.data.state == 0) {
-                //         this.$message.success(this.LANG['会员帐号解封成功'] || '会员帐号解封成功');
-                //         this.updated = true;
-                //     } else if (res.data.state == 4003 || res.data.state == 405) {
-                //         this.$message.error(this.LANG['会员帐号解封失败，权限不足'] || '会员帐号解封失败，权限不足');
-                //     } else {
-                //         this.$message.error(this.LANG['会员帐号解封失败，请稍后重试'] || '会员帐号解封失败，请稍后重试');
-                //     }
-                // })
+                this.$.autoAjax('put', URL.api + ROUTES.PUT.user.setting + parseInt(row.id), {
+                    "ids": row.id.toString(),
+                    'state': 1
+                }, {
+                    ok: (res) => {
+                        if (res.state != undefined && res.state == 0) {
+                            this.$message.success(this.LANG['会员帐号解封成功'] || '会员帐号解封成功');
+                            this.updated = true;
+                        } else if (res.state == 4003 || res.state == 405) {
+                            this.$message.error(this.LANG['会员帐号解封失败，权限不足'] || '会员帐号解封失败，权限不足');
+                        } else {
+                            this.$message.error(this.LANG['会员帐号解封失败，请稍后重试'] || '会员帐号解封失败，请稍后重试');
+                        }
+                    },
+                    p: () => {
+                    },
+                    error: e => {
+                        console.log(e)
+                    }
+                })
             },
             // 限额
             doLimitLines(row) {
@@ -984,98 +865,73 @@
                 }
                 this.updated = false;
 
-				this.$.autoAjax('put', URL.api + '/lottery/template.users',{"tid": parseInt(this.limitform.id), "user_id": this.nowId}, {
-					ok: (res) => {
-						if (res.state === 0 && res.data) {
-							this.$message.success(LANG["恭喜您，会员限额成功！"] || "恭喜您，会员限额成功！");
-							this.updated = true;
-						} else if(res.state == 405){
-							this.$message.error(LANG["会员限额失败,权限不足！"] || "会员限额失败,权限不足！");
-						} else {
-							this.$message.error(LANG["会员限额失败！"] || "会员限额失败！");
-						}
-						this.limitVisible = false;
-					},
-					p: () => {
-					},
-					error: e => {
-						console.log(e)
-					}
-				})
-                // this.$http.put(URL.api + '/lottery/template.users', JSON.stringify({"tid": parseInt(this.limitform.id), "user_id": this.nowId}), URLCONFIG).then((res) => {
-                //     if (res.data.state === 0 && res.data.data) {
-                //         this.$message.success(LANG["恭喜您，会员限额成功！"] || "恭喜您，会员限额成功！");
-                //         this.updated = true;
-                //     } else if(res.data.state == 405){
-                //         this.$message.error(LANG["会员限额失败,权限不足！"] || "会员限额失败,权限不足！");
-                //     } else {
-                //         this.$message.error(LANG["会员限额失败！"] || "会员限额失败！");
-                //     }
-                //     this.limitVisible = false;
-                // })
+                this.$.autoAjax('put', URL.api + '/lottery/template.users', {
+                    "tid": parseInt(this.limitform.id),
+                    "user_id": this.nowId
+                }, {
+                    ok: (res) => {
+                        if (res.state === 0 && res.data) {
+                            this.$message.success(LANG["恭喜您，会员限额成功！"] || "恭喜您，会员限额成功！");
+                            this.updated = true;
+                        } else if (res.state == 405) {
+                            this.$message.error(LANG["会员限额失败,权限不足！"] || "会员限额失败,权限不足！");
+                        } else {
+                            this.$message.error(LANG["会员限额失败！"] || "会员限额失败！");
+                        }
+                        this.limitVisible = false;
+                    },
+                    p: () => {
+                    },
+                    error: e => {
+                        console.log(e)
+                    }
+                })
             },
             cancelLimit() {
                 let arr = [];
                 arr.push(this.nowId);
                 this.updated = false;
-
-				this.$.autoAjax('post',URL.api + '/lottery/template.users',{"user_id": arr}, {
-					ok: (res) => {
-						if (res.state === 0) {
-							this.$message.success(LANG["恭喜您，会员取消限额成功！"] || "恭喜您，会员取消限额成功！");
-							this.limitform["id"] = "";
-							this.cancelLimitVisible = false;
-							this.updated = true;
-						} else if(res.state == 405){
-							this.$message.error(LANG["会员取消限额失败,权限不足！"] || "会员取消限额失败,权限不足！");
-						} else {
-							this.$message.error(LANG["会员取消限额失败！"] || "会员取消限额失败！");
-						}
-					},
-					p: () => {
-					},
-					error: e => {
-						console.log(e)
-					}
-				})
-                // this.$http.post(URL.api + '/lottery/template.users', JSON.stringify({"user_id": arr}), URLCONFIG).then((res) => {
-                //     if (res.data.state === 0) {
-                //         this.$message.success(LANG["恭喜您，会员取消限额成功！"] || "恭喜您，会员取消限额成功！");
-                //         this.limitform["id"] = "";
-                //         this.cancelLimitVisible = false;
-                //         this.updated = true;
-                //     } else if(res.data.state == 405){
-                //         this.$message.error(LANG["会员取消限额失败,权限不足！"] || "会员取消限额失败,权限不足！");
-                //     } else {
-                //         this.$message.error(LANG["会员取消限额失败！"] || "会员取消限额失败！");
-                //     }
-                // })
+                this.$.autoAjax('post', URL.api + '/lottery/template.users', {"user_id": arr}, {
+                    ok: (res) => {
+                        if (res.state === 0) {
+                            this.$message.success(LANG["恭喜您，会员取消限额成功！"] || "恭喜您，会员取消限额成功！");
+                            this.limitform["id"] = "";
+                            this.cancelLimitVisible = false;
+                            this.updated = true;
+                        } else if (res.state == 405) {
+                            this.$message.error(LANG["会员取消限额失败,权限不足！"] || "会员取消限额失败,权限不足！");
+                        } else {
+                            this.$message.error(LANG["会员取消限额失败！"] || "会员取消限额失败！");
+                        }
+                    },
+                    p: () => {
+                    },
+                    error: e => {
+                        console.log(e)
+                    }
+                })
             },
             // 新窗口打开游戏模版
-            gotoLotteryOdds(id , name) {
+            gotoLotteryOdds(id, name) {
                 window.open(window.location.origin + '/lotteryOdds?id=' + id + '&name=' + name);
             },
             // 代理页面跳转修改相关值
-            setAllForm(form){
-                for(let k in form){
-                    if(k === 'agent' && this.$route.query.agent){
+            setAllForm(form) {
+                for (let k in form) {
+                    if (k === 'agent' && this.$route.query.agent) {
                         form[k] = this.$route.query.agent || '';
-                    } else if(k === 'name'  && this.$route.query.name){
+                    } else if (k === 'name' && this.$route.query.name) {
                         form[k] = this.$route.query.name || '';
-                    } else if(k === 'level'  && this.$route.query.level){
+                    } else if (k === 'level' && this.$route.query.level) {
                         form[k] = this.$route.query.level || '';
                     } else {
-                      form[k] = '';
+                        form[k] = '';
                     }
                 }
             }
         },
-        watch: {
-
-        },
-        computed: {},
         mounted() {
-            $(()=>{
+            $(() => {
                 let btn = document.getElementsByClassName('popover_diy_btn')[0];
             })
         },
@@ -1099,24 +955,27 @@
             if (this.$route.query.agent) {
                 this.searchConfig[5]['value'] = this.$route.query.agent;
                 this.tableUrl = URL.api + ROUTES.GET.user.list + "?agent=" + this.$route.query.agent;
-            }else{
+            } else {
                 this.init();
-            };
+            }
+            ;
             if (this.$route.query.name) {
                 this.searchConfig[1]['value'] = this.$route.query.name;
                 this.tableUrl = URL.api + ROUTES.GET.user.list + "?name=" + this.$route.query.name;
-            }else{
+            } else {
                 this.init();
-            };
+            }
+            ;
             if (this.$route.query.level) {
                 this.searchConfig[6]['value'] = this.$route.query.level.toString();
                 this.tableUrl = URL.api + ROUTES.GET.user.list + "?level=" + this.$route.query.level;
-            }else{
+            } else {
                 this.init();
-            };
-            setTimeout(()=>{
+            }
+            ;
+            setTimeout(() => {
                 this.updated = true;
-            },500)
+            }, 500)
         },
         deactivated() {
             this.$route.query.agent = null;
