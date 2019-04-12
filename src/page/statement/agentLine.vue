@@ -46,33 +46,33 @@
                         </td>
                         <td colspan="1">
                             <div class="cell">
-                                <span class="font16 ">{{allData.bet_money_sum | formatMoney}} </span>
+                                <span class="font16 ">{{allData.bet_money_sum}} </span>
                             </div>
                         </td>
                         <td colspan="1">
                             <div class="cell">
-                                <span class="font16 ">{{allData.valid_bet_sum | formatMoney}} </span>
+                                <span class="font16 ">{{allData.valid_bet_sum}} </span>
                             </div>
                         </td>
                         <td colspan="1">
                             <div class="cell">
                             <span class="font16 "
-                                  :class="{state_danger: parseFloat(allData.profit_loss_sum) < 0 }">{{allData.profit_loss_sum | formatMoney}} </span>
+                                  :class="{state_danger: parseFloat(allData.profit_loss_sum) < 0 }">{{allData.profit_loss_sum}} </span>
                             </div>
                         </td>
                         <td colspan="1">
                             <div class="cell">
-                                <span class="font16 ">{{allData.send_prize_sum | formatMoney(4)}} </span>
+                                <span class="font16 ">{{allData.send_prize_sum}} </span>
                             </div>
                         </td>
                         <td colspan="1">
                             <div class="cell">
-                                <span class="font16 ">{{allData.bonus_sum | formatMoney(4)}} </span>
+                                <span class="font16 ">{{allData.bonus_sum}} </span>
                             </div>
                         </td>
                         <td colspan="1">
                             <div class="cell">
-                                <span class="font16 ">{{allData.contri_sum | formatMoney(4)}} </span>
+                                <span class="font16 ">{{allData.contri_sum}} </span>
                             </div>
                         </td>
                     </tr>
@@ -134,9 +134,6 @@
                 this.end_time = data.end_time ? data.end_time : sessionStorage.dateTimeEnd
                 this.tableUrl = this.beastUrl + this.addSearch(data.item)
                 this.breadcrumb = []
-//                this.label = {start_time:data.start_time,end_time:data.end_time};
-//                if(data.name)this.label.nanme = data.name
-                //this.detailsUrl = URL.api + ROUTES.GET.user.agent.line + addSearch()
             },
             resetForm() {
                 this.start_time = sessionStorage.dateTimeStart
@@ -166,7 +163,6 @@
                         }
                         if(index > m && m !==null){
                             this.breadcrumb.splice(m+1,this.breadcrumb.length)
-                            //delete items
                         }
                     })
                 }

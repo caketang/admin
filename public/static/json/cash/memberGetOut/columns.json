@@ -73,7 +73,7 @@
         {	"prop":"state",
             "label":"首次出款",
              "type":"regular",
-            "filters":[{ "text": "是", "value": "new"},{"text":"否","value":""}],    
+            "filters":[{ "text": "是", "value": "new"},{"text":"否","value":""}],
             "disabled":true,
             "width": "60"
         },
@@ -83,7 +83,7 @@
                         {"text":"已取消","value":"refused"},
                         {"text":"待处理","value":"pending"},
                         {"text":"付款成功","value":"paid"},
-                        {"text":"出款中","value":"prepare"}],
+                        {"text":"审核中","value":"prepare"}],
             "disabled":true,
             "width": "80"
         },
@@ -96,11 +96,11 @@
             "type":"button",
             "disabled":true,
             "btnGroup":[
-                {"btnType":"text","label":"确认","fn":"doUpdate","prop":"status","val":"pending","val1": "prepare","equal": true,"equal": true},
-                {"btnType":"text","label":"取消","fn":"doRefuse","prop":"status","val":"pending","val1": "prepare","equal": true,"equal": true},
-                {"btnType":"text","label":"预备出款","fn":"doPrepare","prop":"status","val":"pending"},
-                {"btnType":"text","label":"拒绝","fn":"doReject","prop":"status","val":"pending","val1": "prepare","equal": true,"equal": true},
-                {"btnType":"text","label":"详情","fn":"doDetail"},
+                {"btnType":"text","label":"审核","fn":"doDetail","prop":"status","val":"prepare"},
+                {"btnType":"text","label":"审核","fn":"doDetail","prop":"status","val":"pending"},
+                {"btnType":"text","label":"详情","fn":"doDetail","prop":"status","val":"paid"},
+                {"btnType":"text","label":"详情","fn":"doDetail","prop":"status","val":"rejected"},
+                {"btnType":"text","label":"详情","fn":"doDetail","prop":"status","val":"refused"},
                 {"btnType":"text","label":"备注","fn":"doMemo"}
             ],
             "width": "100"

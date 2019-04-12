@@ -74,7 +74,7 @@
                     </el-col>
                     <!--取款信息-->
                     <el-col :span="24" style="margin-bottom:20px;">
-                        <div class="grid-content bg-purple-dark" style="text-align: center;">
+                        <div class="grid-content bg-purple-dark tCent" >
                             {{LANG['取款信息'] || '取款信息'}}
                         </div>
                     </el-col>
@@ -216,7 +216,8 @@
                                         <el-tooltip placement="right" effect="light">
                                             <div slot="content">
                                                 <p v-for="(item,key) in gridDataCol" :key="key" :class="{mt10:key >0}">
-                                                    <a href="javascript:;" @click="toLink(item['name-en'],scope.row.start_date,scope.row.end_date)">
+                                                    <a href="javascript:;"
+                                                       @click="toLink(item['name-en'],scope.row.start_date,scope.row.end_date)">
                                                         <el-tag type="primary" style="">{{item.name}} :</el-tag>
                                                     </a>
                                                     <span class="pleft">{{item.valid_bet / 100}}</span></p>
@@ -250,9 +251,10 @@
                     </el-row>
                 </el-form>
                 <span slot="footer" class="dialog-footer">
-                    <el-button @click="editVisible = false">{{LANG['关闭'] || '关闭'}}</el-button>
-                    <!--<el-button @click="doAdopt" type="primary">{{_('预备支付')}}</el-button>-->
-                    <!--<el-button @click="doRefuse" type="primary">{{_('拒绝')}}</el-button>-->
+                    <el-button @click="closeDialog">{{LANG['关闭'] || '关闭'}}</el-button>
+                    <el-button @click="doUpdate(editForm)" type="primary">{{LANG['确认出款']||'确认出款'}}</el-button>
+                    <el-button @click="doReject(editForm)" type="primary">{{LANG['拒绝']||'拒绝'}}</el-button>
+                    <el-button @click="doRefuse(editForm)" type="primary">{{LANG['取消出款']||'取消出款'}}</el-button>
               </span>
             </el-dialog>
         </el-col>
@@ -350,6 +352,7 @@
     import editTable from '../../components/editTable.vue'
     import formEdit from '../../components/formEdit.vue'
     import confirm from '../../components/confirm.vue';
+
     export default {
         data() {
             return {
@@ -409,12 +412,14 @@
                         "checkAll": true,
                         "allBtnShow": true,
                         "type": "checkGroup",
-                        "list": ["已取消", "已拒绝", "出款中", "待处理", "付款成功"],
-                        "Arr": [{"label": "已取消", "value": "refused"},
-                            {"label": "出款中", "value": "prepare"},
+                        "list": ["已取消", "已拒绝", "审核中", "待处理", "付款成功"],
+                        "Arr": [
+                            {"label": "已取消", "value": "refused"},
+                            {"label": "审核中", "value": "prepare"},
                             {"label": "待处理", "value": "pending"},
                             {"label": "已拒绝", "value": "rejected"},
-                            {"label": "付款成功", "value": "paid"}],
+                            {"label": "付款成功", "value": "paid"}
+                        ],
                     },
                     {
                         "prop": "type",
@@ -488,8 +493,8 @@
                 updateDate: "",
                 user_id: 0,
                 isShow: sessionStorage.user_withdraws_export == 'true' ? true : false,
-                exportForm:{},
-                userName:'',
+                exportForm: {},
+                userName: '',
             }
         },
         components: {
@@ -508,29 +513,37 @@
                 }
                 this.baseUrl = URL.api + ROUTES.GET.cash.withdraws;
                 this.columnsUrl = "static/json/cash/memberGetOut/columns.json";
-                _this.exportForm = {date_from:sessionStorage.sysTime + " 00:00:00",date_to:sessionStorage.sysTime + " 23:59:59",signature:1}
-                this.$.autoAjax('get',URL.api + ROUTES.GET.user.level.list, '', {
-					ok: (res) => {
-						if (res.state == 0 && res.data) {
-							let model = res.data;
-							for (let i in model) {
-								_this.searchConfig[3].list.push(model[i].name);
-								_this.searchConfig[3].Arr.push({
-									"label": model[i].name,
-									"value": model[i].id
-								})
-							}
-						}
-					},
-					p: () => {
-					},
-					error: e => {
-						console.log(e)
-					}
-				})
+                _this.exportForm = {
+                    date_from: sessionStorage.sysTime + " 00:00:00",
+                    date_to: sessionStorage.sysTime + " 23:59:59",
+                    signature: 1
+                }
+                this.$.autoAjax('get', URL.api + ROUTES.GET.user.level.list, '', {
+                    ok: (res) => {
+                        if (res.state == 0 && res.data) {
+                            let model = res.data;
+                            for (let i in model) {
+                                _this.searchConfig[3].list.push(model[i].name);
+                                _this.searchConfig[3].Arr.push({
+                                    "label": model[i].name,
+                                    "value": model[i].id
+                                })
+                            }
+                        }
+                    },
+                    p: () => {
+                    },
+                    error: e => {
+                        console.log(e)
+                    }
+                })
                 _this.searchObj.date_from = sessionStorage.sysTime + ' 00:00:00';
                 _this.searchObj.date_to = sessionStorage.sysTime + ' 23:59:59';
                 _this.searchConfig[3].list = this.memberGradeList;
+            },
+            closeDialog(){
+                this.editVisible = false
+                this.updated = true
             },
             //执行查询
             doQuery(obj) {
@@ -577,37 +590,41 @@
             },
             //表格内按钮事件
             doHandle(e) {
+//                {"btnType":"text","label":"确认","fn":"doUpdate","prop":"status","val":"pending","val1": "prepare","equal": true,"equal": true},
+//                {"btnType":"text","label":"取消","fn":"doRefuse","prop":"status","val":"pending","val1": "prepare","equal": true,"equal": true},
+//                {"btnType":"text","label":"预备出款","fn":"doPrepare","prop":"status","val":"pending"},
+//                {"btnType":"text","label":"拒绝","fn":"doReject","prop":"status","val":"pending","val1": "prepare","equal": true,"equal": true},
                 this.updated = false;
                 this.id = e.row.id;
                 this.user_id = e.row.user_id;
                 switch (e.fn) {
-                    case "doDetail":
+                    case "doDetail"://详情
                         this.doDetail(e.row)
                         break
-                    case "doPay":
-                        this.doPay(e.row)
-                        break
-                    case "doPrepare":
-                        this.doPrepare(e.row)
-                        break
-                    case "doRefuse":
-                        this.doRefuse(e.row);
-                        break
-                    case "openUserInformation":
-                        this.openUserInformation(e.row)
-                        break
+//                    case "doPay":
+//                        this.doPay(e.row)
+//                        break
+//                    case "doPrepare":
+//                        this.doPrepare(e.row)
+//                        break
+//                    case "doRefuse"://取消出款
+//                        this.doRefuse(e.row);
+//                        break
+//                    case "openUserInformation":
+//                        this.openUserInformation(e.row)
+//                        break
                     case "changeFee":
                         this.changeFee(e.row, event)
                         break
-                    case "doReject":
-                        this.doReject(e.row, event)
-                        break
+//                    case "doReject"://拒绝出款
+//                        this.doReject(e.row, event)
+//                        break
                     case "doMemo":
                         this.doMemo(e.row, event)
                         break
-                    case "doUpdate":
-                        this.doUpdate(e.row, event)
-                        break
+//                    case "doUpdate"://确认出款
+//                        this.doUpdate(e.row, event)
+//                        break
                 }
             },
             doHandleDetail(e) {
@@ -616,9 +633,9 @@
                     case "showCommissionProportion":
                         this.showCommissionProportion(e.row, event)
                         break
-                    case "hideRebateProportion":
-                        this.hideRebateProportion(item.row, item.event)
-                        break;
+//                    case "hideRebateProportion":
+//                        this.hideRebateProportion(item.row, item.event)
+//                        break;
                 }
             },
             changeFee(obj, event) {
@@ -646,48 +663,32 @@
                     coupon: this.withdraw.coupon * 100,
                     management_cost: this.withdraw.management_cost * 100,
                 }
-
-				this.$.autoAjax('patch',URL.api + ROUTES.PATCH.cash.withdraw.fee + this.feeId, obj,{
-					ok: (res) => {
-						if (res.state == 0 && res.data) {
-							_this.$message.success(LANG['保存成功'] || '保存成功');
-							_this.feeVisi = false;
-							_this.updated = true;
-						} else {
-							_this.$message.error(LANG['保存失败'] || '保存失败');
-						}
-						this.feeId = 0;
-					},
-					p: () => {
-					},
-					error: e => {
-						console.log(e)
-					}
-				})
-//                 this.$http.patch(URL.api + ROUTES.PATCH.cash.withdraw.fee + this.feeId, JSON.stringify(obj), URLCONFIG).then(res => {
-//
-//                     if (res.data.state == 0 && res.data.data) {
-//                         _this.$message.success(LANG['保存成功'] || '保存成功');
-//                         _this.feeVisi = false;
-//                         _this.updated = true;
-//
-//                     } else {
-//                         _this.$message.error(LANG['保存失败'] || '保存失败');
-//                     }
-//                     this.feeId = 0;
-// //					this.withdraw.fee = '';
-// //					this.withdraw.coupon = '';
-// //					this.withdraw.management_cost = '';
-//                 })
+                this.$.autoAjax('patch', URL.api + ROUTES.PATCH.cash.withdraw.fee + this.feeId, obj, {
+                    ok: (res) => {
+                        if (res.state == 0 && res.data) {
+                            _this.$message.success(LANG['保存成功'] || '保存成功');
+                            _this.feeVisi = false;
+                            _this.updated = true;
+                        } else {
+                            _this.$message.error(LANG['保存失败'] || '保存失败');
+                        }
+                        this.feeId = 0;
+                    },
+                    p: () => {
+                    },
+                    error: e => {
+                        console.log(e)
+                    }
+                })
             },
             //预备支付
-            doPrepare(row) {
-                if (parseInt(row.id)) {
-                    this.confirmConfig.state = true;
-                    this.confirmConfig.msg = (this.LANG['确定预支付吗?'] || '确定预支付吗?');
-                    this.confirmConfig.fn = "prepare";
-                }
-            },
+//            doPrepare(row) {
+//                if (parseInt(row.id)) {
+//                    this.confirmConfig.state = true;
+//                    this.confirmConfig.msg = (this.LANG['确定预支付吗?'] || '确定预支付吗?');
+//                    this.confirmConfig.fn = "prepare";
+//                }
+//            },
             // 付款
             doUpdate(row) {
                 if (parseInt(row.id)) {
@@ -716,31 +717,21 @@
                     uid: this.user_id
                 };
                 this.dialogVisibleMemo = false;
-
-				this.$.autoAjax('patch',URL.api + ROUTES.PATCH.user.info.memo + '/' + parseInt(this.memoTextUid),params, {
-					ok: (res) => {
-						if (res.data) {
-							this.updated = true;
-							this.$message.success(LANG['备注写入成功'] || '备注写入成功');
-						} else {
-							this.$message.error(LANG['备注写入失败'] || '备注写入失败');
-						}
-					},
-					p: () => {
-					},
-					error: e => {
-						console.log(e)
-					}
-				})
-                // this.$http.patch(URL.api + ROUTES.PATCH.user.info.memo + '/' + parseInt(this.memoTextUid), params, URLCONFIG).then((res) => {
-                //     if (res.data.data) {
-                //         this.updated = true;
-                //         this.$message.success(LANG['备注写入成功'] || '备注写入成功');
-                //     } else {
-                //         this.$message.error(LANG['备注写入失败'] || '备注写入失败');
-                //     }
-                // });
-//				this.editVisible=true
+                this.$.autoAjax('patch', URL.api + ROUTES.PATCH.user.info.memo + '/' + parseInt(this.memoTextUid), params, {
+                    ok: (res) => {
+                        if (res.data) {
+                            this.updated = true;
+                            this.$message.success(LANG['备注写入成功'] || '备注写入成功');
+                        } else {
+                            this.$message.error(LANG['备注写入失败'] || '备注写入失败');
+                        }
+                    },
+                    p: () => {
+                    },
+                    error: e => {
+                        console.log(e)
+                    }
+                })
             },
             //详情
             doDetail(row) {
@@ -758,77 +749,76 @@
                 this.tableDate.list = [];
                 this.tableDate.level_config = {};
                 this.auditData = {};
-
-				this.$.autoAjax('get',formTableUrl, '', {
-					ok: (res) => {
-						if (res.state == 0 && res.data) {
-							this.auditData = res.data;
-							this.tableDate.level_config = res.data.level_config;
-							this.editForm.deposit_money = FORMATMONEY(res.data.deposit_money);
-							this.editForm.deposit_times = res.data.deposit_times;
-							this.editForm.withdraw_money = FORMATMONEY(res.data.withdraw_money);
-							this.editForm.withdraw_times = res.data.withdraw_times;
-							this.editForm.lose_earn = FORMATMONEY(res.data.lose_earn);
-							let model = res.data.list;
-							model.forEach(item => {
-								item.coupon_money = FORMATMONEY(item.coupon_money);
-								item.money = FORMATMONEY(item.money);
-								item.valid_bet = FORMATMONEY(item.valid_bet);
-								item.withdraw_bet_principal = FORMATMONEY(item.withdraw_bet_principal);
-								item.withdraw_bet_coupon = FORMATMONEY(item.withdraw_bet_coupon);
-								item.deduct_coupon = FORMATMONEY(item.deduct_coupon);
-								item.deduct_admin_fee = FORMATMONEY(item.deduct_admin_fee);
-								item.lose_earn = FORMATMONEY(item.lose_earn);
-								if (!item.withdraw_bet_coupon && !item.withdraw_bet_principal) {
-									item.withdraw_bet_principal = FORMATMONEY(item.withdraw_bet);
-									item.withdraw_bet_coupon = 0
-								}
-								if (item.is_pass) {
-									item.is_pass = '是'
-								} else {
-									item.is_pass = '否'
-								}
-							})
-							for (let i = 0; i < model.length; i++) {
-								this.tableDate.list.push(model[i]);
-							}
-						}
-						sum++;
-						if (sum === 2) {
-							this.loading = false;
-							this.editVisible = true;
-						}
-					},
-					p: () => {
-					},
-					error: e => {
-						this.loading = false;
-					}
-				})
+                this.$.autoAjax('get', formTableUrl, '', {
+                    ok: (res) => {
+                        if (res.state == 0 && res.data) {
+                            this.auditData = res.data;
+                            this.tableDate.level_config = res.data.level_config;
+                            this.editForm.deposit_money = FORMATMONEY(res.data.deposit_money);
+                            this.editForm.deposit_times = res.data.deposit_times;
+                            this.editForm.withdraw_money = FORMATMONEY(res.data.withdraw_money);
+                            this.editForm.withdraw_times = res.data.withdraw_times;
+                            this.editForm.lose_earn = FORMATMONEY(res.data.lose_earn);
+                            let model = res.data.list;
+                            model.forEach(item => {
+                                item.coupon_money = FORMATMONEY(item.coupon_money);
+                                item.money = FORMATMONEY(item.money);
+                                item.valid_bet = FORMATMONEY(item.valid_bet);
+                                item.withdraw_bet_principal = FORMATMONEY(item.withdraw_bet_principal);
+                                item.withdraw_bet_coupon = FORMATMONEY(item.withdraw_bet_coupon);
+                                item.deduct_coupon = FORMATMONEY(item.deduct_coupon);
+                                item.deduct_admin_fee = FORMATMONEY(item.deduct_admin_fee);
+                                item.lose_earn = FORMATMONEY(item.lose_earn);
+                                if (!item.withdraw_bet_coupon && !item.withdraw_bet_principal) {
+                                    item.withdraw_bet_principal = FORMATMONEY(item.withdraw_bet);
+                                    item.withdraw_bet_coupon = 0
+                                }
+                                if (item.is_pass) {
+                                    item.is_pass = '是'
+                                } else {
+                                    item.is_pass = '否'
+                                }
+                            })
+                            for (let i = 0; i < model.length; i++) {
+                                this.tableDate.list.push(model[i]);
+                            }
+                        }
+                        sum++;
+                        if (sum === 2) {
+                            this.loading = false;
+                            this.editVisible = true;
+                        }
+                    },
+                    p: () => {
+                    },
+                    error: e => {
+                        this.loading = false;
+                    }
+                })
 
                 let _this = this;
 
-				this.$.autoAjax('get',URL.api + ROUTES.GET.cash.withdraw.details.$(id), '', {
-					ok: (res) => {
-						if (res.state == 0 && res.data) {
-							let model = res.data;
-							for (let k in model) {
-								_this.editForm[k] = model[k];
-							}
-							_this.editForm.comment = row.comment || '';
-						}
-						sum++;
-						if (sum === 2) {
-							this.loading = false;
-							this.editVisible = true;
-						}
-					},
-					p: () => {
-					},
-					error: e => {
-						this.loading = false;
-					}
-				})
+                this.$.autoAjax('get', URL.api + ROUTES.GET.cash.withdraw.details.$(id), '', {
+                    ok: (res) => {
+                        if (res.state == 0 && res.data) {
+                            let model = res.data;
+                            for (let k in model) {
+                                _this.editForm[k] = model[k];
+                            }
+                            _this.editForm.comment = row.comment || '';
+                        }
+                        sum++;
+                        if (sum === 2) {
+                            this.loading = false;
+                            this.editVisible = true;
+                        }
+                    },
+                    p: () => {
+                    },
+                    error: e => {
+                        this.loading = false;
+                    }
+                })
             },
             //取消
             doRefuse(row) {
@@ -839,10 +829,10 @@
                 }
             },
             //详情跳转
-            toLink(style,start,end){
+            toLink(style, start, end) {
                 this.editVisible = false;
-                if(style == 'lottery'){
-                    this.$router.push({path:'/lotterSingleNote',query:{name:this.userName,start:start,end:end}})
+                if (style == 'lottery') {
+                    this.$router.push({path: '/lotterSingleNote', query: {name: this.userName, start: start, end: end}})
                 }
             },
             // 拒绝
@@ -867,102 +857,111 @@
                 // let _this = this;
                 let id = this.id;
                 switch (obj.fn) {
-                    case "prepare":
-						this.$.autoAjax('patch', URL.api + ROUTES.PATCH.cash.withdraw.state.$(id), {"status": "prepare", "role": 1}, {
-							ok: (res) => {
-								if (res.state === 0 && res.data) {
-									this.$message.success(LANG['预支付成功'] || '预支付成功');
-									this.updated = true;
-								} else {
-									this.$message.error(LANG[res.msg] || res.msg);
-								}
-								this.loading = false;
-							},
-							p: () => {
-							},
-							error: e => {
-								console.log(e)
-                                this.loading = false;
-							}
-						})
-                        break;
+//                    case "prepare":
+//                        this.$.autoAjax('patch', URL.api + ROUTES.PATCH.cash.withdraw.state.$(id), {
+//                            "status": "prepare",
+//                            "role": 1
+//                        }, {
+//                            ok: (res) => {
+//                                if (res.state === 0 && res.data) {
+//                                    this.$message.success(LANG['预支付成功'] || '预支付成功');
+//                                    this.updated = true;
+//                                } else {
+//                                    this.$message.error(LANG[res.msg] || res.msg);
+//                                }
+//                                this.loading = false;
+//                            },
+//                            p: () => {
+//                            },
+//                            error: e => {
+//                                console.log(e)
+//                                this.loading = false;
+//                            }
+//                        })
+//                        break;
                     case "refuse":
-
-						this.$.autoAjax('patch',URL.api + ROUTES.PATCH.cash.withdraw.state.$(id), {"status": "refused", "role": 1}, {
-							ok: (res) => {
-								if (res.state === 0 && res.data) {
-									this.$message.success(LANG['取消成功'] || '取消成功');
-									this.updated = true;
-								} else {
-									this.$message.error(LANG[res.msg] || res.msg);
-								}
-								this.loading = false;
-							},
-							p: () => {
-							},
-							error: e => {
-								console.log(e)
-							}
-						})
+                        this.$.autoAjax('patch', URL.api + ROUTES.PATCH.cash.withdraw.state.$(id), {
+                            "status": "refused",
+                            "role": 1
+                        }, {
+                            ok: (res) => {
+                                if (res.state === 0 && res.data) {
+                                    this.$message.success(LANG['取消成功'] || '取消成功');
+                                    this.editVisible = false
+                                    this.updated = true;
+                                } else {
+                                    this.$message.error(LANG[res.msg] || res.msg);
+                                }
+                                this.loading = false;
+                            },
+                            p: () => {
+                            },
+                            error: e => {
+                                console.log(e)
+                            }
+                        })
                         break;
-                    case "pay":
-						this.$.autoAjax('patch',URL.api + ROUTES.PATCH.cash.withdraw.state.$(id), {"status": "paid"}, {
-							ok: (res) => {
-								if (res.state === 0 && res.data) {
-									this.$message.success(LANG['支付成功'] || '支付成功');
-									this.updated = true;
-								} else {
-									this.$message.error(LANG[res.msg] || res.msg);
-								}
-								this.loading = false;
-							},
-							p: () => {
-							},
-							error: e => {
-								console.log(e)
-							}
-						})
-                        break;
+//                    case "pay":
+//                        this.$.autoAjax('patch', URL.api + ROUTES.PATCH.cash.withdraw.state.$(id), {"status": "paid"}, {
+//                            ok: (res) => {
+//                                if (res.state === 0 && res.data) {
+//                                    this.$message.success(LANG['支付成功'] || '支付成功');
+//                                    this.updated = true;
+//                                } else {
+//                                    this.$message.error(LANG[res.msg] || res.msg);
+//                                }
+//                                this.loading = false;
+//                            },
+//                            p: () => {
+//                            },
+//                            error: e => {
+//                                console.log(e)
+//                            }
+//                        })
+//                        break;
 //                        拒绝 等接口
                     case "reject":
 
-						this.$.autoAjax('patch',URL.api + ROUTES.PATCH.cash.withdraw.state.$(id),{"status": "rejected", "role": 1}, {
-							ok: (res) => {
-								if (res.state === 0 && res.data) {
-									this.$message.success(LANG['拒绝成功'] || '拒绝成功');
-									this.updated = true;
-								} else {
-									this.$message.error(LANG[res.msg] || res.msg);
-								}
-								this.loading = false;
-							},
-							p: () => {
-							},
-							error: e => {
-								console.log(e)
-							}
-						})
+                        this.$.autoAjax('patch', URL.api + ROUTES.PATCH.cash.withdraw.state.$(id), {
+                            "status": "rejected",
+                            "role": 1
+                        }, {
+                            ok: (res) => {
+                                if (res.state === 0 && res.data) {
+                                    this.$message.success(LANG['拒绝成功'] || '拒绝成功');
+                                    this.editVisible = false
+                                    this.updated = true;
+                                } else {
+                                    this.$message.error(LANG[res.msg] || res.msg);
+                                }
+                                this.loading = false;
+                            },
+                            p: () => {
+                            },
+                            error: e => {
+                                console.log(e)
+                            }
+                        })
                         break;
                     // 付款
                     case "update":
-
-						this.$.autoAjax('patch',URL.api + ROUTES.POST.cash.payment + '?id=' + id, {'status': 'paid'}, {
-							ok: (res) => {
-								if (res.state === 0 && res.data) {
-									this.$message.success(LANG["支付成功"] || "支付成功");
-									this.updated = true;
-								} else {
-									this.$message.error(LANG["支付失败"] || "支付失败");
-								}
-								this.loading = false;
-							},
-							p: () => {
-							},
-							error: e => {
-								console.log(e)
-							}
-						})
-
+                        this.$.autoAjax('patch', URL.api + ROUTES.POST.cash.payment + '?id=' + id, {'status': 'paid'}, {
+                            ok: (res) => {
+                                if (res.state === 0 && res.data) {
+                                    this.$message.success(LANG["支付成功"] || "支付成功");
+                                    this.editVisible = false
+                                    this.updated = true;
+                                } else {
+                                    this.$message.error(LANG["支付失败"] || "支付失败");
+                                }
+                                this.loading = false;
+                            },
+                            p: () => {
+                            },
+                            error: e => {
+                                console.log(e)
+                            }
+                        })
                         break;
                 }
             },
@@ -1019,9 +1018,9 @@
                 let _this = this;
                 if (form.date_from && form.date_to) {
                     //let url = URL.api + '/export/download/withdraw';
-                    this.$.autoAjax('get',ROUTES.GET.cash.withdraws,this.exportForm, {
-                        ok:(res) =>{
-                            if(res.state ===0 && res.data){
+                    this.$.autoAjax('get', ROUTES.GET.cash.withdraws, this.exportForm, {
+                        ok: (res) => {
+                            if (res.state === 0 && res.data) {
                                 window.location.href = res.data.url
                             }
                         },
@@ -1029,23 +1028,23 @@
                             this.$message.error(e.responseText.msg);
                         }
                     })
-//					this.$.autoAjax('get',URL.api + '/dev/download/sign' + '?nonce=' + url, '', {
-//						ok: (res) => {
-//							if (res.data) {
-//								_this.outUrl = url + _this.addSearch(_this.searchObj) + "&nonce=" + res.data.nonce + "&signature=" + res.data.signature + "&time=" + res.data.time + "&uuid=" + res.data.uuid;
-//								_this.dialogVisible = true;
-//							} else if (res.msg) {
-//								_this.$message.error(res.msg);
-//							} else {
-//								_this.$message.error(LANG['数据导出失败，请稍后重试'] || '数据导出失败，请稍后重试');
-//							}
-//						},
-//						p: () => {
-//						},
-//						error: e => {
-//							console.log(e)
-//						}
-//					})
+                    //					this.$.autoAjax('get',URL.api + '/dev/download/sign' + '?nonce=' + url, '', {
+                    //						ok: (res) => {
+                    //							if (res.data) {
+                    //								_this.outUrl = url + _this.addSearch(_this.searchObj) + "&nonce=" + res.data.nonce + "&signature=" + res.data.signature + "&time=" + res.data.time + "&uuid=" + res.data.uuid;
+                    //								_this.dialogVisible = true;
+                    //							} else if (res.msg) {
+                    //								_this.$message.error(res.msg);
+                    //							} else {
+                    //								_this.$message.error(LANG['数据导出失败，请稍后重试'] || '数据导出失败，请稍后重试');
+                    //							}
+                    //						},
+                    //						p: () => {
+                    //						},
+                    //						error: e => {
+                    //							console.log(e)
+                    //						}
+                    //					})
                     // this.$http.get(URL.api + '/dev/download/sign' + '?nonce=' + url, URLCONFIG).then((res) => {
                     //     // 执行导出
                     //     if (res.data.data) {
