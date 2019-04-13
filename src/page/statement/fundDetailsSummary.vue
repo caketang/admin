@@ -164,13 +164,13 @@
                         {"prop": "day_end", "value": "", "label": "结束时间"}
                     ]
                     },
-                    {
-                        "prop": "type",
-                        "value": "1",
-                        "label": "账号体系",
-                        "type": "select",
-                        "list": [{'label': '会员', 'value': '1'}]
-                    },
+//                    {
+//                        "prop": "type",
+//                        "value": "1",
+//                        "label": "账号体系",
+//                        "type": "select",
+//                        "list": [{'label': '会员', 'value': '1'}]
+//                    },
                     {"prop": "member_name", "value": "", "type": "text", "label": "用户名", 'placeholder': "请输入用户名"},
                 ],
                 type: "search",
@@ -291,10 +291,10 @@
                     this.$message.error(LANG['请输入用户名'] || '请输入用户名');
                     return;
                 }
-                if (obj.item.member_name && !obj.item.type) {
-                    this.$message.error(LANG['请选择帐号体系'] || '请选择帐号体系');
-                    return;
-                }
+//                if (obj.item.member_name && !obj.item.type) {
+//                    this.$message.error(LANG['请选择帐号体系'] || '请选择帐号体系');
+//                    return;
+//                }
                 if (!obj.item.day_begin || !obj.item.day_end) {
                     this.$message.error(LANG['请输入完整的日期查询'] || '请输入完整的日期查询');
                     return;

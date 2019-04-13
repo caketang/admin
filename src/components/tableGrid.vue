@@ -1593,6 +1593,7 @@
                             }
                         }
                         if (_this.getData) {
+                            otherData.attributes = res.attributes
                             _this.$emit("get-table-data", {
                                 "item": _this.tableDataColen,
                                 "allData": otherData

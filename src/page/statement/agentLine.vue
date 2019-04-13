@@ -55,6 +55,17 @@
                                 <span class="font16 ">{{allData.valid_bet_sum}} </span>
                             </div>
                         </td>
+                        <!-------->
+                        <td colspan="1">
+                            <div class="cell">
+                                <span class="font16 ">{{allData.deposit_money_sum}} </span>
+                            </div>
+                        </td>
+                        <td colspan="1">
+                            <div class="cell">
+                                <span class="font16 ">{{allData.withdraw_money_sum}} </span>
+                            </div>
+                        </td>
                         <td colspan="1">
                             <div class="cell">
                             <span class="font16 "
@@ -169,7 +180,6 @@
             },
             //取表数据
             getTableData(obj) {
-                console.log(obj)
                 this.allData = {};
                 if (obj.allData && obj.allData.attributes) {
                     this.childShow = obj.allData.attributes.total == 1 ? false : true
