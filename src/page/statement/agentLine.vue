@@ -14,6 +14,7 @@
                 </formEdit>
             </el-col>
             <el-col>
+                <p class="help_gray mb10">提示：报表每隔5到10分钟会更新一次。（非及时更新）</p>
                 <span v-if="breadcrumb.length" class="font14">团队收益详情 :</span>
                 <el-breadcrumb separator="/" style="display: inline-block;vertical-align: middle">
                     <el-breadcrumb-item @click.native="linkAgent('home')">首页</el-breadcrumb-item>
@@ -84,7 +85,6 @@
 <script>
     import formEdit from '../../components/formEdit.vue'
     import tableGrid from '../../components/tableGrid.vue'
-
     export default {
         data() {
             return {
