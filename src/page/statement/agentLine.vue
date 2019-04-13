@@ -169,11 +169,12 @@
             },
             //取表数据
             getTableData(obj) {
+                console.log(obj)
                 this.allData = {};
                 if (obj.allData && obj.allData.attributes) {
                     this.childShow = obj.allData.attributes.total == 1 ? false : true
                     let model = obj.allData.attributes;
-                    if (obj.item.length) this.sumShow = true;
+                    this.sumShow = obj.item.length?true:false
                     for (let i in model) {
                         this.allData[i] = model[i];
                     }
