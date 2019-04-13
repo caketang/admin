@@ -23,6 +23,7 @@
                         <el-input v-model="addTest.name"></el-input>
                     </el-form-item>
                 </el-form>
+                <span class="help_red"> 【注意】：*添加成功后，你所输入的该用户下所有的代理线将成为测试帐号</span>
                 <span slot="footer" class="dialog-footer">
     <el-button @click="settingDialog = false">取 消</el-button>
     <el-button type="primary" @click="submitSetting">确 定</el-button>
