@@ -450,7 +450,7 @@ export default [
                 path: '/agentLink',
                 component: resolve => require(['../page/agent/agentLink'], resolve),
                 iconCls: '',
-                name: '代理推广链接'
+                name: '推广链接'
             },
             {
                 path: '/memberHierarSet',
@@ -695,13 +695,12 @@ export default [
             //     iconCls: '',
             //     name: '下级佣金统计'
             // },
-
-            // {
-            //     path: '/agentDrawing',
-            //     component: resolve => require(['../page/agent/agentDrawing'], resolve),
-            //     iconCls: '',
-            //     name: '代理提款'
-            // },
+            {
+                path: '/agentDrawing',
+                component: resolve => require(['../page/agent/agentDrawing'], resolve),
+                iconCls: '',
+                name: '代理提款'
+            },
             {
                 path: '/agentRebate',
                 component: resolve => require(['../page/agent/agentRebate'], resolve),

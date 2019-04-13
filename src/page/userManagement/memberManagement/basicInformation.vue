@@ -290,9 +290,9 @@
             };
             var validatePass1 = (rule, value, callback) => {
                 // 这里用this.currentPasswordStatus判断当前弹窗密码的状态，只有取款密码需要进行数字的验证
-                const reg = /^[0-9]{4}$/g;
+                const reg = /^[0-9]{6}$/g;
                 if (!reg.test(value) && !this.currentPasswordStatus) {
-                    callback(new Error(LANG['提款密码应为四位数字组成!'] || '提款密码应为四位数字组成'))
+                    callback(new Error(LANG['提款密码应为六位数字组成!'] || '提款密码应为六位数字组成'))
                 } else {
                     callback()
                 }
