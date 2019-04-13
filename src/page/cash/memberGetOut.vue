@@ -51,7 +51,7 @@
                 </tr>
             </tablegrid>
             <div class="help_gray" style="margin-top: -40px;margin-left: 20px;" v-if="sumShow">
-                预备出款： 多客服给同一会员出款，在给出款前可以先点预备出款，可以先看到操作者来区别（可以不点）
+                审核中： 某一位客服给会员出款，点击审核后，则绑定该操作者，后续只能由他（她）完成出款。
             </div>
         </el-col>
         <el-col>

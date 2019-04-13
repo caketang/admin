@@ -97,8 +97,8 @@
                         "label": "报表日期",
                         "showTime": false,
                         "prop": [
-                            {"prop": "date_from", "value": "", "label": "开始时间"},
-                            {"prop": "date_to", "value": "", "label": "结束时间"}
+                            {"prop": "start_time", "value": "", "label": "开始时间"},
+                            {"prop": "end_time", "value": "", "label": "结束时间"}
                         ]
                     },
                     {"prop": "name", "value": "", "label": "用户名", "type": "text", "placeholder": "请输入用户名"},
