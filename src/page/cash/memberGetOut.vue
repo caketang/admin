@@ -67,10 +67,10 @@
         </el-col>
         <!--详情-->
         <el-col>
-            <el-dialog :title="LANG['会员提现详情'] || '会员提现详情'" v-model="editVisible" class="vipDialog" size="large">
+            <el-dialog :title="'【'+ userName + '】' + LANG['会员提现详情'] || '会员提现详情'" v-model="editVisible" class="vipDialog" size="large">
                 <el-form :model="editForm" ref="editForm">
                     <el-col class="state_danger">
-                        {{LANG['会员备注'] || '会员备注'}}： {{editForm.comment}}
+                        {{LANG['会员备注'] || '会员备注'}}： {{editForm.memo}}
                     </el-col>
                     <!--取款信息-->
                     <el-col :span="24" style="margin-bottom:20px;">
@@ -743,7 +743,6 @@
                 let uId = parseInt(row.user_id);
                 this.editForm = {};
                 this.editForm.comment = row.comment || '无';
-                console.log(row.comment);
                 this.formColumnsUrl = "/static/json/cash/memberGetOut/auditInformation/columns.json";
                 let formTableUrl = URL.api + ROUTES.GET.cash.withdraw.audit.$(id) + '?user_id=' + uId + '&withdraw_id=' + id;
                 this.tableDate.list = [];
@@ -797,7 +796,6 @@
                 })
 
                 let _this = this;
-
                 this.$.autoAjax('get', URL.api + ROUTES.GET.cash.withdraw.details.$(id), '', {
                     ok: (res) => {
                         if (res.state == 0 && res.data) {

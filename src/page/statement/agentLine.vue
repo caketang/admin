@@ -141,8 +141,8 @@
                 this.columnsUrl = '../../../static/json/statement/agentLine/columns.json';
             },
             doQuery(data) {
-                this.start_time = data.start_time ? data.start_time : sessionStorage.dateTimeStart
-                this.end_time = data.end_time ? data.end_time : sessionStorage.dateTimeEnd
+                this.start_time = data['item'].start_time ? data['item'].start_time: sessionStorage.dateTimeStart
+                this.end_time = data['item'].end_time ? data['item'].end_time : sessionStorage.dateTimeEnd
                 this.tableUrl = this.beastUrl + this.addSearch(data.item)
                 this.breadcrumb = []
             },

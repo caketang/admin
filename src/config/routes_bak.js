@@ -777,7 +777,13 @@ export default [
                 component: resolve => require(['../page/statement/memberBalance'], resolve),
                 iconCls: '',
                 name: '余额汇总'
-            }
+            },
+            {
+                path: '/memberRanking',
+                component: resolve => require(['../page/statement/memberRanking'], resolve),
+                iconCls: '',
+                name: '会员排名报表'
+            },
         ]
     },
     {
