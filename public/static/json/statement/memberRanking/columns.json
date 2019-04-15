@@ -5,19 +5,18 @@
             "label": "ID",
             "width": "100",
             "disabled": false
-        },{
-            "prop": "pname",
-            "label": "上级帐号",
-            "width": "100",
-            "type": "link",
-            "fn": "showDetails",
-            "disabled": true
         },
         {
             "prop": "user_name",
             "label": "会员帐号",
             "disabled": true,
             "width": "100"
+        },
+        {
+            "prop": "pname",
+            "label": "上级帐号",
+            "width": "100",
+            "disabled": true
         },
         {
             "prop": "type",

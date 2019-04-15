@@ -20,11 +20,9 @@
                     :updated="updated"
                     :getData="getData"
                     :isCreated="true"
-                    @get-table-data="getTableData"
                     :tableCheck="false"
                     :pageSet="true"
-                    :tableIndex="false"
-                    @do-handle="doHandle">
+                    :tableIndex="false">
                 </tableGrid>
             </el-col>
         </el-row>
@@ -77,10 +75,6 @@
                 this.columnsUrl = '../../../static/json/statement/memberRanking/columns.json';
 
 			},
-            getTableData(){
-
-            },
-            doHandle(){},
             resetForm() {
                 this.start_time = sessionStorage.dateTimeStart
                 this.end_time = sessionStorage.dateTimeEnd
