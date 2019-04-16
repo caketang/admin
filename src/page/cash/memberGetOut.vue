@@ -554,8 +554,16 @@
                 this.editVisible = false
             },
             handleClose(){
+                let data = this.editForm
+                let Url = URL.api + ROUTES.GET.cash.withdraw.audit.$(data.id) + '?user_id=' + data.user_id + '&withdraw_id=' + data.id + '&cancel=' + 'yes';
+                this.$.autoAjax('get', Url, '', {
+                    ok:(res)=>{
+                        if(res.data&&res.state === 0 ){
+                            this.updated = true
+                        }
+                    }
+                })
                 this.editVisible = false
-                this.updated = true
             },
             //执行查询
             doQuery(obj) {

@@ -160,42 +160,42 @@
                             <el-button type="primary" size="small" @click="doArtificialReduce" :disabled="formControlBtn.reduce_boolean">{{LANG['保存'] || '保存'}}</el-button>
                         </div>
                     </el-form>
-                    <el-form :model="artificialAddForm" :rules="artificialAddFormRules" ref="artificialAddForm"
-                             label-width="120px" v-show="formTitle == '手动增加余额'" class="mt10">
-                        <el-form-item :label="LANG['用户名'] || '用户名'" prop="name">
-                            <el-input v-model="userCont.name" :disabled="true" size="small"></el-input>
-                        </el-form-item>
-                        <el-form-item :label="LANG['加金额'] || '加金额'" prop="amount">
-                            <el-input v-model.number="artificialAddForm.amount" size="small" type="number" ></el-input>
-                        </el-form-item>
-                        <el-form-item v-if="formInline.role == 1" :label="LANG['打码量'] || '打码量'" prop="withdraw_bet">
-                            <el-input v-model.number="artificialAddForm.withdraw_bet" size="small" type="number" ></el-input>
-                        </el-form-item>
-                        <el-form-item :label="LANG['备注'] || '备注'" prop="memo">
-                            <el-input v-model="artificialAddForm.memo" type="textarea" :rows="5" size="small"></el-input>
-                        </el-form-item>
-                        <div class="formbtn">
-                            <el-button type="primary" size="small" @click="doArtificialAdd" :disabled="formControlBtn.add_boolean">{{LANG['保存'] || '保存'}}</el-button>
-                        </div>
-                    </el-form>
-                    <el-form :model="grantRebateForm" :rules="grantRebateFormRules" ref="grantRebateForm"
-                             label-width="120px" v-show="formTitle == '发放返水'" class="mt10">
-                        <el-form-item :label="LANG['用户名'] || '用户名'" prop="name">
-                            <el-input v-model="userCont.name" :disabled="true" size="small"></el-input>
-                        </el-form-item>
-                        <el-form-item :label="LANG['返水金额'] || '返水金额'" prop="amount">
-                            <el-input v-model.number="grantRebateForm.amount" size="small" type="number" ></el-input>
-                        </el-form-item>
-                        <el-form-item :label="LANG['打码量'] || '打码量'" prop="condition">
-                            <el-input v-model.number="grantRebateForm.condition" size="small" type="number" ></el-input>
-                        </el-form-item>
-                        <el-form-item :label="LANG['备注'] || '备注'" prop="memo">
-                            <el-input v-model="grantRebateForm.memo" type="textarea" :rows="5" size="small"></el-input>
-                        </el-form-item>
-                        <div class="formbtn">
-                            <el-button type="primary" size="small" @click="doGrantRebate" :disabled="formControlBtn.rebate_boolean">{{LANG['保存'] || '保存'}}</el-button>
-                        </div>
-                    </el-form>
+                    <!--<el-form :model="artificialAddForm" :rules="artificialAddFormRules" ref="artificialAddForm"-->
+                             <!--label-width="120px" v-show="formTitle == '手动增加余额'" class="mt10">-->
+                        <!--<el-form-item :label="LANG['用户名'] || '用户名'" prop="name">-->
+                            <!--<el-input v-model="userCont.name" :disabled="true" size="small"></el-input>-->
+                        <!--</el-form-item>-->
+                        <!--<el-form-item :label="LANG['加金额'] || '加金额'" prop="amount">-->
+                            <!--<el-input v-model.number="artificialAddForm.amount" size="small" type="number" ></el-input>-->
+                        <!--</el-form-item>-->
+                        <!--<el-form-item v-if="formInline.role == 1" :label="LANG['打码量'] || '打码量'" prop="withdraw_bet">-->
+                            <!--<el-input v-model.number="artificialAddForm.withdraw_bet" size="small" type="number" ></el-input>-->
+                        <!--</el-form-item>-->
+                        <!--<el-form-item :label="LANG['备注'] || '备注'" prop="memo">-->
+                            <!--<el-input v-model="artificialAddForm.memo" type="textarea" :rows="5" size="small"></el-input>-->
+                        <!--</el-form-item>-->
+                        <!--<div class="formbtn">-->
+                            <!--<el-button type="primary" size="small" @click="doArtificialAdd" :disabled="formControlBtn.add_boolean">{{LANG['保存'] || '保存'}}</el-button>-->
+                        <!--</div>-->
+                    <!--</el-form>-->
+                    <!--<el-form :model="grantRebateForm" :rules="grantRebateFormRules" ref="grantRebateForm"-->
+                             <!--label-width="120px" v-show="formTitle == '发放返水'" class="mt10">-->
+                        <!--<el-form-item :label="LANG['用户名'] || '用户名'" prop="name">-->
+                            <!--<el-input v-model="userCont.name" :disabled="true" size="small"></el-input>-->
+                        <!--</el-form-item>-->
+                        <!--<el-form-item :label="LANG['返水金额'] || '返水金额'" prop="amount">-->
+                            <!--<el-input v-model.number="grantRebateForm.amount" size="small" type="number" ></el-input>-->
+                        <!--</el-form-item>-->
+                        <!--<el-form-item :label="LANG['打码量'] || '打码量'" prop="condition">-->
+                            <!--<el-input v-model.number="grantRebateForm.condition" size="small" type="number" ></el-input>-->
+                        <!--</el-form-item>-->
+                        <!--<el-form-item :label="LANG['备注'] || '备注'" prop="memo">-->
+                            <!--<el-input v-model="grantRebateForm.memo" type="textarea" :rows="5" size="small"></el-input>-->
+                        <!--</el-form-item>-->
+                        <!--<div class="formbtn">-->
+                            <!--<el-button type="primary" size="small" @click="doGrantRebate" :disabled="formControlBtn.rebate_boolean">{{LANG['保存'] || '保存'}}</el-button>-->
+                        <!--</div>-->
+                    <!--</el-form>-->
                     <el-form :model="childToMasterForm" :rules="childToMasterFormRules" ref="childToMasterForm"
                              label-width="80px" v-show="formTitle == '子转主钱包'" class="mt10">
                         <el-form-item :label="LANG['用户名'] || '用户名'" prop="name" >
@@ -505,10 +505,11 @@
                     {"txt": "手动提款", "fn": "manualCash", "id": 2},
                     {"txt": "发放优惠", "fn": "grantDiscount", "id": 3},
                     {"txt": "手动减少余额", "fn": "artificialReduce", "id": 4},
-                    {"txt": "手动增加余额", "fn": "artificialAdd", "id": 5},
-                    {"txt": "发放返水", "fn": "grantRebate", "id": 6}];
+                    //{"txt": "手动增加余额", "fn": "artificialAdd", "id": 5},
+                    //{"txt": "发放返水", "fn": "grantRebate", "id": 6}
+                    ];
 //                 this.formTitle = "手动存款"
-                this.agent_btnGroup = [{"txt": "手动增加余额", "fn": "artificialAdd", "id": 1},
+                this.agent_btnGroup = [//{"txt": "手动增加余额", "fn": "artificialAdd", "id": 1},
                     {"txt": "手动减少余额", "fn": "artificialReduce", "id": 2}]
             },
             // 选择不同体系将页面搜索结果清空
