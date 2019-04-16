@@ -250,7 +250,7 @@
                         </el-col>
                     </el-row>
                 </el-form>
-                <span slot="footer" class="dialog-footer">
+                <span slot="footer" class="dialog-footer" v-if="showChange">
                     <el-button @click="closeDialog(editForm)">{{LANG['取消审核'] || '取消审核'}}</el-button>
                     <el-button @click="doUpdate(editForm)" type="success">{{LANG['确认出款']||'确认出款'}}</el-button>
                     <el-button @click="doReject(editForm)" type="danger">{{LANG['拒绝']||'拒绝'}}</el-button>
@@ -495,6 +495,7 @@
                 isShow: sessionStorage.user_withdraws_export == 'true' ? true : false,
                 exportForm: {},
                 userName: '',
+                showChange:false,
             }
         },
         components: {
@@ -746,6 +747,12 @@
             },
             //详情
             doDetail(row) {
+//                {"label": "已取消", "value": "refused"},
+//                {"label": "审核中", "value": "prepare"},
+//                {"label": "待处理", "value": "pending"},
+//                {"label": "已拒绝", "value": "rejected"},
+//                {"label": "付款成功", "value": "paid"}
+                this.showChange = {'refused':false,'prepare':true,'pending':true,'rejected':false,'paid':false}[row.status]||false
                 this.userName = row.user_name
                 this.loading = true;
                 let sum = 0;
