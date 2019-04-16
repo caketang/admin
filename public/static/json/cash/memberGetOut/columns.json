@@ -25,11 +25,6 @@
             "disabled":true,
             "width": "80"
         },
-        {	"prop":"agent_name",
-            "label":"上级代理",
-            "disabled":true,
-            "width": "100"
-        },
         {	"prop":"money",
             "label":"申请金额",
             "type":"divisionMoney",
@@ -48,6 +43,11 @@
             "label":"实际出款",
             "disabled":true,
             "type":"subtract",
+            "width": "100"
+        },
+        {	"prop":"truename",
+            "label":"真实姓名",
+            "disabled":true,
             "width": "100"
         },
         {	"prop":"receive_bank_info,accountname,card,bank,address",

@@ -755,11 +755,6 @@
             },
             //详情
             doDetail(row) {
-//                {"label": "已取消", "value": "refused"},
-//                {"label": "审核中", "value": "prepare"},
-//                {"label": "待处理", "value": "pending"},
-//                {"label": "已拒绝", "value": "rejected"},
-//                {"label": "付款成功", "value": "paid"}
                 this.showChange = {'refused':false,'prepare':true,'pending':true,'rejected':false,'paid':false}[row.status]||false
                 this.userName = row.user_name
                 this.loading = true;
