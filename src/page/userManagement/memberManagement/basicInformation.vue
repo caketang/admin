@@ -309,13 +309,9 @@
             }
             // 验证中文
             var validateHans = (rule, value, callback) =>{
-                if(value && !/^[\u2E80-\u9FFF]+$/.test(value)){
-                    callback(new Error(LANG['请输入中文汉字!'] || '请输入中文汉字'))
-                } else if(value && /\s/.test(value)){
-                    callback(new Error(LANG['请输入中文汉字，不能输入空格!'] || '请输入中文汉字，不能输入空格'))
-                } else {
-                    callback()
-                }
+                value && !/^[\u4E00-\u9FA5\uf900-\ufa2d·s]{2,10}$/.test(value)
+                    ?callback(new Error(LANG['请输入中文汉字,且长度2到10位!'] || '请输入中文汉字，且长度2到10位！'))
+                    :callback()
             }
             // 验证手机号码
             var validateMobile = (rule, value, callback) =>{
@@ -402,8 +398,7 @@
                 baseRules: {
                     email: [{validator: validateEmail,trigger: 'blur,change'}],
                     truename: [
-                        {validator: validateHans,trigger: 'blur,change'},
-                        { min: 2, max: 7, message: '长度在 2 到 7 个字符', trigger: 'blur' }
+                        {validator: validateHans,trigger: 'blur,change'}
                         ],
                     mobile: [{validator: validateMobile,trigger: 'blur,change'}],
                     qq: [{validator: validateNumber,trigger: 'blur,change'}],

@@ -159,13 +159,6 @@
                     "label": "补单",
                     "fn": "doSupplement",
                     "prop": "status",
-                    "val": "pending"
-                },
-                {
-                    "btnType": "text",
-                    "label": "补单",
-                    "fn": "doSupplement",
-                    "prop": "status",
                     "val": "failed"
                 }
             ]

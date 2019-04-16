@@ -374,7 +374,6 @@
                     this.confirmConfig.obj = row;
                 }
             },
-            //确认删除
             doConfirm(obj) {
                 this.loading = true;
                 let _this = this;
@@ -386,7 +385,6 @@
                                 if (res.state == 0 && res.data) {
                                     _this.formType = "supplement";
                                     _this.$message.success(_this.LANG['补单成功！'] || '补单成功！');
-                                    _this.updated = true;
                                 } else {
                                     _this.$message.error(_this.LANG['补单失败，请稍后重试！'] || '补单失败，请稍后重试！');
                                 }
