@@ -180,6 +180,7 @@
                 <div class="tCent sortData">
                     <h3>{{LANG['今日存款金额前十名'] || '今日存款金额前十名'}}</h3>
                     <div v-if="!state.depositShow" class="noDataTable">{{LANG['暂无数据'] || '暂无数据'}}</div>
+                    <el-col :span="24" class="tRight"><a href="javascript:;" @click="toSumStatement" class="state_blue"><i class="icon el-icon-more"></i></a></el-col>
                     <tablegrid
                         class="sortTable mt20"
                         v-if="state.depositShow"
@@ -198,6 +199,7 @@
                 <div class="tCent sortData">
                     <h3>{{LANG['今日取款金额前十名'] || '今日取款金额前十名'}}</h3>
                     <div v-if="!state.WithdrawShow" class="noDataTable">{{LANG['暂无数据'] || '暂无数据'}}</div>
+                    <el-col :span="24" class="tRight"><a href="javascript:;" @click="toSumStatement" class="state_blue"><i class="icon el-icon-more"></i></a></el-col>
                     <tablegrid
                         class="sortTable mt20"
                         v-if="state.WithdrawShow"
@@ -613,7 +615,7 @@
                 }
             },
             toSumStatement(){
-                this.$router.push({path: "/sumStatement"});
+                this.$router.push({path: "/memberRanking"});
             }
         },
         mounted() {

@@ -396,6 +396,7 @@
                             },
                             error: e => {
                                 console.log(e)
+                                _this.loading = false;
                             }
                         })
                         break;

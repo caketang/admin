@@ -67,7 +67,7 @@
         </el-col>
         <!--详情-->
         <el-col>
-            <el-dialog :title="'【'+ userName + '】' + LANG['会员提现详情'] || '会员提现详情'" v-model="editVisible" class="vipDialog" size="large">
+            <el-dialog :title="'【'+ userName + '】' + LANG['会员提现详情'] || '会员提现详情'" v-model="editVisible" class="vipDialog" size="large" :close-on-click-modal="false" :close-on-press-escape="false" :before-close="handleClose">
                 <el-form :model="editForm" ref="editForm">
                     <el-col class="state_danger">
                         {{LANG['会员备注'] || '会员备注'}}： {{editForm.memo}}
@@ -251,9 +251,9 @@
                     </el-row>
                 </el-form>
                 <span slot="footer" class="dialog-footer">
-                    <el-button @click="closeDialog">{{LANG['关闭'] || '关闭'}}</el-button>
-                    <el-button @click="doUpdate(editForm)" type="primary">{{LANG['确认出款']||'确认出款'}}</el-button>
-                    <el-button @click="doReject(editForm)" type="primary">{{LANG['拒绝']||'拒绝'}}</el-button>
+                    <el-button @click="closeDialog(editForm)">{{LANG['取消审核'] || '取消审核'}}</el-button>
+                    <el-button @click="doUpdate(editForm)" type="success">{{LANG['确认出款']||'确认出款'}}</el-button>
+                    <el-button @click="doReject(editForm)" type="danger">{{LANG['拒绝']||'拒绝'}}</el-button>
                     <el-button @click="doRefuse(editForm)" type="primary">{{LANG['取消出款']||'取消出款'}}</el-button>
               </span>
             </el-dialog>
@@ -541,7 +541,18 @@
                 _this.searchObj.date_to = sessionStorage.sysTime + ' 23:59:59';
                 _this.searchConfig[3].list = this.memberGradeList;
             },
-            closeDialog(){
+            closeDialog(data){
+                let Url = URL.api + ROUTES.GET.cash.withdraw.audit.$(data.id) + '?user_id=' + data.user_id + '&withdraw_id=' + data.id + '&cancel=' + 'yes';
+                this.$.autoAjax('get', Url, '', {
+                    ok:(res)=>{
+                        if(res.data&&res.state === 0 ){
+                            this.updated = true
+                        }
+                    }
+                })
+                this.editVisible = false
+            },
+            handleClose(){
                 this.editVisible = false
                 this.updated = true
             },
