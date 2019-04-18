@@ -162,7 +162,7 @@
                     state: false
                 },
                 searchConfig: [
-                    {"prop": "pay_id", "value": "", "type": "select", "label": "支付平台", "list": [], "filterable": true},
+                    {"prop": "pay_code", "value": "", "type": "select", "label": "支付平台", "list": [], "filterable": true},
                     {
                         "prop": "status", "value": "", "label": "状态", "type": "select",
                         "list": [{"label": "全部", "value": ""}, {"label": "启用", "value": "enabled"}, {
@@ -394,7 +394,7 @@
                                 channel.push({
                                     "label": model[i].name,
                                     "code": model[i].code,
-                                    "value": model[i].id.toString()
+                                    "value": model[i].code
                                 })
                             }
                         }

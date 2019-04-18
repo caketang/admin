@@ -51,19 +51,5 @@
       "sortable":true,
       "disabled":true,
       "width": 150
-    },
-    { "prop":"deduct_coupon",
-      "label":"扣除优惠",
-      "sortable":true,
-      "disabled":true,
-      "type":"divisionMoney",
-      "width": 150
-    },
-    { "prop":"deduct_admin_fee",
-      "label":"扣除行政费",
-      "sortable":true,
-      "disabled":true,
-      "type":"divisionMoney",
-      "width": 150
     }]
 }

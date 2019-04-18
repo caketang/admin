@@ -9,18 +9,18 @@
                     </el-button>
                 </div>
             </el-col>
-            <el-col>
-                <div class="cell" v-if="allData.level_config">
-                    <span
-                        class="font14 tCent">{{LANG['当前会员所在层级行政费比例'] || '当前会员所在层级行政费比例'}} : {{(allData.level_config.withdraw_expenese || '') | formatNumber(0)}} %</span>
-                    <span class="ml10 mr10"> | </span>
-                    <span
-                        class="font14 ml10">{{LANG['行政费上限'] || '行政费上限'}} : {{(allData.level_config.max_expenese || '') | formatMoney}}</span>
-                    <span class="ml10 mr10"> | </span>
-                    <span
-                        class="font14">{{LANG['免稽核额度'] || '免稽核额度'}} : {{(allData.level_config.nocheck || '') | formatMoney}}</span>
-                </div>
-            </el-col>
+            <!--<el-col>-->
+                <!--<div class="cell" v-if="allData.level_config">-->
+                    <!--<span-->
+                        <!--class="font14 tCent">{{LANG['当前会员所在层级行政费比例'] || '当前会员所在层级行政费比例'}} : {{(allData.level_config.withdraw_expenese || '') | formatNumber(0)}} %</span>-->
+                    <!--<span class="ml10 mr10"> | </span>-->
+                    <!--<span-->
+                        <!--class="font14 ml10">{{LANG['行政费上限'] || '行政费上限'}} : {{(allData.level_config.max_expenese || '') | formatMoney}}</span>-->
+                    <!--<span class="ml10 mr10"> | </span>-->
+                    <!--<span-->
+                        <!--class="font14">{{LANG['免稽核额度'] || '免稽核额度'}} : {{(allData.level_config.nocheck || '') | formatMoney}}</span>-->
+                <!--</div>-->
+            <!--</el-col>-->
             <el-col>
                 <tablegrid
                     :columnsUrl="columnsUrl"
