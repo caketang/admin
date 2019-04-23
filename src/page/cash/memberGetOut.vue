@@ -281,26 +281,26 @@
                         </div>
                     </el-col>
                 </el-row>
-                <el-row :gutter="20" type="flex" justify="center">
-                    <el-col :span="8" :pull="2">
-                        <div class="grid-content bg-purple tCent"><span>优惠:{{receivable.coupon}}</span></div>
-                    </el-col>
-                    <el-col :span="8">
-                        <div class="grid-content bg-purple tCent">
-                            <el-input v-model="withdraw.coupon" type="number"></el-input>
-                        </div>
-                    </el-col>
-                </el-row>
-                <el-row :gutter="20" type="flex" justify="center">
-                    <el-col :span="8" :pull="2">
-                        <div class="grid-content bg-purple tCent"><span>行政费:{{receivable.management_cost}}</span></div>
-                    </el-col>
-                    <el-col :span="8">
-                        <div class="grid-content bg-purple tCent">
-                            <el-input v-model="withdraw.management_cost" type="number"></el-input>
-                        </div>
-                    </el-col>
-                </el-row>
+                <!--<el-row :gutter="20" type="flex" justify="center">-->
+                    <!--<el-col :span="8" :pull="2">-->
+                        <!--<div class="grid-content bg-purple tCent"><span>优惠:{{receivable.coupon}}</span></div>-->
+                    <!--</el-col>-->
+                    <!--<el-col :span="8">-->
+                        <!--<div class="grid-content bg-purple tCent">-->
+                            <!--<el-input v-model="withdraw.coupon" type="number"></el-input>-->
+                        <!--</div>-->
+                    <!--</el-col>-->
+                <!--</el-row>-->
+                <!--<el-row :gutter="20" type="flex" justify="center">-->
+                    <!--<el-col :span="8" :pull="2">-->
+                        <!--<div class="grid-content bg-purple tCent"><span>行政费:{{receivable.management_cost}}</span></div>-->
+                    <!--</el-col>-->
+                    <!--<el-col :span="8">-->
+                        <!--<div class="grid-content bg-purple tCent">-->
+                            <!--<el-input v-model="withdraw.management_cost" type="number"></el-input>-->
+                        <!--</div>-->
+                    <!--</el-col>-->
+                <!--</el-row>-->
                 <el-row :gutter="20" type="flex" justify="center">
                     <el-col :span="4">
                         <div class="tCent">

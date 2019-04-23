@@ -34,15 +34,8 @@
             ]
         },
         {
-            "prop": "name",
-            "label": "代理层级",
-            "sortable": true,
-            "width": "200",
-            "disabled": true
-        },
-        {
             "prop": "experience",
-            "label": "所需经验",
+            "label": "晋升下级所需经验",
             "sortable": true,
             "width": "200",
             "disabled": true

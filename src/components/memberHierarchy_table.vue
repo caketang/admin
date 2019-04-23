@@ -5,16 +5,9 @@
                 <table cellspacing="0" cellpadding="0" border="1" class="el-table-data">
                     <colgroup>
                         <col width=10%></col>
-                        <col width=10%></col>
-                        <col width=10%></col>
-                        <col width=10%></col>
-                        <col width=10%></col>
-                        <col width=8%></col>
-                        <col></col>
-                        <col></col>
-                        <col></col>
-                        <col></col>
-                        <col></col>
+                        <col width=20%></col>
+                        <col width=20%></col>
+                        <col width=20%></col>
                         <col></col>
                         <col width=10%></col>
                     </colgroup>
@@ -23,25 +16,25 @@
                         <th colspan="1" rowspan="2">
                             <div class="cell">{{LANG['会员层级'] || '会员层级'}}</div>
                         </th>
-                        <th colspan="1" rowspan="2">
-                            <div class="cell">{{LANG['层级别称'] || '层级别称'}}</div>
-                        </th>
+                        <!--<th colspan="1" rowspan="2">-->
+                            <!--<div class="cell">{{LANG['层级别称'] || '层级别称'}}</div>-->
+                        <!--</th>-->
                         <th colspan="1" rowspan="2">
                             <div class="cell">{{LANG['描述'] || '描述'}}</div>
                         </th>
                         <th colspan=2 rowspan="1">
                             <div class="cell">{{LANG['晋级条件'] || '晋级条件'}}</div>
                         </th>
-                        <th colspan="5" rowspan="1">
-                            <div class="cell">{{LANG['层级限制'] || '层级限制'}}</div>
-                        </th>
+                        <!--<th colspan="5" rowspan="1">-->
+                            <!--<div class="cell">{{LANG['层级限制'] || '层级限制'}}</div>-->
+                        <!--</th>-->
                         <th colspan="1" rowspan="2">
                             <div class="cell">{{LANG['会员人数'] || '会员人数'}}</div>
                         </th>
                         <!--新增备注-->
-                        <th colspan="1" rowspan="2">
-                            <div class="cell">{{LANG['备注'] || '备注'}}<br/></div>
-                        </th>
+                        <!--<th colspan="1" rowspan="2">-->
+                            <!--<div class="cell">{{LANG['备注'] || '备注'}}<br/></div>-->
+                        <!--</th>-->
                         <th colspan="1" rowspan="2">
                             <div class="cell">{{LANG['操作'] || '操作'}}<br/></div>
                         </th>
@@ -58,25 +51,25 @@
                             <!--<div class="cell">{{LANG['区间存款总额'] || '区间存款总额'}}</div>-->
                         <!--</th>-->
                         <th colspan="1" rowspan="1">
-                            <div class="cell">{{LANG['充值总额'] || '充值总额'}}</div>
+                            <div class="cell">{{LANG['有效投注'] || '有效投注'}}</div>
                         </th>
                         <th colspan="1" rowspan="1">
-                            <div class="cell">{{LANG['打码量'] || '打码量'}}</div>
+                            <div class="cell">{{LANG['历史充值'] || '历史充值'}}</div>
                         </th>
-                        <th colspan="1" rowspan="1">
-                            <div class="cell">{{LANG['存款次数'] || '存款次数'}}</div>
-                        </th>
-                        <th colspan="1" rowspan="1">
-                            <div class="cell">{{LANG['存款总额'] || '存款总额'}}</div>
-                        </th>
-                        <th colspan="1" rowspan="1">
-                            <div class="cell">{{LANG['最大存款额'] || '最大存款额'}}</div>
-                        </th>
-                        <th colspan="1" rowspan="1">
-                            <div class="cell">{{LANG['提款次数'] || '提款次数'}}</div>
-                        </th>
-                        <th colspan="1" rowspan="1">
-                            <div class="cell">{{LANG['提款总额'] || '提款总额'}}</div>
+                        <!--<th colspan="1" rowspan="1">-->
+                            <!--<div class="cell">{{LANG['存款次数'] || '存款次数'}}</div>-->
+                        <!--</th>-->
+                        <!--<th colspan="1" rowspan="1">-->
+                            <!--<div class="cell">{{LANG['存款总额'] || '存款总额'}}</div>-->
+                        <!--</th>-->
+                        <!--<th colspan="1" rowspan="1">-->
+                            <!--<div class="cell">{{LANG['最大存款额'] || '最大存款额'}}</div>-->
+                        <!--</th>-->
+                        <!--<th colspan="1" rowspan="1">-->
+                            <!--<div class="cell">{{LANG['提款次数'] || '提款次数'}}</div>-->
+                        <!--</th>-->
+                        <!--<th colspan="1" rowspan="1">-->
+                            <!--<div class="cell">{{LANG['提款总额'] || '提款总额'}}</div>-->
                         </th>
                     </tr>
                     </thead>

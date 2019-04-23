@@ -7,7 +7,7 @@
                     <li class="fl tCent el-tabs__item" style="padding:0;">
                         <a href="javascript:;"
                            :class="{navOne:activeType}"
-                           @click="navTabsChange1">{{LANG['层级管理'] || '层级管理'}}</a>
+                           @click="navTabsChange1">{{LANG['等级管理'] || '等级管理'}}</a>
                     </li>
                     <li class="fl tCent el-tabs__item" style="padding:0;">
                         <a href="javascript:;"
@@ -153,80 +153,37 @@
                         "list":ARRAYS.LEVELSLIST
                     },
                     {//1
+                        "prop": "advance_money",
+                        "value": "",
+                        "type": "number",
+                        "label": "有效投注额",
+                        "placeholder": "请输入有效投注金额",
+                        "rules": [{"require": true}, {"varMax": 99999999}, {"moreZero": true}]
+                    },
+                    {//2
                         "prop": "name",
                         "value": "",
                         "type": "text",
-                        "label": "层级别称",
-                        "placeholder": "请输入会员层级别称",
+                        "label": "历史充值",
+                        "placeholder": "请输入历史充值金额",
                         "rules": [{"require": true}, {"moreZero": true}]
                     },
-                    {//2
+                    {//3
+                        "prop": "advance_valid_bet",
+                        "value": "",
+                        "type": "number",
+                        "label": "奖励",
+                        "placeholder": "请输入奖励金额",
+                        "rules": [{"require": true, "max": 9, "min:": 1}, {"moreZero": true, "integer": true}]
+                    },
+                    {//4
                         "prop": "memo",
                         "value": "",
                         "type": "textarea",
                         "label": "描述",
                         "placeholder": "请输入描述",
                         "rules": [{"max": 40}]
-                    },
-                    {//3
-                        "prop": "advance_money",
-                        "value": "",
-                        "type": "number",
-                        "label": "充值金额",
-                        "placeholder": "请输入晋级充值金额",
-                        "rules": [{"require": true}, {"varMax": 99999999}, {"moreZero": true}]
-                    },
-                    {//4
-                        "prop": "advance_valid_bet",
-                        "value": "",
-                        "type": "number",
-                        "label": "打码量",
-                        "placeholder": "请输入晋级打码量",
-                        "rules": [{"require": true, "max": 9, "min:": 1}, {"moreZero": true, "integer": true}]
-                    },
-                    {//5
-                        "prop": "deposit_times",
-                        "value": "",
-                        "label": "存款次数",
-                        "type": "number",
-                        "rules": [{"require": true, "max": 9, "min:": 1}, {"moreZero": true, "integer": true}]
-                    },
-                    {//6
-                        "prop": "deposit_money",
-                        "value": "",
-                        "label": "存款总额",
-                        "type": "number",
-                        "rules": [{"require": true}, {"varMax": 99999999}, {"moreZero": true}]
-                    },
-                    {//7
-                        "prop": "max_deposit_money",
-                        "value": "",
-                        "label": "最大存款额",
-                        "type": "number",
-                        "rules": [{"require": true, "max": 9, "min:": 1}, {"varMax": 99999999}, {"moreZero": true}]
-                    },
-                    {//8
-                        "prop": "withdraw_times",
-                        "value": "",
-                        "label": "提款次数",
-                        "type": "number",
-                        "rules": [{"require": true, "max": 9, "min:": 1}, {"moreZero": true, "integer": true}]
-                    },
-                    {//9
-                        "prop": "withdraw_count",
-                        "value": "",
-                        "label": "提款总额",
-                        "type": "number",
-                        "rules": [{"require": true, "max": 9, "min:": 1}, {"varMax": 99999999}, {"moreZero": true}]
-                    },
-                    {//10
-                        "prop": "comment",
-                        "value": "",
-                        "type": "textarea",
-                        "label": "备注",
-                        "placeholder": "请输入备注内容",
-                        "rules": [{"max": 40}]
-                    },
+                    }
                 ],
                 size:'tiny',
                 type: "default",
@@ -388,7 +345,6 @@
                 if (date.clear) {
                     this.members = "";
                 }
-                ;
             },
             //表格按钮事件
             doHandle(item) {

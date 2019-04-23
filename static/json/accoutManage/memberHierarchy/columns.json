@@ -38,10 +38,6 @@
             ]
         },
         {
-            "prop": "name",
-            "label": "层级别称"
-        },
-        {
             "prop": "memo",
             "label": "描述",
             "sortable": true
@@ -58,46 +54,12 @@
             "sortable": true
         },
         {
-            "prop": "deposit_times",
-            "label": "存款次数",
-            "sortable": true
-        },
-        {
-            "prop": "deposit_money",
-            "label": "存款总额",
-            "sortable": true,
-            "type": "divisionMoney"
-        },
-        {
-            "prop": "max_deposit_money",
-            "label": "最大存款额",
-            "disabled": true,
-            "type": "divisionMoney"
-        },
-        {
-            "prop": "withdraw_times",
-            "label": "提款次数",
-            "disabled": true
-        },
-        {
-            "prop": "withdraw_count",
-            "label": "提款总额",
-            "disabled": true,
-            "type": "divisionMoney"
-        },
-        {
             "prop": "num",
             "label": "会员人数",
             "type": "link",
             "fn": "doSeatchMember",
             "sortable": true,
-            "disabled": true,
-            "width": "100"
-        },
-        {
-            "prop": "comment",
-            "label": "备注",
-            "sortable": true
+            "disabled": true
         },
         {
             "label": "操作",

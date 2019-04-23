@@ -227,7 +227,8 @@ global.ROUTES = {
                 report:'/treaty/report',
                 domain:'/domain/list',
                 line:'/state/line',
-                level:'/agent/level/index'
+                level:'/agent/level/index',
+                global:'/agent/level/global'
             },
             origin: "/user/register/types",
             list: "/user/list",
@@ -1597,6 +1598,7 @@ global.ARRAYS = {
         {"label": "其他", "value": "reserved"}
     ],
     LEVELSLIST:[
+        {"label": "VIP 0", "value": "0"},
         {"label": "VIP 1", "value": "1"},
         {"label": "VIP 2", "value": "2"},
         {"label": "VIP 3", "value": "3"},

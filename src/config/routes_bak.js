@@ -443,7 +443,7 @@ export default [
                 path: '/memberHierarchy',
                 component: resolve => require(['../page/userManagement/memberHierarchy'], resolve),
                 iconCls: '',
-                name: '会员层级'
+                name: '会员等级'
 
             },
             {
