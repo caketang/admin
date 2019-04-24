@@ -17,6 +17,10 @@
             "disabled": true,
             "filters": [
                 {
+                    "value": "0",
+                    "text": "VIP 0"
+                },
+                {
                     "value": "1",
                     "text": "VIP 1"
                 },
@@ -78,72 +82,19 @@
             "disabled": true
         },
         {
-            "label": "存款时间",
-            "width": "180",
-            "type": "date",
-            "disabled": true,
-            "delimiter": " - ",
-            "prop": "deposit_stime,deposit_etime",
-            "type": "contentDate"
-        },
-        {
-            "prop": "between_money",
-            "label": "区间存款总额",
-            "width": "180",
-            "type": "divisionMoney",
-            "disabled": true
-        },
-        {
-            "prop": "deposit_total",
-            "label": "存款次数",
+            "prop": "advance_money",
+            "label": "历史充值",
             "sort": true,
             "width": "100",
             "disabled": true
         },
         {
-            "prop": "deposit_money",
-            "label": "存款总额",
+            "prop": "advance_valid_bet",
+            "label": "有效投注",
             "sort": true,
             "width": "100",
             "type": "divisionMoney",
             "disabled": true
-        },
-        {
-            "prop": "deposit_max",
-            "label": "最大存款总额",
-            "type": "divisionMoney",
-            "sort": true,
-            "width": "130",
-            "disabled": true
-        },
-        {
-            "prop": "withdraw_total",
-            "label": "提现次数",
-            "sort": true,
-            "width": "100",
-            "disabled": true
-        },
-        {
-            "prop": "withdraw_money",
-            "label": "提现总额",
-            "type": "divisionMoney",
-            "width": "120",
-            "disabled": true
-        },
-        {
-            "prop": "lid",
-            "label": "分层",
-            "width": "150",
-            "type": "list",
-            "disabled": true
-        },
-        {
-            "prop": "lock",
-            "label": "锁定",
-            "width": "80",
-            "checkbox": true,
-            "disabled": true,
-            "type": "switch"
         }
     ]
 }

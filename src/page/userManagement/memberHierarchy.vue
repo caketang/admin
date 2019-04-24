@@ -38,8 +38,8 @@
                                       :isEdit="isEdit" :formType="formType" :size="size"></formEdit>
                         </el-col>
                         <el-col>
-                            <userLevelLayer :model="userLeve" @update-level="updateLevel"
-                                            :updateDate="updateDate"></userLevelLayer>
+                            <!--@update-level="updateLevel"-->
+                            <userLevelLayer :model="userLeve" :updateDate="updateDate"></userLevelLayer>
                         </el-col>
                         <el-col>
                             <confirm :confirmConfig="confirmConfig" @do-confirm="doConfirm"></confirm>
@@ -222,7 +222,7 @@
                 },
                 //会员层级设定
                 editForm: {
-                    "id": "",
+                    //"id": "",
                     "level_id": "",
                     "offline_min_in": "",
                     "offline_max_in": "",
@@ -240,48 +240,48 @@
                     "day_withdraw_max": "",
                     "memberHierarchy": "",
                     "nocheck": "",
-                    "onlines": {
-                        "wechat": {
-                            "min": '',
-                            "max": ''
-                        },
-                        "alipay": {
-                            "min": '',
-                            "max": ''
-                        },
-                        "qqpay": {
-                            "min": '',
-                            "max": ''
-                        },
-                        "cyberbank": {
-                            "min": '',
-                            "max": ''
-                        },
-                        "tenpay": {
-                            "min": '',
-                            "max": ''
-                        },
-                        "jdpay": {
-                            "min": '',
-                            "max": ''
-                        },
-                        "unionpay": {
-                            "min": '',
-                            "max": ''
-                        },
-                        "baidupay": {
-                            "min": '',
-                            "max": ''
-                        },
-                        "kapay": {
-                            "min": '',
-                            "max": ''
-                        },
-                        "quickpay": {
-                            "min": '',
-                            "max": ''
-                        }
-                    }
+//                    "onlines": {
+//                        "wechat": {
+//                            "min": '',
+//                            "max": ''
+//                        },
+//                        "alipay": {
+//                            "min": '',
+//                            "max": ''
+//                        },
+//                        "qqpay": {
+//                            "min": '',
+//                            "max": ''
+//                        },
+//                        "cyberbank": {
+//                            "min": '',
+//                            "max": ''
+//                        },
+//                        "tenpay": {
+//                            "min": '',
+//                            "max": ''
+//                        },
+//                        "jdpay": {
+//                            "min": '',
+//                            "max": ''
+//                        },
+//                        "unionpay": {
+//                            "min": '',
+//                            "max": ''
+//                        },
+//                        "baidupay": {
+//                            "min": '',
+//                            "max": ''
+//                        },
+//                        "kapay": {
+//                            "min": '',
+//                            "max": ''
+//                        },
+//                        "quickpay": {
+//                            "min": '',
+//                            "max": ''
+//                        }
+//                    }
                 },
                 //层级设定显示开关
                 levelSet: false,
@@ -392,91 +392,91 @@
                 this.limitVisible = true;
             },
             // 删除层级
-            doDelete(row) {
-                let name = row.name;
-                this.nowId = row.id;
-                this.confirmConfig.state = true;
-                this.confirmConfig.msg = (LANG['确定删除'] || '确定删除') + name + (LANG["吗？"] || "吗");
-                this.confirmConfig.fn = "delete";
-            },
+//            doDelete(row) {
+//                let name = row.name;
+//                this.nowId = row.id;
+//                this.confirmConfig.state = true;
+//                this.confirmConfig.msg = (LANG['确定删除'] || '确定删除') + name + (LANG["吗？"] || "吗");
+//                this.confirmConfig.fn = "delete";
+//            },
             // 显示分层弹窗，设置当前被改数据id
-            doReject(row) {
-                this.nowId = row.id;
-                let _this = this;
-                let vipLevel = row.name;
-                this.userLeve.lList.splice(0, this.userLeve.lList.length);
-                let userLevelList = _this.userLeve.lList;
-                this.loading = true;
-                this.$.autoAjax('get', URL.api + '/user/levels', '', {
-                    ok: (res) => {
-                        if (res.state == 0 && res.data) {
-                            let model = res.data;
-                            for (let i in model) {
-                                if (model[i].name !== row.name) {
-                                    userLevelList.push({
-                                        "num": i,
-                                        "id": model[i].id,
-                                        "name": model[i].name,
-                                        "desc": model[i].desc,
-                                        "disable": false
-                                    });
-                                }
-                            }
-                            this.loading = false;
-                        }
-                    },
-                    p: () => {
-                    },
-                    error: e => {
-                        console.log(e)
-                    }
-                })
-                this.userLeve.title = this.LANG["将下面会员分层导入至:"] + vipLevel || "将下面会员分层导入至:" + vipLevel;
-                this.userLeve.visible = true;
-                this.userLeve.nowLeve = vipLevel;
-            },
+//            doReject(row) {
+//                this.nowId = row.id;
+//                let _this = this;
+//                let vipLevel = row.name;
+//                this.userLeve.lList.splice(0, this.userLeve.lList.length);
+//                let userLevelList = _this.userLeve.lList;
+//                this.loading = true;
+//                this.$.autoAjax('get', URL.api + '/user/levels', '', {
+//                    ok: (res) => {
+//                        if (res.state == 0 && res.data) {
+//                            let model = res.data;
+//                            for (let i in model) {
+//                                if (model[i].name !== row.name) {
+//                                    userLevelList.push({
+//                                        "num": i,
+//                                        "id": model[i].id,
+//                                        "name": model[i].name,
+//                                        "desc": model[i].desc,
+//                                        "disable": false
+//                                    });
+//                                }
+//                            }
+//                            this.loading = false;
+//                        }
+//                    },
+//                    p: () => {
+//                    },
+//                    error: e => {
+//                        console.log(e)
+//                    }
+//                })
+//                this.userLeve.title = this.LANG["将下面会员分层导入至:"] + vipLevel || "将下面会员分层导入至:" + vipLevel;
+//                this.userLeve.visible = true;
+//                this.userLeve.nowLeve = vipLevel;
+//            },
             //保存分层信息
-            updateLevel(obj) {
-                let _this = this;
-                this.loading = true;
-                let temp = [];
-                for (let i in obj) {
-                    temp.push(obj[i].lid);
-                }
-                let params = {
-                    'ids': temp.toString(),
-                    'to': parseInt(this.nowId)
-                }
-                this.$.autoAjax('patch', URL.api + ROUTES.PATCH.user.level.layer, params, {
-                    ok: (res) => {
-                        if (res.state == 0 && res.data > 0) {
-                            let n = res.data
-                            _this.$message.success(LANG['成功分层' + n + '个会员!'] || '成功分层' + n + '个会员!');
-                            _this.updated = true;
-                        } else if (res.data == false && res.msg) {
-                            let message = res.msg
-                            _this.$message.error(LANG[message] || message);
-                        } else if (res.data.length == 0 && res.msg) {
-                            let message = res.msg
-                            _this.$message.error(LANG[message] || message);
-                        }
-                        _this.loading = false;
-                    },
-                    p: () => {
-                    },
-                    error: e => {
-                        _this.loading = false;
-                    }
-                })
-            },
+//            updateLevel(obj) {
+//                let _this = this;
+//                this.loading = true;
+//                let temp = [];
+//                for (let i in obj) {
+//                    temp.push(obj[i].lid);
+//                }
+//                let params = {
+//                    'ids': temp.toString(),
+//                    'to': parseInt(this.nowId)
+//                }
+//                this.$.autoAjax('patch', URL.api + ROUTES.PATCH.user.level.layer, params, {
+//                    ok: (res) => {
+//                        if (res.state == 0 && res.data > 0) {
+//                            let n = res.data
+//                            _this.$message.success(LANG['成功分层' + n + '个会员!'] || '成功分层' + n + '个会员!');
+//                            _this.updated = true;
+//                        } else if (res.data == false && res.msg) {
+//                            let message = res.msg
+//                            _this.$message.error(LANG[message] || message);
+//                        } else if (res.data.length == 0 && res.msg) {
+//                            let message = res.msg
+//                            _this.$message.error(LANG[message] || message);
+//                        }
+//                        _this.loading = false;
+//                    },
+//                    p: () => {
+//                    },
+//                    error: e => {
+//                        _this.loading = false;
+//                    }
+//                })
+//            },
             //回归弹窗
-            doAudit(row) {
-                let name = row.name;
-                this.nowId = row.id;
-                this.confirmConfig.state = true;
-                this.confirmConfig.msg = (LANG['确定将'] || '确定将') + name + (LANG["层回归到未分层？"] || "层回归到未分层");
-                this.confirmConfig.fn = "audit";
-            },
+//            doAudit(row) {
+//                let name = row.name;
+//                this.nowId = row.id;
+//                this.confirmConfig.state = true;
+//                this.confirmConfig.msg = (LANG['确定将'] || '确定将') + name + (LANG["层回归到未分层？"] || "层回归到未分层");
+//                this.confirmConfig.fn = "audit";
+//            },
             //查询
             doQuery(obj) {
                 let query = {};
@@ -496,22 +496,21 @@
                 } else {
                     colTwo = false;
                 }
-                this.level_id = row.id;
+                this.level_id = row.level;
                 parseInt(row.num) > 0 ? this.$router.push({
                     path: "/memberHierarSet",
-                    query: {level: parseInt(row.id), coltwo: colTwo}
+                    query: {level: parseInt(row.level), coltwo: colTwo}
                 }) : this.$message.error(LANG['无层级人数'] || '无层级人数');
             },
             //新增
-            addNew() {
-                this.formTitel = "新增会员层级";
-                this.formType = "add";
-                this.isEdit.state = false;
-                this.editVisible.state = true;
-            },
+//            addNew() {
+//                this.formTitel = "新增会员层级";
+//                this.formType = "add";
+//                this.isEdit.state = false;
+//                this.editVisible.state = true;
+//            },
             //保存新增表格
             getForm(obj) {
-                console.log(obj)
                 let str = "", url = "", model = {}, _this = this;
                 model.advance_money = obj.formObj.advance_money
                 model.advance_valid_bet = obj.formObj.advance_valid_bet
@@ -596,46 +595,46 @@
             //系统提示
             doConfirm(obj) {
                 this.updated = false;
-                if (obj.fn == "audit") {
-                    let _this = this;
-                    this.loading = true;
-
-                    this.$.autoAjax('patch', URL.api + ROUTES.PATCH.user.level.restore + "/" + parseInt(_this.nowId), '', {
-                        ok: (res) => {
-                            if (res.state === 0 && res.data) {
-                                _this.$message.success(_this.LANG['恭喜您，会员等级回归成功！'] || '恭喜您，会员等级回归成功！');
-                                this.updated = true;
-                            } else {
-                                _this.$message.error(_this.LANG['会员等级回归失败，请稍候重试！'] || '会员等级回归失败，请稍候重试！');
-                            }
-                            _this.loading = false;
-                        },
-                        p: () => {
-                        },
-                        error: e => {
-                            _this.loading = false;
-                            consoel.log(e.responseJSON.msg);
-                        }
-                    })
-                }
-                if (obj.fn == "delete") {
-                    let _this = this;
-                    this.$.autoAjax('delete', URL.api + ROUTES.DELETE.user.level.set + '/' + parseInt(_this.nowId), '', {
-                        ok: (res) => {
-                            if (res.state === 0 && res.data) {
-                                _this.$message.success(LANG['恭喜您，会员层级删除成功！'] || '恭喜您，会员层级删除成功！');
-                                _this.updated = true;
-                            } else {
-                                _this.$message.error(LANG['会员层级删除失败，请稍后重试！'] || '会员层级删除失败，请稍后重试！');
-                            }
-                        },
-                        p: () => {
-                        },
-                        error: e => {
-                            console.log()
-                        }
-                    })
-                }
+//                if (obj.fn == "audit") {
+//                    let _this = this;
+//                    this.loading = true;
+//
+//                    this.$.autoAjax('patch', URL.api + ROUTES.PATCH.user.level.restore + "/" + parseInt(_this.nowId), '', {
+//                        ok: (res) => {
+//                            if (res.state === 0 && res.data) {
+//                                _this.$message.success(_this.LANG['恭喜您，会员等级回归成功！'] || '恭喜您，会员等级回归成功！');
+//                                this.updated = true;
+//                            } else {
+//                                _this.$message.error(_this.LANG['会员等级回归失败，请稍候重试！'] || '会员等级回归失败，请稍候重试！');
+//                            }
+//                            _this.loading = false;
+//                        },
+//                        p: () => {
+//                        },
+//                        error: e => {
+//                            _this.loading = false;
+//                            consoel.log(e.responseJSON.msg);
+//                        }
+//                    })
+//                }
+//                if (obj.fn == "delete") {
+//                    let _this = this;
+//                    this.$.autoAjax('delete', URL.api + ROUTES.DELETE.user.level.set + '/' + parseInt(_this.nowId), '', {
+//                        ok: (res) => {
+//                            if (res.state === 0 && res.data) {
+//                                _this.$message.success(LANG['恭喜您，会员层级删除成功！'] || '恭喜您，会员层级删除成功！');
+//                                _this.updated = true;
+//                            } else {
+//                                _this.$message.error(LANG['会员层级删除失败，请稍后重试！'] || '会员层级删除失败，请稍后重试！');
+//                            }
+//                        },
+//                        p: () => {
+//                        },
+//                        error: e => {
+//                            console.log()
+//                        }
+//                    })
+//                }
             },
             //会员等级设定
             doSet(row) {
@@ -643,7 +642,7 @@
                 let _this = this;
                 let editForm = this.editForm;
                 this.loading = true;
-                this.$.autoAjax('get', URL.api + ROUTES.GET.user.level.set.$(parseInt(row.id)), '', {
+                this.$.autoAjax('get', URL.api + ROUTES.GET.user.level.set.$(parseInt(row.level)), '', {
                     ok: (res) => {
                         if (res.state == 0 && res.data) {
                             let obj = res.data[0] || [];
@@ -652,11 +651,11 @@
                                     editForm[i] = obj[i].toString();
                                 }
                             }
-                            let tempObj = JSON.parse(obj['onlines']);
-                            for (let k in tempObj) {
-                                editForm['onlines'][k].min = FORMATMONEY(tempObj[k].min).toString() || '';
-                                editForm['onlines'][k].max = FORMATMONEY(tempObj[k].max).toString() || '';
-                            }
+//                            let tempObj = JSON.parse(obj['onlines']);
+//                            for (let k in tempObj) {
+//                                editForm['onlines'][k].min = FORMATMONEY(tempObj[k].min).toString() || '';
+//                                editForm['onlines'][k].max = FORMATMONEY(tempObj[k].max).toString() || '';
+//                            }
                             editForm['online_max_in'] = FORMATMONEY(editForm['online_max_in']).toString();
                             editForm['offline_max_in'] = FORMATMONEY(editForm['offline_max_in']).toString();
                             editForm['offline_min_in'] = FORMATMONEY(editForm['offline_min_in']).toString();
@@ -704,19 +703,18 @@
                     "withdraw_fee": this.MultiplyMoney(this.editForm.withdraw_fee),
                     "day_withdraw_max": this.MultiplyMoney(this.editForm.day_withdraw_max),
                     "nocheck": this.MultiplyMoney(this.editForm.nocheck),
-                    "onlines": {}
+                    //"onlines": {}
                 }
-                let temp = this.editForm.onlines;
-                for (let k in temp) {
-                    query.onlines[k] = {
-                        min: this.MultiplyMoney(temp[k].min),
-                        max: this.MultiplyMoney(temp[k].max)
-                    }
-                }
-                query.onlines = JSON.stringify(query.onlines);
+//                let temp = this.editForm.onlines;
+//                for (let k in temp) {
+//                    query.onlines[k] = {
+//                        min: this.MultiplyMoney(temp[k].min),
+//                        max: this.MultiplyMoney(temp[k].max)
+//                    }
+//                }
+//                query.onlines = JSON.stringify(query.onlines);
                 this.loading = true;
-
-                this.$.autoAjax('put', URL.api + ROUTES.PUT.user.level.set + '/' + this.editForm.id, query, {
+                this.$.autoAjax('put', URL.api + ROUTES.PUT.user.level.set + '/' + this.editForm.level_id, query, {
                     ok: (res) => {
                         if (res.state == 0 && res.data) {
                             this.$message.success(this.LANG['恭喜您，会员层级设置成功！'] || '恭喜您，会员层级设置成功！');

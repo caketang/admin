@@ -201,8 +201,8 @@
                     this.baseUrl = this.baseUrl + `&&user_name=${this.query.user_name}`;
                 }
                 if (this.query.level_id) {
-                    this.tableUrl = this.tableUrl + `&&level_id=${this.query.level_id}`;
-                    this.baseUrl = this.baseUrl + `&&level_id=${this.query.level_id}`
+                    this.tableUrl = this.tableUrl + `&&levels=${this.query.level_id}`;
+                    this.baseUrl = this.baseUrl + `&&levels=${this.query.level_id}`
                 }
             },
             doHandle(item) {

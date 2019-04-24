@@ -143,10 +143,10 @@ export default{
                   if (res.state == 0 && res.data) {
                       let model = res.data || [];
                       for (let k in model) {
-                          _this.formConfig[1].list.push(model[k].name);
+                          _this.formConfig[1].list.push("VIP"+model[k].level,);
                           _this.formConfig[1].Arr.push({
-                              "label": model[k].name,
-                              "value": model[k].id.toString()
+                              "label": "VIP"+model[k].level,
+                              "value": model[k].level.toString()
                           });
                       }
                   }

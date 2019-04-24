@@ -941,8 +941,8 @@
                                 let model = res.data;
                                 for (let i in model) {
                                     _this.vipList.push({
-                                        "label": model[i].name,
-                                        "value": model[i].id.toString(),
+                                        "label": "VIP"+model[i].level,
+                                        "value": model[i].level.toString(),
                                         "disable": true
                                     })
                                 }

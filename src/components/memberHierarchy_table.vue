@@ -87,25 +87,12 @@
                                 </div>
                                 <span
                                     v-if="item.filters == undefined && item.type !='date' && item.type != 'divisionMoney' && item.type !=='link'">{{col[item.prop]}}</span>
-                                <span
-                                    v-if="item.type == 'date'">{{col[item.prop] | formatDate('yyyy-MM-dd HH:mm:ss')}}</span>
-                                <span v-if="item.type == 'data,connect'">
-                                    <p>{{col[item.prop.split(",")[0]] || ""}}</p>
-                                    <p>{{col[item.prop.split(",")[1]] || ""}}</p>
-                                </span>
-                                <span v-if="item.type == 'connect'">
-                                    <!--此处写死-->
-                                    <p>{{col.deposit_min | formatInt}} ~ {{col.deposit_max | formatInt}}</p>
-                                </span>
-                                <span
-                                    v-if="item.type == 'divisionMoney'">{{isNaN(parseInt(col[item.prop])) ? 0 : parseInt(col[item.prop]) / 100}}</span>
                                 <div style="line-height: 24px">
-                                   <span v-if="item.filters != undefined"
-                                         :class="{sucess_text: (col[item.prop] == 1),danger_text:(col[item.prop] == 0)}">{{col[item.prop] | formatSex(item.filters)}}</span>
-                                    <p class="defutFont" v-if="col['t_default'] == '0'">[ {{LANG['默认'] || '默认'}} ]</p>
+                                   <span v-if="item.filters != undefined" :class="{sucess_text: (col[item.prop] == 1),danger_text:(col[item.prop] == 0)}">{{col[item.prop] | formatSex(item.filters)}}</span>
+                                    <p class="defutFont" v-if="col['level'] == '0'">[ {{LANG['默认'] || '默认'}} ]</p>
                                 </div>
                             </div>
-                            <div v-if="item.type == 'button' && col['t_default'] === '1'" class="cell">
+                            <div v-if="item.type == 'button' && col['level'] !== '0'" class="cell">
                                 <div v-for="btn in item.btnGroup" style="float:left;margin-left:5px;">
                                     <el-button size="small" v-if="!btn.prop" @click="doHandle(col,btn.fn)"
                                                :type="btn.btnType" v-text="btn.label"></el-button>
@@ -114,7 +101,7 @@
                                                v-text="btn.label"></el-button>
                                 </div>
                             </div>
-                            <div v-if="item.type == 'button' && col['t_default'] == '0'">
+                            <div v-if="item.type == 'button' && col['level'] == '0'">
                                 <div v-for="btn in item.btnGroup" style="float:left;margin-left:5px;">
                                     <el-button size="small" v-if="btn.label === '设定'" @click="doHandle(col,btn.fn)"
                                                :type="btn.btnType" v-text="btn.label"></el-button>

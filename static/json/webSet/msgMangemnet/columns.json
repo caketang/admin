@@ -51,7 +51,7 @@
       "prop": "status",
       "label": "发布状态",
       "filters":[
-        { "text": "已发布", "value": "1"}, 
+        { "text": "已发布", "value": "1"},
         { "text": "未发布", "value": "0" }
       ],
       "disabled": true,

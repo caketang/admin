@@ -162,7 +162,7 @@
             doEdit(row){
                 this.editVisible.state = true;
                 this.isEdit.state = true
-                if(row.level.toString() == "1"||row.level.toString() == "6"){
+                if(row.level.toString() == "6"){
                     this.formConfig[1].disabled = true
                 }else{
                     this.formConfig[1].disabled = false

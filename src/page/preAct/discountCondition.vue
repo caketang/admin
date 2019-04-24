@@ -222,40 +222,22 @@
                         console.log(e)
                     }
                 })
-//                 this.$http.get(url, URLCONFIG).then((res) => {
-//                     if(res.data.data){
-//                         let  model = res.data.data;
-//                         for ( let i in model ) {
-//                             _this.gameList.push({
-//                                 "label": model[i].game_name,
-//                                 "type":model[i].game_type,
-//                                 "value": model[i].game_id
-//                             })
-//                             this.editForm.checkedDefut1.push(model[i].game_name)
-//                             this.editForm1.checkedDefut1.push(model[i].game_name)
-//                         }
-//                     }
-//                 }).catch(function (err) {
-// //					console.log(err)
-//                 });
             },
 			/**
 			 * 获取会员等级
 			 */
 			reqVips() {
-				let _this = this;
-				let levelUrl = URL.api+ROUTES.GET.user.level.list;
-
+				let _this = this,levelUrl = URL.api+ROUTES.GET.user.level.list;
                 this.$.autoAjax('get', levelUrl, '', {
                     ok: (res) => {
                         if(res.data){
                             let  model = res.data;
                             for ( let i in model ) {
                                 _this.vipList.push({
-                                    "label": model[i].name,
-                                    "value": model[i].id
+                                    "label": "VIP"+model[i].level,
+                                    "value": model[i].level
                                 });
-                                this.editForm.checkedDefut.push(model[i].name)
+                                this.editForm.checkedDefut.push("VIP"+model[i].level)
                             }
                         }
                     },
@@ -265,20 +247,6 @@
                         console.log(e)
                     }
                 })
-// 				this.$http.get(levelUrl, URLCONFIG).then((res) => {
-// 					if(res.data.data){
-// 						let  model = res.data.data;
-//                         for ( let i in model ) {
-// 							_this.vipList.push({
-// 								"label": model[i].name,
-// 								"value": model[i].id
-// 							});
-//                             this.editForm.checkedDefut.push(model[i].name)
-// 						}
-// 					}
-// 				}).catch(function (err) {
-// //					console.log(err)
-// 				});
 			},
 			getDay(obj) {
 				this.editForm.date_from = obj.sday;

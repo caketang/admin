@@ -44,18 +44,18 @@
             </el-tooltip>
         </li>
         <!-- 代理出款 -->
-        <li v-if="autoMusic.root_agent === 'true'">
-            <a href="javascript:;" style="display: none">
-                <audio id='audioPlay3' src='../../../static/music/chukuan.wav'></audio>
-            </a>
-            <el-tooltip class="item" effect="light" :content="LANG['代理提现'] || '代理提现' " placement="bottom">
-                <el-badge :value="agentWithdraw" class="item" rel="wobble-vertical">
-                    <a href="javascript:;" class="el-dropdown-link" @click="agentDrawing">
-                        <span class="font14">{{LANG['代理出款'] || '代理出款'}}</span>
-                    </a>
-                </el-badge>
-            </el-tooltip>
-        </li>
+        <!--<li v-if="autoMusic.root_agent === 'true'">-->
+            <!--<a href="javascript:;" style="display: none">-->
+                <!--<audio id='audioPlay3' src='../../../static/music/chukuan.wav'></audio>-->
+            <!--</a>-->
+            <!--<el-tooltip class="item" effect="light" :content="LANG['代理提现'] || '代理提现' " placement="bottom">-->
+                <!--<el-badge :value="agentWithdraw" class="item" rel="wobble-vertical">-->
+                    <!--<a href="javascript:;" class="el-dropdown-link" @click="agentDrawing">-->
+                        <!--<span class="font14">{{LANG['代理出款'] || '代理出款'}}</span>-->
+                    <!--</a>-->
+                <!--</el-badge>-->
+            <!--</el-tooltip>-->
+        <!--</li>-->
         <!-- 新优惠申请 -->
         <!--<li v-if="autoMusic.root_rebate === 'true'">-->
         <!--<a href="javascript:;" style="display: none">-->

@@ -359,7 +359,7 @@
                 feeName: "",
                 feeVisi: false,
                 LANG,
-                memberGradeList: [],
+                //memberGradeList: [],
                 //备注弹窗
                 dialogVisibleMemo: false,
                 //备注内容
@@ -380,7 +380,7 @@
                     //ID2
                     {"prop": "trade_no", "value": "", "type": "text", "label": "订单号"},
                     {
-                        "prop": "ranting",
+                        "prop": "levels",
                         "value": [],
                         "label": "会员层级",
                         "sReset": false,
@@ -524,10 +524,10 @@
                         if (res.state == 0 && res.data) {
                             let model = res.data;
                             for (let i in model) {
-                                _this.searchConfig[3].list.push(model[i].name);
+                                _this.searchConfig[3].list.push("VIP"+model[i].level);
                                 _this.searchConfig[3].Arr.push({
-                                    "label": model[i].name,
-                                    "value": model[i].id
+                                    "label": "VIP"+model[i].level,
+                                    "value": model[i].level
                                 })
                             }
                         }
@@ -540,7 +540,7 @@
                 })
                 _this.searchObj.date_from = sessionStorage.sysTime + ' 00:00:00';
                 _this.searchObj.date_to = sessionStorage.sysTime + ' 23:59:59';
-                _this.searchConfig[3].list = this.memberGradeList;
+                //_this.searchConfig[3].list = this.memberGradeList;
             },
             closeDialog(data){
                 let Url = URL.api + ROUTES.GET.cash.withdraw.audit.$(data.id) + '?user_id=' + data.user_id + '&withdraw_id=' + data.id + '&cancel=' + 'yes';
@@ -581,7 +581,7 @@
                             }
                         }
                         temp[k] = arrs.toString();
-                    } else if (k === 'ranting') {
+                    } else if (k === 'levels') {
                         let temparr = obj.item[k] || [];
                         let list = this.searchConfig[3].Arr || [];
                         let arrs = [];

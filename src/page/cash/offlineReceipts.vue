@@ -197,7 +197,7 @@
                     },
                     //ID4
                     {
-                        "prop": "ranting",
+                        "prop": "levels",
                         "value": [],
                         "label": "会员层级",
                         "sReset": false,
@@ -335,10 +335,10 @@
 					ok: (res) => {
 						let model = res.data;
 						for (let i in model) {
-							_this.searchConfig[4].list.push(model[i].name);
+							_this.searchConfig[4].list.push("VIP"+model[i].level);
 							_this.searchConfig[4].Arr.push({
-								"label": model[i].name,
-								"value": model[i].id
+								"label": "VIP"+model[i].level,
+								"value": model[i].level
 							})
 						}
 					},
@@ -413,7 +413,7 @@
                             }
                         }
                         temp[k] = arrs.toString();
-                    } else if (k === 'ranting') {
+                    } else if (k === 'levels') {
                         let temparr = obj.item[k] || [];
                         let list = this.searchConfig[4].Arr || [];
                         let arrs = [];

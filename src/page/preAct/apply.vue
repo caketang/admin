@@ -195,7 +195,7 @@
 						}]
 					},
 					{"prop": "user_name", "value": "", "type": "text", "label": "用户名"},
-					{"prop": "level", "value": "", "label": "会员等级", "type": "select", "list": []},
+					{"prop": "level", "value": "", "label": "会员等级", "type": "select",  "list":[]},
 					{"prop": "active_title", "value": "", "label": "优惠活动标题", "type": "select", "list": []},
 					{
 						"prop": "status", "value": "", "label": "状态", "type": "select",
@@ -261,8 +261,8 @@
 						let model = res.data
 						for (let i in model) {
 							this.searchConfig[2].list.push({
-								"label": model[i].name,
-								"value": model[i].id
+								"label": "VIP"+model[i].level,
+								"value": model[i].level
 							})
 						}
 					},
