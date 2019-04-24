@@ -8,7 +8,7 @@
             <el-form ref="AddFormData" :model="AddFormData" label-width="120px" :rules="AddFormDataRules">
                 <el-form-item label="第三方支付平台" prop="pay_id" class="w85">
                     <el-select v-model="AddFormData.pay_id" placeholder="请选择支付平台" clearable class="w100"
-                               :disabled= "AddFormConfig.disabled"
+                               :disabled="AddFormConfig.disabled"
                                @change="changePay">
                         <el-option
                             v-for="item in AddFormConfig.paylist"
@@ -57,7 +57,7 @@
                         </el-checkbox>
                     </el-checkbox-group>
                 </el-form-item>
-                <el-form-item label="排 序" v-if="AddFormData.pay_id" prop="sort" class="w85" >
+                <el-form-item label="排 序" v-if="AddFormData.pay_id" prop="sort" class="w85">
                     <el-input v-model="AddFormData.sort" type="number"></el-input>
                 </el-form-item>
                 <el-form-item label="状 态" v-if="AddFormData.pay_id" prop="status" class="w85">
@@ -162,7 +162,14 @@
                     state: false
                 },
                 searchConfig: [
-                    {"prop": "pay_code", "value": "", "type": "select", "label": "支付平台", "list": [], "filterable": true},
+                    {
+                        "prop": "pay_code",
+                        "value": "",
+                        "type": "select",
+                        "label": "支付平台",
+                        "list": [],
+                        "filterable": true
+                    },
                     {
                         "prop": "status", "value": "", "label": "状态", "type": "select",
                         "list": [{"label": "全部", "value": ""}, {"label": "启用", "value": "enabled"}, {
@@ -362,7 +369,7 @@
                     name: [
                         {required: true, message: '请填写商户名称', trigger: 'blur'}]
                 },
-                formType:'',
+                formType: '',
             }
         },
         components: {
@@ -414,12 +421,12 @@
                         let model = res.data || [];
                         for (let k in model) {
                             _this.AddFormConfig.levelslist.push({
-                                "label": model[k].name,
-                                "value": model[k].id.toString()
+                                "label": model[k].memo,
+                                "value": model[k].level.toString()
                             });
                             _this.searchConfig[5].list.push({
-                                "label": model[k].name,
-                                "value": model[k].id
+                                "label": model[k].memo,
+                                "value": model[k].level
                             })
                         }
                     },
@@ -607,7 +614,7 @@
             },
             //保存数据
             getForm(obj) {
-                obj.day_deact = obj.day_deact*100;
+                obj.day_deact = obj.day_deact * 100;
                 this.updated = false;
                 let _this = this;
                 let url = URL.api + ROUTES.POST.cash.third.third;
@@ -752,27 +759,26 @@
                         })
                         break;
                     case "enables":
-                        let templists = row.obj || [], querys = [];
+                        let templists = row.obj || [],mode = {};
+                        mode.querys = []
                         if (templists.length > 0) {
                             for (let i = 0; i < templists.length; i++) {
-                                querys.push({
-                                    id: templists[i].id,
-                                    name: templists[i].name,
-                                    status: 'enabled'
+                                mode.querys.push({
+                                    'id': templists[i].id,
+                                    'name': templists[i].name,
+                                    'status': 'enabled'
                                 });
                             }
                         }
-                        this.$.autoAjax('patch', URL.api + ROUTES.PATCH.cash.third, querys, {
+                        this.$.autoAjax('patch', URL.api + ROUTES.PATCH.cash.third,mode, {
                             ok: (res) => {
-                                if (res.state == 0 && res.data) {
+                                if (res.state === 0 && res.data) {
                                     _this.$message.success(_this.LANG['第三方支付批量启用成功'] || '第三方支付批量启用成功');
                                     _this.updated = true;
                                 } else {
                                     _this.$message.error(_this.LANG['第三方支付批量启用失败，请稍后重试'] || '第三方支付批量启用失败，请稍后重试');
                                 }
                                 _this.loading = false
-                            },
-                            p: () => {
                             },
                             error: e => {
                                 _this.loading = false
@@ -804,7 +810,7 @@
             },
             //编辑
             doEdit(row) {
-                let _this = this,scenelist = [], terminalList = [], configList = [];
+                let _this = this, scenelist = [], terminalList = [], configList = [];
                 _this.formType = "edit"
                 _this.AddFormConfig.disabled = true;
                 _this.AddFormTitle = this.LANG["编辑第三方支付"] || "编辑第三方支付";
@@ -833,17 +839,17 @@
                                         })
                                     })
                                     _this.AddFormData.configs = {};
-                                    setTimeout(()=>{
+                                    setTimeout(() => {
                                         configList.forEach((c) => {
-                                            _this.$set(_this.AddFormData.configs,c.param, mode.configs[c.param])
+                                            _this.$set(_this.AddFormData.configs, c.param, mode.configs[c.param])
                                         })
-                                    },500)
+                                    }, 500)
                                     _this.AddFormConfig.scenelist = scenelist
                                     _this.AddFormConfig.terminalList = terminalList
                                     _this.AddFormConfig.payConfigsList = configList
                                 }
                             })
-                            setTimeout(()=>{
+                            setTimeout(() => {
                                 _this.AddFormData.pay_id = mode.pay_id
                                 _this.AddFormData.pay_scene = mode.pay_scene
                                 _this.AddFormData.terminal = mode.terminal
@@ -852,7 +858,7 @@
                                 _this.AddFormData.sort = mode.sort
                                 _this.AddFormData.status = mode.status == '1' ? 'enabled' : 'disabled'
                                 _this.AddFormData.levels = mode.levels.split(',')
-                            },400)
+                            }, 400)
                         } else {
                             _this.$message.error(_this.LANG['第三方支付信息请求失败，请稍后重试'] || '第三方支付信息请求失败，请稍后重试');
                         }
@@ -897,7 +903,7 @@
 </script>
 <style lang="less">
     #otherPayment {
-        .w85{
+        .w85 {
             width: 85%;
         }
         .addManage {
