@@ -2,7 +2,7 @@
     <div id="memberHierarchy_table">
         <div id="tableSingle" :class="scrollClass" ref="tableSingle" :style="tableWidth">
             <div id="tables">
-                <table cellspacing="0" cellpadding="0" border="1" class="el-table-data">
+                <table cellspacing="0" cellpadding="0" border="1" class="el-table-data w100">
                     <colgroup>
                         <col width=10%></col>
                         <col width=20%></col>
@@ -299,9 +299,12 @@
             color:#303133;
             th{
                 background:#F2F6FC;
-                line-height: 40px;
-                height: 40px;
+                line-height: 42px;
+                height: 42px;
                 color:#606266;
+            }
+            tr{
+                height: 42px;
             }
             tr:hover{
                 background: #F2F6FC;

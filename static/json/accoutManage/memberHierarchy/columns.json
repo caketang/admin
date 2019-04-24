@@ -5,33 +5,46 @@
             "label": "会员层级",
             "filters": [
                 {
+                    "value": "0",
+                    "text": "VIP 0"
+                },
+                {
                     "value": "1",
                     "text": "VIP 1"
-                },{
+                },
+                {
                     "value": "2",
                     "text": "VIP 2"
-                },{
+                },
+                {
                     "value": "3",
                     "text": "VIP 3"
-                },{
+                },
+                {
                     "value": "4",
                     "text": "VIP 4"
-                },{
+                },
+                {
                     "value": "5",
                     "text": "VIP 5"
-                },{
+                },
+                {
                     "value": "6",
                     "text": "VIP 6"
-                },{
+                },
+                {
                     "value": "7",
                     "text": "VIP 7"
-                },{
+                },
+                {
                     "value": "8",
                     "text": "VIP 8"
-                },{
+                },
+                {
                     "value": "9",
                     "text": "VIP 9"
-                },{
+                },
+                {
                     "value": "10",
                     "text": "VIP 10"
                 }
@@ -43,14 +56,13 @@
             "sortable": true
         },
         {
-            "prop": "advance_money",
-            "label": "充值总额",
-            "sortable": true,
-            "type": "divisionMoney"
+            "prop": "advance_valid_bet",
+            "label": "有效投注",
+            "sortable": true
         },
         {
-            "prop": "advance_valid_bet",
-            "label": "打码量",
+            "prop": "advance_money",
+            "label": "历史充值",
             "sortable": true
         },
         {
@@ -70,21 +82,6 @@
             "btnGroup": [
                 {
                     "btnType": "text",
-                    "label": "分层",
-                    "fn": "doReject",
-                    "prop": "name",
-                    "val": "未分层"
-                },
-                {
-                    "btnType": "text",
-                    "label": "回归",
-                    "fn": "doAudit",
-                    "prop": "name",
-                    "val": "未分层",
-                    "config": "notEqual"
-                },
-                {
-                    "btnType": "text",
                     "label": "编辑",
                     "fn": "doEdit",
                     "prop": "name",
@@ -94,11 +91,6 @@
                     "btnType": "text",
                     "label": "设定",
                     "fn": "doSet"
-                },
-                {
-                    "btnType": "text",
-                    "label": "删除",
-                    "fn": "doDelete"
                 },
                 {
                     "btnType": "text",

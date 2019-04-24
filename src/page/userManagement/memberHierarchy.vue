@@ -1,4 +1,3 @@
-
 <template>
     <div id="memberHierarchy" class="page clearfix" v-loading="loading">
         <div class="w100 main el-card box-card el-tabs">
@@ -19,12 +18,12 @@
             <ul class="navContant w100 el-tabs__content">
                 <li class="w100 el-tab-pane" v-if="activeType">
                     <el-row class="pleft20 pRight20 mt10 mb10">
-                        <el-col class="tRight">
-                            <el-button type="primary" size="small" class="rightTopBtn" @click="addNew"
-                                       v-show="!levelSet">
-                                {{LANG['新增会员层级'] || '新增会员层级'}}
-                            </el-button>
-                        </el-col>
+                        <!--<el-col class="tRight">-->
+                        <!--<el-button type="primary" size="small" class="rightTopBtn" @click="addNew"-->
+                        <!--v-show="!levelSet">-->
+                        <!--{{LANG['新增会员层级'] || '新增会员层级'}}-->
+                        <!--</el-button>-->
+                        <!--</el-col>-->
                         <el-col v-show="!levelSet" class="mt10">
                             <memberHierarchy
                                 :columnsUrl="columnsUrl"
@@ -116,6 +115,7 @@
     import confirm from '../../components/confirm.vue'
     import userLevelSet from '../../components/userLevelSet.vue'
     import memberHierarSet from '../../components/memberHierarSet.vue'
+
     export default {
         data() {
             return {
@@ -150,18 +150,18 @@
                         "type": "select",
                         "label": "会员层级",
                         "placeholder": "请选择会员层级",
-                        "list":ARRAYS.LEVELSLIST
+                        "list": ARRAYS.LEVELSLIST, "disabled": true,
                     },
                     {//1
-                        "prop": "advance_money",
+                        "prop": "advance_valid_bet",
                         "value": "",
                         "type": "number",
                         "label": "有效投注额",
                         "placeholder": "请输入有效投注金额",
-                        "rules": [{"require": true}, {"varMax": 99999999}, {"moreZero": true}]
+                        "rules": [{"require": true}, {"varMax": 99999999}]
                     },
                     {//2
-                        "prop": "name",
+                        "prop": "advance_money",
                         "value": "",
                         "type": "text",
                         "label": "历史充值",
@@ -169,12 +169,12 @@
                         "rules": [{"require": true}, {"moreZero": true}]
                     },
                     {//3
-                        "prop": "advance_valid_bet",
+                        "prop": "gift",
                         "value": "",
                         "type": "number",
                         "label": "奖励",
                         "placeholder": "请输入奖励金额",
-                        "rules": [{"require": true, "max": 9, "min:": 1}, {"moreZero": true, "integer": true}]
+                        "rules": [{"require": true, "max": 9, "min:": 1}]
                     },
                     {//4
                         "prop": "memo",
@@ -185,7 +185,7 @@
                         "rules": [{"max": 40}]
                     }
                 ],
-                size:'tiny',
+                size: 'tiny',
                 type: "default",
                 formType: "",
                 formTitel: "",
@@ -297,7 +297,7 @@
                 // 跳转会员显示列表
                 colTwo: "",
                 updateKeys: "",
-                params: {}
+                params: {},
             }
         },
         components: {
@@ -352,12 +352,12 @@
                 this.nowId = item.id || -1;
                 this.formType = "";
                 switch (item.fn) {
-                    case "doReject":
-                        this.doReject(item.row);
-                        break;
-                    case "doAudit":
-                        this.doAudit(item.row);
-                        break;
+//                    case "doReject":
+//                        this.doReject(item.row);
+//                        break;
+//                    case "doAudit":
+//                        this.doAudit(item.row);
+//                        break;
                     case "doEdit":
                         this.doEdit(item.row);
                         break;
@@ -367,9 +367,9 @@
                     case "doSeatchMember":
                         this.doSeatchMember(item.row);
                         break;
-                    case "doDelete":
-                        this.doDelete(item.row);
-                        break;
+//                    case "doDelete":
+//                        this.doDelete(item.row);
+//                        break;
                     case "doLimitLines":
                         this.doLimitLines(item.row);
                         break;
@@ -511,58 +511,55 @@
             },
             //保存新增表格
             getForm(obj) {
-                let str = "",url = "",model = {},_this = this;
-                model.level = obj.formObj.level
-                model.name = obj.formObj.name
-                model.memo = obj.formObj.memo
-                model.advance_money = FORMATMultiplyMoney(obj.formObj.advance_money);//deposit_money
+                console.log(obj)
+                let str = "", url = "", model = {}, _this = this;
+                model.advance_money = obj.formObj.advance_money
                 model.advance_valid_bet = obj.formObj.advance_valid_bet
-                model.deposit_times = obj.formObj.deposit_times
-                model.deposit_money = FORMATMultiplyMoney(obj.formObj.deposit_money);
-                model.max_deposit_money = FORMATDATEPICKER(obj.formObj.deposit_etime);
-                model.withdraw_times = obj.formObj.withdraw_times
-                model.withdraw_count = FORMATDATEPICKER(obj.formObj.withdraw_count);
-                model.comment = obj.formObj.comment
-               // model.register_stime = FORMATDATEPICKER(model.register_stime);
-                this.formType == "add" ? url = URL.api + ROUTES.PUT.user.level.$ : url = URL.api + ROUTES.PUT.user.level.$ + '/' + this.nowId;
-//                if (model.deposit_max / 100 > _this.formConfig[4].rules[0].varMax) {
-//                    _this.$message.error('区间存款总额不能大于' + _this.formConfig[4].rules[0].varMax)
-//                } else {
-                    this.updated = false;
-                    this.loading = true;
-                    for (let k in model) {
-                        if (model[k] === '') {
-                            delete model[k];
+                model.gift = obj.formObj.gift
+                model.level = obj.formObj.level
+                model.memo = obj.formObj.memo
+                url = URL.api + ROUTES.PUT.user.level.$ + '/' + obj.formObj.level;
+//                model.level = obj.formObj.level
+//                model.name = obj.formObj.name
+//                model.memo = obj.formObj.memo
+//                model.advance_money = FORMATMultiplyMoney(obj.formObj.advance_money);//deposit_money
+//                model.advance_valid_bet = obj.formObj.advance_valid_bet
+//                model.deposit_times = obj.formObj.deposit_times
+//                model.deposit_money = FORMATMultiplyMoney(obj.formObj.deposit_money);
+//                model.max_deposit_money = FORMATDATEPICKER(obj.formObj.deposit_etime);
+//                model.withdraw_times = obj.formObj.withdraw_times
+//                model.withdraw_count = FORMATDATEPICKER(obj.formObj.withdraw_count);
+//                model.comment = obj.formObj.comment
+//               // model.register_stime = FORMATDATEPICKER(model.register_stime);
+//                this.formType == "add" ? url = URL.api + ROUTES.PUT.user.level.$ : url = URL.api + ROUTES.PUT.user.level.$ + '/' + this.nowId;
+////                if (model.deposit_max / 100 > _this.formConfig[4].rules[0].varMax) {
+////                    _this.$message.error('区间存款总额不能大于' + _this.formConfig[4].rules[0].varMax)
+////                } else {
+//                    this.updated = false;
+//                    this.loading = true;
+//                    for (let k in model) {
+//                        if (model[k] === '') {
+//                            delete model[k];
+//                        }
+//                    }
+                this.$.autoAjax('put', url, model, {
+                    ok: (res) => {
+                        if (res.state === 0 && res.data) {
+                            str = _this.LANG['恭喜您，会员等级修改成功！'] || '恭喜您，会员等级修改成功！';
+                            _this.$message.success(str);
+                        } else {
+                            str = _this.LANG['会员等级修改失败，请稍候重试！'] || '会员等级修改失败，请稍候重试！';
+                            _this.$message.error(str);
                         }
+                        _this.updated = true;
+                        _this.loading = false;
+                        _this.formType = "";
+                    },
+                    error: e => {
+                        _this.loading = false;
+                        console.log(e.responseJSON.msg)
                     }
-                    this.$.autoAjax('put', url, model, {
-                        ok: (res) => {
-                            if (res.state === 0 && res.data) {
-                                if (_this.formType == "add") {
-                                    str = _this.LANG['恭喜您，新增会员等级成功！'] || '恭喜您，新增会员等级成功！';
-                                } else {
-                                    str = _this.LANG['恭喜您，会员等级修改成功！'] || '恭喜您，会员等级修改成功！';
-                                }
-                                _this.$message.success(str);
-                                _this.updated = true;
-                            } else {
-                                if (_this.formType == "add") {
-                                    str = _this.LANG['新增会员等级失败，请稍候重试！'] || '新增会员等级失败，请稍候重试！';
-                                } else {
-                                    str = _this.LANG['会员等级修改失败，请稍候重试！'] || '会员等级修改失败，请稍候重试！';
-                                }
-                                _this.$message.error(str);
-                            }
-                            _this.loading = false;
-                            _this.formType = "";
-                        },
-                        p: () => {
-                        },
-                        error: e => {
-                            _this.loading = false;
-                            console.log(e.responseJSON.msg)
-                        }
-                    })
+                })
 //                }
             },
             //编辑
@@ -571,21 +568,21 @@
                 this.loading = true;
                 this.formType = "";
                 this.nowId = row.id;
-                this.formTitel = "修改会员层级";
+                this.formTitel = "编辑会员等级";
                 let _this = this;
                 setTimeout(() => {
-//                    FORMVAL(row, _this.formConfig);
+                    FORMVAL(row, _this.formConfig);
                     _this.formConfig[0].value = row['level'];
-                    _this.formConfig[1].value = row['name'];
-                    _this.formConfig[2].value = row['memo'];
-                    _this.formConfig[3].value = FORMATMONEY(row['advance_money']).toString();
-                    _this.formConfig[4].value = row['advance_valid_bet'];
-                    _this.formConfig[5].value = row['deposit_times']
-                    _this.formConfig[6].value = FORMATMONEY(row['deposit_money']).toString();
-                    _this.formConfig[7].value = FORMATMONEY(row['max_deposit_money']).toString();
-                    _this.formConfig[8].value = row['withdraw_times']
-                    _this.formConfig[9].value = FORMATMONEY(row['withdraw_count']).toString();
-                    _this.formConfig[10].value = row['comment'];
+                    _this.formConfig[1].value = row['advance_valid_bet'];
+                    _this.formConfig[2].value = row['advance_money'];
+                    _this.formConfig[3].value = row['gift']
+                    _this.formConfig[4].value = row['memo'];
+//                    _this.formConfig[5].value = row['deposit_times']
+//                    _this.formConfig[6].value = FORMATMONEY(row['deposit_money']).toString();
+//                    _this.formConfig[7].value = FORMATMONEY(row['max_deposit_money']).toString();
+//                    _this.formConfig[8].value = row['withdraw_times']
+//                    _this.formConfig[9].value = FORMATMONEY(row['withdraw_count']).toString();
+//                    _this.formConfig[10].value = row['comment'];
                     _this.formType = "edit";
                     _this.isEdit.state = true;
                     _this.editVisible.state = true;
@@ -642,7 +639,7 @@
             },
             //会员等级设定
             doSet(row) {
-                this.setName = row.name;
+                this.setName = row.memo;
                 let _this = this;
                 let editForm = this.editForm;
                 this.loading = true;
