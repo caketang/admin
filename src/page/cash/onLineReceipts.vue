@@ -202,7 +202,7 @@
                     },
                     {"prop": "admin_user", "value": "", "type": "text", "label": "操作者"},
                     {
-                        "prop": "ranting",
+                        "prop": "levels",
                         "value": [],
                         "label": "会员等级",
                         "sReset": false,
@@ -279,10 +279,10 @@
                         let model = res.data;
                         for (let i in model) {
                             _this.searchConfig[10].Arr.push({
-                                "label": model[i].name,
-                                "value": model[i].id
+                                "label": "VIP"+model[i].level,
+                                "value": model[i].level
                             });
-                            _this.searchConfig[10].list.push(model[i].name);
+                            _this.searchConfig[10].list.push("VIP"+model[i].level);
                         }
                     },
                     p: () => {
@@ -296,7 +296,8 @@
             doQuery(obj) {
                 let temp = {};
                 for (let k in obj.item) {
-                    if (k === 'ranting') {
+                    console.log(k)
+                    if (k === 'levels') {
                         let temparr = obj.item[k] || [];
                         let list = this.searchConfig[10].Arr || [];
                         let arrs = [];
