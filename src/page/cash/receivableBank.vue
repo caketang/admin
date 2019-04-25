@@ -79,7 +79,7 @@
                 size:"small",
 				formConfig: [
 					{
-						"prop": "usage",
+						"prop": "levels",
 						"value": [],
 						"label": "使用层级",
 						"sReset": false,
@@ -184,14 +184,14 @@
 						if (res.state == 0 && res.data) {
 							let model = res.data || [];
 							for (let k in model) {
-								_this.formConfig[0].list.push(model[k].id.toString())
+								_this.formConfig[0].list.push(model[k].level.toString())
 								_this.formConfig[0].Arr.push({
-									"label": model[k].name,
-									"value": model[k].id.toString()
+									"label": "VIP"+model[k].level,
+									"value": model[k].level.toString()
 								});
 								_this.searchConfig[2].list.push({
-									"label": model[k].name,
-									"value": model[k].id.toString()
+									"label": "VIP"+model[k].level,
+									"value": model[k].level.toString()
 								});
 							}
 						}
@@ -228,7 +228,7 @@
 				} else {
 					obj.formObj.qrcode = obj.formObj.qrcode.toString();
 				}
-				obj.formObj.usage = obj.formObj.usage.join(",");
+				obj.formObj.levels = obj.formObj.levels.join(",");
 				let query = {};
 				for (let k in obj.formObj) {
 					query[k] = obj.formObj[k];

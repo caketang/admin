@@ -1,5 +1,5 @@
 <template>
-    <div id="memberGetOut" class="clearfix" v-loading="loading">
+    <div id="memberGetOut" v-loading="loading">
         <div class="search">
             <formEdit :formTitel="formTitel"
                       :formVisible="formVisible"
@@ -14,65 +14,65 @@
                       @reset-form="resetForm"
                       :showAdd="false"></formEdit>
         </div>
-        <el-col>
-            <tablegrid
-                :columnsUrl="columnsUrl"
-                :updated="updated"
-                :tableUrl="tableUrl"
-                :autoshowRefresh="true"
-                :showExport="isShow"
-                :getData="true"
-                :automation="true"
-                @get-table-data="getTableDatatwo"
-                @do-handle="doHandle"
-                @export-data="exportData"
-            >
-                <!-- 汇总 -->
-                <tr :span="12" class="sumdiv ml20" slot="other" v-if="sumShow">
-                    <td colspan="15">
-                        <div class="cell">
+        <el-row>
+            <el-col>
+                <tablegrid
+                    :columnsUrl="columnsUrl"
+                    :updated="updated"
+                    :tableUrl="tableUrl"
+                    :autoshowRefresh="true"
+                    :showExport="isShow"
+                    :getData="true"
+                    :automation="true"
+                    @get-table-data="getTableDatatwo"
+                    @do-handle="doHandle"
+                    @export-data="exportData"
+                >
+                    <!-- 汇总 -->
+                    <tr :span="12" class="sumdiv ml20" slot="other" v-if="sumShow">
+                        <td colspan="15">
+                            <div class="cell">
                             <span
                                 class="font14 tCent">{{LANG['小计'] || '小计'}} : {{allData.money_page_sum | formatMoney}}</span>
-                            <span
-                                class="font14 ml10">{{LANG['总计'] || '总计'}} : {{allData.money_total_sum | formatMoney}}</span>
-                            <span class="ml10 mr10"> | </span>
-                            <span
-                                class="font14">{{LANG['实际金额小计'] || '实际金额小计'}} : {{allData.actual_page_sum | formatMoney}}</span>
-                            <span
-                                class="font14 ml10">{{LANG['实际金额总计'] || '实际金额总计'}} : {{allData.actual_total_sum | formatMoney}}</span>
-                            <span class="ml10 mr10"> | </span>
-                            <span class="font14">{{LANG['扣除金额小计'] || '扣除金额小计'}}: {{allData.deduct_page_sum | formatMoney}}</span>
-                            <span
-                                class="font14 ml10">{{LANG['扣除金额总计'] || '扣除金额总计'}} : {{allData.deduct_total_sum | formatMoney}}</span>
-                            <span class="ml10 mr10"> | </span>
-                            <span class="font14">{{LANG['笔数'] || '笔数'}} : {{allData.total}}</span>
-                        </div>
-                    </td>
-                </tr>
-            </tablegrid>
-            <div class="help_gray" style="margin-top: -40px;margin-left: 20px;" v-if="sumShow">
-                审核中： 某一位客服给会员出款，点击审核后，则绑定该操作者，后续只能由他（她）完成出款。
-            </div>
-        </el-col>
-        <el-col>
-            <el-dialog title="提示" :visible.sync="dialogVisible" size="tiny">
-                {{LANG['点击”确认“导出数据'] || '点击”确认“导出数据'}}
-                <span slot="footer" class="dialog-footer">
+                                <span
+                                    class="font14 ml10">{{LANG['总计'] || '总计'}} : {{allData.money_total_sum | formatMoney}}</span>
+                                <span class="ml10 mr10"> | </span>
+                                <span
+                                    class="font14">{{LANG['实际金额小计'] || '实际金额小计'}} : {{allData.actual_page_sum | formatMoney}}</span>
+                                <span
+                                    class="font14 ml10">{{LANG['实际金额总计'] || '实际金额总计'}} : {{allData.actual_total_sum | formatMoney}}</span>
+                                <span class="ml10 mr10"> | </span>
+                                <span class="font14">{{LANG['扣除金额小计'] || '扣除金额小计'}}: {{allData.deduct_page_sum | formatMoney}}</span>
+                                <span
+                                    class="font14 ml10">{{LANG['扣除金额总计'] || '扣除金额总计'}} : {{allData.deduct_total_sum | formatMoney}}</span>
+                                <span class="ml10 mr10"> | </span>
+                                <span class="font14">{{LANG['笔数'] || '笔数'}} : {{allData.total}}</span>
+                            </div>
+                        </td>
+                    </tr>
+                </tablegrid>
+                <div class="help_gray" style="margin-top: -40px;margin-left: 20px;" v-if="sumShow">
+                    审核中： 某一位客服给会员出款，点击审核后，则绑定该操作者，后续只能由他（她）完成出款。
+                </div>
+            </el-col>
+            <el-col>
+                <el-dialog title="提示" :visible.sync="dialogVisible" size="tiny">
+                    {{LANG['点击”确认“导出数据'] || '点击”确认“导出数据'}}
+                    <span slot="footer" class="dialog-footer">
                     <el-button @click="dialogVisible = false">取 消</el-button>
                     <a :href="outUrl" target="_blank" id="outUrl">
                         <el-button type="primary" @click="dialogVisible = false">确 认</el-button>
                     </a>
               </span>
-            </el-dialog>
-        </el-col>
-        <!--详情-->
-        <el-col>
-            <el-dialog :title="'【'+ userName + '】' + LANG['会员提现详情'] || '会员提现详情'" v-model="editVisible" class="vipDialog"
-                       size="large" :close-on-click-modal="false" :close-on-press-escape="false"
-                       :before-close="handleClose">
-                <el-form :model="editForm" ref="editForm">
+                </el-dialog>
+            </el-col>
+            <!--详情-->
+            <el-col>
+                <el-dialog :title="'【'+ userName + '】' + LANG['会员提现详情'] || '会员提现详情'" v-model="editVisible" class="vipDialog"
+                           size="large" :close-on-click-modal="false" :close-on-press-escape="false"
+                           :before-close="handleClose">
                     <el-row>
-                        <el-col class="state_danger">
+                        <el-col class="state_danger" :span="24">
                             {{LANG['会员备注'] || '会员备注'}}：
                             <span v-if="!showEditMemo">{{editForm.memo}}</span>
                             <el-input v-model="editForm.memo" size="mini" class="intW" v-else></el-input>
@@ -83,7 +83,7 @@
                             </el-button>
                         </el-col>
                         <!--取款信息-->
-                        <el-col :span="24" style="margin-bottom:20px;">
+                        <el-col :span="24">
                             <div class="grid-content bg-purple-dark tCent">
                                 {{LANG['取款信息'] || '取款信息'}}
                             </div>
@@ -94,25 +94,24 @@
                             <div class="grid-content bg-purple"><span>{{LANG['申请金额'] || '申请金额'}}</span></div>
                         </el-col>
                         <el-col :span="5">
-                            <el-form-item>
-                                <span>{{editForm.money | filterMoneyIsNull}}</span>
-                            </el-form-item>
+                            <div class="menberGetOutContentData">
+                                <input id="getOutMoney_input" :value="editForm.money | filterMoneyIsNull" readonly="readonly">
+                                <el-button :plain="true" type="info" icon="document" size="mini" @click="copyGetOutMoney()">复 制
+                                </el-button>
+                                <!--{{editForm.money | filterMoneyIsNull}}-->
+                            </div>
                         </el-col>
                         <el-col :span="3">
                             <div class="grid-content bg-purple"><span>{{LANG['操作者'] || '操作者'}}</span></div>
                         </el-col>
                         <el-col :span="5">
-                            <el-form-item>
-                                <span>{{editForm.process_uname}}</span>
-                            </el-form-item>
+                            <div class="menberGetOutContentData">{{editForm.process_uname}}</div>
                         </el-col>
                         <el-col :span="3">
                             <div class="grid-content bg-purple"><span>{{LANG['申请IP'] || '申请IP'}}</span></div>
                         </el-col>
                         <el-col :span="5">
-                            <el-form-item>
-                                <span>{{editForm.ip}}</span>
-                            </el-form-item>
+                            <div class="menberGetOutContentData">{{editForm.ip}}</div>
                         </el-col>
                     </el-row>
                     <el-row :gutter="22">
@@ -120,26 +119,19 @@
                             <div class="grid-content bg-purple"><span>{{LANG['取款银行'] || '取款银行'}}</span></div>
                         </el-col>
                         <el-col :span="5">
-                            <el-form-item>
-                                <span v-if="editForm.receive_bank_info">{{editForm.receive_bank_info.bank}}</span>
-                            </el-form-item>
+                            <div class="menberGetOutContentData" v-if="editForm.receive_bank_info">{{editForm.receive_bank_info.bank}}</div>
                         </el-col>
                         <el-col :span="3">
                             <div class="grid-content bg-purple"><span>{{LANG['户名'] || '户名'}}</span></div>
                         </el-col>
                         <el-col :span="5">
-                            <el-form-item>
-                                <span
-                                    v-if="editForm.receive_bank_info">{{editForm.receive_bank_info.accountname}}</span>
-                            </el-form-item>
+                            <div class="menberGetOutContentData" v-if="editForm.receive_bank_info">{{editForm.receive_bank_info.accountname}}</div>
                         </el-col>
                         <el-col :span="3">
                             <div class="grid-content bg-purple"><span>{{LANG['支行'] || '支行'}}</span></div>
                         </el-col>
                         <el-col :span="5">
-                            <el-form-item>
-                                <span v-if="editForm.receive_bank_info">{{editForm.receive_bank_info.address}}</span>
-                            </el-form-item>
+                            <div class="menberGetOutContentData" v-if="editForm.receive_bank_info">{{editForm.receive_bank_info.address}}</div>
                         </el-col>
                     </el-row>
                     <el-row :gutter="22">
@@ -147,25 +139,19 @@
                             <div class="grid-content bg-purple"><span>{{LANG['银行帐号'] || '银行帐号'}}</span></div>
                         </el-col>
                         <el-col :span="5">
-                            <el-form-item>
-                                <span v-if="editForm.receive_bank_info">{{editForm.receive_bank_info.card}}</span>
-                            </el-form-item>
+                            <div class="menberGetOutContentData" v-if="editForm.receive_bank_info">{{editForm.receive_bank_info.card}}</div>
                         </el-col>
                         <el-col :span="3">
                             <div class="grid-content bg-purple"><span>{{LANG['申请时间'] || '申请时间'}}</span></div>
                         </el-col>
                         <el-col :span="5">
-                            <el-form-item>
-                                <span>{{editForm.created}}</span>
-                            </el-form-item>
+                            <div class="menberGetOutContentData">{{editForm.created}}</div>
                         </el-col>
                         <el-col :span="3">
                             <div class="grid-content bg-purple"><span>{{LANG['最后确认时间'] || '最后确认时间'}}</span></div>
                         </el-col>
                         <el-col :span="5">
-                            <el-form-item>
-                                <span>{{editForm.confirm_time}}</span>
-                            </el-form-item>
+                            <div class="menberGetOutContentData">{{editForm.confirm_time}}</div>
                         </el-col>
                     </el-row>
                     <!--新增字段-->
@@ -174,27 +160,25 @@
                             <div class="grid-content bg-purple"><span>{{LANG['总入款'] || '总入款'}}</span></div>
                         </el-col>
                         <el-col :span="5">
-                            <el-form-item>
+                            <div  class="menberGetOutContentData">
                                 <span>{{editForm.deposit_money}}</span> |
                                 <span>{{editForm.deposit_times}}笔</span>
-                            </el-form-item>
+                            </div>
                         </el-col>
                         <el-col :span="3">
                             <div class="grid-content bg-purple"><span>{{LANG['总出款'] || '总出款'}}</span></div>
                         </el-col>
                         <el-col :span="5">
-                            <el-form-item>
+                            <div  class="menberGetOutContentData">
                                 <span>{{editForm.withdraw_money}}</span> |
                                 <span>{{editForm.withdraw_times}}笔</span>
-                            </el-form-item>
+                            </div>
                         </el-col>
                         <el-col :span="3">
                             <div class="grid-content bg-purple"><span>{{LANG['盈利情况'] || '盈利情况'}}</span></div>
                         </el-col>
                         <el-col :span="5">
-                            <el-form-item>
-                                <span>{{editForm.lose_earn}}</span>
-                            </el-form-item>
+                            <div  class="menberGetOutContentData">{{editForm.lose_earn}}</div>
                         </el-col>
                     </el-row>
                     <!--稽核信息-->
@@ -211,46 +195,49 @@
                             <!--class="font14">{{LANG['免稽核额度'] || '免稽核额度'}} : {{(tableDate.level_config.nocheck || '') | formatMoney}}</span>-->
                             <!--</div>-->
                         </el-col>
-                        <el-col :span="24" class="mb20">
-                            <div class="grid-content bg-purple-dark tCent" style="color:#fff;">{{LANG['稽核信息'] || '稽核信息'}}</div>
-                            <el-table :data="tableDate.list" border class="tCent">
-                                <el-table-column width="230" label="交易时间">
-                                    <template slot-scope="scope">
-                                        <p>起始：{{scope.row.start_date}}</p>
-                                        <p>结束：{{scope.row.end_date}}</p>
-                                    </template>
-                                </el-table-column>
-                                <el-table-column property="money" label="存款金额"></el-table-column>
-                                <el-table-column property="coupon_money" label="优惠金额"></el-table-column>
-                                <el-table-column property="valid_bet" label="有效投注额">
-                                    <template slot-scope="scope">
-                                        <el-tooltip placement="right" effect="light">
-                                            <div slot="content">
-                                                <p v-for="(item,key) in gridDataCol" :key="key" :class="{mt10:key >0}">
-                                                    <a href="javascript:;"
-                                                       @click="toLink(item['name-en'],scope.row.start_date,scope.row.end_date)">
-                                                        <el-tag type="primary" style="">{{item.name}} :</el-tag>
-                                                    </a>
-                                                    <span class="pleft">{{item.valid_bet / 100}}</span></p>
-                                            </div>
-                                            <el-tag type="primary" size="small" style="min-width:60px;"
-                                                    @mouseenter.native.prevent="showCommissionProportion(scope.row,$event)">
-                                                {{scope.row.valid_bet}}
-                                            </el-tag>
-                                        </el-tooltip>
-                                    </template>
-                                </el-table-column>
-                                <el-table-column property="withdraw_bet_principal" label="常态打码量"></el-table-column>
-                                <el-table-column property="withdraw_bet_coupon" label="优惠打码量"></el-table-column>
-                                <el-table-column property="is_pass" label="是否达到投注">
-                                    <template slot-scope="scope">
+                        <el-col :span="24">
+                            <div class="grid-content bg-purple-dark tCent mb10">{{LANG['稽核信息'] || '稽核信息'}}</div>
+                            <div class="hiddenScrollbar">
+                                <el-table :data="tableDate.list" border class="tCent">
+                                    <el-table-column width="230" label="交易时间">
+                                        <template slot-scope="scope">
+                                            <p>起始：{{scope.row.start_date}}</p>
+                                            <p>结束：{{scope.row.end_date}}</p>
+                                        </template>
+                                    </el-table-column>
+                                    <el-table-column property="money" label="存款金额"></el-table-column>
+                                    <el-table-column property="coupon_money" label="优惠金额"></el-table-column>
+                                    <el-table-column property="valid_bet" label="有效投注额">
+                                        <template slot-scope="scope">
+                                            <el-tooltip placement="right" effect="light">
+                                                <div slot="content">
+                                                    <p v-for="(item,key) in gridDataCol" :key="key" :class="{mt10:key >0}">
+                                                        <a href="javascript:;"
+                                                           @click="toLink(item['name-en'],scope.row.start_date,scope.row.end_date)">
+                                                            <el-tag type="primary" style="">{{item.name}} :</el-tag>
+                                                        </a>
+                                                        <span class="pleft">{{item.valid_bet / 100}}</span></p>
+                                                </div>
+                                                <el-tag type="primary" size="small" style="min-width:60px;"
+                                                        @mouseenter.native.prevent="showCommissionProportion(scope.row,$event)">
+                                                    {{scope.row.valid_bet}}
+                                                </el-tag>
+                                            </el-tooltip>
+                                        </template>
+                                    </el-table-column>
+                                    <el-table-column property="withdraw_bet_principal" label="常态打码量"></el-table-column>
+                                    <el-table-column property="withdraw_bet_coupon" label="优惠打码量"></el-table-column>
+                                    <el-table-column property="is_pass" label="是否达到投注">
+                                        <template slot-scope="scope">
                                         <span
                                             :class="scope.row.is_pass=='是'? 'pass':'nopass' ">{{scope.row.is_pass}}</span>
-                                    </template>
-                                </el-table-column>
-                                <!--<el-table-column property="deduct_coupon" label="扣优惠"></el-table-column>-->
-                                <!--<el-table-column property="deduct_admin_fee" label="扣除行政费"></el-table-column>-->
-                            </el-table>
+                                        </template>
+                                    </el-table-column>
+                                    <!--<el-table-column property="deduct_coupon" label="扣优惠"></el-table-column>-->
+                                    <!--<el-table-column property="deduct_admin_fee" label="扣除行政费"></el-table-column>-->
+                                </el-table>
+                            </div>
+
                         </el-col>
                         <el-col :span="24" class="mb20" v-if="auditData.data">
                             <p>需扣除优惠金额：<span>{{auditData.data.total_coupon | filterMoneyIsNull}}</span></p>
@@ -260,101 +247,102 @@
                             </p>
                         </el-col>
                     </el-row>
-                </el-form>
-                <span slot="footer" class="dialog-footer" v-if="showChange">
+                    <span slot="footer" class="dialog-footer" v-if="showChange">
                     <el-button @click="closeDialog(editForm)">{{LANG['取消审核'] || '取消审核'}}</el-button>
                     <el-button @click="doUpdate(editForm)" type="success">{{LANG['确认出款'] || '确认出款'}}</el-button>
                     <el-button @click="doReject(editForm)" type="danger">{{LANG['拒绝'] || '拒绝'}}</el-button>
                     <el-button @click="doRefuse(editForm)" type="primary">{{LANG['取消出款'] || '取消出款'}}</el-button>
               </span>
-            </el-dialog>
-        </el-col>
-        <el-col>
-            <confirm :confirmConfig="confirmConfig" @do-confirm="doConfirm"></confirm>
-        </el-col>
-        <el-col>
-            <el-dialog :title="feeName" v-model="feeVisi" size="tiny">
-                <el-row :gutter="20" type="flex" justify="center">
-                    <el-col :span="8" :pull="2">
-                        <div class="grid-content bg-purple tCent"><span>{{LANG['应扣款'] || '应扣款'}}</span></div>
-                    </el-col>
-                    <el-col :span="8">
-                        <div class="grid-content bg-purple tCent"><span>{{LANG['实扣款'] || '实扣款'}}</span></div>
-                    </el-col>
-                </el-row>
-                <el-row :gutter="20" type="flex" justify="center">
-                    <el-col :span="8" :pull="2">
-                        <div class="grid-content bg-purple tCent"><span>手续费:{{receivable.fee}}</span></div>
-                    </el-col>
-                    <el-col :span="8">
-                        <div class="grid-content bg-purple tCent">
-                            <el-input v-model="withdraw.fee" type="number"></el-input>
-                        </div>
-                    </el-col>
-                </el-row>
-                <!--<el-row :gutter="20" type="flex" justify="center">-->
-                <!--<el-col :span="8" :pull="2">-->
-                <!--<div class="grid-content bg-purple tCent"><span>优惠:{{receivable.coupon}}</span></div>-->
-                <!--</el-col>-->
-                <!--<el-col :span="8">-->
-                <!--<div class="grid-content bg-purple tCent">-->
-                <!--<el-input v-model="withdraw.coupon" type="number"></el-input>-->
-                <!--</div>-->
-                <!--</el-col>-->
-                <!--</el-row>-->
-                <!--<el-row :gutter="20" type="flex" justify="center">-->
-                <!--<el-col :span="8" :pull="2">-->
-                <!--<div class="grid-content bg-purple tCent"><span>行政费:{{receivable.management_cost}}</span></div>-->
-                <!--</el-col>-->
-                <!--<el-col :span="8">-->
-                <!--<div class="grid-content bg-purple tCent">-->
-                <!--<el-input v-model="withdraw.management_cost" type="number"></el-input>-->
-                <!--</div>-->
-                <!--</el-col>-->
-                <!--</el-row>-->
-                <el-row :gutter="20" type="flex" justify="center">
-                    <el-col :span="4">
-                        <div class="tCent">
-                            <el-button type="primary" @click="saveFee">提 交</el-button>
-                        </div>
-                    </el-col>
-                    <el-col :span="4">
-                        <div class=" tCent">
-                            <el-button @click="feeVisi = false">取 消</el-button>
-                        </div>
-                    </el-col>
-                </el-row>
-            </el-dialog>
-        </el-col>
-        <el-col>
-            <el-dialog
-                title="当前用户的备注信息:"
-                :visible.sync="dialogVisibleMemo"
-                size="tiny"
-                :before-close="handleCloseMemo">
-                <el-form>
-                    <el-form-item>
-                        <el-input type="textarea"
-                                  :rows="2"
-                                  v-model="memoText"
-                                  placeholder="当前用户暂无备注信息"
-                                  v-if=" memoText ==''|| memoText == undefined">
-                        </el-input>
-                        <el-input
-                            type="textarea"
-                            :rows="2"
-                            :placeholder="memoText"
-                            v-model="memoText"
-                            v-else>
-                        </el-input>
-                    </el-form-item>
-                </el-form>
-                <span slot="footer" class="dialog-footer">
+                </el-dialog>
+            </el-col>
+            <el-col>
+                <confirm :confirmConfig="confirmConfig" @do-confirm="doConfirm"></confirm>
+            </el-col>
+            <el-col>
+                <el-dialog :title="feeName" v-model="feeVisi" size="tiny">
+                    <el-row :gutter="20" type="flex" justify="center">
+                        <el-col :span="8" :pull="2">
+                            <div class="grid-content bg-purple tCent"><span>{{LANG['应扣款'] || '应扣款'}}</span></div>
+                        </el-col>
+                        <el-col :span="8">
+                            <div class="grid-content bg-purple tCent"><span>{{LANG['实扣款'] || '实扣款'}}</span></div>
+                        </el-col>
+                    </el-row>
+                    <el-row :gutter="20" type="flex" justify="center">
+                        <el-col :span="8" :pull="2">
+                            <div class="grid-content bg-purple tCent"><span>手续费:{{receivable.fee}}</span></div>
+                        </el-col>
+                        <el-col :span="8">
+                            <div class="grid-content bg-purple tCent">
+                                <el-input v-model="withdraw.fee" type="number"></el-input>
+                            </div>
+                        </el-col>
+                    </el-row>
+                    <!--<el-row :gutter="20" type="flex" justify="center">-->
+                    <!--<el-col :span="8" :pull="2">-->
+                    <!--<div class="grid-content bg-purple tCent"><span>优惠:{{receivable.coupon}}</span></div>-->
+                    <!--</el-col>-->
+                    <!--<el-col :span="8">-->
+                    <!--<div class="grid-content bg-purple tCent">-->
+                    <!--<el-input v-model="withdraw.coupon" type="number"></el-input>-->
+                    <!--</div>-->
+                    <!--</el-col>-->
+                    <!--</el-row>-->
+                    <!--<el-row :gutter="20" type="flex" justify="center">-->
+                    <!--<el-col :span="8" :pull="2">-->
+                    <!--<div class="grid-content bg-purple tCent"><span>行政费:{{receivable.management_cost}}</span></div>-->
+                    <!--</el-col>-->
+                    <!--<el-col :span="8">-->
+                    <!--<div class="grid-content bg-purple tCent">-->
+                    <!--<el-input v-model="withdraw.management_cost" type="number"></el-input>-->
+                    <!--</div>-->
+                    <!--</el-col>-->
+                    <!--</el-row>-->
+                    <el-row :gutter="20" type="flex" justify="center">
+                        <el-col :span="4">
+                            <div class="tCent">
+                                <el-button type="primary" @click="saveFee">提 交</el-button>
+                            </div>
+                        </el-col>
+                        <el-col :span="4">
+                            <div class=" tCent">
+                                <el-button @click="feeVisi = false">取 消</el-button>
+                            </div>
+                        </el-col>
+                    </el-row>
+                </el-dialog>
+            </el-col>
+            <el-col>
+                <el-dialog
+                    title="当前用户的备注信息:"
+                    :visible.sync="dialogVisibleMemo"
+                    size="tiny"
+                    :before-close="handleCloseMemo">
+                    <el-form>
+                        <el-form-item>
+                            <el-input type="textarea"
+                                      :rows="2"
+                                      v-model="memoText"
+                                      placeholder="当前用户暂无备注信息"
+                                      v-if=" memoText ==''|| memoText == undefined">
+                            </el-input>
+                            <el-input
+                                type="textarea"
+                                :rows="2"
+                                :placeholder="memoText"
+                                v-model="memoText"
+                                v-else>
+                            </el-input>
+                        </el-form-item>
+                    </el-form>
+                    <span slot="footer" class="dialog-footer">
                     <el-button @click="dialogVisibleMemo = false">关 闭</el-button>
                     <el-button type="primary" class="formSave" @click="editMemoSubmit">修 改</el-button>
                 </span>
-            </el-dialog>
-        </el-col>
+                </el-dialog>
+            </el-col>
+        </el-row>
+
     </div>
 </template>
 <script>
@@ -554,9 +542,8 @@
                 _this.searchObj.date_to = sessionStorage.sysTime + ' 23:59:59';
                 //_this.searchConfig[3].list = this.memberGradeList;
             },
-            //详情页内编辑
+            //详情页内备注编辑
             editMemo(data) {
-                console.log(data)
                 if (this.showEditMemo) {
                     let params = {
                         memo: data.memo,
@@ -579,6 +566,13 @@
                     })
                 }
                 this.showEditMemo = !this.showEditMemo
+            },
+            //复制出款金额
+            copyGetOutMoney(){
+                var input = document.getElementById("getOutMoney_input");
+                input.select(); // 选中文本
+                document.execCommand("copy"); // 执行浏览器复制命令
+                this.$message.success(LANG['复制出款金额成功'] || '复制出款金额成功');
             },
             //修改备注内容
 //            editMemoSubmit() {
@@ -1009,7 +1003,6 @@
 //                        break;
 //                        拒绝 等接口
                     case "reject":
-
                         this.$.autoAjax('patch', URL.api + ROUTES.PATCH.cash.withdraw.state.$(id), {
                             "status": "rejected",
                             "role": 1
@@ -1214,59 +1207,48 @@
         .page {
             position: relative
         }
-        .vipDialog .el-form-item__content {
-            margin: 0 auto;
-        }
-        /*.mb20 {margin-bottom: 10px!important;}*/
-        .vipDialog .grid-content {
-            line-height: 36px;
-            text-align: center;
-        }
-        .vipDialog .el-dialog {
-            min-width: 860px;
-        }
-        .vipDialog .groupBuying {
-            width: 10%;
-            min-width: 60px;
+        .vipDialog {
+            .el-form-item__content {
+                margin: 0 auto;
+            }
+            .el-dialog {
+                min-width: 860px;
+            }
+            .groupBuying {
+                width: 10%;
+                min-width: 60px;
+            }
+            .grid-content {
+                line-height: 36px;
+                text-align: center;
+            }
         }
         .el-row {
             margin-bottom: 10px;
-        }
-        .el-col {
-            border-radius: 4px;
-        }
-        .bg-purple-dark {
-            background: #99a9bf;
-            line-height: 36px;
-        }
-        .bg-purple {
-            background: #d3dce6;
-            line-height: 36px;
-        }
-        .bg-purple-light {
-            background: #e5e9f2;
+            .el-col {
+                border-radius: 4px;
+                .bg-purple-dark {
+                    color:#fff;
+                    font-size:16px;
+                }
+                #getOutMoney_input{
+                    border:none;
+                    outline:none
+                }
+            }
+            .bg-purple,.menberGetOutContentData {
+                line-height: 36px;
+            }
+            .hiddenScrollbar{
+                .el-table__body-wrapper::-webkit-scrollbar {display:none}
+                th{
+                    text-align: center;
+                }
+            }
         }
         .state_danger {
             height: 26px;
             line-height: 26px;
-        }
-        .grid-content {
-            border-radius: 4px;
-            min-height: 36px;
-        }
-        .row-bg {
-            padding: 10px 0;
-            background-color: #f9fafc;
-        }
-        #tableSingle #tables {
-            /*min-width: 1920px;*/
-            /*overflow-x: auto;*/
-            white-space: nowrap;
-        }
-        #tableSingle #tables table {
-            /*min-width: 1920px;*/
-            overflow-x: auto;
-            white-space: nowrap;
         }
         .sumdiv {
             position: relative;

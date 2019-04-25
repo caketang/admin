@@ -89,7 +89,7 @@
                 },
                 {
                     "btnType": "text",
-                    "label": "设定",
+                    "label": "出入款设置",
                     "fn": "doSet"
                 },
                 {
