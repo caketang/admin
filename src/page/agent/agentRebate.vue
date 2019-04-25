@@ -28,16 +28,16 @@
                     :before-close="handleClose">
                     <el-form :model="configForm" :rules="configRules" ref="configForm" label-width="170px" class="demo-ruleForm">
                         <el-form-item label="有效会员条件：" prop="advance_money">
-                            <el-input v-model="configForm.advance_money"></el-input>
+                            <el-input v-model="configForm.advance_money" type="number"></el-input>
                         </el-form-item>
                         <el-form-item label="每一个直属可获得：" prop="directly_experience">
-                            <el-input v-model="configForm.directly_experience"></el-input>
+                            <el-input v-model="configForm.directly_experience" type="number"></el-input>
                         </el-form-item>
                         <el-form-item label="每一个下下级可获得：" prop="level_experience">
-                            <el-input v-model="configForm.level_experience"></el-input>
+                            <el-input v-model="configForm.level_experience" type="number"></el-input>
                         </el-form-item>
                         <el-form-item label="每1元退佣可获得：" prop="commission_exp">
-                            <el-input v-model="configForm.commission_exp"></el-input>
+                            <el-input v-model="configForm.commission_exp" type="number"></el-input>
                         </el-form-item>
                         <el-form-item label="有效领取时间：" prop="type">
                             <el-radio-group v-model="configForm.type">
