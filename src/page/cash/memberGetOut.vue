@@ -67,17 +67,28 @@
         </el-col>
         <!--详情-->
         <el-col>
-            <el-dialog :title="'【'+ userName + '】' + LANG['会员提现详情'] || '会员提现详情'" v-model="editVisible" class="vipDialog" size="large" :close-on-click-modal="false" :close-on-press-escape="false" :before-close="handleClose">
+            <el-dialog :title="'【'+ userName + '】' + LANG['会员提现详情'] || '会员提现详情'" v-model="editVisible" class="vipDialog"
+                       size="large" :close-on-click-modal="false" :close-on-press-escape="false"
+                       :before-close="handleClose">
                 <el-form :model="editForm" ref="editForm">
-                    <el-col class="state_danger">
-                        {{LANG['会员备注'] || '会员备注'}}： {{editForm.memo}}
-                    </el-col>
-                    <!--取款信息-->
-                    <el-col :span="24" style="margin-bottom:20px;">
-                        <div class="grid-content bg-purple-dark tCent" >
-                            {{LANG['取款信息'] || '取款信息'}}
-                        </div>
-                    </el-col>
+                    <el-row>
+                        <el-col class="state_danger">
+                            {{LANG['会员备注'] || '会员备注'}}：
+                            <span v-if="!showEditMemo">{{editForm.memo}}</span>
+                            <el-input v-model="editForm.memo" size="mini" class="intW" v-else></el-input>
+                            <el-button :plain="true" type="info" icon="edit" size="mini" @click="editMemo(editForm)"
+                                       v-if="!showEditMemo">修 改
+                            </el-button>
+                            <el-button :plain="true" type="info" size="mini" @click="editMemo(editForm)" v-else>提 交
+                            </el-button>
+                        </el-col>
+                        <!--取款信息-->
+                        <el-col :span="24" style="margin-bottom:20px;">
+                            <div class="grid-content bg-purple-dark tCent">
+                                {{LANG['取款信息'] || '取款信息'}}
+                            </div>
+                        </el-col>
+                    </el-row>
                     <el-row :gutter="22">
                         <el-col :span="3">
                             <div class="grid-content bg-purple"><span>{{LANG['申请金额'] || '申请金额'}}</span></div>
@@ -189,21 +200,21 @@
                     <!--稽核信息-->
                     <el-row>
                         <el-col>
-                            <div class="cell" v-if="tableDate.level_config">
-                                <span
-                                    class="font14 tCent">{{LANG['当前会员所在层级行政费比例'] || '当前会员所在层级行政费比例'}} : {{(tableDate.level_config.withdraw_expenese || '') | formatNumber(0)}} %</span>
-                                <span class="ml10 mr10"> | </span>
-                                <span
-                                    class="font14 ml10">{{LANG['行政费上限'] || '行政费上限'}} : {{(tableDate.level_config.max_expenese || '') | formatMoney}}</span>
-                                <span class="ml10 mr10"> | </span>
-                                <span
-                                    class="font14">{{LANG['免稽核额度'] || '免稽核额度'}} : {{(tableDate.level_config.nocheck || '') | formatMoney}}</span>
-                            </div>
+                            <!--<div class="cell" v-if="tableDate.level_config">-->
+                            <!--<span-->
+                            <!--class="font14 tCent">{{LANG['当前会员所在层级行政费比例'] || '当前会员所在层级行政费比例'}} : {{(tableDate.level_config.withdraw_expenese || '') | formatNumber(0)}} %</span>-->
+                            <!--<span class="ml10 mr10"> | </span>-->
+                            <!--<span-->
+                            <!--class="font14 ml10">{{LANG['行政费上限'] || '行政费上限'}} : {{(tableDate.level_config.max_expenese || '') | formatMoney}}</span>-->
+                            <!--<span class="ml10 mr10"> | </span>-->
+                            <!--<span-->
+                            <!--class="font14">{{LANG['免稽核额度'] || '免稽核额度'}} : {{(tableDate.level_config.nocheck || '') | formatMoney}}</span>-->
+                            <!--</div>-->
                         </el-col>
                         <el-col :span="24" class="mb20">
                             <div class="grid-content bg-purple-dark tCent" style="color:#fff;">{{LANG['稽核信息'] || '稽核信息'}}</div>
                             <el-table :data="tableDate.list" border class="tCent">
-                                <el-table-column width="210" label="交易时间">
+                                <el-table-column width="230" label="交易时间">
                                     <template slot-scope="scope">
                                         <p>起始：{{scope.row.start_date}}</p>
                                         <p>结束：{{scope.row.end_date}}</p>
@@ -237,8 +248,8 @@
                                             :class="scope.row.is_pass=='是'? 'pass':'nopass' ">{{scope.row.is_pass}}</span>
                                     </template>
                                 </el-table-column>
-                                <el-table-column property="deduct_coupon" label="扣优惠"></el-table-column>
-                                <el-table-column property="deduct_admin_fee" label="扣除行政费"></el-table-column>
+                                <!--<el-table-column property="deduct_coupon" label="扣优惠"></el-table-column>-->
+                                <!--<el-table-column property="deduct_admin_fee" label="扣除行政费"></el-table-column>-->
                             </el-table>
                         </el-col>
                         <el-col :span="24" class="mb20" v-if="auditData.data">
@@ -252,9 +263,9 @@
                 </el-form>
                 <span slot="footer" class="dialog-footer" v-if="showChange">
                     <el-button @click="closeDialog(editForm)">{{LANG['取消审核'] || '取消审核'}}</el-button>
-                    <el-button @click="doUpdate(editForm)" type="success">{{LANG['确认出款']||'确认出款'}}</el-button>
-                    <el-button @click="doReject(editForm)" type="danger">{{LANG['拒绝']||'拒绝'}}</el-button>
-                    <el-button @click="doRefuse(editForm)" type="primary">{{LANG['取消出款']||'取消出款'}}</el-button>
+                    <el-button @click="doUpdate(editForm)" type="success">{{LANG['确认出款'] || '确认出款'}}</el-button>
+                    <el-button @click="doReject(editForm)" type="danger">{{LANG['拒绝'] || '拒绝'}}</el-button>
+                    <el-button @click="doRefuse(editForm)" type="primary">{{LANG['取消出款'] || '取消出款'}}</el-button>
               </span>
             </el-dialog>
         </el-col>
@@ -282,24 +293,24 @@
                     </el-col>
                 </el-row>
                 <!--<el-row :gutter="20" type="flex" justify="center">-->
-                    <!--<el-col :span="8" :pull="2">-->
-                        <!--<div class="grid-content bg-purple tCent"><span>优惠:{{receivable.coupon}}</span></div>-->
-                    <!--</el-col>-->
-                    <!--<el-col :span="8">-->
-                        <!--<div class="grid-content bg-purple tCent">-->
-                            <!--<el-input v-model="withdraw.coupon" type="number"></el-input>-->
-                        <!--</div>-->
-                    <!--</el-col>-->
+                <!--<el-col :span="8" :pull="2">-->
+                <!--<div class="grid-content bg-purple tCent"><span>优惠:{{receivable.coupon}}</span></div>-->
+                <!--</el-col>-->
+                <!--<el-col :span="8">-->
+                <!--<div class="grid-content bg-purple tCent">-->
+                <!--<el-input v-model="withdraw.coupon" type="number"></el-input>-->
+                <!--</div>-->
+                <!--</el-col>-->
                 <!--</el-row>-->
                 <!--<el-row :gutter="20" type="flex" justify="center">-->
-                    <!--<el-col :span="8" :pull="2">-->
-                        <!--<div class="grid-content bg-purple tCent"><span>行政费:{{receivable.management_cost}}</span></div>-->
-                    <!--</el-col>-->
-                    <!--<el-col :span="8">-->
-                        <!--<div class="grid-content bg-purple tCent">-->
-                            <!--<el-input v-model="withdraw.management_cost" type="number"></el-input>-->
-                        <!--</div>-->
-                    <!--</el-col>-->
+                <!--<el-col :span="8" :pull="2">-->
+                <!--<div class="grid-content bg-purple tCent"><span>行政费:{{receivable.management_cost}}</span></div>-->
+                <!--</el-col>-->
+                <!--<el-col :span="8">-->
+                <!--<div class="grid-content bg-purple tCent">-->
+                <!--<el-input v-model="withdraw.management_cost" type="number"></el-input>-->
+                <!--</div>-->
+                <!--</el-col>-->
                 <!--</el-row>-->
                 <el-row :gutter="20" type="flex" justify="center">
                     <el-col :span="4">
@@ -339,9 +350,9 @@
                     </el-form-item>
                 </el-form>
                 <span slot="footer" class="dialog-footer">
-                <el-button @click="dialogVisibleMemo = false">关 闭</el-button>
-                <el-button type="primary" class="formSave" @click="editMemoSubmit">修 改</el-button>
-  </span>
+                    <el-button @click="dialogVisibleMemo = false">关 闭</el-button>
+                    <el-button type="primary" class="formSave" @click="editMemoSubmit">修 改</el-button>
+                </span>
             </el-dialog>
         </el-col>
     </div>
@@ -495,7 +506,8 @@
                 isShow: sessionStorage.user_withdraws_export == 'true' ? true : false,
                 exportForm: {},
                 userName: '',
-                showChange:false,
+                showChange: false,
+                showEditMemo: false
             }
         },
         components: {
@@ -524,9 +536,9 @@
                         if (res.state == 0 && res.data) {
                             let model = res.data;
                             for (let i in model) {
-                                _this.searchConfig[3].list.push("VIP"+model[i].level);
+                                _this.searchConfig[3].list.push("VIP" + model[i].level);
                                 _this.searchConfig[3].Arr.push({
-                                    "label": "VIP"+model[i].level,
+                                    "label": "VIP" + model[i].level,
                                     "value": model[i].level
                                 })
                             }
@@ -542,23 +554,74 @@
                 _this.searchObj.date_to = sessionStorage.sysTime + ' 23:59:59';
                 //_this.searchConfig[3].list = this.memberGradeList;
             },
-            closeDialog(data){
+            //详情页内编辑
+            editMemo(data) {
+                console.log(data)
+                if (this.showEditMemo) {
+                    let params = {
+                        memo: data.memo,
+                        uid: data.user_id
+                    }
+                    this.$.autoAjax('patch', URL.api + ROUTES.PATCH.user.info.memo + '/' + parseInt(data.id), params, {
+                        ok: (res) => {
+                            if (res.data) {
+                                this.updated = true;
+                                this.$message.success(LANG['备注写入成功'] || '备注写入成功');
+                            } else {
+                                this.$message.error(LANG['备注写入失败'] || '备注写入失败');
+                            }
+                        },
+                        p: () => {
+                        },
+                        error: e => {
+                            console.log(e)
+                        }
+                    })
+                }
+                this.showEditMemo = !this.showEditMemo
+            },
+            //修改备注内容
+//            editMemoSubmit() {
+//                let _this = this;
+//                this.updated = false;
+//                let params = {
+//                    memo: this.memoText,
+//                    uid: this.user_id
+//                };
+//                this.dialogVisibleMemo = false;
+//                this.$.autoAjax('patch', URL.api + ROUTES.PATCH.user.info.memo + '/' + parseInt(this.memoTextUid), params, {
+//                    ok: (res) => {
+//                        if (res.data) {
+//                            this.updated = true;
+//                            this.$message.success(LANG['备注写入成功'] || '备注写入成功');
+//                        } else {
+//                            this.$message.error(LANG['备注写入失败'] || '备注写入失败');
+//                        }
+//                    },
+//                    p: () => {
+//                    },
+//                    error: e => {
+//                        console.log(e)
+//                    }
+//                })
+//            },
+            closeDialog(data) {
                 let Url = URL.api + ROUTES.GET.cash.withdraw.audit.$(data.id) + '?user_id=' + data.user_id + '&withdraw_id=' + data.id + '&cancel=' + 'yes';
                 this.$.autoAjax('get', Url, '', {
-                    ok:(res)=>{
-                        if(res.data&&res.state === 0 ){
+                    ok: (res) => {
+                        if (res.data && res.state === 0) {
                             this.updated = true
                         }
                     }
                 })
                 this.editVisible = false
             },
-            handleClose(){
+            handleClose() {
                 let data = this.editForm
                 let Url = URL.api + ROUTES.GET.cash.withdraw.audit.$(data.id) + '?user_id=' + data.user_id + '&withdraw_id=' + data.id + '&cancel=' + 'yes';
                 this.$.autoAjax('get', Url, '', {
-                    ok:(res)=>{
-                        if(res.data&&res.state === 0 ){
+                    ok: (res) => {
+                        if (res.data && res.state === 0) {
                             this.updated = true
                         }
                     }
@@ -755,7 +818,13 @@
             },
             //详情
             doDetail(row) {
-                this.showChange = {'refused':false,'prepare':true,'pending':true,'rejected':false,'paid':false}[row.status]||false
+                this.showChange = {
+                    'refused': false,
+                    'prepare': true,
+                    'pending': true,
+                    'rejected': false,
+                    'paid': false
+                }[row.status] || false
                 this.userName = row.user_name
                 this.loading = true;
                 let sum = 0;
@@ -1176,6 +1245,10 @@
         }
         .bg-purple-light {
             background: #e5e9f2;
+        }
+        .state_danger {
+            height: 26px;
+            line-height: 26px;
         }
         .grid-content {
             border-radius: 4px;
