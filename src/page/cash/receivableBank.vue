@@ -87,7 +87,7 @@
 						"allBtnShow": true,
 						"type": "checkGroup",
 						"list": [],
-						"Arr": [],
+						"Arr":[],
 						"rules": [{"require": true}]
 					},
 					{
@@ -184,11 +184,11 @@
 						if (res.state == 0 && res.data) {
 							let model = res.data || [];
 							for (let k in model) {
-								_this.formConfig[0].list.push(model[k].level.toString())
-								_this.formConfig[0].Arr.push({
-									"label": "VIP"+model[k].level,
-									"value": model[k].level.toString()
-								});
+                                _this.formConfig[0].Arr.push({
+                                    "label": "VIP"+model[k].level,
+                                    "value": model[k].level
+                                });
+                                _this.formConfig[0].list.push(model[k].level);
 								_this.searchConfig[2].list.push({
 									"label": "VIP"+model[k].level,
 									"value": model[k].level.toString()
@@ -212,6 +212,7 @@
 			},
 			//保存弹窗数据
 			getForm(obj) {
+			    console.log(obj)
 				let _this = this;
 				this.fullscreenLoading = true;
 				_this.updated = false;
@@ -237,6 +238,7 @@
 				if (!query.sort) {
 					query.sort = 0;
 				}
+				console.log(query)
 				if (this.formType == "edit") {
 					delete query.id
 					this.$.autoAjax('put',URL.api + ROUTES.PUT.cash.bank.account+"?id="+this.nowId, query, {
@@ -281,7 +283,6 @@
 				}
 				this.fullscreenLoading = false;
 				_this.formType = "";
-
 			},
 			//表格数据按钮
 			doHandle(item) {
@@ -305,7 +306,6 @@
 			},
 			//停用
 			doDisable(row) {
-
 				if (parseInt(row.id)) {
 					this.confirmConfig.state = true;
 					this.confirmConfig.msg = (this.LANG['确定停用'] || '确定停用') + '"' + row.accountname + '"' + (this.LANG['吗？'] || '吗？');
@@ -335,7 +335,6 @@
 				let _this = this;
 				switch (obj.fn) {
 					case "disabled":
-
 						this.$.autoAjax('patch',URL.api + ROUTES.PATCH.cash.bank.account+"?id="+_this.nowId, {"status": 0}, {
 							ok: (res) => {
 								if (res.state == 0 && res.data) {
@@ -355,22 +354,8 @@
 								console.log(e)
 							}
 						})
-
-						// this.$http.patch(URL.api + ROUTES.PATCH.cash.bank.account+"?id="+_this.nowId, JSON.stringify({"status": 0}), URLCONFIG).then((res) => {
-						// 	if (res.data.state == 0 && res.data.data) {
-						// 		_this.formType = "disabled";
-						// 		_this.$message.success(_this.LANG['收款银行帐号停用成功！'] || '收款银行帐号停用成功！');
-						// 		_this.updated = true;
-						// 	} else if (res.data.state == 4003 || res.data.state == 405) {
-						// 		_this.$message.error(res.data.msg + (_this.LANG['权限不足！'] || '权限不足！'));
-						// 	} else {
-						// 		_this.$message.error(_this.LANG['收款银行帐号停用失败，请稍后重试！'] || '收款银行帐号停用失败，请稍后重试！');
-						// 	}
-						// 	_this.loading = false;
-						// })
 						break;
 					case "enabled":
-
 						this.$.autoAjax('patch', URL.api + ROUTES.PATCH.cash.bank.account+"?id="+_this.nowId,{"status": 1}, {
 							ok: (res) => {
 								if (res.state == 0 && res.data) {
@@ -390,18 +375,6 @@
 								console.log(e)
 							}
 						})
-						// this.$http.patch(URL.api + ROUTES.PATCH.cash.bank.account+"?id="+_this.nowId, JSON.stringify({"status": 1}), URLCONFIG).then((res) => {
-						// 	if (res.data.state == 0 && res.data.data) {
-						// 		_this.formType = "enabled";
-						// 		_this.$message.success(_this.LANG['收款银行帐号启用成功！'] || '收款银行帐号启用成功！');
-						// 		_this.updated = true;
-						// 	} else if (res.data.state == 4003 || res.data.state == 405) {
-						// 		_this.$message.error(res.data.msg + (_this.LANG['权限不足！'] || '权限不足！'));
-						// 	} else {
-						// 		_this.$message.error(res.data.msg);
-						// 	}
-						// 	_this.loading = false;
-						// })
 						break;
 					case "doDelete":
 						this.$.autoAjax('delete',URL.api + ROUTES.DELETE.cash.bank.account + '?id=' + _this.nowId, '', {
@@ -423,31 +396,41 @@
 								console.log(e)
 							}
 						})
-
-						// this.$http.delete(URL.api + ROUTES.DELETE.cash.bank.account + '?id=' + _this.nowId, URLCONFIG).then((res) => {
-						// 		if (res.data.state == 0 && res.data.data) {
-						// 			_this.formType = "doDelete";
-						// 			_this.$message.success(_this.LANG['收款银行帐号删除成功！'] || '收款银行帐号删除成功！');
-						// 			_this.updated = true;
-						// 		} else if (res.data.state == 4003 || res.data.state == 405) {
-						// 			_this.$message.error(res.data.msg + (_this.LANG['权限不足！'] || '权限不足！'));
-						// 		} else {
-						// 			_this.$message.error(_this.LANG['收款银行帐号删除失败，请稍后重试！'] || '收款银行帐号删除失败，请稍后重试！');
-						// 		}
-						// 		_this.loading = false;
-						// 	}
-						// )
 						break;
 				}
 			},
 
 			//编辑
 			doEdit(row) {
+                this.$.autoAjax('get', URL.api + ROUTES.GET.user.level.list, '', {
+                    ok: (res) => {
+                        if (res.state == 0 && res.data) {
+                            let model = res.data || [];
+                            for (let k in model) {
+                                _this.formConfig[0].Arr.push({
+                                    "label": "VIP"+model[k].level,
+                                    "value": model[k].level
+                                });
+                               // _this.formConfig[0].list.push(model[k].level);
+                            }
+                        }
+                    },
+                    p: () => {
+                    },
+                    error: e => {
+                        console.log(e)
+                    }
+                })
+                let _this = this,arr = []
 				this.loading = true;
 				this.formTitel = "编辑收款银行账户";
-				let Arr = this.formConfig[0].Arr;
+                if(row.levels.length)
+                row.levels.toUpperCase().split(',').forEach((item,index)=>{
+                    arr[index] = item.split('VIP')[1]
+                })
+                this.formConfig[0].Arr = ['9','0','4','7']
+				//let Arr = this.formConfig[0].Arr;
 				this.nowId = parseInt(row.id);
-				let _this = this;
 				this.isEdit.state = false;
 				this.formConfig[8].disabled = true;
 				this.$.autoAjax('get',URL.api + ROUTES.GET.cash.bank.acount + "?id=" + (this.nowId), '', {

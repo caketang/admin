@@ -23,7 +23,7 @@
                             <div class="cell">{{LANG['描述'] || '描述'}}</div>
                         </th>
                         <th colspan=2 rowspan="1">
-                            <div class="cell">{{LANG['晋级条件'] || '晋级条件'}}</div>
+                            <div class="cell">{{LANG['晋级所需条件'] || '晋级所需条件'}}</div>
                         </th>
                         <!--<th colspan="5" rowspan="1">-->
                             <!--<div class="cell">{{LANG['层级限制'] || '层级限制'}}</div>-->
@@ -103,7 +103,9 @@
                             </div>
                             <div v-if="item.type == 'button' && col['level'] == '0'">
                                 <div v-for="btn in item.btnGroup" style="float:left;margin-left:5px;">
-                                    <el-button size="small" v-if="btn.label === '设定'" @click="doHandle(col,btn.fn)"
+                                    <el-button size="small" v-if="btn.label === '编辑'" @click="doHandle(col,btn.fn)"
+                                               :type="btn.btnType" v-text="btn.label"></el-button>
+                                    <el-button size="small" v-if="btn.label === '出入款设置'" @click="doHandle(col,btn.fn)"
                                                :type="btn.btnType" v-text="btn.label"></el-button>
                                 </div>
                             </div>

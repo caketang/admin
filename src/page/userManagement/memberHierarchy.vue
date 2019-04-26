@@ -174,7 +174,7 @@
                         "type": "number",
                         "label": "奖励",
                         "placeholder": "请输入奖励金额",
-                        "rules": [{"require": true, "max": 9, "min:": 1}]
+                        "rules": [{"require": false, "max": 9, "min:": 1}]
                     },
                     {//4
                         "prop": "memo",

@@ -67,10 +67,56 @@
             ]
         },
         {
-            "prop": "ranting",
+            "prop": "level",
             "label": "层级",
             "width": "80",
-            "disabled": true
+            "disabled": true,
+            "filters": [
+                {
+                    "value": "0",
+                    "text": "VIP 0"
+                },
+                {
+                    "value": "1",
+                    "text": "VIP 1"
+                },
+                {
+                    "value": "2",
+                    "text": "VIP 2"
+                },
+                {
+                    "value": "3",
+                    "text": "VIP 3"
+                },
+                {
+                    "value": "4",
+                    "text": "VIP 4"
+                },
+                {
+                    "value": "5",
+                    "text": "VIP 5"
+                },
+                {
+                    "value": "6",
+                    "text": "VIP 6"
+                },
+                {
+                    "value": "7",
+                    "text": "VIP 7"
+                },
+                {
+                    "value": "8",
+                    "text": "VIP 8"
+                },
+                {
+                    "value": "9",
+                    "text": "VIP 9"
+                },
+                {
+                    "value": "10",
+                    "text": "VIP 10"
+                }
+            ]
         },
         {
             "prop": "agent_name",
