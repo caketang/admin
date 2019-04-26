@@ -1,9 +1,9 @@
 <template>
     <div id="userLevelLayer">
-        <el-dialog :title="LANG['修改会员分层'] || '修改会员分层'" v-model="model.visible" size="tiny">
+        <el-dialog :title="LANG['修改会员等级'] || '修改会员等级'" v-model="model.visible" size="tiny">
             <h1>{{LANG[model.title] || model.title}}</h1>
             <el-table :data="model.lList">
-                <el-table-column prop="date" :label="LANG['层级选择'] || '层级选择'" width="100">
+                <el-table-column prop="date" :label="LANG['等级选择'] || '等级选择'" width="100">
                     <template slot-scope="scope">
                         <el-checkbox-group v-model="scope.row.disable">
                             <!--<el-checkbox v-model="scope.row.disable" @change="checkRadio(scope.row.disable,scope.row.num)"></el-checkbox>-->
@@ -12,7 +12,7 @@
                         </el-checkbox-group>
                     </template>
                 </el-table-column>
-                <el-table-column prop="name" :label="LANG['层级名称'] || '层级名称'" width="100"> </el-table-column>
+                <el-table-column prop="name" :label="LANG['等级名称'] || '等级名称'" width="100"> </el-table-column>
                 <el-table-column prop="desc" :label="LANG['描述'] || '描述'"  > </el-table-column>
             </el-table>
             <span slot="footer" class="dialog-footer">

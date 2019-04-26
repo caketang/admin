@@ -2,7 +2,7 @@
     "columns": [
         {
             "prop": "level",
-            "label": "会员层级",
+            "label": "会员等级",
             "filters": [
                 {
                     "value": "0",

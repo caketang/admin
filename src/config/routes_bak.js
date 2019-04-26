@@ -456,7 +456,7 @@ export default [
                 path: '/memberHierarSet',
                 component: resolve => require(['../components/memberHierarSet'], resolve),
                 iconCls: '',
-                name: '会员层级管理',
+                name: '会员等级管理',
                 hidden: true//不显示在导航中
             },
             {

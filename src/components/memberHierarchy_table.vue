@@ -14,7 +14,7 @@
                     <thead v-if="dataModel.length !== 0">
                     <tr>
                         <th colspan="1" rowspan="2">
-                            <div class="cell">{{LANG['会员层级'] || '会员层级'}}</div>
+                            <div class="cell">{{LANG['会员等级'] || '会员等级'}}</div>
                         </th>
                         <!--<th colspan="1" rowspan="2">-->
                             <!--<div class="cell">{{LANG['层级别称'] || '层级别称'}}</div>-->

@@ -39,7 +39,7 @@
                         </el-col>
                         <el-col>
                             <!--@update-level="updateLevel"-->
-                            <userLevelLayer :model="userLeve" :updateDate="updateDate"></userLevelLayer>
+                            <!--<userLevelLayer :model="userLeve" :updateDate="updateDate"></userLevelLayer>-->
                         </el-col>
                         <el-col>
                             <confirm :confirmConfig="confirmConfig" @do-confirm="doConfirm"></confirm>
@@ -115,7 +115,6 @@
     import confirm from '../../components/confirm.vue'
     import userLevelSet from '../../components/userLevelSet.vue'
     import memberHierarSet from '../../components/memberHierarSet.vue'
-
     export default {
         data() {
             return {
@@ -149,7 +148,7 @@
                         "value": "",
                         "type": "select",
                         "label": "会员层级",
-                        "placeholder": "请选择会员层级",
+                        "placeholder": "请选择会员等级",
                         "list": ARRAYS.LEVELSLIST, "disabled": true,
                     },
                     {//1

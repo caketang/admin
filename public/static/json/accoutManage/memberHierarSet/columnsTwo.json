@@ -13,7 +13,7 @@
         },
         {
             "prop": "level",
-            "label": "会员层级",
+            "label": "会员等级",
             "width": "100",
             "disabled": true,
             "filters": [
