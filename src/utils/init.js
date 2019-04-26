@@ -1598,17 +1598,17 @@ global.ARRAYS = {
         {"label": "其他", "value": "reserved"}
     ],
     LEVELSLIST:[
-        {"label": "VIP 0", "value": "0"},
-        {"label": "VIP 1", "value": "1"},
-        {"label": "VIP 2", "value": "2"},
-        {"label": "VIP 3", "value": "3"},
-        {"label": "VIP 4", "value": "4"},
-        {"label": "VIP 5", "value": "5"},
-        {"label": "VIP 6", "value": "6"},
-        {"label": "VIP 7", "value": "7"},
-        {"label": "VIP 8", "value": "8"},
-        {"label": "VIP 9", "value": "9"},
-        {"label": "VIP 10", "value": "10"},
+        {"label": "VIP0", "value": "0"},
+        {"label": "VIP1", "value": "1"},
+        {"label": "VIP2", "value": "2"},
+        {"label": "VIP3", "value": "3"},
+        {"label": "VIP4", "value": "4"},
+        {"label": "VIP5", "value": "5"},
+        {"label": "VIP6", "value": "6"},
+        {"label": "VIP7", "value": "7"},
+        {"label": "VIP8", "value": "8"},
+        {"label": "VIP9", "value": "9"},
+        {"label": "VIP10", "value": "10"},
     ],
     //代理注册来源
     PALYORIGINL: [
@@ -1764,7 +1764,8 @@ global.ARRAYS = {
     //交易类型
     transactionType: [{
         type: 1,
-        arr: [{"label": "线上入款", "value": "线上入款"},
+        arr: [
+            {"label": "线上入款", "value": "线上入款"},
             {"label": "公司入款", "value": "公司入款"},
             {"label": "体育派彩", "value": "体育派彩"},
             {"label": "彩票派彩", "value": "彩票派彩"},

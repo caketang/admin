@@ -1160,6 +1160,7 @@
                     arrs.push('待处理');
                 }
                 this.searchConfig[6]['value'] = arrs;
+                //console.log(arrs)
                 this.initDate = true;
                 this.tableUrl = URL.api + ROUTES.GET.cash.withdraws + "?status=" + this.$route.query.status;
             } else if (this.$route.query.day_begin) {
