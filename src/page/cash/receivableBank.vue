@@ -204,7 +204,6 @@
                     obj.formObj.limit_max = obj.formObj.limit_max * 100;
                 }
 
-
                 if (obj.formObj.qrcode == "") {
                     obj.formObj.qrcode = null;
                 } else {
@@ -219,7 +218,6 @@
                 if (!query.sort) {
                     query.sort = 0;
                 }
-                console.log(query)
                 if (this.formType == "edit") {
                     delete query.id
                     this.$.autoAjax('put', URL.api + ROUTES.PUT.cash.bank.account + "?id=" + this.nowId, query, {
@@ -384,15 +382,8 @@
             //编辑
             doEdit(row) {
                 let _this = this, arr = []
-                //_this.formConfig[0].Arr = global.ARRAYS.LEVELSLIST
                 this.loading = true;
                 this.formTitel = "编辑收款银行账户";
-//                if (row.levels.length)
-//                    row.levels.toUpperCase().split(',').forEach((item, index) => {
-//                        arr[index] = item.split('VIP')[1]
-//                    })
-//                _this.formConfig[0]['value'] = ["0"]
-                //let Arr = this.formConfig[0].Arr;
                 this.nowId = parseInt(row.id);
                 this.isEdit.state = false;
                 this.formConfig[8].disabled = true;
