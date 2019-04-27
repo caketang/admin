@@ -716,10 +716,10 @@
                 this.$.autoAjax('put', URL.api + ROUTES.PUT.user.level.set + '/' + setlevel, query, {
                     ok: (res) => {
                         if (res.state == 0 && res.data) {
-                            this.$message.success(this.LANG['恭喜您，会员层级设置成功！'] || '恭喜您，会员层级设置成功！');
+                            this.$message.success(this.LANG['恭喜您，VIP'+setlevel+'出入款设置成功！'] || '恭喜您，VIP'+setlevel+'出入款设置成功！');
                             this.levelSet = false;
                         } else {
-                            this.$message.error(this.LANG['会员层级设定失败，请稍候重试！'] || '会员层级设定失败，请稍候重试！');
+                            this.$message.error(this.LANG['Sorry，VIP'+setlevel+'出入款设置失败！'] || 'Sorry，VIP'+setlevel+'出入款设置失败！');
                             this.levelSet = false;
                         }
                         this.loading = false;
