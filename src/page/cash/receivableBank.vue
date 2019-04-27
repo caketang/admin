@@ -391,11 +391,11 @@
                     ok: (res) => {
                         if (res.state == 0 && res.data) {
                             let model = res.data ? res.data : {};
-                            if (model.level.length){
-                                model.level.toUpperCase().split(',').forEach((item, index) => {
+                            if (model.levels.length){
+                                model.levels.toUpperCase().split(',').forEach((item, index) => {
                                     arr[index] = item.split('VIP')[1]
                                 })
-                                model.level  = arr
+                                model.levels  = arr
                             }
                             if (FORMATNUMBER(model.limit_day_max) > 0) {
                                 model.limit_day_max = FORMATMONEY(model.limit_day_max).toString();

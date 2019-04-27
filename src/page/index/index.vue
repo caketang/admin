@@ -814,6 +814,7 @@
         },
         created() {
             this.init();
+            console.log('%c皇家科技团队','text-shadow:5px 5px 5px #39bc30;font-size:50px')
         },
         directives: {
             settingWrapHeight: {

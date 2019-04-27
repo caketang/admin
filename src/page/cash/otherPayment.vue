@@ -421,11 +421,11 @@
                         let model = res.data || [];
                         for (let k in model) {
                             _this.AddFormConfig.levelslist.push({
-                                "label": model[k].memo,
+                                "label": "VIP"+model[k].level,
                                 "value": model[k].level.toString()
                             });
                             _this.searchConfig[5].list.push({
-                                "label": model[k].memo,
+                                "label": "VIP"+model[k].level,
                                 "value": model[k].level
                             })
                         }
