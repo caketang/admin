@@ -1,5 +1,6 @@
 <template>
     <div id="Login" v-show="toggle" class="w100" ref="login">
+        <canvas id="canvas"></canvas>
         <el-form :model="loginForm" :rules="rules" ref="loginForm" class="demo-ruleForm longin-box"
                  onSubmit="return false;">
             <p class="title"><i class="iconfont icon-37750 mr10"
@@ -19,7 +20,7 @@
                           :placeholder="LANG['请输入动态安全码'] || '请输入动态安全码'"></el-input>
             </el-form-item>
             <el-form-item prop="checked" v-if="!validate">
-                <el-checkbox v-model="loginForm.checked" style="color:#fff;">{{LANG['记住密码'] || '记住密码'}}</el-checkbox>
+                <el-checkbox style="color:#fff;" v-model="loginForm.checked">{{LANG['记住密码'] || '记住密码'}}</el-checkbox>
             </el-form-item>
             <el-button type="primary" round class="formSave" @click="doLogin" v-if="!validate" :loading="loadingOne">
                 {{LANG['登 录'] || '登 录'}}
@@ -242,25 +243,6 @@
                         }
                     }
                 }
-//                routes.forEach((val)=>{
-//                    if((obj.path) === val.path && obj.name === val.name){
-//                        let list = obj.action || [];
-//                        val.action = [];
-//                        list.forEach((vOne)=>{
-//                            val.action.push(vOne);
-//                        });
-//                    }else if(val.children && val.children.length > 0 && str === 'two'){
-//                        val.children.forEach((value)=>{
-//                            if((obj.path) === value.path){
-//                                let listTwo = obj.action || [];
-//                                value.action = [];
-//                                listTwo.forEach((vTwo)=>{
-//                                    value.action.push(vTwo);
-//                                })
-//                            }
-//                        })
-//                    }
-//                })
             },
             //返回重登录
             returnLogin() {
@@ -305,13 +287,125 @@
         },
         mounted() {
             this.init();
+            class Circle {
+                //创建对象
+                //以一个圆为对象
+                //设置随机的 x，y坐标，r半径，_mx，_my移动的距离
+                //this.r是创建圆的半径，参数越大半径越大
+                //this._mx,this._my是移动的距离，参数越大移动
+                constructor(x, y) {
+                    this.x = x;
+                    this.y = y;
+                    this.r = Math.random() * 4;
+                    this._mx = Math.random();
+                    this._my = Math.random();
+                }
+
+                //canvas 画圆和画直线
+                //画圆就是正常的用canvas画一个圆
+                //画直线是两个圆连线，为了避免直线过多，给圆圈距离设置了一个值，距离很远的圆圈，就不做连线处理
+                drawCircle(ctx) {
+                    ctx.beginPath();
+                    //arc() 方法使用一个中心点和半径，为一个画布的当前子路径添加一条弧。
+                    ctx.arc(this.x, this.y, this.r, 0, 360)
+                    ctx.closePath();
+                    ctx.fillStyle = 'rgba(255, 255, 255, 0.4)';
+                    ctx.fill();
+                }
+
+                drawLine(ctx, _circle) {
+                    let dx = this.x - _circle.x;
+                    let dy = this.y - _circle.y;
+                    let d = Math.sqrt(dx * dx + dy * dy)
+                    if (d < 140) {
+                        ctx.beginPath();
+                        //开始一条路径，移动到位置 this.x,this.y。创建到达位置 _circle.x,_circle.y 的一条线：
+                        ctx.moveTo(this.x, this.y);   //起始点
+                        ctx.lineTo(_circle.x, _circle.y);   //终点
+                        ctx.closePath();
+                        ctx.strokeStyle = 'rgba(79, 245, 239, 0.2)';
+                        ctx.stroke();
+                    }
+                }
+
+                // 圆圈移动
+                // 圆圈移动的距离必须在屏幕范围内
+                move(w, h) {
+                    this._mx = (this.x < w && this.x > 0) ? this._mx : (-this._mx);
+                    this._my = (this.y < h && this.y > 0) ? this._my : (-this._my);
+                    this.x += this._mx / 2;
+                    this.y += this._my / 2;
+                }
+            }
+
+            //鼠标点画圆闪烁变动
+            class currentCirle extends Circle {
+                constructor(x, y) {
+                    super(x, y)
+                }
+                drawCircle(ctx) {
+                    ctx.beginPath();
+                    //注释内容为鼠标焦点的地方圆圈半径变化
+                    //this.r = (this.r < 14 && this.r > 1) ? this.r + (Math.random() * 2 - 1) : 2;
+                    this.r = 4;
+                    ctx.arc(this.x, this.y, this.r, 0, 360);
+                    ctx.closePath();
+                    //ctx.fillStyle = 'rgba(0,0,0,' + (parseInt(Math.random() * 100) / 100) + ')'
+                    ctx.fillStyle = 'rgba(255, 77, 54, 0.6)'
+                    ctx.fill();
+                }
+            }
+
+            //更新页面用requestAnimationFrame替代setTimeout
+            window.requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
+            let canvas = document.getElementById('canvas');
+            let ctx = canvas.getContext('2d');
+            let w = canvas.width = canvas.offsetWidth;
+            let h = canvas.height = canvas.offsetHeight;
+            let circles = [];
+            let current_circle = new currentCirle(0, 0)
+            let draw = function () {
+                ctx.clearRect(0, 0, w, h);
+                for (let i = 0; i < circles.length; i++) {
+                    circles[i].move(w, h);
+                    circles[i].drawCircle(ctx);
+                    for (let j = i + 1; j < circles.length; j++) {
+                        circles[i].drawLine(ctx, circles[j])
+                    }
+                }
+                if (current_circle.x) {
+                    current_circle.drawCircle(ctx);
+                    for (var k = 1; k < circles.length; k++) {
+                        current_circle.drawLine(ctx, circles[k])
+                    }
+                }
+                requestAnimationFrame(draw)
+            }
+
+            let init = function (num) {
+                for (var i = 0; i < num; i++) {
+                    circles.push(new Circle(Math.random() * w, Math.random() * h));
+                }
+                draw();
+            }
+            window.addEventListener('load', init(100));
+            window.onmousemove = function (e) {
+                e = e || window.event;
+                current_circle.x = e.clientX;
+                current_circle.y = e.clientY;
+            }
+            window.onmouseout = function () {
+                current_circle.x = null;
+                current_circle.y = null;
+
+            }
         },
         beforeDestroy() {
             $(this.$refs.login).remove();
         }
     }
 </script>
-<style>
+<style lang="less">
     #Login {
         min-width: 800px;
         height: 100%;
@@ -319,91 +413,93 @@
         position: absolute;
         top: 0;
         background: #00a7d0;
-        background: -webkit-linear-gradient(left top, rgba(92, 60, 69, 0.8), rgba(27, 48, 84, 0.8)); /* Safari*/
-        background: -moz-linear-gradient(bottom right, rgba(92, 60, 69, 0.8), rgba(27, 48, 84, 0.8)); /* Firefox*/
-        background: linear-gradient(to bottom right, rgba(92, 60, 69, 0.8), rgba(27, 48, 84, 0.8));
-    }
-
-    #Login .longin-box {
-        display: none;
-        position: relative;
-        top: 25%;
-        width: 20%;
-        max-width: 500px;
-        min-width: 300px;
-        margin: 0 auto;
-
-        background-clip: padding-box;
-    }
-
-    #Login .longin-box .el-form-item {
-        width: 80%;
-        margin: 0 auto;
-        margin-top: 20px;
-    }
-
-    #Login .longin-box .el-form-item input {
-        background: rgba(43, 41, 58, 0.5);
-        color: #fff;
-        border: 1px solid rgba(43, 41, 58, 0.7);
-    }
-
-    #Login .longin-box .el-form-item input:focus {
-        background: #F9FAFC;
-        color: #1F2D3D;
-    }
-
-    #Login .longin-box .el-form-item img {
-        vertical-align: middle;
-        border: none;
-    }
-
-    #Login .longin-box button {
-        width: 80%;
-        margin: 0 auto;
-        margin-left: 10%;
-        font-size: 16px;
-    }
-
-    #Login .title {
-        line-height: 60px;
-        color: #fff;
-        font-size: 26px;
-        text-align: center;
-    }
-
-    #Login .wd150 {
-        text-align: center;
-        margin-bottom: 30px;
-    }
-
-    #Login .name h3 {
-        color: #fff;
-        font-size: 24px;
-    }
-
-    #Login .name h3 span {
-        color: #fff;
-        font-size: 18px;
-    }
-
-    /*#Login  #box{margin-left:75px;text-align: center;}*/
-    #Login .wd150 h1 {
-        color: #ffffff;
-    }
-
-    #Login #box img {
-        display: inline;
-    }
-
-    #Login .formreturn {
-        display: block;
-        color: #fff;
-        font-size: 16px;
-        margin-left: 75%;
-    }
-
-    #Login .formreturn:hover {
-        color: #45b1ed;
+        background: url("../../../static/img/bgm.jpg");
+        background-size: 100% 100%;
+        /*background: -webkit-linear-gradient(left top, rgba(92, 60, 69, 0.8), rgba(27, 48, 84, 0.8)); !* Safari*!*/
+        /*background: -moz-linear-gradient(bottom right, rgba(92, 60, 69, 0.8), rgba(27, 48, 84, 0.8)); !* Firefox*!*/
+        /*background: linear-gradient(to bottom right, rgba(92, 60, 69, 0.8), rgba(27, 48, 84, 0.8));*/
+        canvas {
+            display: block;
+            width: 100%;
+            height: 100%;
+            position: absolute
+        }
+        .longin-box {
+            display: none;
+            position: relative;
+            top: 25%;
+            width: 20%;
+            max-width: 500px;
+            min-width: 300px;
+            margin: 0 auto;
+            background-clip: padding-box;
+        }
+        .longin-box .el-form-item {
+            width: 80%;
+            margin: 0 auto;
+            margin-top: 20px;
+            .is-checked {
+                .el-checkbox__inner {
+                    background-color: rgb(84, 174, 168);
+                    border-color: rgb(84, 174, 168);
+                }
+            }
+        }
+        .formSave {
+            background: rgb(84, 174, 168);
+            border: none;
+        }
+        .longin-box .el-form-item input {
+            background: rgba(43, 41, 58, 0.4);
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+        .longin-box .el-form-item input:focus {
+            background: rgba(255,255,255,.8);
+            color: #1F2D3D;
+        }
+        .longin-box .el-form-item img {
+            vertical-align: middle;
+            border: none;
+        }
+        .longin-box button {
+            width: 80%;
+            margin: 0 auto;
+            margin-left: 10%;
+            font-size: 16px;
+        }
+        .title {
+            line-height: 60px;
+            color: #fff;
+            font-size: 26px;
+            text-align: center;
+        }
+        .wd150 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .name h3 {
+            color: #fff;
+            font-size: 24px;
+        }
+        .name h3 span {
+            color: #fff;
+            font-size: 18px;
+        }
+        .wd150 h1 {
+            color: #ffffff;
+        }
+        #box img {
+            display: inline;
+        }
+        .formreturn {
+            display: block;
+            color: #fff;
+            font-size: 16px;
+            margin-left: 75%;
+        }
+        .formreturn:hover {
+            color: #45b1ed;
+        }
     }
 </style>
