@@ -9,7 +9,7 @@
                             <el-col class="radio-block">
                                 <el-col :span="5">
                                     <el-radio label="lebo">
-                                        <span v-text="LANG['LEBO客服系统'] || 'LEBO客服系统'"></span>
+                                        <span v-text="LANG['皇家客服系统'] || '皇家客服系统'"></span>
                                     </el-radio>
                                 </el-col>
                                 <el-col :span="19">

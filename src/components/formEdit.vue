@@ -1386,8 +1386,8 @@
                             }
                         } else if (this.formConfig[i].type === 'dateGroup' || this.formConfig[i].type === 'dateTimeGroup') {
                             if (this.initDate === false) {
-                                let value1 = sessionStorage.sysTime + ' 00:00:00';
-                                let value2 = sessionStorage.sysTime + ' 23:59:59';
+                                let value1 = sessionStorage.sysTime + '00:00:00';
+                                let value2 = sessionStorage.sysTime + '23:59:59';
                                 this.editForm[this.formConfig[i]["prop"][0].prop] = value1;
                                 this.editForm[this.formConfig[i]["prop"][1].prop] = value2;
                             } else {

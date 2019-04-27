@@ -404,7 +404,7 @@
                                 model.limit_max = FORMATMONEY(model.limit_max).toString();
                             }
                             FORMVAL(model, _this.formConfig);
-                            _this.formConfig[0].value = model.level
+                            _this.formConfig[0].value = model.levels
                             _this.formType = "edit";
                             _this.editVisible.state = true;
                             _this.isEdit.state = true;

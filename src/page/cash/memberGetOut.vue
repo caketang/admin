@@ -90,94 +90,104 @@
                         </el-col>
                     </el-row>
                     <el-row :gutter="22">
-                        <el-col :span="3">
+                        <el-col :span="2">
                             <div class="grid-content bg-purple"><span>{{LANG['申请金额'] || '申请金额'}}</span></div>
                         </el-col>
-                        <el-col :span="5">
+                        <el-col :span="6">
                             <div class="menberGetOutContentData">
-                                <input id="getOutMoney_input" :value="editForm.money | filterMoneyIsNull" readonly="readonly">
+                                <input id="getOutMoney_input" class="remove" :value="editForm.money | filterMoneyIsNull" readonly="readonly">
                                 <el-button :plain="true" type="info" icon="document" size="mini" @click="copyGetOutMoney()">复 制
                                 </el-button>
                                 <!--{{editForm.money | filterMoneyIsNull}}-->
                             </div>
                         </el-col>
-                        <el-col :span="3">
+                        <el-col :span="2">
                             <div class="grid-content bg-purple"><span>{{LANG['操作者'] || '操作者'}}</span></div>
                         </el-col>
-                        <el-col :span="5">
-                            <div class="menberGetOutContentData">{{editForm.process_uname}}</div>
+                        <el-col :span="6">
+                            <div class="menberGetOutContentData">{{editForm.process_uname?editForm.process_uname:'暂无数据'}}</div>
                         </el-col>
-                        <el-col :span="3">
+                        <el-col :span="2">
                             <div class="grid-content bg-purple"><span>{{LANG['申请IP'] || '申请IP'}}</span></div>
                         </el-col>
-                        <el-col :span="5">
+                        <el-col :span="6">
                             <div class="menberGetOutContentData">{{editForm.ip}}</div>
                         </el-col>
                     </el-row>
                     <el-row :gutter="22">
-                        <el-col :span="3">
+                        <el-col :span="2">
                             <div class="grid-content bg-purple"><span>{{LANG['取款银行'] || '取款银行'}}</span></div>
                         </el-col>
-                        <el-col :span="5">
+                        <el-col :span="6">
                             <div class="menberGetOutContentData" v-if="editForm.receive_bank_info">{{editForm.receive_bank_info.bank}}</div>
                         </el-col>
-                        <el-col :span="3">
+                        <el-col :span="2">
                             <div class="grid-content bg-purple"><span>{{LANG['户名'] || '户名'}}</span></div>
                         </el-col>
-                        <el-col :span="5">
-                            <div class="menberGetOutContentData" v-if="editForm.receive_bank_info">{{editForm.receive_bank_info.accountname}}</div>
+                        <el-col :span="6">
+                            <div v-if="editForm.receive_bank_info">
+                                <input id="getOutBankUser_input" class="remove" :value="editForm.receive_bank_info.accountname" readonly="readonly">
+                                <el-button :plain="true" type="info" icon="document" size="mini" @click="copyGetOutBankUser()">复 制
+                                </el-button>
+                            </div>
+                            <!--<div class="menberGetOutContentData" v-if="editForm.receive_bank_info">{{editForm.receive_bank_info.accountname}}</div>-->
                         </el-col>
-                        <el-col :span="3">
+                        <el-col :span="2">
                             <div class="grid-content bg-purple"><span>{{LANG['支行'] || '支行'}}</span></div>
                         </el-col>
-                        <el-col :span="5">
+                        <el-col :span="6">
                             <div class="menberGetOutContentData" v-if="editForm.receive_bank_info">{{editForm.receive_bank_info.address}}</div>
                         </el-col>
                     </el-row>
                     <el-row :gutter="22">
-                        <el-col :span="3">
+                        <el-col :span="2">
                             <div class="grid-content bg-purple"><span>{{LANG['银行帐号'] || '银行帐号'}}</span></div>
                         </el-col>
-                        <el-col :span="5">
-                            <div class="menberGetOutContentData" v-if="editForm.receive_bank_info">{{editForm.receive_bank_info.card}}</div>
+                        <el-col :span="6">
+                            <div v-if="editForm.receive_bank_info">
+                                <input id="getOutBankNumber_input" class="remove" :value="editForm.receive_bank_info.card" readonly="readonly">
+                                <el-button :plain="true" type="info" icon="document" size="mini" @click="copyGetOutBankNumber()">复 制
+                                </el-button>
+                            </div>
+                            <!--<div class="menberGetOutContentData" v-if="editForm.receive_bank_info">{{editForm.receive_bank_info.card}}</div>-->
                         </el-col>
-                        <el-col :span="3">
+                        <el-col :span="2">
                             <div class="grid-content bg-purple"><span>{{LANG['申请时间'] || '申请时间'}}</span></div>
                         </el-col>
-                        <el-col :span="5">
+                        <el-col :span="6">
                             <div class="menberGetOutContentData">{{editForm.created}}</div>
                         </el-col>
-                        <el-col :span="3">
-                            <div class="grid-content bg-purple"><span>{{LANG['最后确认时间'] || '最后确认时间'}}</span></div>
+                        <el-col :span="2">
+                            <div class="grid-content bg-purple"><span>{{LANG['确认时间'] || '确认时间'}}</span></div>
                         </el-col>
-                        <el-col :span="5">
+                        <el-col :span="6">
                             <div class="menberGetOutContentData">{{editForm.confirm_time}}</div>
                         </el-col>
                     </el-row>
                     <!--新增字段-->
                     <el-row :gutter="22">
-                        <el-col :span="3">
+                        <el-col :span="2">
                             <div class="grid-content bg-purple"><span>{{LANG['总入款'] || '总入款'}}</span></div>
                         </el-col>
-                        <el-col :span="5">
+                        <el-col :span="6">
                             <div  class="menberGetOutContentData">
                                 <span>{{editForm.deposit_money}}</span> |
                                 <span>{{editForm.deposit_times}}笔</span>
                             </div>
                         </el-col>
-                        <el-col :span="3">
+                        <el-col :span="2">
                             <div class="grid-content bg-purple"><span>{{LANG['总出款'] || '总出款'}}</span></div>
                         </el-col>
-                        <el-col :span="5">
+                        <el-col :span="6">
                             <div  class="menberGetOutContentData">
                                 <span>{{editForm.withdraw_money}}</span> |
                                 <span>{{editForm.withdraw_times}}笔</span>
                             </div>
                         </el-col>
-                        <el-col :span="3">
+                        <el-col :span="2">
                             <div class="grid-content bg-purple"><span>{{LANG['盈利情况'] || '盈利情况'}}</span></div>
                         </el-col>
-                        <el-col :span="5">
+                        <el-col :span="6">
                             <div  class="menberGetOutContentData">{{editForm.lose_earn}}</div>
                         </el-col>
                     </el-row>
@@ -569,10 +579,22 @@
             },
             //复制出款金额
             copyGetOutMoney(){
-                var input = document.getElementById("getOutMoney_input");
+                let input = document.getElementById("getOutMoney_input");
                 input.select(); // 选中文本
                 document.execCommand("copy"); // 执行浏览器复制命令
                 this.$message.success(LANG['复制出款金额成功'] || '复制出款金额成功');
+            },
+            copyGetOutBankNumber(){
+                let input = document.getElementById("getOutBankNumber_input");
+                input.select(); // 选中文本
+                document.execCommand("copy"); // 执行浏览器复制命令
+                this.$message.success(LANG['复制银行帐号成功'] || '复制银行帐号成功');
+            },
+            copyGetOutBankUser(){
+                let input = document.getElementById("getOutBankUser_input");
+                input.select(); // 选中文本
+                document.execCommand("copy"); // 执行浏览器复制命令
+                this.$message.success(LANG['复制户名成功'] || '复制户名成功');
             },
             //修改备注内容
 //            editMemoSubmit() {
@@ -1109,37 +1131,6 @@
                             this.$message.error(e.responseText.msg);
                         }
                     })
-                    //					this.$.autoAjax('get',URL.api + '/dev/download/sign' + '?nonce=' + url, '', {
-                    //						ok: (res) => {
-                    //							if (res.data) {
-                    //								_this.outUrl = url + _this.addSearch(_this.searchObj) + "&nonce=" + res.data.nonce + "&signature=" + res.data.signature + "&time=" + res.data.time + "&uuid=" + res.data.uuid;
-                    //								_this.dialogVisible = true;
-                    //							} else if (res.msg) {
-                    //								_this.$message.error(res.msg);
-                    //							} else {
-                    //								_this.$message.error(LANG['数据导出失败，请稍后重试'] || '数据导出失败，请稍后重试');
-                    //							}
-                    //						},
-                    //						p: () => {
-                    //						},
-                    //						error: e => {
-                    //							console.log(e)
-                    //						}
-                    //					})
-                    // this.$http.get(URL.api + '/dev/download/sign' + '?nonce=' + url, URLCONFIG).then((res) => {
-                    //     // 执行导出
-                    //     if (res.data.data) {
-                    //         _this.outUrl = url + _this.addSearch(_this.searchObj) + "&nonce=" + res.data.data.nonce + "&signature=" + res.data.data.signature + "&time=" + res.data.data.time + "&uuid=" + res.data.data.uuid;
-                    //         _this.dialogVisible = true;
-                    //     } else if (res.data.msg) {
-                    //         _this.$message.error(res.data.msg);
-                    //     } else {
-                    //         _this.$message.error(LANG['数据导出失败，请稍后重试'] || '数据导出失败，请稍后重试');
-                    //     }
-                    // })
-                    .catch((e) => {
-//						console.log(e);
-                    });
                 } else {
                     this.$message.error(LANG['必需选择时间才能导出'] || '必需选择时间才能导出');
                     return;
@@ -1232,9 +1223,14 @@
                     color:#fff;
                     font-size:16px;
                 }
-                #getOutMoney_input{
+                .remove{
+                    height: 36px;
+                    line-height: 36px;
                     border:none;
-                    outline:none
+                    outline:none;
+                    width:auto;
+                    font-size:14px;
+                    color:rgb(75,87,104);
                 }
             }
             .bg-purple,.menberGetOutContentData {

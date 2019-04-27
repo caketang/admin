@@ -288,10 +288,10 @@
                             query[k] = this.$route.query[k];
                         }
                     }
-                    setTimeout(()=>{
-                        this.updateKeys = 'time_begin,' + (query.day_begin || '') + ',time_end,' + (query.day_end || '') + ',user_type,' + (query.type || '') + ',username,' + (query.member_name || '');
-                        this.tableUrl = this.baseUrl + this.addSearch(query);
-                    },500);
+//                    setTimeout(()=>{
+//                        this.updateKeys = 'time_begin,' + (query.day_begin || '') + ',time_end,' + (query.day_end || '') + ',user_type,' + (query.type || '') + ',username,' + (query.member_name || '');
+//                        this.tableUrl = this.baseUrl + this.addSearch(query);
+//                    },500);
                 } else {
                     this.tableUrl = this.baseUrl;
                 }

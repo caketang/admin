@@ -354,7 +354,7 @@ a {
 #lotterNoteSet #tableSingle #tables,
 #memberManagement #tableSingle #tables {
     /*min-width: 1920px;*/
-    overflow-x: auto;
+    /*overflow-x: auto;*/
     white-space: nowrap;
 }
 
