@@ -30,10 +30,15 @@
                 formVisible : {
                     state : false
                 },
-                searchConfig : [{"prop":"created_uname","value":"","type":"text","label":"操作者"},
+                searchConfig : [
+                    {"prop":"created_uname","value":"","type":"text","label":"操作者"},
                     {"prop":"user_name","value":"","type":"text","label":"被操作者"},
                     {"prop":"ip","value":"","label":"操作IP","type":"text",},
-                    {"prop":"op_type","value":"","label":"操作类型","type":"select","list":[ 
+                    {"type":"dateGroup","label":"起止时间","prop":[
+                        {"prop":"date_from","value":"","label":"开始时间"},
+                        {"prop":"date_to","value":"","label":"结束时间"}
+                    ]},
+                    {"prop":"op_type","value":"","label":"操作类型","type":"select","list":[
                         {"label": "新增", "value": "add"},
                         {"label": "删除", "value": "delete"},
                         {"label": "修改", "value": "update"},
@@ -44,11 +49,7 @@
                     {"prop":"result","value":"","label":"结果","type":"select","list":[
                         {"label": "成功", "value": "success"},
                         {"label": "失败", "value": "fail"}
-                    ]},
-                    {"type":"dateGroup","label":"起止时间","prop":[
-                        {"prop":"date_from","value":"","label":"开始时间"},
-                        {"prop":"date_to","value":"","label":"结束时间"}
-                    ]},
+                    ]}
                 ],
                 //数据接口地址
                 tableUrl : "",
@@ -68,7 +69,7 @@
                 this.baseUrl=URL.api + ROUTES.GET.system.log.admin.type;
             },
             doHandle(item){
-               
+
                 switch(item.fn)
                 {
                     case "openMember":
@@ -79,7 +80,7 @@
             openMember(obj)
             {
                 this.$router.push({path:'/memberManagement', query:{name:obj.user_name}})
-               
+
             },
             //执行查询
             doQuery(obj){

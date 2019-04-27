@@ -6,17 +6,17 @@
         </el-col>
         <el-col>
             <el-row v-if="showdrop" class="date_and_time">
-                <el-col class="date_container">
-                    <el-col :span="12" class="date_select">
+                <!--<el-col class="date_container">-->
+                    <el-col :span="13" class="date_select">
                         <mydatepicker class="date" v-model="myval" @get-date="getDateval" :datekey="datekey" :showview="showview"></mydatepicker>
                     </el-col>
-                    <el-col :span="11" class="ml10" v-show="showTime">
+                    <el-col :span="11" v-show="showTime">
                         <timepicker format="HH:mm:ss" :value="times" @change="changetimes"></timepicker>
                     </el-col>
                     <el-col v-if="showdrop" class="dateEnter">
                         <el-button @click.stop="toggleDropdown">{{LANG['确定'] || ''}}</el-button>
                     </el-col>
-                </el-col>
+                <!--</el-col>-->
             </el-row>
         </el-col>
     </el-row>
@@ -24,7 +24,6 @@
 <script>
     import mydatepicker from './myDatePicker.vue'
     import timepicker from './timePicker.vue'
-
     export default {
         data() {
             return {
@@ -179,16 +178,18 @@
 <style lang="less">
     #dateTimePicker{
         position:relative;
-        .dateInput{position:relative;width:175px;}
+        .dateInput{position:relative;min-width:180px;}
         .date_and_time{
             position: absolute;top:36px;border:1px solid #cccccc; width:260px;z-index:888;background-color:#fff;
             .date_select{
+                border-right:1px solid #DCDFE6;
+                height: 36px;
                 .vdp-datepicker__calendar{margin-left: -1px;}
                 .el-icon-circle-close{top:3px;}
-                .el-input__inner{margin-left: 6px;}
+                /*.el-input__inner{margin-left: 4px;}*/
             }
         }
         .date_container {position: relative;}
-        .dateEnter{position: absolute;right:-102%;z-index:9}
+        .dateEnter{position: absolute;right:-101%;z-index:9}
     }
 </style>

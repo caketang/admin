@@ -6,15 +6,15 @@
         <div class="time-picker-overlay" v-if="showDropdown" @click.stop="toggleDropdown"></div>
         <div class="dropdown" v-show="showDropdown">
           <div class="select-list">
-            <ul class="hours">
+            <ul class="hours removeScroll">
               <li class="hint" v-text="hourType" ></li>
               <li v-for="hr in hours" v-text="hr" :class="{active: hour === hr}" @click.stop="select('hour', hr)"></li>
             </ul>
-            <ul class="minutes">
+            <ul class="minutes removeScroll">
               <li class="hint" v-text="minuteType"></li>
               <li v-for="m in minutes" v-text="m" :class="{active: minute === m}" @click.stop="select('minute', m)"></li>
             </ul>
-            <ul class="seconds" v-if="secondType">
+            <ul class="seconds removeScroll" v-if="secondType">
               <li class="hint" v-text="secondType"></li>
               <li v-for="s in seconds" v-text="s" :class="{active: second === s}" @click.stop="select('second', s)"></li>
             </ul>
@@ -357,9 +357,13 @@
     .time-picker {
         display: inline-block;
         position: relative;
-        width: 8em;
         * {
             box-sizing: border-box;
+        }
+        .el-input__inner{
+            height: 36px !important;
+            line-height: 36px;
+            border:none;
         }
         .time-picker-overlay {
             z-index: 2;
@@ -369,7 +373,9 @@
             right: 0;
             bottom: 0;
         }
-
+        .removeScroll::-webkit-scrollbar {
+            display: none;
+        }
         .dropdown {
             position: absolute;
             z-index: 800;
@@ -411,12 +417,6 @@
                     color: #161616;
                     cursor: pointer;
                 }
-                /*li.active,*/
-                /*li.active:hover {*/
-                    /*background: #41B883;*/
-                    /*color: #fff;*/
-                /*}*/
-
             }
             .hint {
                 color: #a5a5a5;

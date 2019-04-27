@@ -284,19 +284,21 @@
                               :disabled="(item.disabled?true:false)"></el-input>
                 </el-form-item>
                 <el-form-item :label="LANG[item.label] || item.label" v-if="item.type == 'dateGroup'">
-                    <el-col :span="11">
-                        <el-form-item :prop="item.prop[0].prop">
-                            <datetimepicker v-model="editForm[item.prop[0].prop]" :datekey="item.prop[0].prop"
-                                            :isEnd="false" :showTime="item.showTime"></datetimepicker>
-                        </el-form-item>
-                    </el-col>
-                    <el-col class="line textcenter" :span="2">-</el-col>
-                    <el-col :span="11">
-                        <el-form-item :prop="item.prop[1].prop">
-                            <datetimepicker v-model="editForm[item.prop[1].prop]" :datekey="item.prop[1].prop"
-                                            :isEnd="true" :showTime="item.showTime"></datetimepicker>
-                        </el-form-item>
-                    </el-col>
+                    <el-row :gutter="6">
+                        <el-col :span="12">
+                            <el-form-item :prop="item.prop[0].prop">
+                                <datetimepicker v-model="editForm[item.prop[0].prop]" :datekey="item.prop[0].prop"
+                                                :isEnd="false" :showTime="item.showTime"></datetimepicker>
+                            </el-form-item>
+                        </el-col>
+                        <!--<el-col class="line textcenter" :span="2">到</el-col>-->
+                        <el-col :span="12">
+                            <el-form-item :prop="item.prop[1].prop">
+                                <datetimepicker v-model="editForm[item.prop[1].prop]" :datekey="item.prop[1].prop"
+                                                :isEnd="true" :showTime="item.showTime"></datetimepicker>
+                            </el-form-item>
+                        </el-col>
+                    </el-row>
                 </el-form-item>
                 <el-form-item :label="LANG[item.label] || item.label"
                               v-if="(item.type == 'dateTimeGroup') && (item.ifKey ? (editForm[item.ifKey] == item.ifVal) :true)"
@@ -1265,7 +1267,6 @@
             //保存FROM
             saveForm(str) {
                 this.$refs.editForm.validate((valid) => {
-                    console.log(valid)
                     if (valid) {
                         let statelist = {};
                         if (this.dateKey.length > 0) {
@@ -1371,6 +1372,7 @@
                 for (let k in isIndeterminate) {
                     isIndeterminate[k] = true;
                 }
+                //search 重置
                 if (str === "ok") {
                     FORMVAL([], this.formConfig);
                     for (let i in this.formConfig) {
@@ -1386,10 +1388,9 @@
                             }
                         } else if (this.formConfig[i].type === 'dateGroup' || this.formConfig[i].type === 'dateTimeGroup') {
                             if (this.initDate === false) {
-                                let value1 = sessionStorage.sysTime + '00:00:00';
-                                let value2 = sessionStorage.sysTime + '23:59:59';
-                                this.editForm[this.formConfig[i]["prop"][0].prop] = value1;
-                                this.editForm[this.formConfig[i]["prop"][1].prop] = value2;
+                                let value1 = sessionStorage.sysTime + ' 00:00:00',value2 = sessionStorage.sysTime + ' 23:59:59';
+                                this.editForm[this.formConfig[i]["prop"][0].prop] = value1
+                                this.editForm[this.formConfig[i]["prop"][1].prop] = value2
                             } else {
                                 this.editForm[this.formConfig[i]["prop"][0].prop] = this.formConfig[i]["prop"][0].value;
                                 this.editForm[this.formConfig[i]["prop"][1].prop] = this.formConfig[i]["prop"][1].value;

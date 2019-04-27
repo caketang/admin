@@ -208,7 +208,7 @@ a {
 
 /*定制dataInput的长度*/
 .intDataW {
-    width: 140px !important;
+    width: 100% !important;
 }
 
 /*table样式*/
@@ -296,7 +296,9 @@ a {
     /*max-height:600px;*/
     /*overflow-y:auto;*/
 }
-
+.el-dialog__body .edui-default .edui-box{
+    line-height:20px;
+}
 /*按钮选中公用样式*/
 .el-button--primary.btn_active {
     color: #20A0FF;
@@ -351,19 +353,18 @@ a {
 }
 
 /*table 滚动条*/
-#lotterNoteSet #tableSingle #tables,
-#memberManagement #tableSingle #tables {
-    /*min-width: 1920px;*/
+/*#lotterNoteSet #tableSingle #tables,*/
+/*#memberManagement #tableSingle #tables {*/
+    /*!*min-width: 1920px;*!*/
     /*overflow-x: auto;*/
-    white-space: nowrap;
-}
+    /*white-space: nowrap;*/
+/*}*/
 
 #lotterNoteSet #tableSingle #tables table,
 #memberManagement #tableSingle #tables table {
     overflow-x: auto;
     white-space: nowrap;
 }
-
 /*清除浮动*/
 .clearfix:after {
     content: " ";
@@ -371,12 +372,6 @@ a {
     clear: both;
     height: 0;
 }
-
-/*form的层级关系*/
-/*.el-form-item__content{*/
-/*z-index:9;*/
-
-/*}*/
 /*用于form搜索块的 新增按钮的右边距*/
 .addBut {
     margin-right: 2px;
@@ -385,25 +380,20 @@ a {
 .bg-purple-dark {
     background: #99a9bf;
 }
-
 .bg-purple {
     background: #d3dce6;
 }
-
 .bg-purple-light {
     background: #e5e9f2;
 }
-
 .grid-content {
     border-radius: 4px;
     min-height: 36px;
 }
-
 .row-bg {
     padding: 10px 0;
     background-color: #f9fafc;
 }
-
 /*注释文字用的专供样式*/
 /*红色提示*/
 .help_red {
@@ -411,14 +401,12 @@ a {
     font-size: 12px;
     height: 12px;
 }
-
 /*灰色提示*/
 .help_gray {
     color: #99A9BF;
     font-size: 12px;
     height: 12px;
 }
-
 /*xiaochufuwenbende cenji*/
 #markdownEdit .v-note-wrapper {
     z-index: 1 !important;;

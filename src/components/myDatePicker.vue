@@ -1,5 +1,5 @@
 <template>
-    <div class="vdp-datepicker" style="width:150px;" :class="[wrapperClass, isRtl ? 'rtl' : '']">
+    <div class="vdp-datepicker" :class="[wrapperClass, isRtl ? 'rtl' : '']">
         <div :class="{'input-group' : bootstrapStyling}">
             <!-- Calendar Button -->
             <span class="vdp-datepicker__calendar-button" :class="{'input-group-addon' : bootstrapStyling}"
@@ -59,7 +59,6 @@
                        @click.stop="selectDate(day)">{{ day.date }}</span>
             </div>
         </div>
-
         <!-- Month View -->
         <template v-if="!dayViewOnly">
             <div :class="[calendarClass, 'vdp-datepicker__calendar']" v-show="showMonthView"
@@ -821,7 +820,9 @@
         text-align left
         *
             box-sizing border-box
-
+        .el-input__inner
+            line-height 30px
+            border none
     .vdp-datepicker__calendar
         position absolute
         z-index 799
@@ -881,7 +882,7 @@
             height 30px
             line-height 30px
             text-align center
-            font-size 80%
+            font-size 100%
             vertical-align middle
             &:not(.blank):not(.disabled).day
             &:not(.blank):not(.disabled).month
@@ -890,6 +891,9 @@
             &.selected
                 /*&:hover*/
                 /*background #8492A6*/
+                /*font-size 40px*/
+                -webkit-text-stroke 1px
+                -webkit-text-fill-color transparent
                 &.highlighted
                     background #4bd
             &.highlighted
