@@ -814,7 +814,12 @@
         },
         created() {
             this.init();
-            console.log('%c皇家科技团队','text-shadow:5px 5px 5px #39bc30;font-size:50px')
+            let arr =['','皇','家','科','技','团','队'];
+            for(var x = 1; x<arr.length;x++){
+                arr[0]+= '%c'+arr[x];
+                arr[x]='color:#'+Math.random().toFixed(3)*1000+';font-size:50px;text-shadow:5px 5px 5px #DCDFE6;'
+            }
+            console.log.apply(console,arr)
         },
         directives: {
             settingWrapHeight: {
