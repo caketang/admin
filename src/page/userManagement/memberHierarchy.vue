@@ -637,7 +637,7 @@
             },
             //会员等级设定
             doSet(row) {
-                this.setName = row.memo;
+                this.setName = row.level;
                 let _this = this;
                 let editForm = this.editForm;
                 this.loading = true;
@@ -683,25 +683,25 @@
                 return money === 0 ? 0 : (money * 100);
             },
             //保存会员层级设定
-            saveSet() {
+            saveSet(setlevel) {
                 let _this = this;
                 let query = {
-                    "level_id": this.editForm.level_id,
-                    "offline_min_in": this.MultiplyMoney(this.editForm.offline_min_in),
-                    "offline_max_in": this.MultiplyMoney(this.editForm.offline_max_in),
-                    "online_glide_multi": Number(this.editForm.online_glide_multi),
-                    "offline_glide_multi": Number(this.editForm.offline_glide_multi),
+//                    "level_id": setlevel,
+//                    "offline_min_in": this.MultiplyMoney(this.editForm.offline_min_in),
+//                    "offline_max_in": this.MultiplyMoney(this.editForm.offline_max_in),
+//                    "online_glide_multi": Number(this.editForm.online_glide_multi),
+//                    "offline_glide_multi": Number(this.editForm.offline_glide_multi),
 //                    "wechat_in_fee": this.editForm.wechat_in_fee,
 //                    "alipay_in_fee": this.editForm.alipay_in_fee,
-                    "each_min_out": this.MultiplyMoney(this.editForm.each_min_out),
-                    "each_max_out": this.MultiplyMoney(this.editForm.each_max_out),
+                    "each_min_out": this.editForm.each_min_out,
+                    "each_max_out": this.editForm.each_max_out,
                     "day_out_times": this.editForm.day_out_times,
                     "day_out_times_nofee": this.editForm.day_out_times_nofee,
-                    "withdraw_expenese": Number(this.editForm.withdraw_expenese),
-                    "max_expenese": this.MultiplyMoney(this.editForm.max_expenese),
-                    "withdraw_fee": this.MultiplyMoney(this.editForm.withdraw_fee),
-                    "day_withdraw_max": this.MultiplyMoney(this.editForm.day_withdraw_max),
-                    "nocheck": this.MultiplyMoney(this.editForm.nocheck),
+//                    "withdraw_expenese": Number(this.editForm.withdraw_expenese),
+//                    "max_expenese": this.MultiplyMoney(this.editForm.max_expenese),
+                    "withdraw_fee": this.editForm.withdraw_fee,
+//                    "day_withdraw_max": this.MultiplyMoney(this.editForm.day_withdraw_max),
+//                    "nocheck": this.MultiplyMoney(this.editForm.nocheck),
                     //"onlines": {}
                 }
 //                let temp = this.editForm.onlines;
@@ -713,7 +713,7 @@
 //                }
 //                query.onlines = JSON.stringify(query.onlines);
                 this.loading = true;
-                this.$.autoAjax('put', URL.api + ROUTES.PUT.user.level.set + '/' + this.editForm.level_id, query, {
+                this.$.autoAjax('put', URL.api + ROUTES.PUT.user.level.set + '/' + setlevel, query, {
                     ok: (res) => {
                         if (res.state == 0 && res.data) {
                             this.$message.success(this.LANG['恭喜您，会员层级设置成功！'] || '恭喜您，会员层级设置成功！');

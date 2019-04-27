@@ -3,7 +3,7 @@
         <!--此处需要要改-->
         <el-col :span="24">
             <el-col :span="20" style="margin-bottom: 5px;">
-                <h1>{{setName}}{{LANG['等级设定'] || '等级设定'}}</h1>
+                <h1>{{setName?'VIP'+setName:'未获取到'}}{{LANG['等级设定'] || '等级设定'}}</h1>
                 <span class="help_red">{{LANG['注:每日出款次数0为不设上限'] || '注:每日出款次数0为不设上限'}}</span>
             </el-col>
         </el-col>
@@ -472,7 +472,7 @@
             saveForm(){
                 this.$refs.editForm.validate((valid) => {
                     if (valid) {
-                        this.$emit('get-form');
+                        this.$emit('get-form',this.setName);
                     }
                 });
             },
