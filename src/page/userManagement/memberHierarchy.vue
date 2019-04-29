@@ -638,18 +638,17 @@
             //会员等级设定
             doSet(row) {
                 this.setName = row.level;
-                let _this = this;
-                let editForm = this.editForm;
+                let _this = this,editForm = this.editForm;
                 this.loading = true;
                 this.$.autoAjax('get', URL.api + ROUTES.GET.user.level.set.$(parseInt(row.level)), '', {
                     ok: (res) => {
                         if (res.state == 0 && res.data) {
-                            let obj = res.data[0] || [];
-                            for (let i in obj) {
-                                if (i != 'onlines') {
-                                    editForm[i] = obj[i].toString();
-                                }
-                            }
+                            let obj = res.data || [];
+//                            for (let i in obj) {
+//                                if (i != 'onlines') {
+//                                    editForm[i] = obj[i].toString();
+//                                }
+//                            }
 //                            let tempObj = JSON.parse(obj['onlines']);
 //                            for (let k in tempObj) {
 //                                editForm['onlines'][k].min = FORMATMONEY(tempObj[k].min).toString() || '';
@@ -658,13 +657,13 @@
 //                            editForm['online_max_in'] = FORMATMONEY(editForm['online_max_in']).toString();
 //                            editForm['offline_max_in'] = FORMATMONEY(editForm['offline_max_in']).toString();
 //                            editForm['offline_min_in'] = FORMATMONEY(editForm['offline_min_in']).toString();
-                            editForm['each_min_out'] = editForm['each_min_out'].toString();
-                            editForm['each_max_out'] = editForm['each_max_out'].toString();
-                            editForm['day_out_times'] = editForm['day_out_times'].toString();
-                            editForm['day_out_times_nofee'] = editForm['day_out_times_nofee'].toString();
+                            editForm['each_min_out'] = obj['each_min_out'].toString();
+                            editForm['each_max_out'] = obj['each_max_out'].toString();
+                            editForm['day_out_times'] = obj['day_out_times'].toString();
+                            editForm['day_out_times_nofee'] = obj['day_out_times_nofee'].toString();
 //                            editForm['max_expenese'] = FORMATMONEY(editForm['max_expenese']).toString();
 //                            editForm['nocheck'] = FORMATMONEY(editForm['nocheck']).toString();
-                            editForm['withdraw_fee'] = editForm['withdraw_fee'].toString();
+                            editForm['withdraw_fee'] = obj['withdraw_fee'].toString();
 //                            editForm['day_withdraw_max'] = FORMATMONEY(editForm['day_withdraw_max']).toString();
 //                            editForm['online_glide_multi'] = editForm['online_glide_multi'];
                             this.levelSet = true;
