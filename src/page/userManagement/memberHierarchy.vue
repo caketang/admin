@@ -655,16 +655,18 @@
 //                                editForm['onlines'][k].min = FORMATMONEY(tempObj[k].min).toString() || '';
 //                                editForm['onlines'][k].max = FORMATMONEY(tempObj[k].max).toString() || '';
 //                            }
-                            editForm['online_max_in'] = FORMATMONEY(editForm['online_max_in']).toString();
-                            editForm['offline_max_in'] = FORMATMONEY(editForm['offline_max_in']).toString();
-                            editForm['offline_min_in'] = FORMATMONEY(editForm['offline_min_in']).toString();
-                            editForm['each_min_out'] = FORMATMONEY(editForm['each_min_out']).toString();
-                            editForm['each_max_out'] = FORMATMONEY(editForm['each_max_out']).toString();
-                            editForm['max_expenese'] = FORMATMONEY(editForm['max_expenese']).toString();
-                            editForm['nocheck'] = FORMATMONEY(editForm['nocheck']).toString();
-                            editForm['withdraw_fee'] = FORMATMONEY(editForm['withdraw_fee']).toString();
-                            editForm['day_withdraw_max'] = FORMATMONEY(editForm['day_withdraw_max']).toString();
-                            editForm['online_glide_multi'] = editForm['online_glide_multi'];
+//                            editForm['online_max_in'] = FORMATMONEY(editForm['online_max_in']).toString();
+//                            editForm['offline_max_in'] = FORMATMONEY(editForm['offline_max_in']).toString();
+//                            editForm['offline_min_in'] = FORMATMONEY(editForm['offline_min_in']).toString();
+                            editForm['each_min_out'] = editForm['each_min_out'].toString();
+                            editForm['each_max_out'] = editForm['each_max_out'].toString();
+                            editForm['day_out_times'] = editForm['day_out_times'].toString();
+                            editForm['day_out_times_nofee'] = editForm['day_out_times_nofee'].toString();
+//                            editForm['max_expenese'] = FORMATMONEY(editForm['max_expenese']).toString();
+//                            editForm['nocheck'] = FORMATMONEY(editForm['nocheck']).toString();
+                            editForm['withdraw_fee'] = editForm['withdraw_fee'].toString();
+//                            editForm['day_withdraw_max'] = FORMATMONEY(editForm['day_withdraw_max']).toString();
+//                            editForm['online_glide_multi'] = editForm['online_glide_multi'];
                             this.levelSet = true;
                         } else {
                             _this.$message.error(_this.LANG['会员等级获取资料失败，请稍候重试！'] || '会员等级获取资料失败，请稍候重试！');
