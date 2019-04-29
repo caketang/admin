@@ -13,8 +13,8 @@
                             </el-form-item>
                         </el-col>
                         <el-col :span="12" class="item">
-                            <el-form-item :label="LANG['ID'] || 'ID'">
-                                <span>{{baseFrom['id']}}</span>
+                            <el-form-item :label="LANG['ID/昵称'] || 'ID/昵称'">
+                                <span class="mr20">{{baseFrom['id']}}</span>|<span class="ml20">{{baseFrom['nickname']}}</span>
                             </el-form-item>
                         </el-col>
                         <el-col :span="12" class="item">
@@ -105,7 +105,7 @@
                         </el-col>
                         <el-col :span="12" class="item">
                             <el-form-item :label="LANG['QQ'] || 'QQ'" :prop="permissions['qq']?'':'qq'">
-                                <el-input v-model="baseFrom['qq']" :disabled="permissions['qq']"></el-input>
+                                <el-input v-model="baseFrom['qq']" :disabled="permissions['qq']" type="number"></el-input>
                             </el-form-item>
                         </el-col>
                         <el-col :span="12" class="item">
