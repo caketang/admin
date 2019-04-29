@@ -205,8 +205,7 @@
                         "allBtnShow": true,
                         "type": "checkGroup",
                         "list": [],
-                        "Arr": [],
-
+                        "Arr": ARRAYS.LEVELSLIST,
                     },
                     {
                         "prop": "status", "value": "", "label": "交易状态", "type": "select",
@@ -330,24 +329,10 @@
                 }
                 _this.exportForm = {date_from:sessionStorage.sysTime + " 00:00:00",date_to:sessionStorage.sysTime + " 23:59:59",signature:1}
                 // 获取层级
-                let levelUrl = URL.api + ROUTES.GET.user.level.list;
-				this.$.autoAjax('get',levelUrl, '', {
-					ok: (res) => {
-						let model = res.data;
-						for (let i in model) {
-							_this.searchConfig[4].list.push("VIP"+model[i].level);
-							_this.searchConfig[4].Arr.push({
-								"label": "VIP"+model[i].level,
-								"value": model[i].level
-							})
-						}
-					},
-					p: () => {
-					},
-					error: e => {
-						console.log(e)
-					}
-				})
+                let model = global.ARRAYS.LEVELSLIST
+                for (let k in model) {
+                    _this.searchConfig[4].list.push(model[k].label);
+                }
                 //获取银行列表
                 let acountsUrl = URL.api + ROUTES.GET.cash.bank.acounts + '?page=1&page_size=10';
                 _this.searchConfig[6].list.splice(0, _this.searchConfig[6].list.length);
@@ -355,7 +340,6 @@
                     "label": LANG['全部'] || '全部',
                     "value": ''
                 });
-
 				this.$.autoAjax('get',acountsUrl, '', {
 					ok: (res) => {
 						let model = res.data;
