@@ -842,7 +842,7 @@
         }
     };
 </script>
-<style>
+<style lang="less">
     .pcddMain .pd10 {
         padding: 10px;
     }
@@ -993,7 +993,9 @@
         padding: 55px 8px 0 8px;
         /*min-width: 1130px;*/
     }
-
+    .el-date-table td .today:hover{
+        color:#fff;
+    }
     .pcddMain .main table .contRight .navTitle {
         border-bottom: 1px solid #d3d3d3;
         padding-bottom: 2px;

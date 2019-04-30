@@ -89,7 +89,7 @@
                             </div>
                         </el-col>
                     </el-row>
-                    <el-row :gutter="22">
+                    <el-row :gutter="22" class="hover_row">
                         <el-col :span="2">
                             <div class="grid-content bg-purple"><span>{{LANG['申请金额'] || '申请金额'}}</span></div>
                         </el-col>
@@ -105,7 +105,10 @@
                             <div class="grid-content bg-purple"><span>{{LANG['操作者'] || '操作者'}}</span></div>
                         </el-col>
                         <el-col :span="6">
-                            <div class="menberGetOutContentData">{{editForm.process_uname?editForm.process_uname:'暂无数据'}}</div>
+                            <div class="menberGetOutContentData">
+                                <span v-if="editForm.process_uname">{{editForm.process_uname}}</span>
+                                <span v-else class="help_gray">暂无数据</span>
+                            </div>
                         </el-col>
                         <el-col :span="2">
                             <div class="grid-content bg-purple"><span>{{LANG['申请IP'] || '申请IP'}}</span></div>
@@ -114,13 +117,7 @@
                             <div class="menberGetOutContentData">{{editForm.ip}}</div>
                         </el-col>
                     </el-row>
-                    <el-row :gutter="22">
-                        <el-col :span="2">
-                            <div class="grid-content bg-purple"><span>{{LANG['取款银行'] || '取款银行'}}</span></div>
-                        </el-col>
-                        <el-col :span="6">
-                            <div class="menberGetOutContentData" v-if="editForm.receive_bank_info">{{editForm.receive_bank_info.bank}}</div>
-                        </el-col>
+                    <el-row :gutter="22" class="hover_row">
                         <el-col :span="2">
                             <div class="grid-content bg-purple"><span>{{LANG['户名'] || '户名'}}</span></div>
                         </el-col>
@@ -130,7 +127,12 @@
                                 <el-button :plain="true" type="info" icon="document" size="mini" @click="copyGetOutBankUser()">复 制
                                 </el-button>
                             </div>
-                            <!--<div class="menberGetOutContentData" v-if="editForm.receive_bank_info">{{editForm.receive_bank_info.accountname}}</div>-->
+                        </el-col>
+                        <el-col :span="2">
+                            <div class="grid-content bg-purple"><span>{{LANG['取款银行'] || '取款银行'}}</span></div>
+                        </el-col>
+                        <el-col :span="6">
+                            <div class="menberGetOutContentData" v-if="editForm.receive_bank_info">{{editForm.receive_bank_info.bank}}</div>
                         </el-col>
                         <el-col :span="2">
                             <div class="grid-content bg-purple"><span>{{LANG['支行'] || '支行'}}</span></div>
@@ -139,7 +141,7 @@
                             <div class="menberGetOutContentData" v-if="editForm.receive_bank_info">{{editForm.receive_bank_info.address}}</div>
                         </el-col>
                     </el-row>
-                    <el-row :gutter="22">
+                    <el-row :gutter="22" class="hover_row">
                         <el-col :span="2">
                             <div class="grid-content bg-purple"><span>{{LANG['银行帐号'] || '银行帐号'}}</span></div>
                         </el-col>
@@ -165,7 +167,7 @@
                         </el-col>
                     </el-row>
                     <!--新增字段-->
-                    <el-row :gutter="22">
+                    <el-row :gutter="22" class="hover_row">
                         <el-col :span="2">
                             <div class="grid-content bg-purple"><span>{{LANG['总入款'] || '总入款'}}</span></div>
                         </el-col>
@@ -361,7 +363,6 @@
     import editTable from '../../components/editTable.vue'
     import formEdit from '../../components/formEdit.vue'
     import confirm from '../../components/confirm.vue';
-
     export default {
         data() {
             return {
@@ -1213,6 +1214,12 @@
             .grid-content {
                 line-height: 36px;
                 text-align: center;
+            }
+        }
+        .hover_row .el-col-6:hover{
+            background: rgb(238,241,245);
+            input{
+                background: rgb(238,241,245);
             }
         }
         .el-row {
