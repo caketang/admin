@@ -121,12 +121,6 @@
 .el-date-table td.today:before {
     border-top: .5em solid #00bca4;
 }
-
-/*今天的背景角颜色*/
-.el-date-table td.today {
-    color: #00bca4;
-}
-
 /*textarea 多行文本域选中颜色主题*/
 .el-textarea__inner:focus {
     border-color: #00bca4

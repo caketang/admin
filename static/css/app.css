@@ -261,14 +261,13 @@ a {
 
 /*弹窗保存按钮*/
 .formSave:hover {
-    color: #fff;
+    color: #fff !important;
 }
 
 /*日期当天默认选中样式*/
 .today {
     border: 1px solid #dde1ea;
 }
-
 /*弹出窗最小宽度样式设置*/
 .el-dialog--tiny {
     min-width: 540px;

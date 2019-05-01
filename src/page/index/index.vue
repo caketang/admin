@@ -225,7 +225,8 @@
                             onClick(picker) {
                                 const end = new Date();
                                 const start = new Date();
-                                start.setTime(start.getTime() - 3600 * 1000 * 24 * 1);
+                                start.setTime(start.getTime() - 3600 * 1000 * 24);
+                                end.setTime(end.getTime() - 3600 * 1000 * 24);
                                 picker.$emit("pick", [start, end]);
                             }
                         },
@@ -234,7 +235,7 @@
                             onClick(picker) {
                                 const end = new Date();
                                 const start = new Date();
-                                start.setTime(start.getTime() - 3600 * 1000 * 24 * 7);
+                                start.setTime(start.getTime() - 3600 * 1000 * 24 * 6);
                                 picker.$emit("pick", [start, end]);
                             }
                         },
@@ -243,16 +244,16 @@
                             onClick(picker) {
                                 const end = new Date();
                                 const start = new Date();
-                                start.setTime(start.getTime() - 3600 * 1000 * 24 * 10);
+                                start.setTime(start.getTime() - 3600 * 1000 * 24 * 9);
                                 picker.$emit("pick", [start, end]);
                             }
                         },
                         {
-                            text: "最近一个月",
+                            text: "最近三十天",
                             onClick(picker) {
                                 const end = new Date();
                                 const start = new Date();
-                                start.setTime(start.getTime() - 3600 * 1000 * 24 * 30);
+                                start.setTime(start.getTime() - 3600 * 1000 * 24 * 29);
                                 picker.$emit("pick", [start, end]);
                             }
                         }
