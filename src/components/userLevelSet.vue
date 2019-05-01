@@ -4,14 +4,16 @@
             <!--此处需要要改-->
             <el-col :span="24">
                 <el-col :span="20" style="margin-bottom: 5px;">
-                    <h1>【{{setName?'VIP'+setName:'未获取到'}}】{{LANG['等级设定'] || '等级设定'}}</h1>
+                    <h1>【{{setName ? 'VIP' + setName : '未获取到'}}】{{LANG['等级设定'] || '等级设定'}}</h1>
                     <!--<span class="help_red">{{LANG['注:每日出款次数0为不设上限'] || '注:每日出款次数0为不设上限'}}</span>-->
                 </el-col>
             </el-col>
             <el-form :model="editForm" ref="editForm">
                 <!--出款相关-->
                 <el-col :span="24" class="mb20">
-                    <div class="grid-content bg-purple-dark mb10" style="text-align: center;">{{LANG['出款相关'] || '出款相关'}}</div>
+                    <div class="grid-content bg-purple-dark mb10" style="text-align: center;">
+                        {{LANG['出款相关'] || '出款相关'}}
+                    </div>
                 </el-col>
                 <el-row :gutter="22">
                     <el-col :span="6">
@@ -61,6 +63,8 @@
                             <el-input v-model="editForm.day_out_times_nofee" auto-complete="off"></el-input>
                         </el-form-item>
                     </el-col>
+                </el-row>
+                <el-row :gutter="22">
                     <el-col :span="6">
                         <div class="grid-content bg-purple"><span>{{LANG['提现手续费'] || '提现手续费'}}</span></div>
                     </el-col>
@@ -84,7 +88,9 @@
                             <el-input v-model="editForm.online_glide_multi" auto-complete="off"></el-input>
                         </el-form-item>
                     </el-col>
-                    <!--线下打码倍数-->
+                </el-row>
+                <!--线下打码倍数-->
+                <el-row  :gutter="22">
                     <el-col :span="6">
                         <div class="grid-content bg-purple"><span>{{LANG['线下打码倍数'] || '线下打码倍数'}}</span></div>
                     </el-col>
@@ -108,8 +114,8 @@
     </el-row>
 </template>
 <script>
-    export default{
-        data(){
+    export default {
+        data() {
             return {
                 LANG
             }
@@ -119,26 +125,26 @@
                 type: Object,
                 default: {}
             },
-            setName:String
+            setName: String
         },
         components: {},
         methods: {
             //保存数据
-            saveForm(){
+            saveForm() {
                 this.$refs.editForm.validate((valid) => {
                     if (valid) {
-                        this.$emit('get-form',this.setName);
+                        this.$emit('get-form', this.setName);
                     }
                 });
             },
             //数字金额验证
-            validatorNumber(rule, value, callback){
+            validatorNumber(rule, value, callback) {
                 if (!/^[0-9]+(.[0-9]{1,2})?$/.test(value)) {
                     callback(new Error(LANG['请输入数字值'] || '请输入数字值'));
                 } else {
                     if (parseInt(value) < 0) {
                         callback(new Error(LANG['输入金额必需大于0'] || '输入金额必需大于0'));
-                    } else if(parseInt(value) > 99999999){
+                    } else if (parseInt(value) > 99999999) {
                         callback(new Error(LANG['输入金额不能大于99999999'] || '输入金额不能大于99999999'));
                     } else {
                         callback();
@@ -146,13 +152,13 @@
                 }
             },
             //数字次数验证
-            validatorNumber1(rule, value, callback){
+            validatorNumber1(rule, value, callback) {
                 if (!/^[0-9]+(.[0-9]{1,2})?$/.test(value)) {
                     callback(new Error(LANG['请输入数字值'] || '请输入数字值'));
                 } else {
                     if (parseInt(value) < 0) {
                         callback(new Error(LANG['输入次数不能小于0次'] || '输入次数不能小于0次'));
-                    } else if(parseInt(value) > 999999999){
+                    } else if (parseInt(value) > 999999999) {
                         callback(new Error(LANG['输入次数不能大于999999999次'] || '输入次数不能大于999999999次'));
                     } else {
                         callback();
@@ -160,13 +166,13 @@
                 }
             },
             // 每次最低最高出款金额
-            validatorNumber2(rule, value, callback){
+            validatorNumber2(rule, value, callback) {
                 if (!/^[0-9]+(.[0-9]{1,2})?$/.test(value)) {
                     callback(new Error(LANG['请输入数字值'] || '请输入数字值'));
                 } else {
                     if (parseInt(value) < 1) {
                         callback(new Error(LANG['输入金额必需不能少于 1'] || '输入金额必需不能少于 1'));
-                    } else if(parseInt(value) > 99999999){
+                    } else if (parseInt(value) > 99999999) {
                         callback(new Error(LANG['输入金额不能大于99999999'] || '输入金额不能大于99999999'));
                     } else {
                         callback();
@@ -174,13 +180,13 @@
                 }
             },
             // 打码倍数
-            validatorNumber3(rule, value, callback){
+            validatorNumber3(rule, value, callback) {
                 if (!/^[0-9]+(.[0-9]{1,2})?$/.test(value)) {
                     callback(new Error(LANG['请输入数字值'] || '请输入数字值'));
                 } else {
                     if (parseInt(value) < 1) {
                         callback(new Error(LANG['倍数必须大于或等于1倍'] || '倍数必须大于或等于1倍'));
-                    } else if(parseInt(value) > 5){
+                    } else if (parseInt(value) > 5) {
                         callback(new Error(LANG['倍数必须小于5倍'] || '倍数必须小于5倍'));
                     } else {
                         callback();
@@ -188,13 +194,13 @@
                 }
             },
             //数字百分比验证
-            validatorNumber4(rule, value, callback){
+            validatorNumber4(rule, value, callback) {
                 if (!/^[0-9]+(.[0-9]{1,2})?$/.test(value)) {
                     callback(new Error(LANG['请输入数字值'] || '请输入数字值'));
                 } else {
                     if (value < 0) {
                         callback(new Error(LANG['输入金额必需大于0'] || '输入金额必需大于0'));
-                    } else if(value > 100){
+                    } else if (value > 100) {
                         callback(new Error(LANG['输入金额不能大于100'] || '输入金额不能大于100'));
                     } else {
                         callback();
@@ -202,21 +208,31 @@
                 }
             },
             //取消返回
-            cancelFrom(){
+            cancelFrom() {
                 this.$emit('cancel-form');
             }
         },
         computed: {},
-        mounted(){
+        mounted() {
         },
-        created(){
+        created() {
         }
     }
 </script>
 <style scoped>
-    #userLevelSet .companyInp{width:15%;min-width: 150px;}
-    #userLevelSet .radioFrist{margin-left: 50px;}
-    #userLevelSet .companyPre{margin-top: 15px;}
+    #userLevelSet .companyInp {
+        width: 15%;
+        min-width: 150px;
+    }
+
+    #userLevelSet .radioFrist {
+        margin-left: 50px;
+    }
+
+    #userLevelSet .companyPre {
+        margin-top: 15px;
+    }
+
     /*#userLevelSet .grid-content{line-height:36px;}*/
 
     #userLevelSet .el-form-item__content {
@@ -228,7 +244,6 @@
         text-align: right;
         padding-right: 8px;
     }
-
 
     .bg-purple-dark {
         background: #99a9bf;
@@ -251,6 +266,16 @@
         padding: 10px 0;
         background-color: #f9fafc;
     }
-    .footer{text-align: center;border-top: 1px solid #cccccc;margin-top: 20px;padding-top: 20px;}
-    #userLevelSet .cancel{text-align: right;padding-bottom: 5px;}
+
+    .footer {
+        text-align: center;
+        border-top: 1px solid #cccccc;
+        margin-top: 20px;
+        padding-top: 20px;
+    }
+
+    #userLevelSet .cancel {
+        text-align: right;
+        padding-bottom: 5px;
+    }
 </style>

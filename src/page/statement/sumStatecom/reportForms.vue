@@ -75,7 +75,7 @@
                     </div>
                 </td>
             </tr>
-            <tr v-if="dataModel.length">
+            <tr v-if="dataModel.length > 0">
                 <td colspan="2" class="el-table_1_column_19">
                     <div class="cell tCent">
                         <span>总计</span>
@@ -118,7 +118,7 @@
                     </div>
                 </td>
             </tr>
-            <tr v-if="dataModel.length == 0" style="text-align:  center;height: 100px;">
+            <tr v-else style="text-align:center;height: 100px;">
                 <td colspan="14">暂无数据</td>
             </tr>
         </table>
