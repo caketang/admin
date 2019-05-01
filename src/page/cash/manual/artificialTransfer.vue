@@ -65,7 +65,7 @@
                             <el-input v-model="userCont.name" size="small" :disabled="true"></el-input>
                         </el-form-item>
                         <el-form-item :label="LANG['存入金额'] || '存入金额'" prop="amount">
-                            <el-input v-model.number="depositForm.amount" size="small" type="number" onpaste="return false;" placeholder="请填写存入金额。金额只能手动输入，不可粘贴输入"></el-input>
+                            <el-input v-model.number="depositForm.amount" size="small" type="number" placeholder="请填写存入金额"></el-input>
                         </el-form-item>
                         <el-form-item :label="LANG['优惠金额'] || '优惠金额'" prop="discount">
                             <el-input v-model.number="depositForm.discount" size="small" type="number"  placeholder="请填写优惠金额"></el-input>
@@ -721,7 +721,7 @@
                     return;
                 }
                 //对输入数值参数进行转换
-                formData.amount = formData.amount?formData.amount.toFixed(2) * 100:'';
+//                formData.amount = formData.amount?formData.amount.toFixed(2) * 100:'';
                 formData.play_code = formData.play_code?formData.play_code.toFixed(2) * 100:'';
                 formData.discount = formData.discount?formData.discount.toFixed(2) * 100:'';
                 if (!this.djOperateMoney(formData.amount)) return false;

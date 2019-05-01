@@ -5,7 +5,7 @@
             <el-col :span="24">
                 <el-col :span="20" style="margin-bottom: 5px;">
                     <h1>【{{setName?'VIP'+setName:'未获取到'}}】{{LANG['等级设定'] || '等级设定'}}</h1>
-                    <span class="help_red">{{LANG['注:每日出款次数0为不设上限'] || '注:每日出款次数0为不设上限'}}</span>
+                    <!--<span class="help_red">{{LANG['注:每日出款次数0为不设上限'] || '注:每日出款次数0为不设上限'}}</span>-->
                 </el-col>
             </el-col>
             <el-form :model="editForm" ref="editForm">
@@ -178,9 +178,9 @@
                 if (!/^[0-9]+(.[0-9]{1,2})?$/.test(value)) {
                     callback(new Error(LANG['请输入数字值'] || '请输入数字值'));
                 } else {
-                    if (value < 1) {
+                    if (parseInt(value) < 1) {
                         callback(new Error(LANG['倍数必须大于或等于1倍'] || '倍数必须大于或等于1倍'));
-                    } else if(value > 5){
+                    } else if(parseInt(value) > 5){
                         callback(new Error(LANG['倍数必须小于5倍'] || '倍数必须小于5倍'));
                     } else {
                         callback();

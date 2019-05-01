@@ -66,7 +66,7 @@
                         <el-col :span="12">{{LANG['是否首存'] || '是否首存'}} ：<span>{{Detailcontent.state | isNew}}</span>
                         </el-col>
                         <el-col :span="12">{{LANG['用户名'] || '用户名'}} ：<span>{{Detailcontent.user_name}}</span></el-col>
-                        <el-col :span="12">{{LANG['会员等级'] || '会员等级'}} ：<span>{{Detailcontent.ranting}}</span>
+                        <el-col :span="12">{{LANG['会员等级'] || '会员等级'}} ：<span>VIP{{Detailcontent.level}}</span>
                         </el-col>
                         <el-col :span="12">{{LANG['真实姓名'] || '真实姓名'}} ：<span>{{Detailcontent.true_name}}</span></el-col>
                         <el-col :span="12">{{LANG['操作时间'] || '操作时间'}} ：<span>{{Detailcontent.process_time}}</span>
