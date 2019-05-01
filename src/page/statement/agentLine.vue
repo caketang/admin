@@ -106,7 +106,6 @@
                     {
                         "type": "dateTimeGroup",
                         "label": "报表日期",
-                        "showTime": false,
                         "prop": [
                             {"prop": "start_time", "value": "", "label": "开始时间"},
                             {"prop": "end_time", "value": "", "label": "结束时间"}
@@ -119,7 +118,9 @@
                 formVisible: {
                     state: false
                 },
-                isEdit: {},
+                isEdit: {
+                    state:false
+                },
                 columnsUrl: '',
                 tableUrl: '',
                 updated: false,
