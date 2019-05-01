@@ -89,7 +89,7 @@
                         <div class="grid-content bg-purple"><span>{{LANG['线下打码倍数'] || '线下打码倍数'}}</span></div>
                     </el-col>
                     <el-col :span="6">
-                        <el-form-item prop="withdraw_fee"
+                        <el-form-item prop="offline_glide_multi"
                                       :rules="[
                                       { required: true, message: '请输入线下打码倍数'},
                                       { validator: this.validatorNumber3}]">
