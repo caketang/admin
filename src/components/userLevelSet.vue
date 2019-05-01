@@ -1,117 +1,109 @@
 <template>
-    <el-row id="userLevelSet">
-        <el-col :span="14" :offset="5">
-            <!--此处需要要改-->
-            <el-col :span="24">
-                <el-col :span="20" style="margin-bottom: 5px;">
-                    <h1>【{{setName ? 'VIP' + setName : '未获取到'}}】{{LANG['等级设定'] || '等级设定'}}</h1>
-                    <!--<span class="help_red">{{LANG['注:每日出款次数0为不设上限'] || '注:每日出款次数0为不设上限'}}</span>-->
-                </el-col>
+    <div id="userLevelSet" class="w50 tCent">
+        <el-form :model="editForm" ref="editForm">
+            <!--出款相关-->
+            <el-col :span="24" class="mb20">
+                <div class="grid-content bg-purple-dark mb10" style="text-align: center;">
+                    <span>【{{setName ? 'VIP' + setName : '未获取到'}}】</span>
+                    {{LANG['出款相关设定'] || '出款相关设定'}}
+                </div>
             </el-col>
-            <el-form :model="editForm" ref="editForm">
-                <!--出款相关-->
-                <el-col :span="24" class="mb20">
-                    <div class="grid-content bg-purple-dark mb10" style="text-align: center;">
-                        {{LANG['出款相关'] || '出款相关'}}
-                    </div>
+            <el-row :gutter="22">
+                <el-col :span="6">
+                    <div class="grid-content bg-purple"><span>{{LANG['每次最低出款金额'] || '每次最低出款金额'}}</span></div>
                 </el-col>
-                <el-row :gutter="22">
-                    <el-col :span="6">
-                        <div class="grid-content bg-purple"><span>{{LANG['每次最低出款金额'] || '每次最低出款金额'}}</span></div>
-                    </el-col>
-                    <el-col :span="6">
-                        <el-form-item prop="each_min_out"
-                                      :rules="[
+                <el-col :span="6">
+                    <el-form-item prop="each_min_out"
+                                  :rules="[
                                       { required: true, message: '每次最低出款金额不能小于1',min:1},
                                       { validator: this.validatorNumber2}]">
-                            <el-input v-model="editForm.each_min_out" type="number" auto-complete="off"></el-input>
-                        </el-form-item>
-                    </el-col>
-                    <el-col :span="6">
-                        <div class="grid-content bg-purple"><span>{{LANG['每日出款次数限制'] || '每日出款次数限制'}}</span></div>
-                    </el-col>
-                    <el-col :span="6">
-                        <el-form-item prop="day_out_times"
-                                      :rules="[
+                        <el-input v-model="editForm.each_min_out" type="number" auto-complete="off"></el-input>
+                    </el-form-item>
+                </el-col>
+                <el-col :span="6">
+                    <div class="grid-content bg-purple"><span>{{LANG['每日出款次数限制'] || '每日出款次数限制'}}</span></div>
+                </el-col>
+                <el-col :span="6">
+                    <el-form-item prop="day_out_times"
+                                  :rules="[
                                       { required: true, message: '每日出款次数限制'},
                                       { validator: this.validatorNumber1}]">
-                            <el-input v-model="editForm.day_out_times" auto-complete="off"></el-input>
-                        </el-form-item>
-                    </el-col>
-                </el-row>
-                <el-row :gutter="22">
-                    <el-col :span="6">
-                        <div class="grid-content bg-purple"><span>{{LANG['每次最高出款金额'] || '每次最高出款金额'}}</span></div>
-                    </el-col>
-                    <el-col :span="6">
-                        <el-form-item prop="each_max_out"
-                                      :rules="[
+                        <el-input v-model="editForm.day_out_times" auto-complete="off"></el-input>
+                    </el-form-item>
+                </el-col>
+            </el-row>
+            <el-row :gutter="22">
+                <el-col :span="6">
+                    <div class="grid-content bg-purple"><span>{{LANG['每次最高出款金额'] || '每次最高出款金额'}}</span></div>
+                </el-col>
+                <el-col :span="6">
+                    <el-form-item prop="each_max_out"
+                                  :rules="[
                                       { required: true, message: '每次最高出款金额'},
                                       { validator: this.validatorNumber2}]">
-                            <el-input v-model="editForm.each_max_out" type="number" auto-complete="off"></el-input>
-                        </el-form-item>
-                    </el-col>
-                    <el-col :span="6">
-                        <div class="grid-content bg-purple"><span>{{LANG['每日出款免手续费笔数'] || '每日出款免手续费笔数'}}</span>
-                        </div>
-                    </el-col>
-                    <el-col :span="6">
-                        <el-form-item prop="day_out_times_nofee"
-                                      :rules="[
+                        <el-input v-model="editForm.each_max_out" type="number" auto-complete="off"></el-input>
+                    </el-form-item>
+                </el-col>
+                <el-col :span="6">
+                    <div class="grid-content bg-purple"><span>{{LANG['每日出款免手续费笔数'] || '每日出款免手续费笔数'}}</span>
+                    </div>
+                </el-col>
+                <el-col :span="6">
+                    <el-form-item prop="day_out_times_nofee"
+                                  :rules="[
                                       { required: true, message: '每日出款免手续费笔数'},
                                       { validator: this.validatorNumber1}]">
-                            <el-input v-model="editForm.day_out_times_nofee" auto-complete="off"></el-input>
-                        </el-form-item>
-                    </el-col>
-                </el-row>
-                <el-row :gutter="22">
-                    <el-col :span="6">
-                        <div class="grid-content bg-purple"><span>{{LANG['提现手续费'] || '提现手续费'}}</span></div>
-                    </el-col>
-                    <el-col :span="6">
-                        <el-form-item prop="withdraw_fee"
-                                      :rules="[
+                        <el-input v-model="editForm.day_out_times_nofee" auto-complete="off"></el-input>
+                    </el-form-item>
+                </el-col>
+            </el-row>
+            <el-row :gutter="22">
+                <el-col :span="6">
+                    <div class="grid-content bg-purple"><span>{{LANG['提现手续费'] || '提现手续费'}}</span></div>
+                </el-col>
+                <el-col :span="6">
+                    <el-form-item prop="withdraw_fee"
+                                  :rules="[
                                       { required: true, message: '请输入提现手续费'},
                                       { validator: this.validatorNumber}]">
-                            <el-input v-model="editForm.withdraw_fee" auto-complete="off"></el-input>
-                        </el-form-item>
-                    </el-col>
-                    <!--线上打码倍数-->
-                    <el-col :span="6">
-                        <div class="grid-content bg-purple"><span>{{LANG['请输入线上打码倍数'] || '请输入线上打码倍数'}}</span></div>
-                    </el-col>
-                    <el-col :span="6">
-                        <el-form-item prop="online_glide_multi"
-                                      :rules="[
+                        <el-input v-model="editForm.withdraw_fee" auto-complete="off"></el-input>
+                    </el-form-item>
+                </el-col>
+                <!--线上打码倍数-->
+                <el-col :span="6">
+                    <div class="grid-content bg-purple"><span>{{LANG['请输入线上打码倍数'] || '请输入线上打码倍数'}}</span></div>
+                </el-col>
+                <el-col :span="6">
+                    <el-form-item prop="online_glide_multi"
+                                  :rules="[
                                       { required: true, message: '请输入线上打码倍数'},
                                       { validator: this.validatorNumber3}]">
-                            <el-input v-model="editForm.online_glide_multi" auto-complete="off"></el-input>
-                        </el-form-item>
-                    </el-col>
-                </el-row>
-                <!--线下打码倍数-->
-                <el-row  :gutter="22">
-                    <el-col :span="6">
-                        <div class="grid-content bg-purple"><span>{{LANG['线下打码倍数'] || '线下打码倍数'}}</span></div>
-                    </el-col>
-                    <el-col :span="6">
-                        <el-form-item prop="offline_glide_multi"
-                                      :rules="[
+                        <el-input v-model="editForm.online_glide_multi" auto-complete="off"></el-input>
+                    </el-form-item>
+                </el-col>
+            </el-row>
+            <!--线下打码倍数-->
+            <el-row :gutter="22">
+                <el-col :span="6">
+                    <div class="grid-content bg-purple"><span>{{LANG['线下打码倍数'] || '线下打码倍数'}}</span></div>
+                </el-col>
+                <el-col :span="6">
+                    <el-form-item prop="offline_glide_multi"
+                                  :rules="[
                                       { required: true, message: '请输入线下打码倍数'},
                                       { validator: this.validatorNumber3}]">
-                            <el-input v-model="editForm.offline_glide_multi" auto-complete="off"></el-input>
-                        </el-form-item>
-                    </el-col>
-                </el-row>
-                <el-row :gutter="22">
-                    <el-col class="footer">
-                        <el-button type="primary" @click="saveForm">{{LANG['保存'] || '保存'}}</el-button>
-                        <el-button type="primary" @click="cancelFrom">{{LANG['取消'] || '取消'}}</el-button>
-                    </el-col>
-                </el-row>
-            </el-form>
-        </el-col>
-    </el-row>
+                        <el-input v-model="editForm.offline_glide_multi" auto-complete="off"></el-input>
+                    </el-form-item>
+                </el-col>
+            </el-row>
+            <el-row :gutter="22">
+                <el-col class="footer">
+                    <el-button type="primary" @click="saveForm">{{LANG['保存'] || '保存'}}</el-button>
+                    <el-button type="primary" @click="cancelFrom">{{LANG['取消'] || '取消'}}</el-button>
+                </el-col>
+            </el-row>
+        </el-form>
+    </div>
 </template>
 <script>
     export default {
@@ -219,32 +211,29 @@
         }
     }
 </script>
-<style scoped>
-    #userLevelSet .companyInp {
-        width: 15%;
-        min-width: 150px;
+<style scoped lang="less">
+    #userLevelSet{
+        min-width: 750px;
+        margin:0 auto;
+        .companyInp {
+            width: 15%;
+            min-width: 150px;
+        }
+        .radioFrist {
+            margin-left: 50px;
+        }
+        .companyPre {
+            margin-top: 15px;
+        }
+        .el-form-item__content {
+            margin: 0 auto;
+        }
+        .grid-content {
+            line-height: 36px;
+            text-align: right;
+            padding-right: 8px;
+        }
     }
-
-    #userLevelSet .radioFrist {
-        margin-left: 50px;
-    }
-
-    #userLevelSet .companyPre {
-        margin-top: 15px;
-    }
-
-    /*#userLevelSet .grid-content{line-height:36px;}*/
-
-    #userLevelSet .el-form-item__content {
-        margin: 0 auto;
-    }
-
-    #userLevelSet .grid-content {
-        line-height: 36px;
-        text-align: right;
-        padding-right: 8px;
-    }
-
     .bg-purple-dark {
         background: #99a9bf;
     }
