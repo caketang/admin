@@ -128,11 +128,13 @@
                 breadcrumb: [],
                 start_time: sessionStorage.dateTimeStart,
                 end_time: sessionStorage.dateTimeEnd,
-                childShow: true
+                childShow: true,
+                allData:{}
             }
         },
         methods: {
             init() {
+                this.updated = false
                 this.tableUrl = URL.api + ROUTES.GET.user.agent.line + this.addSearch({
                     start_time: sessionStorage.dateTimeStart,
                     end_time: sessionStorage.dateTimeEnd
@@ -227,7 +229,17 @@
             tableGrid: tableGrid
         },
         computed: {},
-        watch: {},
+        watch: {
+//            tableUrl: {
+//                handler(val, old) {
+//
+//                },
+//                //是否绑定初始值
+//                immediate: true,
+//                //深度监听
+//                deep: true
+//            },
+        },
         mounted() {
         },
         created() {
