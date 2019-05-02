@@ -78,7 +78,7 @@
                     <el-form-item prop="online_glide_multi"
                                   :rules="[
                                       { required: true, message: '请输入线上打码倍数'},
-                                      { validator: this.validatorNumber3}]">
+                                      { validator: this.validatorNumber1}]">
                         <el-input v-model="editForm.online_glide_multi" auto-complete="off"></el-input>
                     </el-form-item>
                 </el-col>
@@ -92,7 +92,7 @@
                     <el-form-item prop="offline_glide_multi"
                                   :rules="[
                                       { required: true, message: '请输入线下打码倍数'},
-                                      { validator: this.validatorNumber3}]">
+                                      { validator: this.validatorNumber1}]">
                         <el-input v-model="editForm.offline_glide_multi" auto-complete="off"></el-input>
                     </el-form-item>
                 </el-col>

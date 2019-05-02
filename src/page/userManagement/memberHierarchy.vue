@@ -223,8 +223,8 @@
                 //会员层级设定
                 editForm: {
                     "level_id": "",
-                    "online_glide_multi": "1",
-                    "offline_glide_multi": "1",
+                    "online_glide_multi": "",
+                    "offline_glide_multi": "",
                     "each_min_out": "",
                     "each_max_out": "",
                     "day_out_times": "",
