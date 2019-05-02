@@ -309,8 +309,8 @@
             }
             // 验证中文
             var validateHans = (rule, value, callback) =>{
-                value && !/^[\u4E00-\u9FA5\uf900-\ufa2d·s]{2,10}$/.test(value)
-                    ?callback(new Error(LANG['请输入中文汉字,且长度2到10位!'] || '请输入中文汉字，且长度2到10位！'))
+                value && !/^[\u4E00-\u9FA5\uf900-\ufa2d·s]{2,14}$/.test(value)
+                    ?callback(new Error(LANG['请输入中文汉字,且长度2到14位!'] || '请输入中文汉字，且长度2到14位！'))
                     :callback()
             }
             // 验证手机号码
