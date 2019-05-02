@@ -597,31 +597,6 @@
                 document.execCommand("copy"); // 执行浏览器复制命令
                 this.$message.success(LANG['复制户名成功'] || '复制户名成功');
             },
-            //修改备注内容
-//            editMemoSubmit() {
-//                let _this = this;
-//                this.updated = false;
-//                let params = {
-//                    memo: this.memoText,
-//                    uid: this.user_id
-//                };
-//                this.dialogVisibleMemo = false;
-//                this.$.autoAjax('patch', URL.api + ROUTES.PATCH.user.info.memo + '/' + parseInt(this.memoTextUid), params, {
-//                    ok: (res) => {
-//                        if (res.data) {
-//                            this.updated = true;
-//                            this.$message.success(LANG['备注写入成功'] || '备注写入成功');
-//                        } else {
-//                            this.$message.error(LANG['备注写入失败'] || '备注写入失败');
-//                        }
-//                    },
-//                    p: () => {
-//                    },
-//                    error: e => {
-//                        console.log(e)
-//                    }
-//                })
-//            },
             closeDialog(data) {
                 let Url = URL.api + ROUTES.GET.cash.withdraw.audit.$(data.id) + '?user_id=' + data.user_id + '&withdraw_id=' + data.id + '&cancel=' + 'yes';
                 this.$.autoAjax('get', Url, '', {
@@ -690,10 +665,6 @@
             },
             //表格内按钮事件
             doHandle(e) {
-//                {"btnType":"text","label":"确认","fn":"doUpdate","prop":"status","val":"pending","val1": "prepare","equal": true,"equal": true},
-//                {"btnType":"text","label":"取消","fn":"doRefuse","prop":"status","val":"pending","val1": "prepare","equal": true,"equal": true},
-//                {"btnType":"text","label":"预备出款","fn":"doPrepare","prop":"status","val":"pending"},
-//                {"btnType":"text","label":"拒绝","fn":"doReject","prop":"status","val":"pending","val1": "prepare","equal": true,"equal": true},
                 this.updated = false;
                 this.id = e.row.id;
                 this.user_id = e.row.user_id;
@@ -701,30 +672,12 @@
                     case "doDetail"://详情
                         this.doDetail(e.row)
                         break
-//                    case "doPay":
-//                        this.doPay(e.row)
-//                        break
-//                    case "doPrepare":
-//                        this.doPrepare(e.row)
-//                        break
-//                    case "doRefuse"://取消出款
-//                        this.doRefuse(e.row);
-//                        break
-//                    case "openUserInformation":
-//                        this.openUserInformation(e.row)
-//                        break
                     case "changeFee":
                         this.changeFee(e.row, event)
                         break
-//                    case "doReject"://拒绝出款
-//                        this.doReject(e.row, event)
-//                        break
                     case "doMemo":
                         this.doMemo(e.row, event)
                         break
-//                    case "doUpdate"://确认出款
-//                        this.doUpdate(e.row, event)
-//                        break
                 }
             },
             doHandleDetail(e) {
@@ -733,9 +686,6 @@
                     case "showCommissionProportion":
                         this.showCommissionProportion(e.row, event)
                         break
-//                    case "hideRebateProportion":
-//                        this.hideRebateProportion(item.row, item.event)
-//                        break;
                 }
             },
             changeFee(obj, event) {
@@ -781,14 +731,6 @@
                     }
                 })
             },
-            //预备支付
-//            doPrepare(row) {
-//                if (parseInt(row.id)) {
-//                    this.confirmConfig.state = true;
-//                    this.confirmConfig.msg = (this.LANG['确定预支付吗?'] || '确定预支付吗?');
-//                    this.confirmConfig.fn = "prepare";
-//                }
-//            },
             // 付款
             doUpdate(row) {
                 if (parseInt(row.id)) {
@@ -959,31 +901,8 @@
             //确认删除
             doConfirm(obj) {
                 this.loading = true;
-                // let _this = this;
                 let id = this.id;
                 switch (obj.fn) {
-//                    case "prepare":
-//                        this.$.autoAjax('patch', URL.api + ROUTES.PATCH.cash.withdraw.state.$(id), {
-//                            "status": "prepare",
-//                            "role": 1
-//                        }, {
-//                            ok: (res) => {
-//                                if (res.state === 0 && res.data) {
-//                                    this.$message.success(LANG['预支付成功'] || '预支付成功');
-//                                    this.updated = true;
-//                                } else {
-//                                    this.$message.error(LANG[res.msg] || res.msg);
-//                                }
-//                                this.loading = false;
-//                            },
-//                            p: () => {
-//                            },
-//                            error: e => {
-//                                console.log(e)
-//                                this.loading = false;
-//                            }
-//                        })
-//                        break;
                     case "refuse":
                         this.$.autoAjax('patch', URL.api + ROUTES.PATCH.cash.withdraw.state.$(id), {
                             "status": "refused",
@@ -993,11 +912,11 @@
                                 if (res.state === 0 && res.data) {
                                     this.$message.success(LANG['取消成功'] || '取消成功');
                                     this.editVisible = false
-                                    this.updated = true;
                                 } else {
                                     this.$message.error(LANG[res.msg] || res.msg);
                                 }
                                 this.loading = false;
+                                this.updated = true;
                             },
                             p: () => {
                             },
@@ -1006,25 +925,6 @@
                             }
                         })
                         break;
-//                    case "pay":
-//                        this.$.autoAjax('patch', URL.api + ROUTES.PATCH.cash.withdraw.state.$(id), {"status": "paid"}, {
-//                            ok: (res) => {
-//                                if (res.state === 0 && res.data) {
-//                                    this.$message.success(LANG['支付成功'] || '支付成功');
-//                                    this.updated = true;
-//                                } else {
-//                                    this.$message.error(LANG[res.msg] || res.msg);
-//                                }
-//                                this.loading = false;
-//                            },
-//                            p: () => {
-//                            },
-//                            error: e => {
-//                                console.log(e)
-//                            }
-//                        })
-//                        break;
-//                        拒绝 等接口
                     case "reject":
                         this.$.autoAjax('patch', URL.api + ROUTES.PATCH.cash.withdraw.state.$(id), {
                             "status": "rejected",
