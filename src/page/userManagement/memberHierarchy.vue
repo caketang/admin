@@ -115,6 +115,7 @@
     import confirm from '../../components/confirm.vue'
     import userLevelSet from '../../components/userLevelSet.vue'
     import memberHierarSet from '../../components/memberHierarSet.vue'
+
     export default {
         data() {
             return {
@@ -221,66 +222,13 @@
                 },
                 //会员层级设定
                 editForm: {
-                    //"id": "",
                     "level_id": "",
-//                    "offline_min_in": "",
-//                    "offline_max_in": "",
                     "online_glide_multi": "1",
                     "offline_glide_multi": "1",
-//                    "wechat_in_fee": "",
-//                    "alipay_in_fee": "",
                     "each_min_out": "",
                     "each_max_out": "",
                     "day_out_times": "",
                     "day_out_times_nofee": "",
-//                    "withdraw_expenese": "",
-//                    "max_expenese": "",
-//                    "withdraw_fee": "",
-//                    "day_withdraw_max": "",
-//                    "memberHierarchy": "",
-//                    "nocheck": "",
-//                    "onlines": {
-//                        "wechat": {
-//                            "min": '',
-//                            "max": ''
-//                        },
-//                        "alipay": {
-//                            "min": '',
-//                            "max": ''
-//                        },
-//                        "qqpay": {
-//                            "min": '',
-//                            "max": ''
-//                        },
-//                        "cyberbank": {
-//                            "min": '',
-//                            "max": ''
-//                        },
-//                        "tenpay": {
-//                            "min": '',
-//                            "max": ''
-//                        },
-//                        "jdpay": {
-//                            "min": '',
-//                            "max": ''
-//                        },
-//                        "unionpay": {
-//                            "min": '',
-//                            "max": ''
-//                        },
-//                        "baidupay": {
-//                            "min": '',
-//                            "max": ''
-//                        },
-//                        "kapay": {
-//                            "min": '',
-//                            "max": ''
-//                        },
-//                        "quickpay": {
-//                            "min": '',
-//                            "max": ''
-//                        }
-//                    }
                 },
                 //层级设定显示开关
                 levelSet: false,
@@ -351,12 +299,6 @@
                 this.nowId = item.id || -1;
                 this.formType = "";
                 switch (item.fn) {
-//                    case "doReject":
-//                        this.doReject(item.row);
-//                        break;
-//                    case "doAudit":
-//                        this.doAudit(item.row);
-//                        break;
                     case "doEdit":
                         this.doEdit(item.row);
                         break;
@@ -366,9 +308,6 @@
                     case "doSeatchMember":
                         this.doSeatchMember(item.row);
                         break;
-//                    case "doDelete":
-//                        this.doDelete(item.row);
-//                        break;
                     case "doLimitLines":
                         this.doLimitLines(item.row);
                         break;
@@ -390,92 +329,6 @@
                 }
                 this.limitVisible = true;
             },
-            // 删除层级
-//            doDelete(row) {
-//                let name = row.name;
-//                this.nowId = row.id;
-//                this.confirmConfig.state = true;
-//                this.confirmConfig.msg = (LANG['确定删除'] || '确定删除') + name + (LANG["吗？"] || "吗");
-//                this.confirmConfig.fn = "delete";
-//            },
-            // 显示分层弹窗，设置当前被改数据id
-//            doReject(row) {
-//                this.nowId = row.id;
-//                let _this = this;
-//                let vipLevel = row.name;
-//                this.userLeve.lList.splice(0, this.userLeve.lList.length);
-//                let userLevelList = _this.userLeve.lList;
-//                this.loading = true;
-//                this.$.autoAjax('get', URL.api + '/user/levels', '', {
-//                    ok: (res) => {
-//                        if (res.state == 0 && res.data) {
-//                            let model = res.data;
-//                            for (let i in model) {
-//                                if (model[i].name !== row.name) {
-//                                    userLevelList.push({
-//                                        "num": i,
-//                                        "id": model[i].id,
-//                                        "name": model[i].name,
-//                                        "desc": model[i].desc,
-//                                        "disable": false
-//                                    });
-//                                }
-//                            }
-//                            this.loading = false;
-//                        }
-//                    },
-//                    p: () => {
-//                    },
-//                    error: e => {
-//                        console.log(e)
-//                    }
-//                })
-//                this.userLeve.title = this.LANG["将下面会员分层导入至:"] + vipLevel || "将下面会员分层导入至:" + vipLevel;
-//                this.userLeve.visible = true;
-//                this.userLeve.nowLeve = vipLevel;
-//            },
-            //保存分层信息
-//            updateLevel(obj) {
-//                let _this = this;
-//                this.loading = true;
-//                let temp = [];
-//                for (let i in obj) {
-//                    temp.push(obj[i].lid);
-//                }
-//                let params = {
-//                    'ids': temp.toString(),
-//                    'to': parseInt(this.nowId)
-//                }
-//                this.$.autoAjax('patch', URL.api + ROUTES.PATCH.user.level.layer, params, {
-//                    ok: (res) => {
-//                        if (res.state == 0 && res.data > 0) {
-//                            let n = res.data
-//                            _this.$message.success(LANG['成功分层' + n + '个会员!'] || '成功分层' + n + '个会员!');
-//                            _this.updated = true;
-//                        } else if (res.data == false && res.msg) {
-//                            let message = res.msg
-//                            _this.$message.error(LANG[message] || message);
-//                        } else if (res.data.length == 0 && res.msg) {
-//                            let message = res.msg
-//                            _this.$message.error(LANG[message] || message);
-//                        }
-//                        _this.loading = false;
-//                    },
-//                    p: () => {
-//                    },
-//                    error: e => {
-//                        _this.loading = false;
-//                    }
-//                })
-//            },
-            //回归弹窗
-//            doAudit(row) {
-//                let name = row.name;
-//                this.nowId = row.id;
-//                this.confirmConfig.state = true;
-//                this.confirmConfig.msg = (LANG['确定将'] || '确定将') + name + (LANG["层回归到未分层？"] || "层回归到未分层");
-//                this.confirmConfig.fn = "audit";
-//            },
             //查询
             doQuery(obj) {
                 let query = {};
@@ -501,14 +354,7 @@
                     query: {level: parseInt(row.level), coltwo: colTwo}
                 }) : this.$message.error(LANG['无层级人数'] || '无层级人数');
             },
-            //新增
-//            addNew() {
-//                this.formTitel = "新增会员层级";
-//                this.formType = "add";
-//                this.isEdit.state = false;
-//                this.editVisible.state = true;
-//            },
-            //保存新增表格
+            //保存
             getForm(obj) {
                 let str = "", url = "", model = {}, _this = this;
                 model.advance_money = obj.formObj.advance_money
@@ -517,29 +363,6 @@
                 model.level = obj.formObj.level
                 model.memo = obj.formObj.memo
                 url = URL.api + ROUTES.PUT.user.level.$ + '/' + obj.formObj.level;
-//                model.level = obj.formObj.level
-//                model.name = obj.formObj.name
-//                model.memo = obj.formObj.memo
-//                model.advance_money = FORMATMultiplyMoney(obj.formObj.advance_money);//deposit_money
-//                model.advance_valid_bet = obj.formObj.advance_valid_bet
-//                model.deposit_times = obj.formObj.deposit_times
-//                model.deposit_money = FORMATMultiplyMoney(obj.formObj.deposit_money);
-//                model.max_deposit_money = FORMATDATEPICKER(obj.formObj.deposit_etime);
-//                model.withdraw_times = obj.formObj.withdraw_times
-//                model.withdraw_count = FORMATDATEPICKER(obj.formObj.withdraw_count);
-//                model.comment = obj.formObj.comment
-//               // model.register_stime = FORMATDATEPICKER(model.register_stime);
-//                this.formType == "add" ? url = URL.api + ROUTES.PUT.user.level.$ : url = URL.api + ROUTES.PUT.user.level.$ + '/' + this.nowId;
-////                if (model.deposit_max / 100 > _this.formConfig[4].rules[0].varMax) {
-////                    _this.$message.error('区间存款总额不能大于' + _this.formConfig[4].rules[0].varMax)
-////                } else {
-//                    this.updated = false;
-//                    this.loading = true;
-//                    for (let k in model) {
-//                        if (model[k] === '') {
-//                            delete model[k];
-//                        }
-//                    }
                 this.$.autoAjax('put', url, model, {
                     ok: (res) => {
                         if (res.state === 0 && res.data) {
@@ -558,7 +381,6 @@
                         console.log(e.responseJSON.msg)
                     }
                 })
-//                }
             },
             //编辑
             doEdit(row) {
@@ -575,102 +397,32 @@
                     _this.formConfig[2].value = row['advance_money'];
                     _this.formConfig[3].value = row['gift']
                     _this.formConfig[4].value = row['memo'];
-//                    _this.formConfig[5].value = row['deposit_times']
-//                    _this.formConfig[6].value = FORMATMONEY(row['deposit_money']).toString();
-//                    _this.formConfig[7].value = FORMATMONEY(row['max_deposit_money']).toString();
-//                    _this.formConfig[8].value = row['withdraw_times']
-//                    _this.formConfig[9].value = FORMATMONEY(row['withdraw_count']).toString();
-//                    _this.formConfig[10].value = row['comment'];
                     _this.formType = "edit";
                     _this.isEdit.state = true;
                     _this.editVisible.state = true;
                     _this.loading = false;
                 }, 500);
-//				this.$router.push({
-//					path: "",
-//					query: {startM:FORMATMONEY(row['deposit_min']),endM:FORMATMONEY(row['deposit_max'])}
-//				})
             },
             //系统提示
             doConfirm(obj) {
                 this.updated = false;
-//                if (obj.fn == "audit") {
-//                    let _this = this;
-//                    this.loading = true;
-//
-//                    this.$.autoAjax('patch', URL.api + ROUTES.PATCH.user.level.restore + "/" + parseInt(_this.nowId), '', {
-//                        ok: (res) => {
-//                            if (res.state === 0 && res.data) {
-//                                _this.$message.success(_this.LANG['恭喜您，会员等级回归成功！'] || '恭喜您，会员等级回归成功！');
-//                                this.updated = true;
-//                            } else {
-//                                _this.$message.error(_this.LANG['会员等级回归失败，请稍候重试！'] || '会员等级回归失败，请稍候重试！');
-//                            }
-//                            _this.loading = false;
-//                        },
-//                        p: () => {
-//                        },
-//                        error: e => {
-//                            _this.loading = false;
-//                            consoel.log(e.responseJSON.msg);
-//                        }
-//                    })
-//                }
-//                if (obj.fn == "delete") {
-//                    let _this = this;
-//                    this.$.autoAjax('delete', URL.api + ROUTES.DELETE.user.level.set + '/' + parseInt(_this.nowId), '', {
-//                        ok: (res) => {
-//                            if (res.state === 0 && res.data) {
-//                                _this.$message.success(LANG['恭喜您，会员层级删除成功！'] || '恭喜您，会员层级删除成功！');
-//                                _this.updated = true;
-//                            } else {
-//                                _this.$message.error(LANG['会员层级删除失败，请稍后重试！'] || '会员层级删除失败，请稍后重试！');
-//                            }
-//                        },
-//                        p: () => {
-//                        },
-//                        error: e => {
-//                            console.log()
-//                        }
-//                    })
-//                }
             },
             //会员等级设定
             doSet(row) {
-                console.log(row)
                 this.setName = row.level;
-                let _this = this,editForm = this.editForm;
+                let _this = this, editForm = this.editForm;
                 this.loading = true;
                 this.$.autoAjax('get', URL.api + ROUTES.GET.user.level.set.$(parseInt(row.level)), '', {
                     ok: (res) => {
                         if (res.state == 0 && res.data) {
                             let obj = res.data || [];
-//                            for (let i in obj) {
-//                                if (i != 'onlines') {
-//                                    editForm[i] = obj[i].toString();
-//                                }
-//                            }
-//                            let tempObj = JSON.parse(obj['onlines']);
-//                            for (let k in tempObj) {
-//                                editForm['onlines'][k].min = FORMATMONEY(tempObj[k].min).toString() || '';
-//                                editForm['onlines'][k].max = FORMATMONEY(tempObj[k].max).toString() || '';
-//                            }
-//                            editForm['online_max_in'] = FORMATMONEY(editForm['online_max_in']).toString();
-//                            editForm['offline_max_in'] = FORMATMONEY(editForm['offline_max_in']).toString();
-//                            editForm['offline_min_in'] = FORMATMONEY(editForm['offline_min_in']).toString();
                             editForm['each_min_out'] = obj['each_min_out'].toString();
                             editForm['each_max_out'] = obj['each_max_out'].toString();
                             editForm['day_out_times'] = obj['day_out_times'].toString();
                             editForm['day_out_times_nofee'] = obj['day_out_times_nofee'].toString();
                             editForm['online_glide_multi'] = obj['online_glide_multi'].toString();
                             editForm['offline_glide_multi'] = obj['offline_glide_multi'].toString();
-
-
-//                            editForm['max_expenese'] = FORMATMONEY(editForm['max_expenese']).toString();
-//                            editForm['nocheck'] = FORMATMONEY(editForm['nocheck']).toString();
                             editForm['withdraw_fee'] = obj['withdraw_fee'].toString();
-//                            editForm['day_withdraw_max'] = FORMATMONEY(editForm['day_withdraw_max']).toString();
-//                            editForm['online_glide_multi'] = editForm['online_glide_multi'];
                             this.levelSet = true;
                         } else {
                             _this.$message.error(_this.LANG['会员等级获取资料失败，请稍候重试！'] || '会员等级获取资料失败，请稍候重试！');
@@ -692,52 +444,36 @@
             saveSet(setlevel) {
                 let _this = this;
                 let query = {
-//                    "level_id": setlevel,
-//                    "offline_min_in": this.MultiplyMoney(this.editForm.offline_min_in),
-//                    "offline_max_in": this.MultiplyMoney(this.editForm.offline_max_in),
-//                    "online_glide_multi": Number(this.editForm.online_glide_multi),
-//                    "offline_glide_multi": Number(this.editForm.offline_glide_multi),
-//                    "wechat_in_fee": this.editForm.wechat_in_fee,
-//                    "alipay_in_fee": this.editForm.alipay_in_fee,
                     "each_min_out": this.editForm.each_min_out,
                     "each_max_out": this.editForm.each_max_out,
                     "day_out_times": this.editForm.day_out_times,
                     "day_out_times_nofee": this.editForm.day_out_times_nofee,
-//                    "withdraw_expenese": Number(this.editForm.withdraw_expenese),
-//                    "max_expenese": this.MultiplyMoney(this.editForm.max_expenese),
                     "withdraw_fee": this.editForm.withdraw_fee,
                     "online_glide_multi": this.editForm.online_glide_multi,
                     "offline_glide_multi": this.editForm.offline_glide_multi,
-//                    "day_withdraw_max": this.MultiplyMoney(this.editForm.day_withdraw_max),
-//                    "nocheck": this.MultiplyMoney(this.editForm.nocheck),
-                    //"onlines": {}
                 }
-//                let temp = this.editForm.onlines;
-//                for (let k in temp) {
-//                    query.onlines[k] = {
-//                        min: this.MultiplyMoney(temp[k].min),
-//                        max: this.MultiplyMoney(temp[k].max)
-//                    }
-//                }
-//                query.onlines = JSON.stringify(query.onlines);
-                this.loading = true;
-                this.$.autoAjax('put', URL.api + ROUTES.PUT.user.level.set + '/' + setlevel, query, {
-                    ok: (res) => {
-                        if (res.state == 0 && res.data) {
-                            this.$message.success(this.LANG['恭喜您，VIP'+setlevel+'出入款设置成功！'] || '恭喜您，VIP'+setlevel+'出入款设置成功！');
-                            this.levelSet = false;
-                        } else {
-                            this.$message.error(this.LANG['Sorry，VIP'+setlevel+'出入款设置失败！'] || 'Sorry，VIP'+setlevel+'出入款设置失败！');
-                            this.levelSet = false;
+                if(parseInt(query.day_out_times_nofee) > parseInt(query.day_out_times)){
+                    this.$message.error('请检查填写内容是否符合要求')
+                }else{
+                    this.loading = true;
+                    this.$.autoAjax('put', URL.api + ROUTES.PUT.user.level.set + '/' + setlevel, query, {
+                        ok: (res) => {
+                            if (res.state == 0 && res.data) {
+                                this.$message.success(this.LANG['恭喜您，VIP' + setlevel + '出入款设置成功！'] || '恭喜您，VIP' + setlevel + '出入款设置成功！');
+                                this.levelSet = false;
+                            } else {
+                                this.$message.error(this.LANG['Sorry，VIP' + setlevel + '出入款设置失败！'] || 'Sorry，VIP' + setlevel + '出入款设置失败！');
+                                this.levelSet = false;
+                            }
+                            this.loading = false;
+                        },
+                        p: () => {
+                        },
+                        error: e => {
+                            console.log(e.responseJSON.msg)
                         }
-                        this.loading = false;
-                    },
-                    p: () => {
-                    },
-                    error: e => {
-                        console.log(e.responseJSON.msg)
-                    }
-                })
+                    })
+                }
             },
             //取消设定
             cancelForm() {

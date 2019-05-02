@@ -54,6 +54,7 @@
                                       { required: true, message: '每日出款免手续费笔数'},
                                       { validator: this.validatorNumber1}]">
                         <el-input v-model="editForm.day_out_times_nofee" auto-complete="off"></el-input>
+                        <p class="help_red" style="position: absolute;bottom:-2px" v-if="parseInt(editForm.day_out_times_nofee) > parseInt(editForm.day_out_times)">每日限免不能大于每日出款次数</p>
                     </el-form-item>
                 </el-col>
             </el-row>
