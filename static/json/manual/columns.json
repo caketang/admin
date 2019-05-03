@@ -60,7 +60,7 @@
         {
             "prop":"withdraw_bet_principal",
             "label":"常态打码量",
-            "type":"linkConnectAdd",
+            "type":"link",
             "sortable":true,
             "disabled":true,
             "width": 150,
@@ -69,7 +69,7 @@
         {
             "prop":"withdraw_bet_coupon",
             "label":"优惠打码量",
-            "type":"linkConnectAdd",
+            "type":"link",
             "sortable":true,
             "disabled":true,
             "width": 150,

@@ -343,25 +343,6 @@
                             this.$message.error(e.responseText.msg);
                         }
                     })
-//                    let url = URL.api + '/export/download/offlines';
-//                    let _this = this;
-//					this.$.autoAjax('get',URL.api + '/dev/download/sign' + '?nonce=' + url, '', {
-//						ok: (res) => {
-//							if (res.data) {
-//								this.outUrl = url + this.addSearch(this.searchObj) + "&nonce=" + res.data.nonce + "&signature=" + res.data.signature + "&time=" + res.data.time + "&uuid=" + res.data.uuid;
-//								this.dialogVisible = true;
-//							} else if (res.msg) {
-//								_this.$message.error(res.msg);
-//							} else {
-//								_this.$message.error(LANG['数据导出失败，请稍后重试'] || '数据导出失败，请稍后重试');
-//							}
-//						},
-//						p: () => {
-//						},
-//						error: e => {
-//							console.log(e)
-//						}
-//					})
                 } else {
                     this.$message.error(LANG['必需选择时间才能导出'] || '必需选择时间才能导出');
                     return;
@@ -391,15 +372,6 @@
 						console.log(e)
 					}
 				})
-                // this.$http.patch(URL.api + '/cash/manual.comment/' + parseInt(this.nowId), params, URLCONFIG).then((res) => {
-                //     if (res.data.state === 0 && res.data.data) {
-                //         this.updated = true;
-                //         this.$message.success(LANG['备注写入成功'] || '备注写入成功');
-                //     } else {
-                //         this.$message.error(LANG['备注写入失败'] || '备注写入失败');
-                //     }
-				//
-                // });
             }
         },
         created(){
