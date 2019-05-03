@@ -225,7 +225,7 @@
                 if(row.isfixBet){
                     this.show_edit_title = '修改用户：' + row.username + '的常态打码量';
                     this.dialog_show_edit = true;
-                    this.withdraw_bet_principal = FORMATMONEY(row.withdraw_bet_principal);
+                    this.withdraw_bet_principal = row.withdraw_bet_principal;
                     this.withdraw_bet_coupon = '';
                 } else {
                   this.$message.error(LANG['该记录已出款或免稽核额度被清零，不可修改'] || '该记录已出款或免稽核额度被清零，不可修改');
@@ -236,7 +236,7 @@
                 if(row.isfixBet){
                     this.show_edit_title = '修改用户：' + row.username + '的优惠打码量';
                     this.dialog_show_edit = true;
-                    this.withdraw_bet_coupon = FORMATMONEY(row.withdraw_bet_coupon);
+                    this.withdraw_bet_coupon = row.withdraw_bet_coupon;
                     this.withdraw_bet_principal = '';
                 } else {
                   this.$message.error(LANG['该记录已出款或免稽核额度被清零，不可修改'] || '该记录已出款或免稽核额度被清零，不可修改');
