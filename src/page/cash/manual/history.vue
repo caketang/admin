@@ -248,7 +248,7 @@
                 let _this = this;
                 this.updated = false;
                 let params = {};
-                params[key] =  FORMATMultiplyMoney(this.from_edit_money[key]);
+                params[key] =  this.from_edit_money[key];
                 this.dialog_show_edit = false;
                 let msg = key === 'withdraw_bet_coupon' ? '优惠打码量' : '常态打码量';
 
@@ -288,10 +288,6 @@
                             query[k] = this.$route.query[k];
                         }
                     }
-//                    setTimeout(()=>{
-//                        this.updateKeys = 'time_begin,' + (query.day_begin || '') + ',time_end,' + (query.day_end || '') + ',user_type,' + (query.type || '') + ',username,' + (query.member_name || '');
-//                        this.tableUrl = this.baseUrl + this.addSearch(query);
-//                    },500);
                 } else {
                     this.tableUrl = this.baseUrl;
                 }
@@ -355,8 +351,7 @@
                 let params = {
                     memo: this.memoText
                 };
-                this.dialogVisibleMemo = false;
-
+                this.dialogVisibleMemo = false
 				this.$.autoAjax('patch',URL.api + '/cash/manual.comment/' + parseInt(this.nowId),params, {
 					ok: (res) => {
 						if (res.state === 0 && res.data) {
