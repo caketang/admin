@@ -160,42 +160,6 @@
                             <el-button type="primary" size="small" @click="doArtificialReduce" :disabled="formControlBtn.reduce_boolean">{{LANG['保存'] || '保存'}}</el-button>
                         </div>
                     </el-form>
-                    <!--<el-form :model="artificialAddForm" :rules="artificialAddFormRules" ref="artificialAddForm"-->
-                             <!--label-width="120px" v-show="formTitle == '手动增加余额'" class="mt10">-->
-                        <!--<el-form-item :label="LANG['用户名'] || '用户名'" prop="name">-->
-                            <!--<el-input v-model="userCont.name" :disabled="true" size="small"></el-input>-->
-                        <!--</el-form-item>-->
-                        <!--<el-form-item :label="LANG['加金额'] || '加金额'" prop="amount">-->
-                            <!--<el-input v-model.number="artificialAddForm.amount" size="small" type="number" ></el-input>-->
-                        <!--</el-form-item>-->
-                        <!--<el-form-item v-if="formInline.role == 1" :label="LANG['打码量'] || '打码量'" prop="withdraw_bet">-->
-                            <!--<el-input v-model.number="artificialAddForm.withdraw_bet" size="small" type="number" ></el-input>-->
-                        <!--</el-form-item>-->
-                        <!--<el-form-item :label="LANG['备注'] || '备注'" prop="memo">-->
-                            <!--<el-input v-model="artificialAddForm.memo" type="textarea" :rows="5" size="small"></el-input>-->
-                        <!--</el-form-item>-->
-                        <!--<div class="formbtn">-->
-                            <!--<el-button type="primary" size="small" @click="doArtificialAdd" :disabled="formControlBtn.add_boolean">{{LANG['保存'] || '保存'}}</el-button>-->
-                        <!--</div>-->
-                    <!--</el-form>-->
-                    <!--<el-form :model="grantRebateForm" :rules="grantRebateFormRules" ref="grantRebateForm"-->
-                             <!--label-width="120px" v-show="formTitle == '发放返水'" class="mt10">-->
-                        <!--<el-form-item :label="LANG['用户名'] || '用户名'" prop="name">-->
-                            <!--<el-input v-model="userCont.name" :disabled="true" size="small"></el-input>-->
-                        <!--</el-form-item>-->
-                        <!--<el-form-item :label="LANG['返水金额'] || '返水金额'" prop="amount">-->
-                            <!--<el-input v-model.number="grantRebateForm.amount" size="small" type="number" ></el-input>-->
-                        <!--</el-form-item>-->
-                        <!--<el-form-item :label="LANG['打码量'] || '打码量'" prop="condition">-->
-                            <!--<el-input v-model.number="grantRebateForm.condition" size="small" type="number" ></el-input>-->
-                        <!--</el-form-item>-->
-                        <!--<el-form-item :label="LANG['备注'] || '备注'" prop="memo">-->
-                            <!--<el-input v-model="grantRebateForm.memo" type="textarea" :rows="5" size="small"></el-input>-->
-                        <!--</el-form-item>-->
-                        <!--<div class="formbtn">-->
-                            <!--<el-button type="primary" size="small" @click="doGrantRebate" :disabled="formControlBtn.rebate_boolean">{{LANG['保存'] || '保存'}}</el-button>-->
-                        <!--</div>-->
-                    <!--</el-form>-->
                     <el-form :model="childToMasterForm" :rules="childToMasterFormRules" ref="childToMasterForm"
                              label-width="80px" v-show="formTitle == '子转主钱包'" class="mt10">
                         <el-form-item :label="LANG['用户名'] || '用户名'" prop="name" >
@@ -541,14 +505,12 @@
                     // 代理
                     url = this.tableDateUrl + '?role=' + parseInt(formData.role) + '&username=' + formData.username;
                 }
-
 				this.$.autoAjax('get', url,'', {
 					ok: (res) => {
 						if (res.state == 0) {
 							// 设置真实姓名和备注
 							this.note.truename = res.data.truename || '';
 							this.note.comment = res.data.comment || '';
-
 							let primaryAccount = res.data.primary,tableDate = res.data.secondary,benefit = res.data.benefit[0];
 							let totalArr = {"name": "总余额", "balance": res.data.total_balance};
 							this.userCont.name = res.data.username;
@@ -722,8 +684,8 @@
                 }
                 //对输入数值参数进行转换
 //                formData.amount = formData.amount?formData.amount.toFixed(2) * 100:'';
-                formData.play_code = formData.play_code?formData.play_code.toFixed(2) * 100:'';
-                formData.discount = formData.discount?formData.discount.toFixed(2) * 100:'';
+                formData.play_code = formData.play_code
+                formData.discount = formData.discount
                 if (!this.djOperateMoney(formData.amount)) return false;
                 this.formControlBtn.deposit_boolean = true;
                 let acountsUrl = URL.api + ROUTES.POST.cash.deposit;
@@ -772,8 +734,7 @@
                     return;
                 }
 
-                formData.amount = this.cashForm.amount?this.cashForm.amount.toFixed(2) * 100:'';
-
+                formData.amount = this.cashForm.amount
                 if (!this.djOperateMoney(formData.amount)) return false;
                 this.formControlBtn.cash_boolean = true;
                 let acountsUrl = URL.api + ROUTES.POST.cash.withdrawal;
@@ -830,10 +791,8 @@
                 if (!this.judgmentProp(formInline_prop)) {
                     return;
                 }
-
-                formData.amount = this.grantDiscountForm.amount?this.grantDiscountForm.amount.toFixed(2) * 100:'';
-                formData.condition = this.grantDiscountForm.condition?this.grantDiscountForm.condition.toFixed(2) * 100:'';
-
+                formData.amount = this.grantDiscountForm.amount;
+                formData.condition = this.grantDiscountForm.condition
                 if (!this.djOperateMoney(formData.amount)) return false;
                 this.formControlBtn.discount_boolean = true;
                 let acountsUrl = URL.api + ROUTES.POST.cash.activity;
@@ -875,7 +834,7 @@
                 for (let i in this.artificialReduceForm) {
                     formData[i] = this.artificialReduceForm[i];
                 }
-                formData.amount =  this.artificialReduceForm.amount?this.artificialReduceForm.amount.toFixed(2) * 100:'';
+                formData.amount =  this.artificialReduceForm.amount
                 if (!this.djOperateMoney(formData.amount)) return false;
                 this.formControlBtn.reduce_boolean = true;
                 let acountsUrl = URL.api + ROUTES.POST.cash.decrease;
@@ -922,8 +881,8 @@
                 if (!this.judgmentProp(formInline_prop)) {
                     return;
                 }
-                formData.amount = this.artificialAddForm.amount?this.artificialAddForm.amount.toFixed(2) * 100:'';
-                formData.withdraw_bet = this.artificialAddForm.withdraw_bet?this.artificialAddForm.withdraw_bet.toFixed(2) * 100:'';
+                formData.amount = this.artificialAddForm.amount
+                formData.withdraw_bet = this.artificialAddForm.withdraw_bet
                 if (!this.djOperateMoney(formData.amount)) return false;
                 this.formControlBtn.add_boolean = true;
                 // console.log(JSON.stringify(formData));
@@ -968,8 +927,8 @@
                 if (!this.judgmentProp(formInline_prop)) {
                     return;
                 }
-                formData.amount = this.grantRebateForm.amount?this.grantRebateForm.amount.toFixed(2) * 100:'';
-                formData.condition = this.grantRebateForm.condition?this.grantRebateForm.condition.toFixed(2) * 100:'';
+                formData.amount = this.grantRebateForm.amount;
+                formData.condition = this.grantRebateForm.condition
                 if (!this.djOperateMoney(formData.amount)) return false;
                 this.formControlBtn.rebate_boolean = true;
                 let acountsUrl = URL.api + ROUTES.POST.cash.rebate;
@@ -1016,7 +975,7 @@
                 if (!this.judgmentProp(formInline_prop)) {
                     return;
                 }
-                formData.amount = this.childToMasterForm.amount?this.childToMasterForm.amount.toFixed(2) * 100:'';
+                formData.amount = this.childToMasterForm.amount;
                 if (!this.djOperateMoney(formData.amount)) return false;
                 this.formControlBtn.childtomaster_boolean = true;
                 let acountsUrl = URL.api + ROUTES.POST.cash.childOrmaster;
