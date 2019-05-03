@@ -30,7 +30,6 @@
             "prop": "balance",
             "label": "调整金额",
             "sortable": true,
-            "type":"divisionMoney",
             "disabled": true,
             "width": 150
         },
@@ -38,21 +37,18 @@
             "prop": "coupon_money",
             "label": "优惠/返水",
             "sortable": true,
-            "type":"divisionMoney",
             "disabled": true,
             "width": 150
         },
         {
             "prop":"balance_before",
             "label":"调整前金额",
-             "type":"divisionMoney",
             "sortable":true,
             "disabled":true,
             "width": 150
         },{
             "prop":"balance_after",
             "label":"调整后金额",
-            "type":"divisionMoney",
             "sortable":true,
             "disabled":true,
             "width": 150

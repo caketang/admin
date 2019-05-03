@@ -29,13 +29,13 @@
                     <tr slot="other" v-if="allData">
                         <td colspan="4" ><div class="cell tCent">{{LANG['小计'] || '小计'}}</div></td>
                         <td>
-                            <div class="cell">{{(parseFloat(allData.page_money_sum) / 100).toFixed(2)}}</div>
+                            <div class="cell">{{allData.page_money_sum}}</div>
                         </td>
                         <td colspan="9"></td>
                     </tr>
                     <tr slot="other" v-if="allData">
                         <td colspan="4" ><div class="cell tCent">{{LANG[' 总计'] || '总计'}}</div></td>
-                        <td><div class="cell">{{(parseFloat(allData.total_money_sum) / 100).toFixed(2)}}</div></td>
+                        <td><div class="cell">{{allData.total_money_sum}}</div></td>
                         <td colspan="9"></td>
                     </tr>
             </tablegrid>
