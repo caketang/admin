@@ -47,7 +47,7 @@
                                 <el-col :span="12">交易订单号:<span>{{dialogText.trade_no}}</span></el-col>
                                 <el-col :span="12">是否首存：<span>{{dialogText.is_new | isNew}}</span></el-col>
                                 <el-col :span="12">用户名： <span>{{dialogText.user_name}}</span></el-col>
-                                <el-col :span="12">会员等级：<span>{{dialogText.ranting}}</span></el-col>
+                                <el-col :span="12">会员等级：<span>{{dialogText.level}}</span></el-col>
                                 <el-col :span="12">真实姓名：<span>{{dialogText.true_name}}</span></el-col>
                                 <el-col :span="12">用户注册时间：<span>{{dialogText.register_time}}</span></el-col>
                                 <el-col :span="12">上级代理：<span>{{dialogText.agent_name}}</span></el-col>

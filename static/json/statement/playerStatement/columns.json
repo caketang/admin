@@ -8,7 +8,7 @@
       "type":"link",
       "fn":"openUserSet"
     },
-    { "prop":"ranting",
+    { "prop":"level",
       "label":"会员等级",
       "sortable":true,
       "disabled":true,

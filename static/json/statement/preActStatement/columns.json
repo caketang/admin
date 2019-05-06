@@ -12,7 +12,7 @@
             "fn":"openUserSet",
             "disabled":true
         },
-        {	"prop":"ranting",
+        {	"prop":"level",
             "label":"会员等级",
             "sortable":true,
             "disabled":true

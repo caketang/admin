@@ -14,7 +14,7 @@
             "fn":"openUserSet",
             "disabled":true
         },
-        {   "prop":"ranting",
+        {   "prop":"level",
             "label":"会员等级",
               "width":"150",
             "disabled":true
@@ -32,7 +32,7 @@
             "type":"linkDivisionMoney",
             "fn":"showRebate",
             "disabled":true
-            
+
         },
         {   "prop":"rebet_money",
             "label":"返水金额",
