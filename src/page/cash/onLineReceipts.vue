@@ -296,7 +296,6 @@
             doQuery(obj) {
                 let temp = {};
                 for (let k in obj.item) {
-                    console.log(k)
                     if (k === 'levels') {
                         let temparr = obj.item[k] || [];
                         let list = this.searchConfig[10].Arr || [];

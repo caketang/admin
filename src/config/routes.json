@@ -301,10 +301,6 @@
           "name": "总报表"
         },
         {
-          "path": "playerStatement",
-          "name": "玩家报表"
-        },
-        {
           "path": "gameStatement",
           "name": "游戏报表"
         },
