@@ -42,7 +42,8 @@
                                 <span
                                     class="font14 ml10">{{LANG['实际金额总计'] || '实际金额总计'}} : {{allData.actual_total_sum | formatMoney}}</span>
                                 <span class="ml10 mr10"> | </span>
-                                <span class="font14">{{LANG['扣除金额小计'] || '扣除金额小计'}}: {{allData.deduct_page_sum | formatMoney}}</span>
+                                <span
+                                    class="font14">{{LANG['扣除金额小计'] || '扣除金额小计'}}: {{allData.deduct_page_sum | formatMoney}}</span>
                                 <span
                                     class="font14 ml10">{{LANG['扣除金额总计'] || '扣除金额总计'}} : {{allData.deduct_total_sum | formatMoney}}</span>
                                 <span class="ml10 mr10"> | </span>
@@ -68,7 +69,8 @@
             </el-col>
             <!--详情-->
             <el-col>
-                <el-dialog :title="'【'+ userName + '】' + LANG['会员提现详情'] || '会员提现详情'" v-model="editVisible" class="vipDialog"
+                <el-dialog :title="'【'+ userName + '】' + LANG['会员提现详情'] || '会员提现详情'" v-model="editVisible"
+                           class="vipDialog"
                            size="large" :close-on-click-modal="false" :close-on-press-escape="false"
                            :before-close="handleClose">
                     <el-row>
@@ -95,8 +97,10 @@
                         </el-col>
                         <el-col :span="6">
                             <div class="menberGetOutContentData">
-                                <input id="getOutMoney_input" class="remove" :value="editForm.money | filterMoneyIsNull" readonly="readonly">
-                                <el-button :plain="true" type="info" icon="document" size="mini" @click="copyGetOutMoney()">复 制
+                                <input id="getOutMoney_input" class="remove" :value="editForm.money | filterMoneyIsNull"
+                                       readonly="readonly">
+                                <el-button :plain="true" type="info" icon="document" size="mini"
+                                           @click="copyGetOutMoney()">复 制
                                 </el-button>
                                 <!--{{editForm.money | filterMoneyIsNull}}-->
                             </div>
@@ -123,8 +127,10 @@
                         </el-col>
                         <el-col :span="6">
                             <div v-if="editForm.receive_bank_info">
-                                <input id="getOutBankUser_input" class="remove" :value="editForm.receive_bank_info.accountname" readonly="readonly">
-                                <el-button :plain="true" type="info" icon="document" size="mini" @click="copyGetOutBankUser()">复 制
+                                <input id="getOutBankUser_input" class="remove"
+                                       :value="editForm.receive_bank_info.accountname" readonly="readonly">
+                                <el-button :plain="true" type="info" icon="document" size="mini"
+                                           @click="copyGetOutBankUser()">复 制
                                 </el-button>
                             </div>
                         </el-col>
@@ -132,13 +138,17 @@
                             <div class="grid-content bg-purple"><span>{{LANG['取款银行'] || '取款银行'}}</span></div>
                         </el-col>
                         <el-col :span="6">
-                            <div class="menberGetOutContentData" v-if="editForm.receive_bank_info">{{editForm.receive_bank_info.bank}}</div>
+                            <div class="menberGetOutContentData" v-if="editForm.receive_bank_info">
+                                {{editForm.receive_bank_info.bank}}
+                            </div>
                         </el-col>
                         <el-col :span="2">
                             <div class="grid-content bg-purple"><span>{{LANG['支行'] || '支行'}}</span></div>
                         </el-col>
                         <el-col :span="6">
-                            <div class="menberGetOutContentData" v-if="editForm.receive_bank_info">{{editForm.receive_bank_info.address}}</div>
+                            <div class="menberGetOutContentData" v-if="editForm.receive_bank_info">
+                                {{editForm.receive_bank_info.address}}
+                            </div>
                         </el-col>
                     </el-row>
                     <el-row :gutter="22" class="hover_row">
@@ -147,8 +157,10 @@
                         </el-col>
                         <el-col :span="6">
                             <div v-if="editForm.receive_bank_info">
-                                <input id="getOutBankNumber_input" class="remove" :value="editForm.receive_bank_info.card" readonly="readonly">
-                                <el-button :plain="true" type="info" icon="document" size="mini" @click="copyGetOutBankNumber()">复 制
+                                <input id="getOutBankNumber_input" class="remove"
+                                       :value="editForm.receive_bank_info.card" readonly="readonly">
+                                <el-button :plain="true" type="info" icon="document" size="mini"
+                                           @click="copyGetOutBankNumber()">复 制
                                 </el-button>
                             </div>
                             <!--<div class="menberGetOutContentData" v-if="editForm.receive_bank_info">{{editForm.receive_bank_info.card}}</div>-->
@@ -172,7 +184,7 @@
                             <div class="grid-content bg-purple"><span>{{LANG['总入款'] || '总入款'}}</span></div>
                         </el-col>
                         <el-col :span="6">
-                            <div  class="menberGetOutContentData">
+                            <div class="menberGetOutContentData">
                                 <span>{{editForm.deposit_money}}</span> |
                                 <span>{{editForm.deposit_times}}笔</span>
                             </div>
@@ -181,7 +193,7 @@
                             <div class="grid-content bg-purple"><span>{{LANG['总出款'] || '总出款'}}</span></div>
                         </el-col>
                         <el-col :span="6">
-                            <div  class="menberGetOutContentData">
+                            <div class="menberGetOutContentData">
                                 <span>{{editForm.withdraw_money}}</span> |
                                 <span>{{editForm.withdraw_times}}笔</span>
                             </div>
@@ -190,7 +202,7 @@
                             <div class="grid-content bg-purple"><span>{{LANG['盈利情况'] || '盈利情况'}}</span></div>
                         </el-col>
                         <el-col :span="6">
-                            <div  class="menberGetOutContentData">{{editForm.lose_earn}}</div>
+                            <div class="menberGetOutContentData">{{editForm.lose_earn}}</div>
                         </el-col>
                     </el-row>
                     <!--稽核信息-->
@@ -223,7 +235,8 @@
                                         <template slot-scope="scope">
                                             <el-tooltip placement="right" effect="light">
                                                 <div slot="content">
-                                                    <p v-for="(item,key) in gridDataCol" :key="key" :class="{mt10:key >0}">
+                                                    <p v-for="(item,key) in gridDataCol" :key="key"
+                                                       :class="{mt10:key >0}">
                                                         <a href="javascript:;"
                                                            @click="toLink(item['name-en'],scope.row.start_date,scope.row.end_date)">
                                                             <el-tag type="primary" style="">{{item.name}} :</el-tag>
@@ -260,10 +273,10 @@
                         </el-col>
                     </el-row>
                     <span slot="footer" class="dialog-footer" v-if="showChange">
-                    <el-button @click="closeDialog(editForm)">{{LANG['取消审核'] || '取消审核'}}</el-button>
-                    <el-button @click="doUpdate(editForm)" type="success">{{LANG['确认出款'] || '确认出款'}}</el-button>
-                    <el-button @click="doReject(editForm)" type="danger">{{LANG['拒绝'] || '拒绝'}}</el-button>
-                    <el-button @click="doRefuse(editForm)" type="primary">{{LANG['取消出款'] || '取消出款'}}</el-button>
+                        <el-button @click="closeDialog(editForm)">{{LANG['取消审核'] || '取消审核'}}</el-button>
+                        <el-button @click="doRefuse(editForm)" type="primary">{{LANG['取消出款'] || '取消出款'}}</el-button>
+                        <el-button @click="doReject(editForm)" type="danger">{{LANG['拒绝'] || '拒绝'}}</el-button>
+                        <el-button @click="doUpdate(editForm)" type="success">{{LANG['确认出款'] || '确认出款'}}</el-button>
               </span>
                 </el-dialog>
             </el-col>
@@ -290,26 +303,6 @@
                             </div>
                         </el-col>
                     </el-row>
-                    <!--<el-row :gutter="20" type="flex" justify="center">-->
-                    <!--<el-col :span="8" :pull="2">-->
-                    <!--<div class="grid-content bg-purple tCent"><span>优惠:{{receivable.coupon}}</span></div>-->
-                    <!--</el-col>-->
-                    <!--<el-col :span="8">-->
-                    <!--<div class="grid-content bg-purple tCent">-->
-                    <!--<el-input v-model="withdraw.coupon" type="number"></el-input>-->
-                    <!--</div>-->
-                    <!--</el-col>-->
-                    <!--</el-row>-->
-                    <!--<el-row :gutter="20" type="flex" justify="center">-->
-                    <!--<el-col :span="8" :pull="2">-->
-                    <!--<div class="grid-content bg-purple tCent"><span>行政费:{{receivable.management_cost}}</span></div>-->
-                    <!--</el-col>-->
-                    <!--<el-col :span="8">-->
-                    <!--<div class="grid-content bg-purple tCent">-->
-                    <!--<el-input v-model="withdraw.management_cost" type="number"></el-input>-->
-                    <!--</div>-->
-                    <!--</el-col>-->
-                    <!--</el-row>-->
                     <el-row :gutter="20" type="flex" justify="center">
                         <el-col :span="4">
                             <div class="tCent">
@@ -363,6 +356,7 @@
     import editTable from '../../components/editTable.vue'
     import formEdit from '../../components/formEdit.vue'
     import confirm from '../../components/confirm.vue';
+
     export default {
         data() {
             return {
@@ -579,19 +573,19 @@
                 this.showEditMemo = !this.showEditMemo
             },
             //复制出款金额
-            copyGetOutMoney(){
+            copyGetOutMoney() {
                 let input = document.getElementById("getOutMoney_input");
                 input.select(); // 选中文本
                 document.execCommand("copy"); // 执行浏览器复制命令
                 this.$message.success(LANG['复制出款金额成功'] || '复制出款金额成功');
             },
-            copyGetOutBankNumber(){
+            copyGetOutBankNumber() {
                 let input = document.getElementById("getOutBankNumber_input");
                 input.select(); // 选中文本
                 document.execCommand("copy"); // 执行浏览器复制命令
                 this.$message.success(LANG['复制银行帐号成功'] || '复制银行帐号成功');
             },
-            copyGetOutBankUser(){
+            copyGetOutBankUser() {
                 let input = document.getElementById("getOutBankUser_input");
                 input.select(); // 选中文本
                 document.execCommand("copy"); // 执行浏览器复制命令
@@ -1116,10 +1110,10 @@
                 text-align: center;
             }
         }
-        .hover_row .el-col-6:hover{
-            background: rgb(238,241,245);
-            input{
-                background: rgb(238,241,245);
+        .hover_row .el-col-6:hover {
+            background: rgb(238, 241, 245);
+            input {
+                background: rgb(238, 241, 245);
             }
         }
         .el-row {
@@ -1127,25 +1121,27 @@
             .el-col {
                 border-radius: 4px;
                 .bg-purple-dark {
-                    color:#fff;
-                    font-size:16px;
+                    color: #fff;
+                    font-size: 16px;
                 }
-                .remove{
+                .remove {
                     height: 36px;
                     line-height: 36px;
-                    border:none;
-                    outline:none;
-                    width:auto;
-                    font-size:14px;
-                    color:rgb(75,87,104);
+                    border: none;
+                    outline: none;
+                    width: auto;
+                    font-size: 14px;
+                    color: rgba(75, 87, 104, 1);
                 }
             }
-            .bg-purple,.menberGetOutContentData {
+            .bg-purple, .menberGetOutContentData {
                 line-height: 36px;
             }
-            .hiddenScrollbar{
-                .el-table__body-wrapper::-webkit-scrollbar {display:none}
-                th{
+            .hiddenScrollbar {
+                .el-table__body-wrapper::-webkit-scrollbar {
+                    display: none
+                }
+                th {
                     text-align: center;
                 }
             }

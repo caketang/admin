@@ -1,24 +1,21 @@
 {
   "columns":[
-    { "prop":"start_date,end_date",
+    { "prop":"date",
       "label":"交易时间",
       "sortable":true,
       "disabled":true,
-      "width": 200,
-      "type": "connectSdateEdate"
+      "width": 200
     },
     { "prop":"money",
       "label":"存款金额",
       "sortable":true,
       "disabled":true,
-      "type":"divisionMoney",
       "width": 150
     },
     { "prop":"coupon_money",
       "label":"优惠金额",
       "sortable":true,
       "disabled":true,
-      "type":"divisionMoney",
       "width": 150
     },
     { "prop":"valid_bet",
@@ -26,7 +23,7 @@
       "disabled":true,
       "width": 150,
       "hover":true,
-      "type":"linkDivisionMoney",
+      "type":"link",
       "fn":"showRebateProportion"
     },
     {
@@ -34,20 +31,18 @@
       "label":"常态打码量",
       "sortable":true,
       "disabled":true,
-      "width": 150,
-      "type":"divisionMoney"
+      "width": 150
     },
     {
       "prop":"withdraw_bet_coupon",
       "label":"优惠打码量",
       "sortable":true,
       "disabled":true,
-      "width": 150,
-      "type":"divisionMoney"
+      "width": 150
     },
-    { "prop":"is_pass",
+    { "prop":"pass",
       "label":"是否达到投注",
-      "filters":[{ "text": "是", "value": true}, { "text": "否", "value": false}],
+      "filters":[{ "text": "是", "value": "yes"}, { "text": "否", "value": "no"}],
       "sortable":true,
       "disabled":true,
       "width": 150

@@ -28,8 +28,7 @@
             "prop": "amount",
             "label": "主钱包额度",
             "width": "200",
-            "disabled": true,
-            "type": "divisionMoney"
+            "disabled": true
         },
         {
             "prop": "th3_amount",
@@ -38,13 +37,12 @@
             "disabled": true,
             "fn": "showSubPurse",
             "hover": true,
-            "type": "linkDivisionMoney"
+            "type": "link"
         },
         {
             "prop": "benefit_balance",
             "label": "代理钱包额度",
-            "disabled": true,
-            "type": "divisionMoney"
+            "disabled": true
         },
         {
             "prop": "created,ip",

@@ -52,8 +52,6 @@
                     <td><div class="cell">{{totalMoney.lose_earn}}</div></td>
                     <td colspan="3"></td>
                 </tr>
-
-
             </tablegrid>
         </el-col>
         <el-col>

@@ -16,30 +16,30 @@
                 <el-form :model="accountFrom" label-width="100px" >
                     <el-col :span="24" class="item">
                         <el-form-item :label="LANG['主帐户'] || '主帐户'">
-                            <span>{{accountFrom['balance'] | formatMoney}}</span>
+                            <span>{{accountFrom['balance']}}</span>
                         </el-form-item>
                     </el-col>
                     <el-col :span="12" class="item">
                         <el-form-item :label="LANG['提款冻结'] || '提款冻结'">
-                            <span>{{accountFrom['freeze_withdraw'] | formatMoney}}</span>
+                            <span>{{accountFrom['freeze_withdraw']}}</span>
                         </el-form-item>
                     </el-col>
                     <el-col :span="12" class="item">
                         <el-form-item :label="LANG['代理钱包'] || '代理钱包'">
-                            <span>{{accountFrom['benefit_balance'] | formatMoney}}</span>
+                            <span>{{accountFrom['benefit_balance']}}</span>
                         </el-form-item>
                     </el-col>
                     <!-- S.渲染子钱包 -->
                     <!-- 不确定子钱包个数，确保最后一个子钱包能占满整行 -->
                     <el-col v-for="(item, index) in accountFrom.children" :span="(index % 2 === 0 && index === accountFrom.children.length - 1) ? 24 : 12" class="item" :key="item.game_type">
                         <el-form-item :label="LANG[item.game_type + '余额'] || item.game_type + '余额'">
-                            <span>{{item.balance | formatMoney}}</span>
+                            <span>{{item.balance}}</span>
                         </el-form-item>
                     </el-col>
                     <!-- E.渲染子钱包 -->
                     <el-col :span="24" class="item">
                         <el-form-item :label="LANG['总余额'] || '总余额'">
-                            <span>{{accountFrom['amount'] | formatMoney}}</span>
+                            <span>{{accountFrom['amount']}}</span>
                         </el-form-item>
                     </el-col>
                 </el-form>

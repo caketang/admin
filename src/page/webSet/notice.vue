@@ -24,7 +24,6 @@
                     :formConfig="oneColConfig"
                     :type="type"
                     :labelWidth="labelWidth"
-                    size="large"
                     :markdownTest="markdownTest"
                     :isEdit="isEdit"
                     @get-form="getForm"></formEdit>
@@ -255,7 +254,6 @@
 				this.baseUrl = URL.api + ROUTES.GET.notices.list;
 				//获取语言列表
 				let langeUrl = URL.api + ROUTES.GET.langeages;
-
                 this.$.autoAjax('get',langeUrl, '', {
                     ok: (res) => {
                         let model = res.data
@@ -272,27 +270,18 @@
                         console.log(e)
                     }
                 })
-				// this.$http.get(langeUrl, URLCONFIG).then((res) => {
-				// 	let model = res.data.data
-				// 	for (let i in model) {
-				// 		this.oneColConfig[4].list.push({
-				// 			"label": model[i].name.toString(),
-				// 			"value": model[i].id.toString()
-				// 		})
-				// 	}
-				// })
 				//获会员层级
 				let levelUrl = URL.api + ROUTES.GET.user.level.list;
 				let _this = this;
-
                 this.$.autoAjax('get',levelUrl, '', {
                     ok: (res) => {
+                        console.log(res)
                         let model = res.data
                         for (let i in model) {
-                            _this.oneColConfig[2].list.push(model[i].id.toString());
+                            _this.oneColConfig[2].list.push(model[i].level);
                             _this.oneColConfig[2].Arr.push({
-                                "label": model[i].name,
-                                "value": model[i].id.toString()
+                                "label": 'VIP'+model[i].level,
+                                "value": model[i].level
                             })
                         }
                     },
@@ -302,19 +291,6 @@
                         console.log(e)
                     }
                 })
-				// this.$http.get(levelUrl, URLCONFIG).then((res) => {
-				// 	let model = res.data.data
-				// 	for (let i in model) {
-				// 		_this.oneColConfig[2].list.push(model[i].id.toString());
-				// 		_this.oneColConfig[2].Arr.push({
-				// 			"label": model[i].name,
-				// 			"value": model[i].id.toString()
-				// 		})
-				// 	}
-				// })
-                .catch(function (err) {
-//					console.log(err)
-				});
 			},
             //文本框值修改
             changeText(obj){

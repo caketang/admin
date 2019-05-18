@@ -18,6 +18,7 @@
                       :formVisible="editVisible"
                       :formConfig="formConfig"
                       :type="type"
+                      size="small"
                       :labelWidth="labelWidth"
                       @get-form="getForm"
                       :isEdit="isEdit"

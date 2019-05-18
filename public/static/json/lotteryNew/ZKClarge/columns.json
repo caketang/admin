@@ -53,7 +53,6 @@
             "prop": "pay_money",
             "label": "投注金额",
             "width": "200",
-            "type":"divisionMoney",
             "disabled": true
         }
     ]

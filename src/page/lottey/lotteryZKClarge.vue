@@ -86,9 +86,8 @@
                 })
             },
             doQuery(obj) {
-                console.log(obj)
-                this.lotteryData.user_name = obj.item.user_name,
-                this.lotteryData.pay_money = obj.item.pay_money*100,
+                this.lotteryData.user_name = obj.item.user_name;
+                this.lotteryData.pay_money = obj.item.pay_money;
                 this.tableUrl = URL.api + '/plottery/bet' + this.addSearch(this.lotteryData)
             },
             resetForm() {

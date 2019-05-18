@@ -695,12 +695,12 @@ export default [
             //     iconCls: '',
             //     name: '下级佣金统计'
             // },
-            {
-                path: '/agentDrawing',
-                component: resolve => require(['../page/agent/agentDrawing'], resolve),
-                iconCls: '',
-                name: '代理提款'
-            },
+            // {
+            //     path: '/agentDrawing',
+            //     component: resolve => require(['../page/agent/agentDrawing'], resolve),
+            //     iconCls: '',
+            //     name: '代理提款'
+            // },
             {
                 path: '/agentRebate',
                 component: resolve => require(['../page/agent/agentRebate'], resolve),

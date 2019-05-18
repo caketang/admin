@@ -863,189 +863,6 @@
                 let columnList = _this.columnList || [];
                 this.baseUrl = this.tableUrl;
                 if ((this.columnsUrl != "") && (this.columnsUrl != undefined)) {
-//                    this.$.get(this.columnsUrl, (res) => {
-//                        if (res) {
-//                            columnList.splice(0, columnList.length);
-//                            let columns = res && res.columns ? res.columns : [];
-//                            if (this.assembleColumns) {
-//                                let index = this.assembleColumns.index;
-//                                let origin = columns.slice(0, index);
-//                                let end = columns.slice(index, columns.length);
-//                                let columsObj = {
-//                                    orignCol: origin,
-//                                    endCol: end,
-//                                    connectCol: this.assembleColumns.data
-//                                };
-//                                columns = CONNECTCOLUMS(columsObj, 100);
-//                            }
-//                            if (columns.length > 0) {
-//                                for (let i in columns) {
-//                                    columnList.push(columns[i])
-//                                    if (columns[i].disabled == true) {
-//                                        _this.columnConfig.push(columns[i].prop);
-//                                    }
-//                                    if (columns[i].sort === true) {
-//                                        _this.$set(_this.ascKey, columns[i].prop, '');
-//                                    }
-//                                }
-//                            }
-//                            // 取列表数据
-//                            if ((this.baseUrl != "") && (this.baseUrl != undefined)) {
-//                                let query = {};
-//                                if (this.query && this.query.toString().length > 0) {
-//                                    query = this.query;
-//                                }
-//                                if (this.pageSet) {
-//                                    let index = this.baseUrl.indexOf('?');
-//                                    if (index === -1) {
-//                                        this.baseUrl = this.baseUrl + "?page=" + (currentPage === 0 ? 1 : currentPage) + "&page_size=" + (pageSize === 0 ? 20 : pageSize);
-//                                    } else {
-//                                        let n = this.baseUrl.indexOf('page=');
-//                                        if (/standard/g.test(this.baseUrl) || /fast/g.test(this.baseUrl)) {
-////                                currentPage = currentPage;
-//                                        } else {
-//                                            currentPage = 1;
-//                                        }
-//                                        if (n > 0) {
-//                                            this.baseUrl = this.baseUrl.replace(/page=\d+/, "page=" + currentPage || 1);
-//                                        } else {
-//                                            this.baseUrl = this.baseUrl + "&page=" + (currentPage === 0 ? 1 : currentPage) + "&page_size=" + (pageSize === 0 ? 20 : pageSize);
-//                                        }
-//                                        let m = this.baseUrl.indexOf('page_size=');
-//                                        if (m > 0) {
-//                                            this.baseUrl = this.baseUrl.replace(/page_size=\d+/, "page_size=" + (pageSize === 0 ? 20 : pageSize));
-//                                        } else {
-//                                            this.baseUrl = this.baseUrl + "&page_size=20";
-//                                        }
-//                                    }
-//                                }
-//                                this.$.autoAjax('get', this.baseUrl, '', {
-//                                    ok: (res) => {
-//                                        _this.tableDataList = [];
-//                                        _this.tableDataColen = [];
-//                                        let tableDate = res && res.data ? res.data : [];
-//                                        if (_this.getData) {
-//                                            let model = res.data || {};
-//                                            for (let k in model) {
-//                                                otherData[k] = model[k];
-//                                            }
-//                                        }
-//                                        let list = res && res.data && res.data && res.data.tableDemoDate || res.data.list || res.data.data || res.data.deposit || [];
-//                                        if (res.data.length === undefined) {
-//                                            if (res.data.list != undefined && res.data.list.length) {
-//                                                list = res.data.list || [];
-//                                            }
-//                                        }
-//                                        _this.subTotalBet = {};
-//                                        _this.totalBet = {};
-//                                        if (res.attributes) {
-//                                            if (res.attributes.subTotalBet) {
-//
-//                                                let obj = res.attributes.subTotalBet;
-//                                                for (let k in obj) {
-//                                                    _this.subTotalBet[k] = obj[k];
-//                                                }
-//                                            }
-//                                            if (res.attributes.totalBet) {
-//
-//                                                let obj = res.attributes.totalBet;
-//                                                for (let k in obj) {
-//                                                    _this.totalBet[k] = obj[k];
-//                                                }
-//                                            }
-//                                            _this.total = res && res.attributes && res.attributes.total || 0;
-//                                            _this.pageSize = res && res.attributes && res.attributes.page_size || 20;
-//                                            _this.pageCount = Math.ceil(_this.total / _this.pageSize) ? Math.ceil(_this.total / _this.pageSize) : 1;
-//                                            _this.currentPage = parseInt(res.attributes.page) ? parseInt(res.attributes.page) : 1;
-//                                        }
-//                                        if (list.length && list.length > 0) {
-//                                            for (let i in list) {
-//                                                // 根据列表配置写数据
-//                                                let temp = list[i], tempobj = {};
-//                                                for (let m in temp) {
-//                                                    tempobj[m] = temp[m];
-//                                                }
-//                                                _this.tableDataColen.push(tempobj);
-//                                                _this.tableDataList.push(_this.formatRowDate(list[i], columnList, i));
-//                                            }
-//                                            _this.initCheckList(list);
-//                                        } else if (tableDate.length && tableDate.length > 0) {
-//                                            let sumNumber = _this.sumNumber;
-//                                            for (let j in tableDate) {
-//                                                _this.tableDataList.push(_this.formatRowDate(tableDate[j], columnList, j));
-//                                                let temp = tableDate[j], tempobj = {};
-//                                                for (let m in temp) {
-//                                                    tempobj[m] = temp[m];
-//                                                }
-//                                                _this.tableDataColen.push(tempobj);
-//                                            }
-//                                            this.initCheckList(tableDate);
-//                                        }
-////										_this.tableDataList.prototype.clone = function () {
-////											return [].concat(this);
-////										}
-//                                        if (_this.getData) {
-//                                            otherData.attributes = res.attributes
-//                                            _this.$emit("get-table-data", {
-//                                                "item": _this.tableDataColen,
-//                                                "allData": otherData
-//                                            });
-//                                        }
-//                                        _this.loading = false;
-//                                    },
-//                                    p: () => {
-//                                    },
-//                                    error: e => {
-//                                        if (_this.getData) {
-//                                            _this.$emit("get-table-data", {
-//                                                "item": _this.tableDataColen,
-//                                                "allData": otherData
-//                                            });
-//                                        }
-//                                        _this.loading = false;
-//                                    }
-//                                })
-//                            } else {
-//                                this.loading = false;
-//                                // 通过formData渲染表格
-//                                if (!this.tableData) return;
-//                                let query = {};
-//                                if (this.query && this.query.toString().length > 0) {
-//                                    query = this.query;
-//                                }
-//                                let tableDate = this.tableData;
-//                                let otherData = _this.otherData[0] = {};
-//                                let list = this.tableData.list || [];
-//                                if (list.length && list.length > 0) {
-//                                    //写相关其它数据
-//                                    for (let i in tableDate) {
-//                                        otherData[i] = tableDate[i];
-//                                    }
-//                                    _this.total = tableDate.total ? tableDate.total : 0;
-//                                    _this.pageSize = tableDate.page_size ? tableDate.page_size : 20;
-//                                    _this.pageCount = Math.ceil(_this.total / _this.pageSize) ? Math.ceil(_this.total / _this.pageSize) : 1;
-//                                    _this.currentPage = tableDate.page ? tableDate.page : 1;
-//                                    for (let i in list) {
-//                                        _this.tableDataList.push(_this.formatRowDate(list[i], columnList, i));
-//                                        let temp = list[i], tempobj = {};
-//                                        for (let m in temp) {
-//                                            tempobj[m] = temp[m];
-//                                        }
-//                                        _this.tableDataColen.push(tempobj);
-//                                    }
-//                                    _this.initCheckList(list);
-//                                }
-//                                if (_this.getData) {
-//                                    _this.$emit("get-table-data", {
-//                                        "item": _this.tableDataColen,
-//                                        "otherData": _this.otherData
-//                                    });
-//                                }
-//                            }
-//                        } else {
-//                            this.$message.error('列配置请求失败，请稍后重试！')
-//                        }
-//                    });
                     this.$.get(this.columnsUrl, (res) => {
                         if (res) {
                             columnList.splice(0, columnList.length);
@@ -1371,7 +1188,7 @@
                                         continue;
                                     case 'linkDivisionMoney':
                                         if (obj[k] === row[k]) {
-                                            obj[k] = tableFilter.formatMoney(row[k]);
+                                            obj[k] = row[k];
                                         }
                                         continue;
                                     case 'linkNumberButton':
@@ -1438,8 +1255,8 @@
                     "page": this.currentPage,
                     "prop": prop,
                     "btn": btn,
-                    "x": event.pageX,
-                    "y": event.pageY,
+//                    "x": event.pageX,
+//                    "y": event.pageY,
                 });
             },
             //处理表格的按钮的hover展示信息

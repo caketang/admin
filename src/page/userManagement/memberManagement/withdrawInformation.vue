@@ -14,6 +14,7 @@
                     :columnsUrl="columnsUrl"
                     :tableUrl="tableUrl"
                     :getData="true"
+                    :pageSet="false"
                     :tableData="tableData"
                     @get-table-data="getTableData"
                     :formType="formType"
@@ -54,7 +55,6 @@
 </template>
 <script>
     import tablegrid from '../../../components/tableGrid.vue'
-
     export default {
         data() {
             return {
@@ -67,7 +67,6 @@
                     list: []
                 },
                 gridData: [],
-
             }
         },
         components: {
@@ -81,16 +80,14 @@
             init() {
                 //取用户数据
                 this.columnsUrl = "/static/json/accoutManage/memberManagement/withdrawInformation/columns.json"
-                this.tableUrl = URL.api + ROUTES.GET.user.newInfo + "?id=" + parseInt(this.id) + "&type=withdraw";
-                console.log(this.tableUrl)
+                //this.tableUrl = URL.api + ROUTES.GET.user.newInfo + "?id=" + parseInt(this.id) + "&type=withdraw";
+                this.tableUrl = URL.api + ROUTES.GET.user.Audit + "?id=" + parseInt(this.id) + "&type=withdraw";
             },
             //刷新页面
             refreshModel() {
-                if (this.formType == "edit") {
-                    this.formType = "add";
-                } else {
-                    this.formType = "edit";
-                }
+                this.formType == "edit"
+                    ?this.formType = "add"
+                    :this.formType = "edit";
             },
             doHandle() {
 

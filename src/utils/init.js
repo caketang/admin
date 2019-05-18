@@ -250,6 +250,7 @@ global.ROUTES = {
                 },
             },
             newInfo: '/user/info',
+            Audit: '/cash/deposit/audit',
             testPlay:'/agent/testagent/get'
         },
         state: {

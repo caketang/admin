@@ -77,16 +77,6 @@
 
         </el-row>
         <el-col :span="24">
-            <!--  <tablegrid
-              :columnsUrl="columnsUrl"
-              :tableUrl="tableUrl"
-              :updated="updated"
-              :saveData="true"
-              :getData="true"
-              @get-table-data="checkType"
-              :lotteryType="lotteryType"
-              @data-save="saveOdds"
-              ></tablegrid> -->
             <oddsSet :tableUrl="tableUrl" :columnsUrl="columnsUrl" @save-data="saveOdds" :playType="playType"
                      :updated="updated" :lotteryId="editForm.lottery_id" :lotteryNumber="editForm.lottery_number"
                      :playname="editForm.play_type1" :lotteryName="lotteryname"></oddsSet>
@@ -97,7 +87,6 @@
 	import tablegrid from '../../components/tableGrid.vue'
 	import oddsSet from '../instantNote/oddsSet.vue'
 	import ElCol from "element-ui/packages/col/src/col";
-
 	export default {
 		data() {
 			return {
@@ -190,29 +179,9 @@
 						console.log(e)
 					}
 				})
-				// this.$http.get(URL.api + ROUTES.GET.lottery.template + "?enabled=1&template_type=" + nowType + "&page=1&page_size=10", URLCONFIG).then((res) => {
-				// 	if (res.data.state == 0 && res.data.data) {
-				// 		let model = res.data.data || [];
-				// 		_this.tidList = [];
-				// 		for (let k in model) {
-				// 			_this.tidList.push({
-				// 				"label": model[k]['t_name'],
-				// 				"value": model[k]['t_id'].toString()
-				// 			});
-				// 		}
-				// 		if (_this.tidList.length > 0) {
-				// 			_this.editForm.tid = _this.tidList[0].value;
-				// 		}
-				// 		_this.changeTid(_this.editForm.tid)
-				// 	}
-				// })
-                .catch((e) => {
-					_this.$message.error(LANG['未知错误，请稍后重试！'] || '未知错误，请稍后重试！');
-				});
 				this.getLotteryList();
 			},
 			checkType(obj) {
-
 			},
 			changeTimes(v) {
 				if (parseInt(v) === 0) {
@@ -271,46 +240,10 @@
 						console.log(e)
 					}
 				})
-				// this.$http.get(URL.api + ROUTES.GET.lottery.types.$, URLCONFIG).then((res) => {
-				// 	if (res.data.state == 0 && res.data.data) {
-				// 		let model = res.data.data || [];
-				// 		_this.lotteryList = [];
-				// 		for (let k in model) {
-				// 			if (model[k].pid != 0) {
-				// 				if (model[k].state) {
-				// 					let list = model[k].state.split(",");
-				// 					let playType = this.playType === "standard" ? "standard" : "fast";
-				// 					for (let j  in list) {
-				// 						if (list[j] === playType) {
-				// 							_this.lotteryList.push({
-				// 								"label": model[k]['name'],
-				// 								"value": model[k]['id'].toString()
-				// 							});
-				// 						}
-				// 					}
-				// 				}
-				// 			}
-				// 		}
-				// 		if (_this.lotteryList.length > 0) {
-				// 			let num = parseInt(_this.lotteryList[0].value);
-				// 			_this.editForm.lottery_id = _this.lotteryList[0].value;
-				// 			if (this.nowType == 1) {
-				//
-				// 				_this.doQueryNum(_this.editForm.lottery_id);
-				//
-				// 			}
-				//
-				// 		}
-				// 	}
-				// })
-                .catch((e) => {
-					_this.$message.error(LANG['未知错误，请稍后重试！'] || '未知错误，请稍后重试！');
-				});
 			},
 			//获取期号
 			getNumList(num) {
 				let _this = this;
-
 				this.$.autoAjax('get',URL.api + ROUTES.GET.lottery.order.number + "?lottery_id=" + num + "&page=1&page_size=10", '', {
 					ok: (res) => {
 						if (res.state == 0 && res.data) {
@@ -336,28 +269,6 @@
 						console.log(e)
 					}
 				})
-				// this.$http.get(URL.api + ROUTES.GET.lottery.order.number + "?lottery_id=" + num + "&page=1&page_size=10", URLCONFIG).then((res) => {
-				//
-				// 	if (res.data.state == 0 && res.data.data) {
-				// 		let model = res.data.data || [];
-				// 		_this.lotteryNumList = [];
-				// 		for (let k in model) {
-				// 			if (model[k].pid != 0) {
-				// 				_this.lotteryNumList.push({
-				// 					"label": model[k]['lottery_number'],
-				// 					"value": model[k]['lottery_number']
-				// 				});
-				// 			}
-				// 		}
-				// 		if (_this.lotteryNumList.length > 0) {
-				// 			_this.editForm.lottery_number = _this.lotteryNumList[0].value;
-				// 			_this.initForm();
-				// 		}
-				// 	}
-				// })
-                .catch((e) => {
-					_this.$message.error(LANG['未知错误，请稍后重试！'] || '未知错误，请稍后重试！');
-				});
 			},
 			// 初始化询条件
 			initForm() {
@@ -398,16 +309,13 @@
              },*/
 			//切换彩种
 			doQueryNum(obj) {
-
 				this.lotteryList.forEach((ele) => {
 					if (ele.value === obj) {
 						this.lotteryname = ele.label;
 					}
 				})
 				if (this.nowType == 1) {
-
 					for (let el in this.lotteryGame) {
-
 						if (this.lotteryGame[el].lottery_id == obj) {
 							this.lotteryGameType = [];
 							let arr = this.lotteryGame[el].sub;
@@ -415,8 +323,6 @@
 								this.lotteryGameType.push({"label": arr[i].play_type1_name, "value": arr[i].play_type1})
 							}
 							this.editForm.play_type1 = this.lotteryGameType[0].value
-
-
 						}
 					}
 				}
@@ -440,17 +346,7 @@
 							console.log(e)
 						}
 					})
-					// this.$http.get(URL.api + ROUTES.GET.lottery.types.play + '?tid=' + this.editForm.tid + '&lottery_type=1', URLCONFIG).then((res) => {
-					//
-					// 	if (res.data.state == 0 && res.data.data) {
-					// 		_this.lotteryGame = res.data.data;
-					// 		_this.doQueryNum(_this.editForm.lottery_id)
-					// 	} else {
-					// 		_this.$message.error(LANG['获取玩法类型失败'] || '获取玩法类型失败');
-					// 	}
-					// })
 				}
-
 			},
 			//切换玩法
 			doChangePlay(str) {

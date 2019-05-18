@@ -41,14 +41,14 @@
         {   "prop":"coupon_money",
             "label":"优惠金额",
             "width":"100",
-            "type":"linkConnectAdd",
+            "type":"link",
             "fn":"doShowEdit",
             "disabled":true
         },
         {   "prop":"withdraw_require",
             "label":"取款条件",
             "width":"100",
-            "type":"linkConnectAdd",
+            "type":"link",
              "fn":"doEdit",
             "disabled":true
         },

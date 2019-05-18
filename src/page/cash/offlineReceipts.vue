@@ -60,7 +60,7 @@
                     <div>
                         <h3>{{LANG['入款详情'] || '入款详情'}}:</h3>
                         <el-col :span="24" class="font16">
-                            {{LANG['存款金额'] || '存款金额'}} :<span>{{Detailcontent.money | filterMoneyIsNull}}</span>
+                            {{LANG['存款金额'] || '存款金额'}} :<span>{{Detailcontent.money}}</span>
                         </el-col>
                         <el-col :span="12">{{LANG['订单号'] || '订单号'}} ： <span>{{Detailcontent.trade_no}}</span></el-col>
                         <el-col :span="12">{{LANG['是否首存'] || '是否首存'}} ：<span>{{Detailcontent.state | isNew}}</span>

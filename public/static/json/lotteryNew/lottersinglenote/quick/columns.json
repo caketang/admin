@@ -30,7 +30,7 @@
       "disabled": true,
       "width": 200
     },
-    
+
     {
       "prop": "order_number",
       "label": "注单号",
@@ -68,28 +68,23 @@
     {
       "prop": "pay_money",
       "label": "投注金额",
-      "type": "divisionMoney",
       "disabled": true,
       "width": 100
     },
     {
       "prop": "valid_bet",
       "label": "有效投注",
-      "type": "divisionMoney",
       "disabled": true,
       "width": 100
     },
     {
       "prop": "send_prize",
       "label": "中奖金额",
-      "type": "divisionMoney",
-      "disabled": true,
       "width": 100
     },
     {
       "prop": "lose_earn",
       "label": "输赢",
-      "type": "divisionMoney",
       "disabled": true,
       "width": 100
     },

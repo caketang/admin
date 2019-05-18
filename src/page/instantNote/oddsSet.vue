@@ -53,10 +53,10 @@
                             </div>
                         </td>
                         <td colspan="2" class="el-table_1_column_19" >
-                            <div class="cell" >{{item.pay_money |formatMoney}}</div>
+                            <div class="cell" >{{item.pay_money}}</div>
                         </td>
                         <td colspan="2" class="el-table_1_column_19" >
-                            <div class="cell" >{{item.lose_earn  |formatMoney}}</div>
+                            <div class="cell" >{{item.lose_earn}}</div>
                         </td>
                     </tr>
                      <!--总计-->
@@ -87,7 +87,7 @@
                             </th>
                             <th colspan="4" rowspan="1" class="el-table_1_column_36 is-leaf" style="padding: 0 20px;">
                                 <div class="cell" v-text="LANG['订单号'] || '订单号'"></div>
-                                   
+
                             </th>
                             <th colspan="4" rowspan="1" class="el-table_1_column_36 is-leaf">
                                 <div class="cell"  v-text="LANG['下单时间'] || '下单时间'"></div>
@@ -142,7 +142,7 @@
                                 <span >{{item.play_number}}</span>
                             </div>
                         </td>
-                    
+
                     </tr>
                     <tr>
                         <td colspan="6" class="el-table_1_column_19" >
@@ -171,12 +171,12 @@
             </el-col>
 
         </el-dialog>
-       
+
     </div>
 </template>
 <script>
     import  Vue from 'vue'
-   
+
     export default{
         data(){
             return{
@@ -212,10 +212,10 @@
                 dialogTotal: 0,
                 totalMoney: {}
 
-          } 
+          }
         },
         components:{
-           
+
         },
         props:{
             tableUrl:String,
@@ -235,7 +235,7 @@
             lotteryNumber:String,
             playType:String,
 
-            
+
         },
         filters:{},
         watch: {
@@ -349,11 +349,11 @@
             formatMoney(value)
             {   let m;
                 if(value)
-                {   
+                {
                     m = (parseInt(value) /100).toFixed(2);
                     return m;
                 }
-                return value;   
+                return value;
             },
             //切换页数
             doCurrentChange(v){
@@ -456,7 +456,7 @@
             },
             showDetails(item){
                 this.detaildataModel = [];
-                this.dialogTotal = item.pay_money; 
+                this.dialogTotal = item.pay_money;
                 this.dialogVisible = true;
                 this.details = this.lotteryName +'-'+ item.odds_type + ':' + item.result +'明细';
                 let url = URL.api+ ROUTES.GET.lottery.orders+"?lottery_id="+this.lotteryId+"&lottery_number="+this.lotteryNumber+"&odds_id="+item.id+"&type="+this.playType;
@@ -498,11 +498,11 @@
                     //     _this.$message.error(LANG['未知错误 ，请稍后重试！'] || '未知错误 ，请稍后重试！')
                     // });
                 }
-                
-                
+
+
             },
             dodialogCurrentChange(v){
-                
+
                 let total = this.dialogtotal;
                 let pageSize = 50;
                 let pageCount = this.dialogpageCount;

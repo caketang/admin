@@ -23,7 +23,8 @@
             "width":"100",
             "delimiter":"/",
             "prop": "total_people,total_coupon",
-            "type": "connect,twoDivisionMoney"
+            "type":"connect",
+            "disabled":true
         },
         {	"prop":"created",
             "label":"创建时间",
