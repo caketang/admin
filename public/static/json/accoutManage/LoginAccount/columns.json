@@ -1,0 +1,61 @@
+{
+  "columns":[
+    { "prop":"name",
+      "label":"用户名",
+      "type":"link",
+      "width":"100",
+      "fn":"openUserSet",
+      "disabled":true
+    },
+    { "prop":"level",
+      "label":"会员等级",
+      "width":"100",
+      "sortable": true,
+      "disabled": true
+    },
+    {
+      "prop":"agent",
+      "label":"上级代理",
+      "width":"100",
+      "sortable": true,
+      "disabled": true,
+      "type": "link",
+      "fn": "openAgentSet"
+    },
+    {
+      "prop":"log_type",
+      "label":"操作",
+      "width":"100",
+      "filters":[{ "text": "登录", "value": "1"}, { "text": "取款申请", "value": "2" }],
+      "sortable": true,
+      "disabled": true
+    },
+    {
+      "prop":"log_value",
+      "label":"结果",
+      "width":"200",
+      "sortable": true,
+      "disabled": true
+    },
+    {
+      "prop":"created",
+      "label":"登录时间",
+      "width":"200",
+      "sortable": true,
+      "disabled": true
+    },
+    {
+      "prop":"log_ip",
+      "label":"登录IP",
+      "width":"200",
+      "sortable": true,
+      "disabled": true
+    },
+    {
+      "prop":"comment",
+      "label":"备注",
+      "width":"400",
+      "sortable": true,
+      "disabled": true
+    }]
+}

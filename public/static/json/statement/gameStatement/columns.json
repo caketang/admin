@@ -1,0 +1,62 @@
+{
+  "columns": [
+    {
+      "prop": "game_name",
+      "label": "游戏平台",
+      "sortable": true,
+      "width":"100",
+      "disabled": true
+    },
+    {
+      "prop": "bet_times",
+      "label": "总投注笔数",
+      "sortable": true,
+      "disabled": true,
+       "width":"100",
+      "type":"link",
+      "fn":"openGameClass"
+    },
+    {
+      "prop": "bet_money",
+      "label": "总投注金额",
+      "sortable": true,
+      "disabled": true,
+       "width":"150",
+      "type":"linkDivisionMoney",
+      "fn":"openGameClass"
+    },
+    {
+      "prop": "valid_bet",
+      "label": "总有效投注",
+      "sortable": true,
+      "disabled": true,
+       "width":"150",
+      "type":"divisionMoney"
+    },
+    {
+      "prop": "bonus",
+      "label": "彩金",
+      "sortable": true,
+      "disabled": true,
+      "width":"150",
+      "type":"divisionMoney,fours"
+    },
+    {
+      "prop": "contri",
+      "label": "贡献",
+      "sortable": true,
+      "disabled": true,
+      "width":"150",
+      "type":"divisionMoney,fours"
+    },
+    {
+      "prop": "lose_earn",
+      "label": "输赢",
+      "sortable": true,
+      "disabled": true,
+      "setred": true,
+      "width":"150",
+      "type":"divisionMoney"
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "columns":[
+    { "prop":"id",
+      "label":"ID"
+    },
+    {
+      "prop": "name",
+      "label": "代理帐号",
+      "disabled": true,
+      "width":"100",
+      "type":"link",
+      "fn":"showDetails"
+    },
+    {
+      "prop":"type",
+      "label":"类型",
+      "filters":[{ "text": "层级代理", "value": "1"}, { "text": "直属代理", "value": "2" }],
+      "disabled":true,
+      "width":"100"
+    },
+    {
+      "prop":"members",
+      "label":"有效会员数",
+      "disabled":true,
+      "width":"100",
+      "type":"link",
+      "sort":true,
+      "fn": "showAgent"
+      
+    }
+  ]
+}

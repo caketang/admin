@@ -1,0 +1,13 @@
+{
+  "options":[
+    { "value": "paid",
+      "label": "已结算"
+    },
+    { "value": "unpaid",
+      "label": "未结算"
+    },
+    { "value": "cancel",
+      "label": "取消"
+    }
+  ]
+}

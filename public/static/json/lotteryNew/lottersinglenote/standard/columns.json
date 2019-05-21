@@ -1,0 +1,166 @@
+{
+    "columns": [
+        {
+            "prop": "user_name",
+            "label": "用户名",
+            "disabled": true,
+            "type": "link",
+            "fn": "openUserSet",
+            "disabled": true,
+            "width": 130
+        },
+        {
+            "prop": "agent_name",
+            "label": "上级代理",
+            "disabled": true,
+            "type": "link",
+            "fn": "openAgentSet",
+            "disabled": true,
+            "width": 130
+        },
+        {
+            "prop": "lottery_number",
+            "label": "期号",
+            "disabled": true,
+            "width": 150
+        },
+        {
+            "prop": "created",
+            "label": "投注时间",
+            "disabled": true,
+            "type": "date",
+            "width": 200
+        },
+        {
+            "prop": "order_number",
+            "label": "注单号",
+            "disabled": true,
+            "width": 200
+        },
+        {
+            "prop": "origin",
+            "label": "来源",
+            "filters": [
+                {
+                    "text": "pc",
+                    "value": "1"
+                },
+                {
+                    "text": "h5",
+                    "value": "2"
+                },
+                {
+                    "text": "app",
+                    "value": "3"
+                }
+            ],
+            "disabled": true,
+            "width": 100
+        },
+        {
+            "prop": "lottery_name",
+            "label": "彩票名称",
+            "disabled": true,
+            "width": 150
+        },
+        {
+            "prop": "odds_type",
+            "label": "玩法",
+            "disabled": true,
+            "width": 150
+        },
+        {
+            "prop": "play_number,period_code",
+            "label": "投注内容",
+            "disabled": true,
+            "type": "lottory_play",
+            "width": 300
+        },
+        {
+            "prop": "odds",
+            "label": "赔率",
+            "disabled": true,
+            "class": "tCent",
+            "type": "array",
+            "filterType": "array",
+            "width": 100,
+            "separators": "|"
+        },
+        {
+            "prop": "pay_money",
+            "label": "投注金额",
+            "disabled": true,
+            "class": "tCent",
+            "width": 100
+        },
+        {
+            "prop": "valid_bet",
+            "label": "有效投注",
+            "disabled": true,
+            "class": "tCent",
+            "width": 100
+        },
+        {
+            "prop": "send_prize",
+            "label": "中奖金额",
+            "disabled": true,
+            "class": "tCent",
+            "width": 100
+        },
+        {
+            "prop": "lose_earn",
+            "label": "输赢",
+            "disabled": true,
+            "class": "tCent",
+            "width": 100
+        },
+        {
+            "prop": "status",
+            "label": "状态",
+            "disabled": true,
+            "filters": [
+                {
+                    "text": "已结算",
+                    "value": "open"
+                },
+                {
+                    "text": "未结算",
+                    "value": "unopen"
+                },
+                {
+                    "text": "已撤销",
+                    "value": "canceled"
+                }
+            ],
+            "width": 100
+        },
+        {
+            "prop": "chase_number",
+            "label": "所属追号",
+            "disabled": true,
+            "class": "tCent",
+            "width": 200
+        },
+        {
+            "label": "操作",
+            "type": "button",
+            "width": "100px",
+            "disabled": true,
+            "btnGroup": [
+                {
+                    "btnType": "text",
+                    "label": "详情",
+                    "fn": "doDetail"
+                },
+                {
+                    "btnType": "text",
+                    "label": "撤单",
+                    "fn": "doKillOrder",
+                    "prop": "status",
+                    "val": "unopen"
+                }
+            ],
+            "width": 200
+        }
+    ]
+}

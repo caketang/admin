@@ -1,0 +1,245 @@
+{
+    "columns": [
+        {
+            "prop": "id",
+            "label": "ID",
+            "sortable": true
+        },
+        {
+            "prop": "user_name",
+            "label": "用户名",
+            "disabled": true,
+            "width": "80"
+        },
+        {
+            "prop": "trade_no",
+            "label": "订单号",
+            "disabled": true,
+            "width": "180"
+        },
+        {
+            "prop": "comment",
+            "label": "会员备注",
+            "disabled": true,
+            "width": "80",
+            "tenWords": true
+        },
+        {
+            "prop": "level",
+            "label": "会员等级",
+            "disabled": true,
+            "filters": [
+                {
+                    "value": "0",
+                    "text": "VIP 0"
+                },
+                {
+                    "value": "1",
+                    "text": "VIP 1"
+                },
+                {
+                    "value": "2",
+                    "text": "VIP 2"
+                },
+                {
+                    "value": "3",
+                    "text": "VIP 3"
+                },
+                {
+                    "value": "4",
+                    "text": "VIP 4"
+                },
+                {
+                    "value": "5",
+                    "text": "VIP 5"
+                },
+                {
+                    "value": "6",
+                    "text": "VIP 6"
+                },
+                {
+                    "value": "7",
+                    "text": "VIP 7"
+                },
+                {
+                    "value": "8",
+                    "text": "VIP 8"
+                },
+                {
+                    "value": "9",
+                    "text": "VIP 9"
+                },
+                {
+                    "value": "10",
+                    "text": "VIP 10"
+                }
+            ]
+        },
+        {
+            "prop": "money",
+            "label": "申请金额",
+            "type": "divisionMoney",
+            "disabled": true,
+            "width": "100"
+        },
+        {
+            "prop": "fee,admin_fee,coupon_money",
+            "label": "扣除金额",
+            "disabled": true,
+            "width": "100",
+            "type": "linkConnectAdd",
+            "fn": "changeFee",
+            "width": "100"
+        },
+        {
+            "prop": "money,fee,admin_fee,coupon_money,,getOutMoney",
+            "label": "实际出款",
+            "disabled": true,
+            "type": "subtract",
+            "width": "100"
+        },
+        {
+            "prop": "truename",
+            "label": "真实姓名",
+            "disabled": true,
+            "width": "100"
+        },
+        {
+            "prop": "receive_bank_info,accountname,card,bank,address",
+            "label": "提款银行",
+            "disabled": true,
+            "type": "object",
+            "formatKey": "bank",
+            "width": "210"
+        },
+        {
+            "prop": "type",
+            "label": "提款方式",
+            "sortable": true,
+            "disabled": true,
+            "filters": [
+                {
+                    "text": "线上",
+                    "value": "1"
+                },
+                {
+                    "text": "手动",
+                    "value": "2"
+                }
+            ],
+            "width": "60"
+        },
+        {
+            "prop": "apply_time,confirm_time",
+            "label": "申请时间、确认时间",
+            "disabled": true,
+            "width": "180",
+            "type": "connectDate"
+        },
+        {
+            "prop": "state",
+            "label": "首次出款",
+            "type": "regular",
+            "filters": [
+                {
+                    "text": "是",
+                    "value": "new"
+                },
+                {
+                    "text": "否",
+                    "value": ""
+                }
+            ],
+            "disabled": true,
+            "width": "60"
+        },
+        {
+            "prop": "status",
+            "label": "状态",
+            "filters": [
+                {
+                    "text": "已拒绝",
+                    "value": "rejected"
+                },
+                {
+                    "text": "已取消",
+                    "value": "refused"
+                },
+                {
+                    "text": "待处理",
+                    "value": "pending"
+                },
+                {
+                    "text": "付款成功",
+                    "value": "paid"
+                },
+                {
+                    "text": "审核中",
+                    "value": "prepare"
+                }
+            ],
+            "disabled": true,
+            "width": "80"
+        },
+        {
+            "prop": "admin_user",
+            "label": "操作者",
+            "disabled": true,
+            "width": "80"
+        },
+        {
+            "label": "操作",
+            "type": "button",
+            "disabled": true,
+            "btnGroup": [
+                {
+                    "btnType": "text",
+                    "label": "审核",
+                    "fn": "doDetail",
+                    "prop": "status",
+                    "val": "prepare"
+                },
+                {
+                    "btnType": "text",
+                    "label": "审核",
+                    "fn": "doDetail",
+                    "prop": "status",
+                    "val": "pending"
+                },
+                {
+                    "btnType": "text",
+                    "label": "详情",
+                    "fn": "doDetail",
+                    "prop": "status",
+                    "val": "paid"
+                },
+                {
+                    "btnType": "text",
+                    "label": "详情",
+                    "fn": "doDetail",
+                    "prop": "status",
+                    "val": "rejected"
+                },
+                {
+                    "btnType": "text",
+                    "label": "详情",
+                    "fn": "doDetail",
+                    "prop": "status",
+                    "val": "refused"
+                },
+                {
+                    "btnType": "text",
+                    "label": "备注",
+                    "fn": "doMemo"
+                }
+            ],
+            "width": "100"
+        },
+        {
+            "prop": "memo",
+            "label": "备注",
+            "disabled": true,
+            "width": "80"
+        }
+    ]
+}

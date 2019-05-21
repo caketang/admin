@@ -20,6 +20,31 @@ module.exports = merge(baseWebpackConfig, {
       usePostCSS: true
     })]
   },
+  // these devServer options should be customized in /config/index.js
+  devServer: {
+    clientLogLevel: 'warning',
+    historyApiFallback: {
+      rewrites: [{
+        from: /./,
+        to: config.dev.assetsPublicPath
+      }]
+    },
+    hot: true,
+    compress: true,
+    host: process.env.HOST || config.dev.host,
+    port: process.env.PORT || config.dev.port,
+    open: config.dev.autoOpenBrowser,
+    overlay: config.dev.errorOverlay ? {
+      warnings: false,
+      errors: true,
+    } : false,
+    publicPath: config.dev.assetsPublicPath,
+    proxy: config.dev.proxyTable,
+    quiet: true, // necessary for FriendlyErrorsPlugin
+    watchOptions: {
+      poll: config.dev.poll,
+    }
+  },
   // cheap-module-eval-source-map is faster for development
   devtool: '#cheap-module-source-map',
   plugins: [
@@ -32,7 +57,7 @@ module.exports = merge(baseWebpackConfig, {
     // https://github.com/ampedandwired/html-webpack-plugin
     new HtmlWebpackPlugin({
       filename: 'index.html',
-      template: resolve(__dirname, '..', 'index.html'),
+      template: 'index.html',
       inject: true
     }),
     new FriendlyErrorsPlugin()

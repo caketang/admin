@@ -57,15 +57,15 @@ var webpackConfig = merge(baseWebpackConfig, {
     },
     minimizer: [ //自定js优化配置，会覆盖默认的配置，结合UglifyJsPlugin插件使用，
       // 对js文件进行压缩
-      new UglifyJsPlugin({
-        test: /\.js($|\?)/i,
-        parallel: true, // 开启并行压缩，充分利用cpu
-        extractComments: false, // 移除注释
-        uglifyOptions: {
-          sourceMap: true,
-          mangle: false //
-        }
-      }),
+      // new UglifyJsPlugin({
+      //   test: /\.js($|\?)/i,
+      //   parallel: true, // 开启并行压缩，充分利用cpu
+      //   extractComments: false, // 移除注释
+      //   uglifyOptions: {
+      //     sourceMap: true,
+      //     mangle: false //
+      //   }
+      // }),
       new OptimizeCSSAssetsPlugin({
         assetNameRegExp: /\.css\.*(?!.*map)/g,  //注意不要写成 /\.css$/g
         cssProcessor: require('cssnano'),

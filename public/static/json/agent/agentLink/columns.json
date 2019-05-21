@@ -1,0 +1,76 @@
+{
+    "columns": [
+        {
+            "prop": "id",
+            "label": "ID",
+            "disabled": true,
+            "width": "100"
+        },
+        {
+            "prop": "name",
+            "label": "用户名",
+            "width": "100",
+            "disabled": true
+        },
+        {
+            "prop": "code",
+            "label": "推荐码",
+            "width": "100",
+            "disabled": true
+        },
+        {
+            "prop": "domain",
+            "label": "推荐链接地址",
+            "width": "300",
+            "disabled": true
+        },
+        {
+            "prop": "type",
+            "label": "推荐码属性",
+            "width": "300",
+            "disabled": true,
+            "filters": [
+                {
+                    "text": "代理推荐码",
+                    "value": "agent"
+                },
+                {
+                    "text": "会员推荐码",
+                    "value": "user"
+                }
+            ]
+        },
+        {
+            "prop": "status",
+            "label": "状态",
+            "width": "100",
+            "filters": [
+                {
+                    "text": "停用",
+                    "value": "disable"
+                },
+                {
+                    "text": "启用",
+                    "value": "enable"
+                },
+                {
+                    "text": "已删除",
+                    "value": "delete"
+                }
+            ],
+            "disabled": true
+        },
+        {
+            "prop": "vaild_count",
+            "label": "注册人数",
+            "width": "100",
+            "disabled": true
+        },
+        {
+            "prop": "remark",
+            "label": "备注",
+            "width": "200",
+            "disabled": true
+        }
+    ]
+}

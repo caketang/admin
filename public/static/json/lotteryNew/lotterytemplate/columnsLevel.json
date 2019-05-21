@@ -1,0 +1,12 @@
+{
+    "columns":[
+        {	"prop":"level_id",
+            "label":"层级ID"
+        },
+        {	"prop":"name",
+            "label":"会员层级",
+            "width":"200",
+            "disabled":true
+        }
+    ]
+}

@@ -14,11 +14,11 @@ module.exports = {
   },
   output: {
     path: config.build.assetsRoot,
-    filename: '[name].js',
+    filename: '[id].[hash].js',
     publicPath: process.env.NODE_ENV === 'production'
       ? config.build.assetsPublicPath
       : config.dev.assetsPublicPath,
-      chunkFilename: '[name].js'
+      chunkFilename: '[id].[hash].js'
   },
   resolve: {
     extensions: ['.js', '.vue', '.json'],

@@ -1,0 +1,92 @@
+{
+    "columns":[
+        {	"prop":"id",
+            "label":"",
+            "sortable":true
+        },
+        {	"prop":"user_name",
+            "label":"用户名",
+            "fn":"openUserInformation",
+            "disabled":true,
+            "sortable":true,
+            "width": 150
+        },
+        {	"prop":"trade_no",
+            "label":"订单号",
+            "sortable":true,
+            "disabled":true,
+            "width": 200
+
+        },
+        {	"prop":"money,fee,admin_fee,coupon_money",
+            "label":"付款金额",
+            "sortable":true,
+            "disabled":true,
+            "type":"subtract",
+            "width": 150
+        },
+        {	"prop":"deduct_money",
+            "label":"扣除金额",
+            "sortable":true,
+            "disabled":true,
+            "type":"subtract",
+            "width": 100
+        },
+        {	"prop":"receive_bank_info,accountname,card,bank,address",
+            "label":"会员出款银行",
+            "disabled":true,
+            "type":"object",
+            "formatKey":"bank",
+            "width": 220
+        },
+        {	"prop":"type",
+            "label":"提款方式",
+            "sortable":true,
+            "disabled":true,
+            "filters":[{ "text": "线上", "value": "1"}, { "text": "手动", "value": "2" }],
+            "width": 80
+        },
+        {   "prop":"confirm_time",
+            "label":"付款时间",
+            "sortable":true,
+            "disabled":true,
+            "width": 200
+
+        },
+        {	"prop":"status",
+            "label":"状态",
+            "sortable":true,
+            "disabled":true,
+            "filters":[{ "text": "未支付", "value": "prepare"}, { "text": "付款成功", "value": "paid" },
+                { "text": "付款失败", "value": "failed" },{ "text": "已拒绝", "value":"rejected"},{"text":"已取消","value":"refused"}],
+            "width": 150
+        },
+        {   "prop":"admin_user",
+            "label":"操作者",
+            "sortable":true,
+            "disabled":true,
+            "width": 80
+
+        },
+        {	"label":"操作",
+            "type":"button",
+            "width":"210px",
+            "disabled":true,
+            "btnGroup":[
+                {"btnType":"text","label":"付款","fn":"doUpdate","prop":"status","val":"prepare"},
+                {"btnType":"text","label":"拒绝支付","fn":"doRejected","prop":"status","val":"prepare"},
+                {"btnType":"text","label":"取消支付","fn":"doRefuse","prop":"status","val":"prepare"},
+                {"btnType":"text","label":"详情","fn":"doDetail"},
+                {"btnType":"text","label":"备注","fn":"doRemarks"}
+            ],
+            "width": 200
+        },
+        {   "prop":"memo",
+            "label":"备注信息",
+            "sortable":true,
+            "disabled":true,
+            "width": 200
+
+        }
+    ]
+}

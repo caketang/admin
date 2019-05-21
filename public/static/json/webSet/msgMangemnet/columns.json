@@ -1,0 +1,71 @@
+{
+  "columns": [
+      {
+      "prop": "type",
+      "label": "消息类型",
+      "disabled": true,
+      "width":"100",
+      "filters":[
+        { "text": "一般消息", "value": "2"},
+        { "text": "重要消息", "value": "1" }
+      ],
+      "width":"150"
+    },
+    {
+      "prop": "title",
+      "label": "标题",
+      "disabled": true,
+      "width":"150"
+    },
+    {
+      "prop": "content",
+      "label": "内容",
+      "disabled": true,
+      "width":"500"
+    },
+    {
+      "prop": "admin_name",
+      "label": "发送人",
+      "disabled": true,
+      "width":"100"
+    },
+    {
+      "prop": "recipient",
+      "label": "接收人",
+      "disabled": true,
+      "width":"200"
+    },
+    {
+      "prop": "created",
+      "label": "生成时间",
+      "disabled": true,
+      "width":"200"
+    },
+    {
+      "prop": "updated",
+      "label": "发送时间",
+      "disabled": true,
+      "width":"200"
+    },
+    {
+      "prop": "status",
+      "label": "发布状态",
+      "filters":[
+        { "text": "已发布", "value": "1"},
+        { "text": "未发布", "value": "0" }
+      ],
+      "disabled": true,
+      "width":"100"
+    },
+    {
+      "label":"操作",
+      "type":"button",
+      "width":"210",
+      "disabled":true,
+      "btnGroup":[
+        {"btnType":"text","label":"发布","fn":"doDesable","prop":"status","val":"0"},
+        {"btnType":"text","label":"删除","fn":"doDel"}
+      ]
+    }
+  ]
+}

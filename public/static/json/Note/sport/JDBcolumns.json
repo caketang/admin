@@ -1,0 +1,80 @@
+{
+	"columns":[
+		{	"prop":"create_time",
+			"label":"投注时间",
+			"disabled":true,
+			"type":"date"
+		},
+		{	"prop":"order_no",
+			"label":"JDB注单号",
+			"disabled":true
+		},
+		{	"prop":"user_name",
+			"label":"用户名",
+			"sortable":true,
+			"disabled":true
+		},
+		{	"prop":"xzid",
+			"label":"上级代理",
+			"sortable":true,
+			"disabled":true
+		},
+		{	"prop":"xzDate",
+			"label":"投注类型",
+			"disabled":true
+		},
+		{	"prop":"xzNumber",
+			"label":"赛事",
+			"sortable":true,
+			"disabled":true
+		},
+		{	"prop":"team",
+			"label":"主客队",
+			"sortable":true,
+			"disabled":true
+		},
+		{	"prop":"bet_content",
+			"label":"投注内容",
+			"sortable":true,
+			"disabled":true
+		},
+		{	"prop":"valid_bet",
+			"label":"投注金额",
+			"sortable":true,
+			"disabled":true
+		},
+		{	"prop":"zzje",
+			"label":"状态",
+			"sortable":true,
+			"disabled":true
+		},
+		{	"prop":"yxtz",
+			"label":"可赢金额",
+			"sortable":true,
+			"disabled":true
+		},
+		{	"prop":"close_time",
+			"label":"结算时间",
+			"sortable":true,
+			"disabled":true,
+			"type":"date"
+		},
+		{	"prop":"wining",
+			"label":"输赢",
+			"sortable":true,
+			"disabled":true
+		},{
+			"label":"操作",
+			"disabled":true,
+			"type":"button",
+			"width":"210px",
+			"btnGroup":[
+				{"btnType":"text","label":"无效","fn":"doInvalid"},
+				{"btnType":"text","label":"非投","fn":"doInvalidNote"},
+				{"btnType":"text","label":"进取","fn":"doEnterCancel"},
+				{"btnType":"text","label":"红取","fn":"doRedCancel"},
+				{"btnType":"text","label":"赔取","fn":"doOddsCancel"}
+			]
+		}
+	]
+}
