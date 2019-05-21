@@ -25,10 +25,5 @@ module.exports = {
       path: path.join(__dirname, '.', '[name]-manifest.json'),
       name: '[name]_library'
     }),
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false
-      }
-    })
   ]
 };

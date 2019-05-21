@@ -1,8 +1,8 @@
 # fyAdmin
 a fy admin based on [vuejs2].
 
-### Usage
-
+### Tips
+此webpack4分支  将打包方式webpack升级到4.31版本
 This is a project template for [vue-cli].
 
 ``` bash

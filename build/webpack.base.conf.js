@@ -18,7 +18,7 @@ module.exports = {
     publicPath: process.env.NODE_ENV === 'production'
       ? config.build.assetsPublicPath
       : config.dev.assetsPublicPath,
-      chunkFilename: '[name].js]'
+      chunkFilename: '[name].js'
   },
   resolve: {
     extensions: ['.js', '.vue', '.json'],
@@ -40,8 +40,13 @@ module.exports = {
         include: [resolve('src'), resolve('test'), resolve('/node_modules/element-ui')]
       },
       {
-        test: /\.scss$/,
-        loaders: ['style-loader', 'css-loader', 'sass-loader']
+        test: /\.css$/,
+        loaders: ['style-loader', 'css-loader'],
+        include: [] 
+      },
+      {
+        test: /\.less$/,
+        loaders: ['style-loader', 'css-loader', 'less-loader']
       },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
