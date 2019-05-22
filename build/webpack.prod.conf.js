@@ -10,6 +10,7 @@ var OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 var CleanWebpackPlugin = require('clean-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const TerserPlugin = require('terser-webpack-plugin');
 
 
 var env = config.build.env
@@ -66,6 +67,7 @@ var webpackConfig = merge(baseWebpackConfig, {
       //     mangle: false //
       //   }
       // }),
+      new TerserPlugin(),
       new OptimizeCSSAssetsPlugin({
         assetNameRegExp: /\.css\.*(?!.*map)/g,  //注意不要写成 /\.css$/g
         cssProcessor: require('cssnano'),

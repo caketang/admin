@@ -5,12 +5,8 @@ var merge = require('webpack-merge')
 var baseWebpackConfig = require('./webpack.base.conf')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 var FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
-const { join, resolve } = require('path')
 
-// add hot-reload related code to entry chunks
-Object.keys(baseWebpackConfig.entry).forEach(function (name) {
-  baseWebpackConfig.entry[name] = ['./build/dev-client'].concat(baseWebpackConfig.entry[name])
-})
+
 
 module.exports = merge(baseWebpackConfig, {
   mode: 'development',
@@ -49,11 +45,13 @@ module.exports = merge(baseWebpackConfig, {
   devtool: '#cheap-module-source-map',
   plugins: [
     new webpack.DefinePlugin({
-      'process.env': config.dev.env
+      'process.env': require('../config/dev.env'),
+      'CONTEXT_PATH': JSON.stringify(config.dev.assetsPublicPath)
     }),
-    // https://github.com/glenjamin/webpack-hot-middleware#installation--usage
+    // new ArcGISPlugin(),
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoEmitOnErrorsPlugin(),
+    new webpack.NamedModulesPlugin(), // HMR shows correct file names in console on update.
+    // new webpack.NoEmitOnErrorsPlugin(),
     // https://github.com/ampedandwired/html-webpack-plugin
     new HtmlWebpackPlugin({
       filename: 'index.html',
@@ -62,4 +60,6 @@ module.exports = merge(baseWebpackConfig, {
     }),
     new FriendlyErrorsPlugin()
   ]
+    
+  
 })

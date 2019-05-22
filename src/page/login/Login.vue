@@ -7,7 +7,7 @@
                                 style="font-size:32px;vertical-align: bottom;"></i><span>{{title}}</span></p>
             <el-form-item prop="username" v-if="!validate">
                 <el-input type="text" v-model="loginForm.username" auto-complete="off"
-                          :placeholder="LANG['请输入用户名'] || '请输入用户名'"></el-input>
+                          :placeholder="LANG['ss'] || 'ss'"></el-input>
             </el-form-item>
             <el-form-item prop="password" v-if="!validate">
                 <div class="el-input">
