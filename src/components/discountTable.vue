@@ -267,16 +267,16 @@
                         <div class="cell">{{subTotalBet.bet_times }}</div>
                     </td>
                     <td>
-                        <div class="cell">{{subTotalBet.bet_money | formatMoney}}</div>
+                        <div class="cell">{{subTotalBet.bet_money}}</div>
                     </td>
                     <td>
-                        <div class="cell">{{subTotalBet.valid_bet | formatMoney}}</div>
+                        <div class="cell">{{subTotalBet.valid_bet}}</div>
                     </td>
                     <td>
-                        <div class="cell">{{subTotalBet.send_prize | formatMoney}}</div>
+                        <div class="cell">{{subTotalBet.send_prize}}</div>
                     </td>
                     <td>
-                        <div class="cell">{{subTotalBet.lose_earn | formatMoney}}</div>
+                        <div class="cell">{{subTotalBet.lose_earn}}</div>
                     </td>
                 </tr>
                 <tr v-if="sumGame && totalBet">
@@ -290,16 +290,16 @@
                         <div class="cell">{{totalBet.bet_times }}</div>
                     </td>
                     <td>
-                        <div class="cell">{{totalBet.bet_money | formatMoney}}</div>
+                        <div class="cell">{{totalBet.bet_money}}</div>
                     </td>
                     <td>
-                        <div class="cell">{{totalBet.valid_bet | formatMoney}}</div>
+                        <div class="cell">{{totalBet.valid_bet}}</div>
                     </td>
                     <td>
-                        <div class="cell">{{totalBet.send_prize | formatMoney}}</div>
+                        <div class="cell">{{totalBet.send_prize}}</div>
                     </td>
                     <td>
-                        <div class="cell">{{totalBet.lose_earn | formatMoney}}</div>
+                        <div class="cell">{{totalBet.lose_earn}}</div>
                     </td>
                 </tr>
             </table>

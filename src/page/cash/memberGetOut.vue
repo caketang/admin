@@ -33,19 +33,19 @@
                         <td colspan="15">
                             <div class="cell">
                             <span
-                                class="font14 tCent">{{LANG['小计'] || '小计'}} : {{allData.money_page_sum | formatMoney}}</span>
+                                class="font14 tCent">{{LANG['小计'] || '小计'}} : {{allData.money_page_sum}}</span>
                                 <span
-                                    class="font14 ml10">{{LANG['总计'] || '总计'}} : {{allData.money_total_sum | formatMoney}}</span>
+                                    class="font14 ml10">{{LANG['总计'] || '总计'}} : {{allData.money_total_sum}}</span>
                                 <span class="ml10 mr10"> | </span>
                                 <span
-                                    class="font14">{{LANG['实际金额小计'] || '实际金额小计'}} : {{allData.actual_page_sum | formatMoney}}</span>
+                                    class="font14">{{LANG['实际金额小计'] || '实际金额小计'}} : {{allData.actual_page_sum}}</span>
                                 <span
-                                    class="font14 ml10">{{LANG['实际金额总计'] || '实际金额总计'}} : {{allData.actual_total_sum | formatMoney}}</span>
+                                    class="font14 ml10">{{LANG['实际金额总计'] || '实际金额总计'}} : {{allData.actual_total_sum}}</span>
                                 <span class="ml10 mr10"> | </span>
                                 <span
-                                    class="font14">{{LANG['扣除金额小计'] || '扣除金额小计'}}: {{allData.deduct_page_sum | formatMoney}}</span>
+                                    class="font14">{{LANG['扣除金额小计'] || '扣除金额小计'}}: {{allData.deduct_page_sum}}</span>
                                 <span
-                                    class="font14 ml10">{{LANG['扣除金额总计'] || '扣除金额总计'}} : {{allData.deduct_total_sum | formatMoney}}</span>
+                                    class="font14 ml10">{{LANG['扣除金额总计'] || '扣除金额总计'}} : {{allData.deduct_total_sum}}</span>
                                 <span class="ml10 mr10"> | </span>
                                 <span class="font14">{{LANG['笔数'] || '笔数'}} : {{allData.total}}</span>
                             </div>
@@ -97,7 +97,7 @@
                         </el-col>
                         <el-col :span="6">
                             <div class="menberGetOutContentData">
-                                <input id="getOutMoney_input" class="remove" :value="editForm.money | filterMoneyIsNull"
+                                <input id="getOutMoney_input" class="remove" :value="editForm.money"
                                        readonly="readonly">
                                 <el-button :plain="true" type="info" icon="document" size="mini"
                                            @click="copyGetOutMoney()">复 制
@@ -241,7 +241,7 @@
                                                            @click="toLink(item['name-en'],scope.row.start_date,scope.row.end_date)">
                                                             <el-tag type="primary" style="">{{item.name}} :</el-tag>
                                                         </a>
-                                                        <span class="pleft">{{item.valid_bet / 100}}</span></p>
+                                                        <span class="pleft">{{item.valid_bet}}</span></p>
                                                 </div>
                                                 <el-tag type="primary" size="small" style="min-width:60px;"
                                                         @mouseenter.native.prevent="showCommissionProportion(scope.row,$event)">
@@ -265,10 +265,10 @@
 
                         </el-col>
                         <el-col :span="24" class="mb20" v-if="auditData.data">
-                            <p>需扣除优惠金额：<span>{{auditData.data.total_coupon | filterMoneyIsNull}}</span></p>
-                            <p>扣除行政费：<span>{{auditData.data.total_admin_fee | filterMoneyIsNull}}</span></p>
+                            <p>需扣除优惠金额：<span>{{auditData.data.total_coupon}}</span></p>
+                            <p>扣除行政费：<span>{{auditData.data.total_admin_fee}}</span></p>
                             <p>
-                                共需扣除：出款手续费 <span>{{auditData.data.total_fee | filterMoneyIsNull}}</span>+行政费 <span>{{auditData.data.total_admin_fee | filterMoneyIsNull}}</span>+扣除优惠金{{auditData.data.total_coupon | filterMoneyIsNull}}= <span>{{auditData.data.total_coupon + auditData.data.total_admin_fee + auditData.data.total_fee | filterMoneyIsNull}}</span>
+                                共需扣除：出款手续费 <span>{{auditData.data.total_fee}}</span>+行政费 <span>{{auditData.data.total_admin_fee}}</span>+扣除优惠金{{auditData.data.total_coupon}}= <span>{{auditData.data.total_coupon + auditData.data.total_admin_fee + auditData.data.total_fee}}</span>
                             </p>
                         </el-col>
                     </el-row>
@@ -647,8 +647,8 @@
                     }
                 }
                 if (temp.money_to > 0) {
-                    temp.money_from = temp.money_from * 100;
-                    temp.money_to = temp.money_to * 100;
+                    temp.money_from = temp.money_from;
+                    temp.money_to = temp.money_to;
                 }
                 for (let i in temp) {
                     this.searchObj[i] = temp[i];
@@ -687,13 +687,13 @@
                     this.feeId = obj.id
                     this.feeVisi = true;
                     this.feeName = '修改' + obj.user_name + '扣款';
-                    this.receivable.fee = (obj.fee / 100).toFixed(2);
+                    this.receivable.fee = (obj.fee).toFixed(2);
                     if (!obj.coupon_money) {
                         this.receivable.coupon = 0;
                     } else {
-                        this.receivable.coupon = (obj.coupon_money / 100).toFixed(2);
+                        this.receivable.coupon = (obj.coupon_money).toFixed(2);
                     }
-                    this.receivable.management_cost = (obj.admin_fee / 100).toFixed(2);
+                    this.receivable.management_cost = (obj.admin_fee).toFixed(2);
                     this.withdraw = JSON.parse(JSON.stringify(this.receivable))
                     this.updated = false;
                 } else {
@@ -703,9 +703,9 @@
             saveFee() {
                 let _this = this;
                 let obj = {
-                    fee: this.withdraw.fee * 100,
-                    coupon: this.withdraw.coupon * 100,
-                    management_cost: this.withdraw.management_cost * 100,
+                    fee: this.withdraw.fee,
+                    coupon: this.withdraw.coupon,
+                    management_cost: this.withdraw.management_cost,
                 }
                 this.$.autoAjax('patch', URL.api + ROUTES.PATCH.cash.withdraw.fee + this.feeId, obj, {
                     ok: (res) => {
@@ -796,23 +796,23 @@
                         if (res.state == 0 && res.data) {
                             this.auditData = res.data;
                             this.tableDate.level_config = res.data.level_config;
-                            this.editForm.deposit_money = FORMATMONEY(res.data.deposit_money);
+                            this.editForm.deposit_money = res.data.deposit_money;
                             this.editForm.deposit_times = res.data.deposit_times;
-                            this.editForm.withdraw_money = FORMATMONEY(res.data.withdraw_money);
+                            this.editForm.withdraw_money = res.data.withdraw_money;
                             this.editForm.withdraw_times = res.data.withdraw_times;
-                            this.editForm.lose_earn = FORMATMONEY(res.data.lose_earn);
+                            this.editForm.lose_earn = res.data.lose_earn;
                             let model = res.data.list;
                             model.forEach(item => {
-                                item.coupon_money = FORMATMONEY(item.coupon_money);
-                                item.money = FORMATMONEY(item.money);
-                                item.valid_bet = FORMATMONEY(item.valid_bet);
-                                item.withdraw_bet_principal = FORMATMONEY(item.withdraw_bet_principal);
-                                item.withdraw_bet_coupon = FORMATMONEY(item.withdraw_bet_coupon);
-                                item.deduct_coupon = FORMATMONEY(item.deduct_coupon);
-                                item.deduct_admin_fee = FORMATMONEY(item.deduct_admin_fee);
-                                item.lose_earn = FORMATMONEY(item.lose_earn);
+                                // item.coupon_money = FORMATMONEY(item.coupon_money);
+                                // item.money = FORMATMONEY(item.money);
+                                // item.valid_bet = FORMATMONEY(item.valid_bet);
+                                // item.withdraw_bet_principal = FORMATMONEY(item.withdraw_bet_principal);
+                                // item.withdraw_bet_coupon = FORMATMONEY(item.withdraw_bet_coupon);
+                                // item.deduct_coupon = FORMATMONEY(item.deduct_coupon);
+                                // item.deduct_admin_fee = FORMATMONEY(item.deduct_admin_fee);
+                                // item.lose_earn = FORMATMONEY(item.lose_earn);
                                 if (!item.withdraw_bet_coupon && !item.withdraw_bet_principal) {
-                                    item.withdraw_bet_principal = FORMATMONEY(item.withdraw_bet);
+                                    item.withdraw_bet_principal = item.withdraw_bet;
                                     item.withdraw_bet_coupon = 0
                                 }
                                 if (item.is_pass) {
@@ -997,7 +997,7 @@
                 let obj = {};
                 for (let i = 0; i < listData.length; i++) {
                     let col = listData[i]['flag'];
-                    obj[col] = listData[i]['valid_bet'] / 100;
+                    obj[col] = listData[i]['valid_bet'];
                 }
                 ;
                 this.gridData.push(obj);

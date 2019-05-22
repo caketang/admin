@@ -30,21 +30,21 @@
                         <td colspan="9">
                             <div class="cell">
                                 <span
-                                    class="font14 tCent">{{LANG['常态稽核'] || '常态稽核'}} : {{allData.total_admin_fee | formatMoney
+                                    class="font14 tCent">{{LANG['常态稽核'] || '常态稽核'}} : {{allData.total_admin_fee
                                     }} {{LANG['元'] || '元'}}</span>
                                 <span class="ml10 mr10"> | </span>
                                 <span
-                                    class="font14 ml10">{{LANG['优惠稽核'] || '优惠稽核'}} : {{allData.total_coupon | formatMoney}} {{LANG['元'] || '元'}}</span>
+                                    class="font14 ml10">{{LANG['优惠稽核'] || '优惠稽核'}} : {{allData.total_coupon}} {{LANG['元'] || '元'}}</span>
                                 <span class="ml10 mr10"> | </span>
-                                <span class="font14">{{LANG['出款手续费'] || '出款手续费'}} : {{allData.total_fee | formatMoney}} {{LANG['元'] || '元'}}</span>
+                                <span class="font14">{{LANG['出款手续费'] || '出款手续费'}} : {{allData.total_fee}} {{LANG['元'] || '元'}}</span>
                             </div>
                         </td>
                     </tr>
                     <tr :span="12" class="sumdiv ml20" slot="other" v-if="allData.list && allData.list.length">
                         <td colspan="9">
                             <div class="cell">
-								<span class="font14">{{LANG['共需扣除费用'] || '共需扣除费用'}} ：{{allData.total_fee | formatMoney}}+{{allData.total_admin_fee | formatMoney}}+{{allData.total_coupon | formatMoney}}
-								= {{parseInt(allData.total_coupon + allData.total_fee + allData.total_admin_fee) | formatMoney}} {{LANG['元'] || '元'}}</span>
+								<span class="font14">{{LANG['共需扣除费用'] || '共需扣除费用'}} ：{{allData.total_fee}}+{{allData.total_admin_fee}}+{{allData.total_coupon}}
+								= {{parseInt(allData.total_coupon + allData.total_fee + allData.total_admin_fee)}} {{LANG['元'] || '元'}}</span>
                             </div>
                         </td>
                     </tr>
@@ -127,7 +127,7 @@
                     let gridData = this.gridData;
                     for (let i = 0; i < data.length; i++) {
                         gridData.push(
-                            {label: data[i].name, value: data[i].valid_bet / 100},)
+                            {label: data[i].name, value: data[i].valid_bet},)
                     }
                 }
             },

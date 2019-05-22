@@ -354,14 +354,14 @@ global.FORMATMONEY = function (num, fixs = 2) {
     if (isNaN(money)) {
         money = 0;
     }
-    return money === 0 ? 0 : parseFloat((money / 100)).toFixed(fixs);
+    return money === 0 ? 0 : parseFloat(money.toFixed(fixs));
 }
 global.FORMATMultiplyMoney = function (num) {
     let money = parseFloat(num);
     if (isNaN(money)) {
         money = 0;
     }
-    return money === 0 ? 0 : (money * 100);
+    return money === 0 ? 0 : money;
 }
 //表单数据过滤
 Vue.filter("formatSex", function (v, arr) {
@@ -377,7 +377,7 @@ Vue.filter("formatSex", function (v, arr) {
 Vue.filter('formatYingShou', function (value, keyOne, keyTwo) {
     let model = value || {}, num = 0;
     if (keyOne && keyTwo) {
-        num = FORMATNUMBER(model[keyOne]) * FORMATNUMBER(model[keyTwo]) / 100;
+        num = FORMATNUMBER(model[keyOne]) * FORMATNUMBER(model[keyTwo]);
     }
     return num.toFixed(2);
 })
@@ -387,7 +387,7 @@ Vue.filter("formatMoney", function (ag, fixs = 2) {
     if (!money) {
         money = 0;
     }
-    return money === 0 ? 0 : (money / 100).toFixed(fixs);
+    return money === 0 ? 0 : money.toFixed(fixs);
 })
 // 金额过滤，不是正整数的金额过滤为0
 Vue.filter("formatNumber", function (ag, fixs = 2) {
@@ -734,7 +734,7 @@ global.tableFilter = {
             let num = isNaN(parseInt(item[list[k]])) ? 0 : parseInt(item[list[k]]);
             sum = sum + num;
         }
-        return (sum / 100).toFixed(2);
+        return sum.toFixed(2);
     },
     formatArray: function (v, separators) {
         let separte = separators || " ";
@@ -782,7 +782,7 @@ global.tableFilter = {
                 result = result - num;
             }
         }
-        return (result / 100).toFixed(2);
+        return result.toFixed(2);
     },
     formatConnect: function (v, arr, delimiter, types, dateType) {
         let item = v || {};
@@ -957,7 +957,7 @@ global.tableFilter = {
     formatYingShou: function (value, keyOne, keyTwo) {
         let model = value || {}, num = 0;
         if (keyOne && keyTwo) {
-            num = FORMATNUMBER(model[keyOne]) * FORMATNUMBER(model[keyTwo]) / 100;
+            num = FORMATNUMBER(model[keyOne]) * FORMATNUMBER(model[keyTwo]);
         }
         return num.toFixed(2);
     },
@@ -966,7 +966,7 @@ global.tableFilter = {
         if (!money) {
             money = 0;
         }
-        return money === 0 ? 0 : (money / 100).toFixed(fixs);
+        return money === 0 ? 0 : money.toFixed(fixs);
     },
     filterGender: function (value) {
         return value == 1 ? '男' : (value == 2 ? '女' : '保密');
@@ -999,7 +999,7 @@ global.tableFilter = {
     },
     // 过滤金额
     filterMoneyIsNull: function (value) {
-        return value !== null ? parseInt(value) / 100 : 0;
+        return value !== null ? parseInt(value) : 0;
     },
     formatContentFilterAdd: function (v, prop) {
         let item = v || {};

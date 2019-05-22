@@ -32,11 +32,11 @@
                 <tr :span="12" class="sumdiv ml20" slot="other" v-if="sumShow">
                     <td colspan="15">
                         <div class="cell">
-                            <span class="font14 tCent">{{LANG['付款金额小计'] || '付款金额小计'}} : {{allData.actual_page_sum | formatMoney}}</span>
-                            <span class="font14 ml10">{{LANG['付款金额总计'] || '付款金额总计'}} : {{allData.actual_total_sum | formatMoney}}</span>
+                            <span class="font14 tCent">{{LANG['付款金额小计'] || '付款金额小计'}} : {{allData.actual_page_sum}}</span>
+                            <span class="font14 ml10">{{LANG['付款金额总计'] || '付款金额总计'}} : {{allData.actual_total_sum}}</span>
                             <span class="ml10 mr10"> | </span>
-                            <span class="font14 tCent">{{LANG['扣除金额小计'] || '扣除金额小计'}} : {{allData.deduct_page_sum | formatMoney}}</span>
-                            <span class="font14 ml10">{{LANG['扣除金额总计'] || '扣除金额总计'}} : {{allData.deduct_total_sum | formatMoney}}</span>
+                            <span class="font14 tCent">{{LANG['扣除金额小计'] || '扣除金额小计'}} : {{allData.deduct_page_sum}}</span>
+                            <span class="font14 ml10">{{LANG['扣除金额总计'] || '扣除金额总计'}} : {{allData.deduct_total_sum}}</span>
                             <span class="ml10 mr10"> | </span>
                             <span class="font14">{{LANG['笔数'] || '笔数'}} : {{allData.total}}</span>
                         </div>
