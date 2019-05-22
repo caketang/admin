@@ -37,7 +37,14 @@ module.exports = {
       {
         test: /\.js$/,
         loader: 'babel-loader',
-        include: [resolve('src'), resolve('test'), resolve('/node_modules/element-ui')]
+        include: [resolve('src'), resolve('test'), resolve('/node_modules/element-ui')],
+        options: {
+          plugins: [
+            "@babel/plugin-syntax-dynamic-import"
+          ]
+        
+        }
+          
       },
       {
         test: /\.css$/,
