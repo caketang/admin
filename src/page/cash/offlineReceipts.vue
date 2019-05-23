@@ -414,8 +414,8 @@
                     }
                 }
                 if (temp.money_to > 0) {
-                    temp.money_from = temp.money_from * 100;
-                    temp.money_to = temp.money_to * 100;
+                    temp.money_from = temp.money_from;
+                    temp.money_to = temp.money_to;
                 }
                 for (let i in temp) {
                     this.searchObj[i] = temp[i];

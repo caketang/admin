@@ -326,7 +326,7 @@
 							_this.tableData[0].value = model.name;
 							_this.tableData[1].value = model.agent;
 							_this.tableData[2].value = model.created;
-							_this.tableData[3].value = model.total_price / 100;
+							_this.tableData[3].value = model.total_price;
 							_this.tableData[4].value = model.lottery_name;
 							_this.tableData[5].value = model.odds_type;
 							_this.tableData[6].value = model.result || model.odds_type || '';
@@ -351,7 +351,7 @@
 									break;
 							}
 							_this.tableData[10].value = state;
-							_this.tableData[11].value = model.lose_earn / 100;
+							_this.tableData[11].value = model.lose_earn;
 						} else {
 							let str = LANG['获取详情失败'] || '获取详情失败';
 							this.$message.error(str)

@@ -19,13 +19,13 @@
                         <!--<td> <div class="cell" >{{tableData.tztime | formatDate('yyyy-MM-dd HH:mm:ss') }} </div></td>-->
                         <td> <div class="cell" >{{tableData.created | formatDate('yyyy-MM-dd HH:mm:ss') }} </div></td>
                         <td> <div class="cell" >{{LANG['投注金额'] || '投注金额'}}</div></td>
-                        <td> <div class="cell" >{{tableData.pay_money/100}}</div></td>
+                        <td> <div class="cell" >{{tableData.pay_money}}</div></td>
                     </tr>
                     <tr>
                         <td> <div class="cell" >{{LANG['彩票名称'] || '彩票名称'}}</div></td>
                         <td> <div class="cell" >{{tableData.lottery_name}}</div></td>
                         <td> <div class="cell" >{{LANG['有效投注'] || '有效投注'}}</div></td>
-                        <td> <div class="cell" >{{tableData.valid_bet /100}}</div></td>
+                        <td> <div class="cell" >{{tableData.valid_bet}}</div></td>
                     </tr>
                     <tr>
                         <td> <div class="cell" >{{LANG['玩法'] || '玩法'}}</div></td>
@@ -37,13 +37,13 @@
                         <td> <div class="cell" >{{LANG['期号'] || '期号'}}</div></td>
                         <td> <div class="cell" >{{tableData.lottery_number}}</div></td>
                         <td> <div class="cell" >{{LANG['派彩金额'] || '派彩金额'}}</div></td>
-                        <td> <div class="cell" >{{tableData.send_prize /100}}</div></td>
+                        <td> <div class="cell" >{{tableData.send_prize}}</div></td>
                     </tr>
                     <tr>
                         <td> <div class="cell" >{{LANG['状态'] || '状态'}}</div></td>
                         <td> <div class="cell" >{{tableData.state | filterStatus}}</div></td>
                         <td> <div class="cell" >{{LANG['输赢'] || '输赢'}}</div></td>
-                        <td> <div class="cell" >{{tableData.lose_earn/100}}</div></td>
+                        <td> <div class="cell" >{{tableData.lose_earn}}</div></td>
                     </tr>
                     <tr>
                         <td> <div class="cell" >{{LANG['来源'] || '来源'}}</div></td>
