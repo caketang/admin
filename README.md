@@ -1,5 +1,5 @@
-# fyAdmin
-a fy admin based on [vuejs2].
+# Admin
+a  admin based on [vuejs2].
 
 ### Tips
 此webpack4分支  将打包方式webpack升级到4.31版本
