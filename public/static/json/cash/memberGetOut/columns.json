@@ -78,7 +78,6 @@
         {
             "prop": "money",
             "label": "申请金额",
-            "type": "divisionMoney",
             "disabled": true,
             "width": "100"
         },
@@ -92,7 +91,7 @@
             "width": "100"
         },
         {
-            "prop": "money,fee,admin_fee,coupon_money,,getOutMoney",
+            "prop": "money,fee,admin_fee,coupon_money,getOutMoney",
             "label": "实际出款",
             "disabled": true,
             "type": "subtract",

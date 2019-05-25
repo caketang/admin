@@ -27,7 +27,7 @@
             "label": "类型",
             "width": "200",
             "filters":[{"value":"standard","text":"官方玩法"},
-                {"value":"fast","text":"快速玩法"}],
+                {"value":"fast","text":"信用玩法"}],
             "disabled": true
         },
         {

@@ -72,7 +72,7 @@
         },
         {
             "prop": "refundRate",
-            "label": "反奖率（%）",
+            "label": "返奖率（%）",
             "width": "200",
             "disabled": true
         }

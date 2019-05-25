@@ -46,13 +46,13 @@
             "disabled": true
         },
         {
-            "prop": "commission_level",
+            "prop": "commission_directly",
             "label": "一级退佣",
             "width": "150",
             "disabled": true
         },
         {
-            "prop": "commission_directly",
+            "prop": "commission_level",
             "label": "二级退佣",
             "width": "100",
             "disabled": true
