@@ -553,7 +553,7 @@
 						this.$.autoAjax('patch',this.DetailUrl + '/' + this.nowId, formData, {
 							ok: (res) => {
 								if (res.state == 0 && res.data) {
-									_this.$message.success(LANG['恭喜您，确定成功！'] || '恭喜您，确定成功！');
+									_this.$message.success(LANG['恭喜你，公司入款操作成功！'] || '恭喜你，公司入款操作成功！');
 									_this.updated = true;
 									_this.oDetailStatus = false;
 								} else {

@@ -162,16 +162,6 @@
                             console.log(e)
                         }
                     })
-                    // this.$http.put(URL.api + '/lottery/template.copy', temp, URLCONFIG).then((res) => {
-                    //     if (res.data.state === 0 && res.data.data) {
-                    //         _this.$message.success(LANG['恭喜您，彩票模板复制成功！'] || '恭喜您，彩票模板复制成功！');
-                    //         _this.loading = false;
-                    //         _this.updated = true;
-                    //     } else {
-                    //         _this.$message.success(LANG['彩票模板复制失败，请稍后重试！'] || '彩票模板复制失败，请稍后重试！');
-                    //         _this.loading = false;
-                    //     }
-                    // })
                 } else {
                     this.$.autoAjax('put',URL.api+ ROUTES.PUT.lottery.template,obj.formObj, {
                         ok: (res) => {
@@ -199,27 +189,7 @@
                             console.log(e)
                         }
                     })
-                    // this.$http.put(URL.api+ ROUTES.PUT.lottery.template,obj.formObj,URLCONFIG).then((res)=>{
-                    //     if (res.data.state == 0 && res.data.data) {
-                    //         if(_this.formType == "add"){
-                    //             _this.$message.success(LANG['恭喜您，彩票模板添加成功！'] || '恭喜您，彩票模板添加成功！');
-                    //         }else{
-                    //             _this.$message.success(LANG['恭喜您，彩票模板修改成功！'] || '恭喜您，彩票模板修改成功！');
-                    //         }
-                    //         _this.updated = true;
-					//
-                    //     }else{
-                    //         if(_this.formType == "add"){
-                    //             str = LANG['新增彩票模板失败，请稍候重试！'] || '新增彩票模板失败，请稍候重试！';
-                    //         }else{
-                    //             str = LANG['修改彩票模板失败，请稍候重试！'] || '修改彩票模板失败，请稍候重试！';
-                    //         }
-                    //         _this.$message.error(str);
-                    //     }
-                    //     this.loading = false;
-                    // })
                 }
-
             },
             //表格操作点击事件处理
             doHandle(e){

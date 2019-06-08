@@ -198,10 +198,10 @@
                 this.fullscreenLoading = true;
                 _this.updated = false;
                 if (parseInt(obj.formObj.limit_day_max) > 0) {
-                    obj.formObj.limit_day_max = obj.formObj.limit_day_max * 100;
+                    obj.formObj.limit_day_max = obj.formObj.limit_day_max;
                 }
                 if (parseInt(obj.formObj.limit_max) > 0) {
-                    obj.formObj.limit_max = obj.formObj.limit_max * 100;
+                    obj.formObj.limit_max = obj.formObj.limit_max;
                 }
 
                 if (obj.formObj.qrcode == "") {

@@ -7,7 +7,7 @@
             "disabled": false
         },
         {
-            "prop": "user_name",
+            "prop": "name",
             "label": "会员帐号",
             "disabled": true,
             "width": "100"
@@ -25,42 +25,85 @@
             "width": "150"
         },
         {
-            "prop": "level",
-            "label": "等级",
+            "prop": "user_level",
             "disabled": true,
             "width": "150",
-            "label": "会员层级",
+            "label": "会员等级",
             "filters": [
+                {
+                    "value": "0",
+                    "text": "VIP 0"
+                },
                 {
                     "value": "1",
                     "text": "VIP 1"
-                },{
+                },
+                {
                     "value": "2",
                     "text": "VIP 2"
-                },{
+                },
+                {
                     "value": "3",
                     "text": "VIP 3"
-                },{
+                },
+                {
                     "value": "4",
                     "text": "VIP 4"
-                },{
+                },
+                {
                     "value": "5",
                     "text": "VIP 5"
-                },{
+                },
+                {
                     "value": "6",
                     "text": "VIP 6"
-                },{
+                },
+                {
                     "value": "7",
                     "text": "VIP 7"
-                },{
+                },
+                {
                     "value": "8",
                     "text": "VIP 8"
-                },{
+                },
+                {
                     "value": "9",
                     "text": "VIP 9"
-                },{
+                },
+                {
                     "value": "10",
                     "text": "VIP 10"
+                }
+            ]
+        },{
+            "prop": "agent_level",
+            "label": "代理等级",
+            "disabled": true,
+            "width": "150",
+            "filters": [
+                {
+                    "value": "1",
+                    "text": "青铜"
+                },
+                {
+                    "value": "2",
+                    "text": "白银"
+                },
+                {
+                    "value": "3",
+                    "text": "黄金"
+                },
+                {
+                    "value": "4",
+                    "text": "铂金"
+                },
+                {
+                    "value": "5",
+                    "text": "钻石"
+                },
+                {
+                    "value": "6",
+                    "text": "至尊"
                 }
             ]
         },

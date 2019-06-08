@@ -28,7 +28,8 @@
                        :updated="updated"
                        :columnsUrl="columnsUrl"
                        :tableUrl="tableUrl"
-                       :showRefresh="false"
+                       :autoshowRefresh="true"
+                       :automation="true"
                        :getData="true"
                        @get-table-data="getTableData"
                        @do-handle="doHandle">

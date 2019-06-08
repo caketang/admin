@@ -7,7 +7,7 @@
       "disabled": true
     },
     {
-      "prop": "bet_times_sum",
+      "prop": "bet_times_num",
       "label": "总投注笔数",
       "disabled": true,
        "width":"100"

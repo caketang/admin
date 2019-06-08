@@ -46,22 +46,22 @@ function getstoragelang() {
  * @returns string
  * @public
  */
-export default function replaceString(str) {
-    if (str) {
-        str=Trim(str)
-        let lang=strToJson(localStorage.lang)
-        let key=-1
-        if(localStorage.cn.length >0){
-            key=localStorage.cn.indexOf(str)
-        }
-        if(key != -1){
-            return lang[str] !=undefined ?lang[str]:str
-        }else{
-            return str;
-        }
-    }
-    // return str
-}
+// export default function replaceString(str) {
+//     if (str) {
+//         str=Trim(str)
+//         let lang=strToJson(localStorage.lang)
+//         let key=-1
+//         if(localStorage.cn.length >0){
+//             key=localStorage.cn.indexOf(str)
+//         }
+//         if(key != -1){
+//             return lang[str] !=undefined ?lang[str]:str
+//         }else{
+//             return str;
+//         }
+//     }
+//     // return str
+// }
 
 
 

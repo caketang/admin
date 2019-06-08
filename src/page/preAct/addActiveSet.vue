@@ -82,19 +82,6 @@
                         console.log(e)
                     }
                 })
-//                 this.$http.get(listUrl,URLCONFIG).then((res) => {
-//                     let model = res.data.data;
-//                     for (let i in model){
-//                         this.addModeList.push({
-//                             "id": model[i].id,
-//                             "label": model[i].name,
-//                             "details":model[i].description,
-// //                            'imgUrl':this.imgList[i].imgUrl,
-//                             'imgUrl':'static/img/activity/active_' + model[i].id + model[i].id +'.png',
-//                             "fn":'tempBtn' + model[i].id,
-//                         });
-//                     }
-//                 });
             },
             tempBtn(i,item){
                 this.$router.push({path:`activeMode_${i}`,query:{label:item,template_id:i,type:"add"}});

@@ -14,7 +14,6 @@
                           :formType="formType"
                           :initDate="true"
                           :updateKeys="agentHigher"></formEdit>
-
             </div>
             <el-col>
                 <tablegrid
@@ -28,14 +27,29 @@
                     @do-handle="doHandle"></tablegrid>
             </el-col>
         </div>
-
         <!--资料-->
         <!--<el-col v-if="isDetail">-->
-            <!--<agentAccountDetail :agent-id="rowId" @return-page="retrunPage"-->
-                                <!--:agent-type="agentType"></agentAccountDetail>-->
+        <!--<agentAccountDetail :agent-id="rowId" @return-page="retrunPage"-->
+        <!--:agent-type="agentType"></agentAccountDetail>-->
         <!--</el-col>-->
         <!--新增-->
-
+        <el-col>
+            <el-dialog :title="settingTitel" v-model="settingVisible" size="tiny">
+                <el-form :model="setForm" ref="setForm" label-width="100px" class="demo-ruleForm" v-loading="loading2">
+                    <el-form-item :label="items.name+'：'" :prop="items.code" v-for="items,index in setFormList"
+                                  :key="index">
+                        <el-input-number type="number" v-model="setForm[items.code]" auto-complete="on" class="intW"
+                                         :controls="false" :min="0" :debounce="1400" :max="parseFloat(items.max)">
+                        </el-input-number>
+                        <span class="help_gray">代理返点可调整区间0到{{items.max}}%之间。</span>
+                    </el-form-item>
+                </el-form>
+                <span slot="footer" class="dialog-footer">
+                        <el-button @click="settingVisible = false">取 消</el-button>
+                        <el-button type="primary" @click="settingSave">确 定</el-button>
+                    </span>
+            </el-dialog>
+        </el-col>
         <el-col>
             <el-dialog :title="editTitel" v-model="editVisible" size="tiny">
                 <el-form :model="editForm" :rules="editRules" ref="editForm" label-width="150px">
@@ -145,7 +159,7 @@
 <script>
     //    import datepicker from '../../../components/datepicker.vue'
     import tableGrid from '../../../components/tableGrid.vue'
-//    import agentAccountDetail from './agentAccountDetail.vue'
+    //    import agentAccountDetail from './agentAccountDetail.vue'
     import formEdit from '../../../components/formEdit.vue'
     import confirm from '../../../components/confirm.vue';
 
@@ -288,9 +302,13 @@
                 },
                 //新增编辑
                 editTitel: "",
+                settingTitel: "",
                 editVisible: false,
+                settingVisible: false,
                 typeList: [{"label": "层级代理", "value": "1"}, {"label": "直属代理", "value": "2"}],
                 showDetial: false,
+                setForm: {},
+                setFormList: [],
                 editForm: {
                     pname: "", // 添加顶级代理 pname传空
                     type: "1",
@@ -399,6 +417,8 @@
                 urlQuery: null,
                 agentHigher: "",
                 localQuery: {},
+                loading2: false,
+                user_id:null
             }
         },
         components: {
@@ -469,7 +489,7 @@
                             query['rebet_percent'] = rebet_percent === "|||" ? "" : rebet_percent;
                             query['earn_start'] = parseInt(query['earn_start'], 10) * 100;
                             query['valid_bet_start'] = parseInt(query['valid_bet_start'], 10) * 100;
-                            query.rebate = {key:''};
+                            query.rebate = {key: ''};
                             this.$.autoAjax('put', URL.api + ROUTES.PUT.user.agent.$, query, {
                                 ok: (res) => {
                                     console.log(res);
@@ -495,7 +515,7 @@
                                 password: query.password,
                                 comment: query.comment,
                             } = this.editForm);
-                            query.rebate = {key:''};
+                            query.rebate = {key: ''};
                             this.$.autoAjax('put', URL.api + ROUTES.PUT.user.agent.$, query, {
                                 ok: (res) => {
                                     if (res.state == 0 && res.data) {
@@ -520,6 +540,53 @@
                 })
 
 
+            },
+            // 保存修改代理返点
+            settingSave() {
+                let query = {
+                    user_id:this.user_id,
+                    rebate:this.setForm
+                }
+                this.$.autoAjax('post', URL.api + ROUTES.POST.agency.access, query, {
+                    ok: (res) => {
+                        if (res.state == 0 && res.data) {
+                            this.$confirm(res.msg, '提示', {
+                                confirmButtonText: '确定修改',
+                                cancelButtonText: '取消修改',
+                                type: 'warning'
+                            }).then(() => {
+                                this.$.autoAjax('post', URL.api + ROUTES.POST.agency.edit, query, {
+                                    ok: (res) => {
+                                        if (res.state == 0 && res.data) {
+                                            this.$message({
+                                                type: 'success',
+                                                message: '代理返点参数修改成功！'
+                                            });
+                                            this.settingVisible = false
+                                        }
+                                    },
+                                    p: () => {
+                                    },
+                                    error: e => {
+                                        console.log(e)
+                                    }
+                                })
+                            }).catch(() => {
+                                    this.$message({
+                                        type: 'info',
+                                        message: '已取消代理返点修改请求'
+                                    });
+                                    this.settingVisible = false
+                                },
+                            )
+                        }
+                    },
+                    p: () => {
+                    },
+                    error: e => {
+                        console.log(e)
+                    }
+                })
             },
             //显示密码开关
             showPass() {
@@ -605,15 +672,6 @@
                         console.log(e)
                     }
                 })
-                // this.$http.patch(URL.api + ROUTES.PATCH.user.agent.$, JSON.stringify(query), URLCONFIG).then((res) => {
-                //     if (res.data.state == 0 && res.data.data) {
-                //         _this.updated = true;
-                //         _this.$message.success(LANG['停用成功'] || '停用成功');
-                //     } else {
-                //         _this.$message.error(LANG['停用失败'] || '停用失败');
-                //     }
-                //
-                // })
             },
             //批量表格按钮事件
             doHandle(item) {
@@ -634,12 +692,37 @@
                     case "doDisable":
                         this.doDisable(item.row, false);
                         break
+                    case "doEdit":
+                        this.doEdit(item.row);
+                        break
                 }
 
             },
+            doEdit(row) {
+                let _this = this
+                _this.settingTitel = '修改代理返点(已开启自动数据验证)'
+                _this.loading2 = true
+                _this.user_id = row.id
+                _this.$.autoAjax('get', URL.api + ROUTES.GET.lottery.rebate, {user_id:_this.user_id }, {
+                    ok: (res) => {
+                        if (res.state == 0 && res.data) {
+                            _this.setFormList = res.data
+                            res.data.forEach((item) => {
+                                this.setForm[item.code] = Number(item['value'])
+                            })
+                        }
+                        _this.loading2 = false;
+                        _this.settingVisible = true
+                    },
+                    p: () => {
+                    },
+                    error: e => {
+                        console.log(e)
+                    }
+                })
+            },
             //批量启用
             doEnable(rows, flag) {
-
                 this.confirmConfig.state = true;
                 if (flag) {
                     this.confirmConfig.msg = (this.LANG['确定批量启用吗'] || '确定批量启用吗');
@@ -655,9 +738,9 @@
             //批量停用
             doDisable(rows, flag) {
                 this.confirmConfig.state = true;
-                flag?
+                flag ?
                     this.confirmConfig.msg = (this.LANG['确定批量停用吗'] || '确定批量停用吗')
-                    :this.confirmConfig.msg = (this.LANG['确定停用吗'] || '确定停用吗');
+                    : this.confirmConfig.msg = (this.LANG['确定停用吗'] || '确定停用吗');
                 this.confirmConfig.fn = "disable";
                 this.confirmConfig.obj = rows;
                 this.confirmConfig.flag = flag;
@@ -729,16 +812,8 @@
                         break;
                 }
             },
-
-            //查看详情
             doDetial(row) {
-                this.$router.push({path:'/agentLink',query:{name:row.name}})
-//                this.agentType = parseInt(row.type);
-//                this.isCreated = false;
-//                this.isDetail = true;
-//                if (row.id) {
-//                    this.rowId = parseInt(row.id, 10);
-//                }
+                this.$router.push({path: '/agentLink', query: {name: row.name}})
             },
             //查询
             doQuery(obj) {
@@ -845,21 +920,18 @@
                 this.tableUrl = URL.api + ROUTES.GET.user.agent.$ + "?name=" + this.$route.query.agent_name;
                 this.searchConfig[1]['value'] = this.$route.query.agent_name;
             } else if (this.$route.query.name) {
-
                 setTimeout(() => {
                     this.tableUrl = URL.api + ROUTES.GET.user.agent.$ + "?name=" + this.$route.query.name;
                     this.updated = true;
                 }, 500)
                 this.searchConfig[1]['value'] = this.$route.query.name;
-            } else if (this.$route.query.id) {
-                this.doDetial({id: this.$route.query.id, type: this.$route.query.type})
             } else {
                 this.tableUrl = URL.api + ROUTES.GET.user.agent.$
             }
 
         },
         deactivated() {
-            this.$route.query.name = null;
+            // this.$route.query.name = null;
             this.$route.query.id = null;
             this.$route.query.type = null;
             this.searchConfig[1]['value'] = "";

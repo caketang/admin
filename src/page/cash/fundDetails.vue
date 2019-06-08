@@ -180,52 +180,6 @@
 						console.log(e)
 					}
 				})
-                // this.$http.get(URL.api + ROUTES.GET.funds.flows, URLCONFIG).then((res) => {
-                //     if (res.data.state == 0 && res.data.data) {
-                //         let funds = res.data.data;
-                //         let tradetype = _this.searchConfig[3].list;
-                //         for (let index in funds) {
-                //             if (funds[index].id == 1) {
-                //                 for (let ele in funds[index].children) {
-				//
-                //                     _this.searchConfig[6].list.push({
-                //                         "label": funds[index].children[ele].name,
-                //                         "value": funds[index].children[ele].id
-                //                     });
-                //                 }
-                //             }
-                //             if (funds[index].id == 2) {
-                //                 for (let ele in funds[index].children) {
-				//
-                //                     _this.searchConfig[5].list.push({
-                //                         "label": funds[index].children[ele].name,
-                //                         "value": funds[index].children[ele].id
-                //                     });
-                //                 }
-                //             }
-                //             if (funds[index].id == 3) {
-                //                 for (let ele in funds[index].children) {
-				//
-                //                     _this.searchConfig[7].list.push({
-                //                         "label": funds[index].children[ele].name,
-                //                         "value": funds[index].children[ele].id
-                //                     });
-                //                 }
-                //             }
-                //             for (let trade in tradetype) {
-				//
-                //                 if (tradetype[trade].label == funds[index].name) {
-				//
-                //                     tradetype[trade].value = funds[index].id
-                //                 }
-                //             }
-                //         }
-                //     }
-                // })
-                // this.systemList = ARRAYS.users;
-                // this.transactionCategoryList = ARRAYS.transactionCategory;
-                // this.transactionTypeList = ARRAYS.transactionTypes;
-                // console.log(this.transactionTypeList)
             },
             //执行查询
             doQuery(obj) {
@@ -239,14 +193,11 @@
             doHandle(e) {
                 switch (e.fn) {
                     case "openUserInformation":
-                        // this.$message.error(LANG['权限不足！'] || '权限不足！');
-                        // return;
                         this.openUserInformation(e.row)
                         break
                 }
             },
             openUserInformation(row) {
-                // console.log(row);
                 this.$router.push({path: "/memberManagement", query: {name: row.username}});
             },
             //取表数据
@@ -272,6 +223,8 @@
         activated() {
             if (this.$route.query.username) {
                 this.tableUrl = URL.api + ROUTES.GET.funds.flow + "?username=" + this.$route.query.username;
+            }else{
+                this.init()
             }
         },
         deactivated() {

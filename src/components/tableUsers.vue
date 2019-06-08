@@ -103,7 +103,7 @@
                     </td>
                     <!--主钱包余额-->
                     <td class="el-table_1_column_19">
-                        <div class="cell">{{(item.balance/100).toFixed(2)}}</div>
+                        <div class="cell">{{(item.balance / 100).toFixed(2)}}</div>
                     </td>
                     <td class="el-table_1_column_19">
                         <div class="cell">{{item.deposit_online_times || 0}}</div>
@@ -238,290 +238,284 @@
     </div>
 </template>
 <script>
-	export default {
-		data() {
-			return {
-				baseUrl: "",
-				LANG,
-				dataModel: [],
+    export default {
+        data() {
+            return {
+                baseUrl: "",
+                LANG,
+                dataModel: [],
 
-				//总条数
-				total: 0,
-				//每次页条数
-				pageSize: 20,
-				//总页数
-				pageCount: 0,
-				//当前页
-				subtotal: {
+                //总条数
+                total: 0,
+                //每次页条数
+                pageSize: 20,
+                //总页数
+                pageCount: 0,
+                //当前页
+                subtotal: {
                     balance: 0,
-					deposit_manual_count: 0,
-					deposit_manual_price: 0,
-					deposit_online_count: 0,
-					deposit_online_price: 0,
-					withdraw_manual_count: 0,
-					withdraw_manual_price: 0,
-					withdraw_online_count: 0,
-					withdraw_online_price: 0
-				},
-				totals: {
+                    deposit_manual_count: 0,
+                    deposit_manual_price: 0,
+                    deposit_online_count: 0,
+                    deposit_online_price: 0,
+                    withdraw_manual_count: 0,
+                    withdraw_manual_price: 0,
+                    withdraw_online_count: 0,
+                    withdraw_online_price: 0
+                },
+                totals: {
                     balance: 0,
-					deposit_manual_count: 0,
-					deposit_manual_price: 0,
-					deposit_online_count: 0,
-					deposit_online_price: 0,
-					withdraw_manual_count: 0,
-					withdraw_manual_price: 0,
-					withdraw_online_count: 0,
-					withdraw_online_price: 0
-				}
-			}
-		},
-		props: {
-			dataModelUrl: String,
-		},
-		methods: {
-			init() {
-				//总条数
-				let total = this.total;
-				//每次页条数
-				let pageSize = this.pageSize;
-				//总页数
-				let pageCount = this.pageCount;
-				let dataModel = this.dataModel;
-				let _this = this;
-				this.baseUrl = this.dataModelUrl;
-				if (this.dataModelUrl) {
-					let index = this.baseUrl.indexOf('?');
-					if (index === -1) {
-						this.baseUrl = this.baseUrl + "?page=" + (this.currentPage === 0 ? 1 : this.currentPage) + "&page_size=" + (pageSize === 0 ? 10 : pageSize);
-					} else {
-						let n = this.baseUrl.indexOf('page=');
-						if (/standard/g.test(this.baseUrl) || /fast/g.test(this.baseUrl)) {
+                    deposit_manual_count: 0,
+                    deposit_manual_price: 0,
+                    deposit_online_count: 0,
+                    deposit_online_price: 0,
+                    withdraw_manual_count: 0,
+                    withdraw_manual_price: 0,
+                    withdraw_online_count: 0,
+                    withdraw_online_price: 0
+                }
+            }
+        },
+        props: {
+            dataModelUrl: String,
+        },
+        methods: {
+            init() {
+                //总条数
+                let total = this.total;
+                //每次页条数
+                let pageSize = this.pageSize;
+                //总页数
+                let pageCount = this.pageCount;
+                let dataModel = this.dataModel;
+                let _this = this;
+                _this.baseUrl = _this.dataModelUrl;
+                if (_this.dataModelUrl) {
+                    let index = this.baseUrl.indexOf('?');
+                    if (index === -1) {
+                        this.baseUrl = this.baseUrl + "?page=" + (this.currentPage === 0 ? 1 : this.currentPage) + "&page_size=" + (pageSize === 0 ? 10 : pageSize);
+                    } else {
+                        let n = this.baseUrl.indexOf('page=');
+                        if (/standard/g.test(this.baseUrl) || /fast/g.test(this.baseUrl)) {
 //                                currentPage = currentPage;
-						} else {
-							this.currentPage = 1;
-						}
-						if (n > 0) {
-							this.baseUrl = this.baseUrl.replace(/page=\d+/, "page=" + this.currentPage || 1);
-						} else {
-							this.baseUrl = this.baseUrl + "&page=" + (this.currentPage === 0 ? 1 : this.currentPage) + "&page_size=" + (pageSize === 0 ? 10 : pageSize);
-						}
-						let m = this.baseUrl.indexOf('page_size=');
-						if (m > 0) {
-							this.baseUrl = this.baseUrl.replace(/page_size=\d+/, "page_size=" + (pageSize === 0 ? 10 : pageSize));
-						} else {
-							this.baseUrl = this.baseUrl + "&page_size=10";
-						}
-					}
-					this.$http.get(this.baseUrl, URLCONFIG).then((res) => {
-                        dataModel.splice(0,dataModel.length);
-						if (res.data.state == 0 && res.data.data) {
-							let tableDate = res.data.data.list || [];
-							if (res.data.attributes) {
-								if (res.data.attributes.subTotalBet) {
-									let obj = res.data.attributes.subTotalBet;
-									for (let k in obj) {
-										_this.subTotalBet[k] = obj[k];
-									}
-								}
-								if (res.data.attributes.totalBet) {
-									let obj = res.data.attributes.totalBet;
-									for (let k in obj) {
-										_this.totalBet[k] = obj[k];
-									}
-								}
-								_this.total = res && res.data && res.data.attributes && res.data.attributes.total || 10;
-								_this.pageSize = res && res.data && res.data.attributes && res.data.attributes.size || 10;
-								_this.pageCount = Math.ceil(_this.total / _this.pageSize) ? Math.ceil(_this.total / _this.pageSize) : 1;
-								_this.currentPage = parseInt(res.data.attributes.number) ? parseInt(res.data.attributes.number) : 1;
-							}
-							if(res.data.data.agent_info && res.data.data.agent_info.toString().length>5){
-                                this.$emit('get_agentinfo',{'data': res.data.data.agent_info});
-                            }else{
-                                this.$emit('get_agentinfo',{'data': null});
+                        } else {
+                            this.currentPage = 1;
+                        }
+                        if (n > 0) {
+                            this.baseUrl = this.baseUrl.replace(/page=\d+/, "page=" + this.currentPage || 1);
+                        } else {
+                            this.baseUrl = this.baseUrl + "&page=" + (this.currentPage === 0 ? 1 : this.currentPage) + "&page_size=" + (pageSize === 0 ? 10 : pageSize);
+                        }
+                        let m = this.baseUrl.indexOf('page_size=');
+                        if (m > 0) {
+                            this.baseUrl = this.baseUrl.replace(/page_size=\d+/, "page_size=" + (pageSize === 0 ? 10 : pageSize));
+                        } else {
+                            this.baseUrl = this.baseUrl + "&page_size=10";
+                        }
+                    }
+                    this.$.autoAjax('get', this.baseUrl, '', {
+                        ok: (res) => {
+                            dataModel.splice(0, dataModel.length);
+                            if (res.state == 0 && res.data) {
+                                let tableDate = res.data.list || [];
+                                if (res.attributes) {
+                                    if (res.attributes.subTotalBet) {
+                                        let obj = res.attributes.subTotalBet;
+                                        for (let k in obj) {
+                                            _this.subTotalBet[k] = obj[k];
+                                        }
+                                    }
+                                    if (res.attributes.totalBet) {
+                                        let obj = res.attributes.totalBet;
+                                        for (let k in obj) {
+                                            _this.totalBet[k] = obj[k];
+                                        }
+                                    }
+                                    _this.total = res.attributes.total || 10;
+                                    _this.pageSize = res.attributes.size || 10;
+                                    _this.pageCount = Math.ceil(_this.total / _this.pageSize) ? Math.ceil(_this.total / _this.pageSize) : 1;
+                                    _this.currentPage = parseInt(res.attributes.number) ? parseInt(res.attributes.number) : 1;
+                                }
+                                if (res.data.agent_info && res.data.agent_info.toString().length > 5) {
+                                    this.$emit('get_agentinfo', {'data': res.data.agent_info});
+                                } else {
+                                    this.$emit('get_agentinfo', {'data': null});
+                                }
+                                for (let i in tableDate) {
+                                    dataModel.push(tableDate[i])
+                                }
+                                let subtotal = res.data.subtotal || {};
+                                for (let n in subtotal) {
+                                    _this.subtotal[n] = subtotal[n];
+                                }
+                                let total = res.data.total || {};
+                                for (let j in subtotal) {
+                                    _this.totals[j] = total[j];
+                                }
                             }
-							for (let i in tableDate) {
-								dataModel.push(tableDate[i])
-							}
-							let subtotal = res.data.data.subtotal || {};
-							for (let n in subtotal) {
-								_this.subtotal[n] = subtotal[n];
-							}
-							let total = res.data.data.total || {};
-							for (let j in subtotal) {
-								_this.totals[j] = total[j];
-							}
-						} else {
-//                           _this.$message.error(LANG['无数据, 请稍后再试!'] || '无数据, 请稍后再试!');
-						}
-					})
-//                    this.$http.get(this.baseUrl+"&get_total=1",URLCONFIG).then((res) =>{
-//                        if(res.data.state == 0 && res.data.data !== null)
-//                        {
-//                            this.totals.offline_count = res.data.data.total.offline_count || 0;
-//                            this.totals.offline_total = res.data.data.total.offline_total || 0;
-//                            this.totals.online_count = res.data.data.total.online_count || 0;
-//                            this.totals.online_total = res.data.data.total.online_total || 0;
-//                            this.totals.withdraw_total = res.data.data.total.withdraw_total || 0;
-//                            this.totals.withdraw_count = res.data.data.total.withdraw_count || 0;
-//                        }else{
-//                            this.$message.error(LANG['无数据, 请稍后再试!'] || '无数据, 请稍后再试!');
-//                        }
-//
-//                    })
-				}
-
-
-			},
-			//处理操作公共按钮事件
-			doHandle(row, fn) {
-				this.$emit("do-handle", {
-					"event": event,
-					"row": row,
-					"fn": fn
-				});
-			},
-			//切换每页条数
-			doSizePage(v) {
-				this.loading = true;
-				let total = this.total;
-				let pageSize = this.pageSize;
-				let pageCount = this.pageCount;
-				let page = 0;
-				let _this = this
-				page = Math.ceil((pageSize * pageCount) / total) || 1;
-				_this.dataModel.splice(0, _this.dataModel.length);
-				let index = this.baseUrl.indexOf('?');
-				if (index === -1) {
-					this.baseUrl = this.baseUrl + "?page=1&page_size=" + v;
-				} else {
-					let n = this.baseUrl.indexOf('page=');
-					if (n > 0) {
-						this.baseUrl = this.baseUrl.replace(/page=\d+/, "page=1");
-					} else {
-						this.baseUrl = this.baseUrl + "&page=1&page_size=" + v;
-					}
-					let m = this.baseUrl.indexOf('page_size=');
-					if (m > 0) {
-						this.baseUrl = this.baseUrl.replace(/page_size=\d+/, "page_size=" + v);
-					} else {
-						this.baseUrl = this.baseUrl + "&page_size=" + 10;
-					}
-				}
-				this.$http.get(this.baseUrl, URLCONFIG).then((res) => {
-					_this.total = res.data.attributes.total || 10;
-					_this.pageSize = res.data.attributes.size || 10;
-					_this.pageCount = Math.ceil(this.total / this.pageSize);
-					_this.currentPage = 1;
-					let tableDate = res.data.tableDemoDate || res.data.data || res.data.data.list || res.data.data.data || res.data.data.deposit || [];
-					if (tableDate.list) {
-						for (let i in tableDate.list) {
-							_this.dataModel.push(tableDate.list[i])
-						}
-					} else {
-						for (let i in tableDate) {
-							_this.dataModel.push(tableDate[i])
-						}
-					}
-                    let subtotal = res.data.data.subtotal || {};
-                    for (let n in subtotal) {
-                        _this.subtotal[n] = subtotal[n];
+                        },
+                        p: () => {
+                        },
+                        error: e => {
+                            console.log(e)
+                        }
+                    })
+                }
+            },
+            //处理操作公共按钮事件
+            doHandle(row, fn) {
+                this.$emit("do-handle", {
+                    "event": event,
+                    "row": row,
+                    "fn": fn
+                });
+            },
+            //切换每页条数
+            doSizePage(v) {
+                this.loading = true;
+                let total = this.total;
+                let pageSize = this.pageSize;
+                let pageCount = this.pageCount;
+                let page = 0;
+                let _this = this
+                page = Math.ceil((pageSize * pageCount) / total) || 1;
+                _this.dataModel.splice(0, _this.dataModel.length);
+                let index = this.baseUrl.indexOf('?');
+                if (index === -1) {
+                    this.baseUrl = this.baseUrl + "?page=1&page_size=" + v;
+                } else {
+                    let n = this.baseUrl.indexOf('page=');
+                    if (n > 0) {
+                        this.baseUrl = this.baseUrl.replace(/page=\d+/, "page=1");
+                    } else {
+                        this.baseUrl = this.baseUrl + "&page=1&page_size=" + v;
                     }
-                    let total = res.data.data.total || {};
-                    for (let j in subtotal) {
-                        _this.totals[j] = total[j];
+                    let m = this.baseUrl.indexOf('page_size=');
+                    if (m > 0) {
+                        this.baseUrl = this.baseUrl.replace(/page_size=\d+/, "page_size=" + v);
+                    } else {
+                        this.baseUrl = this.baseUrl + "&page_size=" + 10;
                     }
-					_this.loading = false;
-				}).catch((e) => {
-					_this.loading = false;
-					_this.$message.error(LANG['未知错误，请稍后重试！'] || '未知错误，请稍后重试！');
-				})
-
-			},
-			//切换页数
-			doCurrentChange(v) {
-				this.loading = true;
-				let total = this.total;
-				let pageSize = this.pageSize;
-				let pageCount = this.pageCount;
-				this.currentPage = v;
-				let page = 0;
-				let _this = this
-				page = Math.ceil((pageSize * pageCount) / total) || 1;
-				_this.dataModel.splice(0, _this.dataModel.length);
-				let index = this.baseUrl.indexOf('?');
-				if (index === -1) {
-					this.baseUrl = this.baseUrl + "?page=" + v + "&page_size=" + this.pageSize;
-				} else {
-					let n = this.baseUrl.indexOf('page=');
-					if (n > 0) {
-						this.baseUrl = this.baseUrl.replace(/page=\d+/, "page=" + v);
-					} else {
-						this.baseUrl = this.baseUrl + "&page=" + v + "&page_size=" + this.pageSize;
-					}
-					let m = this.baseUrl.indexOf('page_size=');
-					if (m > 0) {
-						this.baseUrl = this.baseUrl.replace(/page_size=\d+/, "page_size=" + this.pageSize);
-					} else {
-						this.baseUrl = this.baseUrl + "&page_size=" + 10;
-					}
-				}
-				this.$http.get(this.baseUrl, URLCONFIG).then((res) => {
-					_this.total = res.data.attributes.total || 10;
-					_this.pageSize = res.data.attributes.size || 10;
-					_this.pageCount = Math.ceil(this.total / this.pageSize);
-					_this.currentPage = res.data.attributes.number || 1;
-					let tableDate = res.data.tableDemoDate || res.data.data || res.data.data.list || res.data.data.data || res.data.data.deposit || [];
-					if (tableDate.list) {
-						for (let i in tableDate.list) {
-							_this.dataModel.push(tableDate.list[i])
-						}
-					} else {
-						for (let i in tableDate) {
-							_this.dataModel.push(tableDate[i])
-						}
-					}
-                    let subtotal = res.data.data.subtotal || {};
-                    for (let n in subtotal) {
-                        _this.subtotal[n] = subtotal[n];
+                }
+                this.$.autoAjax('get', this.baseUrl, '', {
+                    ok: (res) => {
+                        _this.total = res.attributes.total || 10;
+                        _this.pageSize = res.attributes.size || 10;
+                        _this.pageCount = Math.ceil(this.total / this.pageSize);
+                        _this.currentPage = 1;
+                        let tableDate = res.data.tableDemoDate || res.data || res.data.list ||  res.data.deposit || [];
+                        if (tableDate.list) {
+                            for (let i in tableDate.list) {
+                                _this.dataModel.push(tableDate.list[i])
+                            }
+                        } else {
+                            for (let i in tableDate) {
+                                _this.dataModel.push(tableDate[i])
+                            }
+                        }
+                        let subtotal = res.data.subtotal || {};
+                        for (let n in subtotal) {
+                            _this.subtotal[n] = subtotal[n];
+                        }
+                        let total = res.data.total || {};
+                        for (let j in subtotal) {
+                            _this.totals[j] = total[j];
+                        }
+                        _this.loading = false;
+                    },
+                    error: e => {
+                        _this.loading = false;
+                        _this.$message.error(LANG['未知错误，请稍后重试！'] || '未知错误，请稍后重试！');
                     }
-                    let total = res.data.data.total || {};
-                    for (let j in subtotal) {
-                        _this.totals[j] = total[j];
+                })
+            },
+            //切换页数
+            doCurrentChange(v) {
+                this.loading = true;
+                let total = this.total;
+                let pageSize = this.pageSize;
+                let pageCount = this.pageCount;
+                this.currentPage = v;
+                let page = 0;
+                let _this = this
+                page = Math.ceil((pageSize * pageCount) / total) || 1;
+                _this.dataModel.splice(0, _this.dataModel.length);
+                let index = this.baseUrl.indexOf('?');
+                if (index === -1) {
+                    this.baseUrl = this.baseUrl + "?page=" + v + "&page_size=" + this.pageSize;
+                } else {
+                    let n = this.baseUrl.indexOf('page=');
+                    if (n > 0) {
+                        this.baseUrl = this.baseUrl.replace(/page=\d+/, "page=" + v);
+                    } else {
+                        this.baseUrl = this.baseUrl + "&page=" + v + "&page_size=" + this.pageSize;
                     }
-					_this.loading = false;
-				}).catch((e) => {
-					_this.loading = false;
-					_this.$message.error(LANG['未知错误，请稍后重试！'] || '未知错误，请稍后重试！');
-				})
-			}
-		},
+                    let m = this.baseUrl.indexOf('page_size=');
+                    if (m > 0) {
+                        this.baseUrl = this.baseUrl.replace(/page_size=\d+/, "page_size=" + this.pageSize);
+                    } else {
+                        this.baseUrl = this.baseUrl + "&page_size=" + 10;
+                    }
+                }
+                this.$.autoAjax('get', this.baseUrl, '', {
+                    ok: (res) => {
+                        _this.total = res.attributes.total || 10;
+                        _this.pageSize = res.attributes.size || 10;
+                        _this.pageCount = Math.ceil(this.total / this.pageSize);
+                        _this.currentPage = res.attributes.number || 1;
+                        let tableDate = res.data.tableDemoDate || res.data.list ||  res.data.deposit || [];
+                        if (tableDate.list) {
+                            for (let i in tableDate.list) {
+                                _this.dataModel.push(tableDate.list[i])
+                            }
+                        } else {
+                            for (let i in tableDate) {
+                                _this.dataModel.push(tableDate[i])
+                            }
+                        }
+                        let subtotal = res.data.subtotal || {};
+                        for (let n in subtotal) {
+                            _this.subtotal[n] = subtotal[n];
+                        }
+                        let total = res.data.total || {};
+                        for (let j in subtotal) {
+                            _this.totals[j] = total[j];
+                        }
+                        _this.loading = false;
+                    },
+                    error: e => {
+                        _this.loading = false;
+                        _this.$message.error(LANG['未知错误，请稍后重试！'] || '未知错误，请稍后重试！');
+                    }
+                })
+            }
+        },
         watch: {
-			//如果数据网址发生变化，就执行数据请求
-			dataModelUrl: function (newval) {
-			    if(newval){
+            //如果数据网址发生变化，就执行数据请求
+            dataModelUrl: function (newval) {
+                if (newval) {
                     this.init();
                 }
-			}
-		},
-		created() {
-			this.init()
-		},
-		computed: {
-			scrollClass: function () {
-				return {
-					'scrollX': this.tableScroll 
-				}
-			},
-			tableWidth: function () {
-				let width = document.body.clientWidth;
-				return this.tableScroll ? 'width:' + (width - 270) + 'px' : ''
-			}
-		},
-        mounted(){
+            }
+        },
+        created() {
+            this.init()
+        },
+        computed: {
+            scrollClass: function () {
+                return {
+                    'scrollX': this.tableScroll
+                }
+            },
+            tableWidth: function () {
+                let width = document.body.clientWidth;
+                return this.tableScroll ? 'width:' + (width - 270) + 'px' : ''
+            }
+        },
+        mounted() {
             let _this = this;
-            Bus.$on('form_query',function(v){
-                if(v){
+            Bus.$on('form_query', function (v) {
+                if (v) {
                     _this.init();
                 }
             })
@@ -530,18 +524,20 @@
             window.clearInterval(window.PAGEREF);
 //            Bus.$off('form_query');
         }
-	}
+    }
 </script>
 <style scoped>
     .cell {
         padding: 2px;
         font-size: 12px;
     }
+
     #tableUsers .el-table .cell {
         white-space: normal;
         word-break: break-word;
         line-height: 24px;
     }
+
     .el-table .cell .sucess_text {
         color: #13CE66
     }

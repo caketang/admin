@@ -45,52 +45,40 @@
         },
         methods: {
             init() {
-                this.baseUrl = URL.api + '/state/summary';
+                //this.baseUrl = URL.api + '/state/summary';
+                this.baseUrl = URL.api + ROUTES.GET.user.agent.line
                 this.columnsUrl = "static/json/userManagement/agentAccount/userAgentcolumns.json";
-                this.tableUrl = this.baseUrl + '?date_from=' + this.stime + '&date_to=' + this.etime  + '&type=member&agent_id=' + this.nowId;
+                //this.tableUrl = this.baseUrl + '?date_from=' + this.stime + '&date_to=' + this.etime  + '&type=member&agent_id=' + this.nowId;
+                this.tableUrl = this.baseUrl + '?name=' + this.agentName;
                 // 取游戏列表
                 this.gameList.splice(0,this.gameList.length);
                 let gamelist = this.gameList;
 
-				this.$.autoAjax('get',URL.api + ROUTES.GET.games.listTwo, '', {
-					ok: (res) => {
-						if(res.state === 0 && res.data){
-							let model=res.data || [];
-							for(let i in model){
-								gamelist.push({
-									"game_id":model[i].game_id,
-									"game_type":model[i].game_type
-								});
-							};
-						}
-					},
-					p: () => {
-					},
-					error: e => {
-						console.log(e)
-					}
-				})
-                // this.$http.get(URL.api + ROUTES.GET.games.listTwo,URLCONFIG).then((res) => {
-                //     if(res.data.state === 0 && res.data.data){
-                //         let model=res.data.data || [];
-                //         for(let i in model){
-                //             gamelist.push({
-                //                 "game_id":model[i].game_id,
-                //                 "game_type":model[i].game_type
-                //             });
-                //         };
-                //     }
-                // })
-                .catch(function (err) {
-//                    console.log(err)
-                });
+//				this.$.autoAjax('get',URL.api + ROUTES.GET.games.listTwo, '', {
+//					ok: (res) => {
+//						if(res.state === 0 && res.data){
+//							let model=res.data || [];
+//							for(let i in model){
+//								gamelist.push({
+//									"game_id":model[i].game_id,
+//									"game_type":model[i].game_type
+//								});
+//							};
+//						}
+//					},
+//					p: () => {
+//					},
+//					error: e => {
+//						console.log(e)
+//					}
+//				})
             },
             // 回上页
             doReturn(){
                 if(this.showGames){
                     this.showGames = false;
                     this.columnsUrl = "static/json/userManagement/agentAccount/userAgentcolumns.json";
-                    this.tableUrl = this.baseUrl + '?date_from=' + this.stime + '&date_to=' + this.etime  + '&type=member&agent_id=' + this.nowId;
+                    this.tableUrl = URL.api + '/state/summary' + '?date_from=' + this.stime + '&date_to=' + this.etime  + '&type=member&agent_id=' + this.nowId;
                 }else{
                     this.$emit('return-page',{});
                 }

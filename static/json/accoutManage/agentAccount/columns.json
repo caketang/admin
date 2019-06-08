@@ -62,44 +62,11 @@
             "fn": "openMember"
         },
         {
-            "prop": "balance",
-            "label": "帐户余额",
-            "width": "150",
-            "class": "tCent",
-            "type": "divisionMoney",
-            "sortable": true,
-            "disabled": true
-        },
-        {
             "prop": "created",
             "label": "注册时间",
             "sortable": true,
             "width": "190",
             "type": "date",
-            "disabled": true
-        },
-        {
-            "prop": "channel",
-            "label": "注册来源",
-            "filters": [
-                {
-                    "text": "H5注册",
-                    "value": "1"
-                },
-                {
-                    "text": "PC注册",
-                    "value": "2"
-                },
-                {
-                    "text": "厅主后台创建",
-                    "value": "3"
-                },
-                {
-                    "text": "代理后台创建",
-                    "value": "4"
-                }
-            ],
-            "width": "150",
             "disabled": true
         },
         {
@@ -168,6 +135,11 @@
                     "fn": "doDisable",
                     "prop": "status",
                     "val": 1
+                },
+                {
+                    "btnType": "text",
+                    "label": "修改返点等级",
+                    "fn": "doEdit"
                 }
             ]
         }

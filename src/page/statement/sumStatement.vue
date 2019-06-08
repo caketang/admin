@@ -226,12 +226,6 @@
         created() {
             this.init();
         },
-        activated() {
-            this.init();
-            this.homeform = true;
-            this.isDetail = false;
-            this.levelAgent = false;
-        }
     }
 </script>
 <style>

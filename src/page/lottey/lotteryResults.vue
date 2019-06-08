@@ -16,15 +16,17 @@
             </el-col>
             <el-col :span="12" class="manualAward">
                 <div class="manualAwardBtn">
-                    <el-button class="" type="primary" @click="awardButton">手动派彩</el-button>
+                    <el-button type="primary" @click="awardButton">手动派彩</el-button>
+                    <el-button type="primary" @click="editButton">修改开奖结果</el-button>
+                    <el-button type="primary" @click="reSettleButton">重置开奖结果</el-button>
                 </div>
                 <div>
                     <el-dialog
-                        title="提示"
+                        :title="{'0':'手动派彩','1':'修改开奖结果','2':'重置派彩'}[editShow]||'0'"
                         :visible.sync="dialogVisible"
                         size="tiny"
                         :before-close="handleClose">
-                        <el-form ref="form" :model="manualAward" label-width="80px">
+                        <el-form ref="form" :model="manualAward" label-width="80px" v-if="editShow=='0'||editShow=='2'">
                             <el-form-item label="彩种名称">
                                 <el-select class="inputW" v-model="manualAward.lottery_id" placeholder="请选择彩种名称">
                                     <el-option :label="item.label" :value="item.value" v-for="item,index in lotteryList" :key="index"></el-option>
@@ -32,6 +34,20 @@
                             </el-form-item>
                             <el-form-item label="彩期">
                                 <el-input class="inputW" type="number" v-model="manualAward.lottery_number"></el-input>
+                            </el-form-item>
+                        </el-form>
+                        <el-form ref="form" :model="editResult" label-width="80px" v-else-if="editShow=='1'">
+                            <el-form-item label="彩种名称">
+                                <el-select class="inputW" v-model="editResult.lottery_type" placeholder="请选择彩种名称">
+                                    <el-option :label="item.label" :value="item.value" v-for="item,index in lotteryList" :key="index"></el-option>
+                                </el-select>
+                            </el-form-item>
+                            <el-form-item label="彩期">
+                                <el-input class="inputW" type="number" v-model="editResult.lottery_number"></el-input>
+                            </el-form-item>
+                            <el-form-item label="开奖结果">
+                                <el-input class="inputW" type="text" v-model="editResult.period_code" placeholder="开奖结果请用英文逗号隔开"></el-input>
+                                <p class="help_gray">*提示：开奖结果请用英文逗号隔开</p>
                             </el-form-item>
                         </el-form>
                         <span slot="footer" class="dialog-footer">
@@ -47,6 +63,7 @@
                 :columnsUrl="columnsUrl"
                 :tableUrl="tableUrl"
                 :pageSet="true"
+                :updated="updated"
                 :showRefresh="false"
                 :tableIndex="false">
             </tableGrid>
@@ -63,6 +80,7 @@
                 //数据接口地址
                 tableUrl: "",
                 baseUrl: "",
+                updated:false,
                 //列配置接口地址
                 columnsUrl: "",
                 //搜索条件
@@ -72,8 +90,14 @@
                     lottery_number: '',
                     lottery_id: ''
                 },
+                editResult:{
+                    lottery_number:"",
+                    lottery_type : "",
+                    period_code:""
+                },
                 lotteryList: [],
-                dialogVisible: false
+                dialogVisible: false,
+                editShow:'0',//字符串0，手动派奖，1是修改开奖结果，2是重置
             }
         },
         components: {
@@ -130,19 +154,51 @@
             },
             awardButton() {
                 this.dialogVisible = true
+                this.editShow = '0'
+            },
+            editButton(){
+                this.dialogVisible = true
+                this.editShow = '1'
+            },
+            reSettleButton(){
+                this.dialogVisible = true
+                this.editShow = '2'
             },
             handleClose(){
                 this.dialogVisible = false
             },
             manualAwardSubmit() {
-                let _this = this
-                this.$.autoAjax('patch', URL.api + ROUTES.PATCH.lottery.handSettle, this.manualAward, {
-                    ok:v=>{
-                        v.state === 0&&v.data
-                            ? _this.$message.success('手动派彩成功')
-                            : _this.$message.error('手动派彩失败')
-                    }
-                })
+                let _this = this//lottery.setResult
+                switch(_this.editShow){
+                    case '0':
+                        this.$.autoAjax('patch', URL.api + ROUTES.PATCH.lottery.handSettle, _this.manualAward, {
+                            ok:v=>{
+                                v.state === 0&&v.data
+                                    ? _this.$message.success('手动派彩成功')
+                                    : _this.$message.error('手动派彩失败')
+                            }
+                        })
+                        break;
+                    case '1':
+                        this.$.autoAjax('patch', URL.api + ROUTES.PATCH.lottery.setResult, _this.editResult, {
+                            ok:v=>{
+                                v.state === 0&&v.data
+                                    ? _this.$message.success('修改开奖结果成功')
+                                    : _this.$message.error('修改开奖结果失败')
+                            }
+                        })
+                        break;
+                    case '2':
+                        this.$.autoAjax('patch', URL.api + ROUTES.PATCH.lottery.reSettle, _this.manualAward, {
+                            ok:v=>{
+                                v.state === 0&&v.data
+                                    ? _this.$message.success('重置派彩成功')
+                                    : _this.$message.error('重置派彩失败')
+                            }
+                        })
+                        break;
+                }
+                _this.updated = true
                 this.dialogVisible = false
             }
         },

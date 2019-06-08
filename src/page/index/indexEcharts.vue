@@ -5,7 +5,7 @@
             <el-col :span="4">
                 <div class="indexData" style="background:#0fbed1">
                     <p class="num" :title="'今日活跃用户：'+active">{{active}}</p>
-                    <p class="textHide">{{LANG['今日活跃用户'] || '今日活跃用户'}}</p>
+                    <p class="textHide">{{LANG['活跃用户'] || '活跃用户'}}</p>
                 </div>
             </el-col>
             <!--首充人数-->
@@ -19,7 +19,7 @@
             <el-col class="border_bottom" :span="4">
                 <div class="indexData" style="background:#39bc30">
                     <p class="num" :title="'今日新增用户：'+newly">{{newly}}</p>
-                    <p class="textHide">{{LANG['今日新增用户'] || '今日新增用户'}}</p></div>
+                    <p class="textHide">{{LANG['新增用户'] || '新增用户'}}</p></div>
             </el-col>
             <el-col class="border_bottom" :span="4">
                 <div class="indexData" style="background:#ff6360">
@@ -30,20 +30,20 @@
             <el-col class="border_bottom" :span="4">
                 <div class="indexData" style="background:#ffb72f">
                     <p class="num" :title="'今日总注单数：'+orders">{{orders}}</p>
-                    <p class="textHide">{{LANG['今日总注单数'] || '今日总注单数'}}</p>
+                    <p class="textHide">{{LANG['总注单数'] || '总注单数'}}</p>
                 </div>
             </el-col>
             <!--注单总额-->
             <el-col :span="4">
                 <div class="indexData" style="background:#C9592D">
                     <p class="num">{{amount?amount:0}}</p>
-                    <p class="textHide">{{LANG['今日总注单金额'] || '今日总注单金额'}}</p>
+                    <p class="textHide">{{LANG['总注单金额'] || '总注单金额'}}</p>
                 </div>
             </el-col>
             <el-col class="border_bottom" :span="4">
                 <div class="indexData" style="background:#ff9269">
                     <p class="num">{{deposite? deposite:0}}</p>
-                    <p class="textHide">{{LANG['今日存款总金额'] || '今日存款总金额'}}</p>
+                    <p class="textHide">{{LANG['存款总金额'] || '存款总金额'}}</p>
                 </div>
             </el-col>
             <!--提款总额-->
@@ -57,9 +57,16 @@
             <!--总输赢-->
             <el-col :span="4">
                 <div class="indexData" style="background:#ab8def">
+                    <p class="num">{{profit?profit:0}}</p>
+                    <p class="textHide">{{LANG['公司纯盈亏'] || '公司纯盈亏'}}</p>
+                </div>
+            </el-col>
+            <!--首充金额-->
+            <el-col :span="4">
+                <div class="indexData" style="background:#5FB175">
                     <p class="num">
-                        {{gross_profit?gross_profit:0}}</p>
-                    <p class="textHide">{{LANG['总输赢'] || '总输赢'}}</p>
+                        {{new_deposit_moneys?new_deposit_moneys:0}}</p>
+                    <p class="textHide">{{LANG['首充金额'] || '首充金额'}}</p>
                 </div>
             </el-col>
         </el-row>
@@ -234,9 +241,9 @@
                 orders: 0,
                 amount: 0,
                 profit: 0,
-                gross_profit: 0,
                 new_deposit_members: 0,
                 withdraw_money: 0,
+                new_deposit_moneys:0,//首充金额
                 //表格列数据
                 columnsUrl: "static/json/indexEcharts/columns.json",
                 //表格数据
@@ -557,7 +564,7 @@
                                     } else {
                                         let money = parseInt(arr1[i]);
                                         if (isNaN(money) == false) {
-                                            list1.push(parseInt(arr1[i]) / 100);
+                                            list1.push(parseInt(arr1[i]));
                                         } else {
                                             list1.push(0);
                                         }
@@ -591,8 +598,8 @@
                             _this.deposite = res.data.deposit_money || 0;
                             _this.orders = res.data.bet_times || 0;
                             _this.amount = res.data.bet_money || 0;
-                            //_this.profit = res.data.withdraw_money || 0;
-                            _this.gross_profit = res.data.gross_profit || 0;
+                            _this.new_deposit_moneys = res.data.new_deposit_moneys || 0;
+                            _this.profit = res.data.profit || 0;
                             _this.new_deposit_members = res.data.new_deposit_members || 0;
                             _this.withdraw_money = res.data.withdraw_money || 0;
                         }

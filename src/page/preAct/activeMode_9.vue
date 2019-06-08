@@ -321,21 +321,15 @@
                                 </div>
                             </el-form-item>
                         </div>
-                        <el-form-item prop="checkDeposit" :rules="[{ validator:checkDeposit,trigger:'change'}]"
-                                      class="checkDeposit"></el-form-item>
+                        <!--<el-form-item prop="checkDeposit" :rules="[{ validator:checkDeposit,trigger:'change'}]"-->
+                                      <!--class="checkDeposit"></el-form-item>-->
                         <el-form-item label="有效会员等级" prop="checkedDefut">
-                            <!-- <el-checkbox :indeterminate="isIndeterminate" v-model="modeData.vipType"
-										 @change="handleCheckAllChange">全部
-							</el-checkbox> -->
-                            <div style="margin: 15px 0;"></div>
+                            <!--<div style="margin: 15px 0;"></div>-->
                             <el-checkbox-group v-model="modeData.checkedDefut" @change="handleCheckedDefutChange">
                                 <el-checkbox v-for="(item,index) in vipList" :label=item.label :key=index
                                              :disabled="item.disable"
                                              name="type"></el-checkbox>
                             </el-checkbox-group>
-                            <!-- <el-select v-model="modeData.checkedDefut" placeholder="请选择类型" class="w80">
-								<el-option :label=item.label :value=item.value :key=item.index v-for="(item,index) in vipList"></el-option>
-							</el-select> -->
                         </el-form-item>
                         <el-form-item label="优惠提款要求" required>
                             <!--<span v-text="LANG['(存款+优惠)X'] || '(存款+优惠)X'"></span>-->
@@ -939,11 +933,12 @@
                         _this.$.autoAjax('get', alllevel, '', {
                             ok: (res) => {
                                 let model = res.data;
+                                console.log(res)
                                 for (let i in model) {
                                     _this.vipList.push({
                                         "label": "VIP"+model[i].level,
                                         "value": model[i].level.toString(),
-                                        "disable": true
+                                        "disable": false
                                     })
                                 }
                                 resolve();
@@ -1805,7 +1800,7 @@
         margin-left: 0;
     }
 
-    #activeMode .el-checkbox + .el-checkbox {
+    #activeMode .el-checkbox{
         margin-left: 0;
         margin-right: 15px;
     }

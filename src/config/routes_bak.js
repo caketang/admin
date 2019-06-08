@@ -235,6 +235,13 @@ export default [
                 hidden: true
             },
             {
+                path: '/activeMode_11',
+                component: resolve => require(['../page/preAct/activeMode_11.vue'], resolve),
+                iconCls: '',
+                name: '代理邀请注册',
+                hidden: true
+            },
+            {
                 path: '/activeMode_email',
                 component: resolve => require(['../page/preAct/activeMode_email.vue'], resolve),
                 iconCls: '',

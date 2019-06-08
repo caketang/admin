@@ -307,8 +307,8 @@
                 }
                 // 检测this.$route.query各个属性是否有值是否有值，正常路由进来
                 if (JSON.stringify(this.$route.query) == "{}") {
-                    this.query = {"online": '1', "state": '1'};
-                    this.tableUrl = URL.api + ROUTES.GET.user.list + this.addSearch({"online": '1', "state": '1'});
+                    //this.query = {"online": '1', "state": '1'};
+                    this.tableUrl = URL.api + ROUTES.GET.user.list;
                 }
                 this.columnsUrl = "/static/json/accoutManage/memberManagement/columns.json"
                 this.getLables();

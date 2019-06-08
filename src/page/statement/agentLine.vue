@@ -27,7 +27,7 @@
                     :tableUrl="tableUrl"
                     :updated="updated"
                     :getData="getData"
-                    :isCreated="true"
+                    :isCreated="isCreated"
                     @get-table-data="getTableData"
                     :tableCheck="false"
                     :pageSet="true"
@@ -97,6 +97,7 @@
     import formEdit from '../../components/formEdit.vue'
     import tableGrid from '../../components/tableGrid.vue'
     export default {
+        // inject: ['reload'],
         data() {
             return {
                 LANG,
@@ -119,7 +120,7 @@
                     state: false
                 },
                 isEdit: {
-                    state:false
+                    // state:false
                 },
                 columnsUrl: '',
                 tableUrl: '',
@@ -130,17 +131,20 @@
                 start_time: sessionStorage.dateTimeStart,
                 end_time: sessionStorage.dateTimeEnd,
                 childShow: true,
-                allData:{}
+                allData:{},
+                isCreated:false
             }
         },
         methods: {
             init() {
-                this.updated = false
-                this.tableUrl = URL.api + ROUTES.GET.user.agent.line + this.addSearch({
+                // this.updated = false
+                // this.tableUrl = URL.api + '/state/line' + this.addSearch({
+                this.tableUrl = URL.api + ROUTES.GET.state.line + this.addSearch({
                     start_time: sessionStorage.dateTimeStart,
                     end_time: sessionStorage.dateTimeEnd
                 })
-                this.beastUrl = URL.api + ROUTES.GET.user.agent.line
+                // this.beastUrl = URL.api + '/state/line'
+                this.beastUrl = URL.api + ROUTES.GET.state.line
                 this.columnsUrl = '../../../static/json/statement/agentLine/columns.json';
             },
             doQuery(data) {
@@ -193,7 +197,7 @@
                     }
                 } else {
                     this.sumShow = false;
-                }
+                };
             },
             doHandle(item) {
                 switch (item.fn) {
@@ -231,9 +235,8 @@
         },
         computed: {},
         watch: {
-//            tableUrl: {
-//                handler(val, old) {
-//
+            // tableUrl: {
+               // handler(val, old) {
 //                },
 //                //是否绑定初始值
 //                immediate: true,
@@ -245,7 +248,17 @@
         },
         created() {
             this.init()
-        }
+        },
+        activated(){
+            this.isCreated = false;
+            this.updated = false;
+            this.tableUrl = URL.api + ROUTES.GET.state.line + this.addSearch({
+                start_time: sessionStorage.dateTimeStart,
+                end_time: sessionStorage.dateTimeEnd
+            })
+            this.beastUrl = URL.api + ROUTES.GET.state.line
+            this.columnsUrl = '../../../static/json/statement/agentLine/columns.json';
+        },
     }
 </script>
 <style scopend>

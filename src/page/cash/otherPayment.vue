@@ -231,7 +231,8 @@
                         {required: true, message: '请选择支付平台状态', trigger: 'change'},
                     ],
                     name: [
-                        {required: true, message: '请填写商户名称', trigger: 'blur'}]
+                        {required: true, message: '请填写商户名称', trigger: 'blur'}
+                     ],
                 },
                 formType: '',
             }
@@ -478,10 +479,15 @@
             },
             //保存数据
             getForm(obj) {
-                obj.day_deact = obj.day_deact * 100;
                 this.updated = false;
                 let _this = this;
                 let url = URL.api + ROUTES.POST.cash.third.third;
+                for (let i = 0; i < Object.values(obj.configs).length; i++) {
+                    if(!Object.values(obj.configs)[i]){
+                        this.ruleConfig([])
+                        return false
+                    }
+                }
                 if (this.formType == "add") {
                     this.$.autoAjax('put', url, obj, {
                         ok: (res) => {
@@ -680,6 +686,7 @@
                 _this.AddFormTitle = this.LANG["编辑第三方支付"] || "编辑第三方支付";
                 _this.loading = true;
                 _this.nowId = row.id;
+                console.log('otherPayment.vue doEdit 684', URL.api + ROUTES.GET.cash.third.$ + "?id=" + parseInt(this.nowId) );
                 _this.$.autoAjax('get', URL.api + ROUTES.GET.cash.third.$ + "?id=" + parseInt(this.nowId), '', {
                     ok: (res) => {
                         if (res.state == 0 && res.data) {
@@ -717,7 +724,7 @@
                                 _this.AddFormData.pay_id = mode.pay_id
                                 _this.AddFormData.pay_scene = mode.pay_scene
                                 _this.AddFormData.terminal = mode.terminal
-                                _this.AddFormData.day_deact = FORMATMONEY(mode.day_deact).toString()
+                                _this.AddFormData.day_deact = mode.day_deact
                                 _this.AddFormData.name = mode.name
                                 _this.AddFormData.sort = mode.sort
                                 _this.AddFormData.status = mode.status == '1' ? 'enabled' : 'disabled'

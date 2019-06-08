@@ -55,14 +55,14 @@
                                         class="volSwitch"
                                     ></el-switch>
                                 </p>
-                                <p>
-                                    {{LANG['代理出款提示'] || '代理出款提示'}}
-                                    <el-switch
-                                        v-model="sound_agent_out"
-                                        @change="isOpenSoundAgentFn_out"
-                                        class="volSwitch"
-                                    ></el-switch>
-                                </p>
+                                <!--<p>-->
+                                    <!--{{LANG['代理出款提示'] || '代理出款提示'}}-->
+                                    <!--<el-switch-->
+                                        <!--v-model="sound_agent_out"-->
+                                        <!--@change="isOpenSoundAgentFn_out"-->
+                                        <!--class="volSwitch"-->
+                                    <!--&gt;</el-switch>-->
+                                <!--</p>-->
                                 <!--<p>-->
                                     <!--{{LANG['新优惠申请提示'] || '新优惠申请提示'}}-->
                                     <!--<el-switch-->

@@ -79,8 +79,8 @@
                     },
                     {"prop": "experience", "value": "", "type": "number", "label": "晋升所需经验","disabled":false, "rules": [{"require": false}]},
                     {"prop": "commission_self", "value": "", "type": "number", "label": "自身退佣(%)", "rules": [{"require": false}]},
-                    {"prop": "commission_level", "value": "", "type": "number", "label": "一级退佣(%)", "rules": [{"require": false}]},
-                    {"prop": "commission_directly", "value": "", "type": "number", "label": "二级退佣(%)", "rules": [{"require": false}]},
+                    {"prop": "commission_directly", "value": "", "type": "number", "label": "一级退佣(%)", "rules": [{"require": false}]},
+                    {"prop": "commission_level", "value": "", "type": "number", "label": "二级退佣(%)", "rules": [{"require": false}]},
                 ],
                 type: "default",
                 formType: "",
@@ -171,8 +171,8 @@
                 this.formConfig[0].value = row['level'].toString()
                 this.formConfig[1].value = row.experience
                 this.formConfig[2].value = row.commission_self
-                this.formConfig[3].value = row.commission_level
-                this.formConfig[4].value = row.commission_directly
+                this.formConfig[3].value = row.commission_directly
+                this.formConfig[4].value = row.commission_level
                 this.name = row.name
             },
             getForm(data){

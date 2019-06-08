@@ -2,8 +2,8 @@
     <div id="validUser">
         <el-radio-group v-model="activeName" class="mb10" v-show="!showDetail">
             <el-radio label="agent">{{LANG['有效会员列表'] || '有效会员列表'}}</el-radio>
-            <el-radio label="member">{{LANG['会员查询'] || '会员查询'}}</el-radio>
-            <el-radio label="agentInformation">{{LANG['代理资料'] || '代理资料'}}</el-radio>
+            <!--<el-radio label="member">{{LANG['会员查询'] || '会员查询'}}</el-radio>-->
+            <!--<el-radio label="agentInformation">{{LANG['代理资料'] || '代理资料'}}</el-radio>-->
         </el-radio-group>
         <el-col v-if="activeName == 'agent' && !showDetail">
             <agent @show-detail="doShowDetail" @return-page="returnList" :stime="stime" :etime="etime"></agent>

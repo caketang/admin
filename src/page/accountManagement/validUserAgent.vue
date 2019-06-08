@@ -26,7 +26,7 @@
                     </tr>
                     <tr slot="other" v-if="sumData.total">
                         <td colspan="2"><div class="cell">{{LANG['总计'] || '总计'}}</div></td>
-                        <td><div class="cell">{{sumData.tatal_members}}</div></td>
+                        <td><div class="cell">{{sumData.total_member}}</div></td>
                     </tr>
                 </tableGrid>
         <el-col>
@@ -113,7 +113,7 @@
                 if(obj.allData && obj.allData.attributes){
                     this.sumData.total = obj.allData.attributes.total || 0;
                     this.sumData.sub_members = obj.allData.attributes.sub_members || 0;
-                    this.sumData.tatal_members = obj.allData.attributes.tatal_members || 0;
+                    this.sumData.total_member = obj.allData.attributes.total_member || 0;
                 }
             },
             // 执行查询
@@ -147,7 +147,7 @@
                 this.tableUrl = this.agentbaseUrl+"?time_start=" + sessionStorage.dateTimeStart + "&time_end=" + sessionStorage.dateTimeEnd;
             },
             showDetails(row){
-                this.$router.push({path: '/agentAccount', query:{id: row.id, type: row.type}});
+                this.$router.push({path: '/agentAccount',query:{name: row.name}});
             },
             showAgent(row){
                 let temp = {
@@ -166,7 +166,6 @@
                 let time_to = this.searchObj.time_end;
                 url = URL.api + '/export/download/agent';
                 if (time_form && time_to) {
-
 					this.$.autoAjax('get',URL.api + '/dev/download/sign' + '?nonce=' + url, '', {
 						ok: (res) => {
 							if (res.data) {

@@ -226,7 +226,7 @@ global.ROUTES = {
                 like:"/agent/like",
                 report:'/treaty/report',
                 domain:'/domain/list',
-                line:'/state/line',
+                // line:'/state/line',
                 level:'/agent/level/index',
                 global:'/agent/level/global'
             },
@@ -259,6 +259,7 @@ global.ROUTES = {
             game: "/state/game",
             active: "/state/active",
             today: "stat/today",
+            line: "/state/line",
             member: {
                 $: /**
                  * 路由：/state/member/?days\d
@@ -770,6 +771,7 @@ global.ROUTES = {
             "summary": "/state/summary",
             "game": "/state/game",
             "player": "/state/player",
+            "line": "/state/line",
             active: "/state/active",
             user: {
                 in: {
@@ -789,6 +791,7 @@ global.ROUTES = {
             fast: "/lottery/rate.fast",
             orders: "/lottery/orders",
             realtime: "/lottery/realtime",
+            rebate:"/agent/rebate",
             result: "/lottery/result",
             //获取追号列表
             chase: "/lottery/chase",
@@ -963,7 +966,9 @@ global.ROUTES = {
         },
         //代理结算设置
         agency: {
-            level: "/commission/level"
+            level: "/commission/level",
+            access:"/agent/rebate/access",
+            edit:"/agent/rebate/edit",
         },
         //优惠活动
         activity: {
@@ -1360,7 +1365,9 @@ global.ROUTES = {
             order: "/lottery/order",
             switch: '/lottery/switch',
             chase: '/lottery/chase/',
-            handSettle: '/lottery/handSettle'
+            handSettle: '/lottery/handSettle',
+            setResult:'/lottery/setResult',
+            reSettle:'/lottery/reSettle'
         },
         user: {
             level: {
@@ -1610,6 +1617,14 @@ global.ARRAYS = {
         {"label": "VIP8", "value": "8"},
         {"label": "VIP9", "value": "9"},
         {"label": "VIP10", "value": "10"},
+    ],
+    AGENTLIST:[
+        {"label": "青铜", "value": "1"},
+        {"label": "白银", "value": "2"},
+        {"label": "黄金", "value": "3"},
+        {"label": "铂金", "value": "4"},
+        {"label": "钻石", "value": "5"},
+        {"label": "至尊", "value": "6"},
     ],
     //代理注册来源
     PALYORIGINL: [

@@ -48,6 +48,15 @@
                         ]
                     },
                     {"prop": "name", "value": "", "label": "用户名", "type": "text", "placeholder": "请输入用户名"},
+                    {"prop": "pname", "value": "", "label": "上级代理", "type": "text", "placeholder": "请输入上级代理名"},
+                    {
+                        "prop": "user_level", "value": "", "label": "会员等级", "type": "select",
+                        "list": ARRAYS.LEVELSLIST
+                    },
+                    {
+                        "prop": "agent_level", "value": "", "label": "代理等级", "type": "select",
+                        "list": ARRAYS.AGENTLIST
+                    },
                 ],
                 type: "search",
                 labelWidth: "120px",

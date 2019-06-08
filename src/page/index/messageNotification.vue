@@ -171,17 +171,17 @@
                                             audioPlay2.onended = () => {
                                                 if ((localStorage.getItem('sound_out') === 'true') && (_this.autoMusic.root_withdrawals === 'true') && (withdraws > 0)) { // 出款
                                                     audioPlay1.play();
-                                                    audioPlay1.onended = () => {
-                                                        if ((localStorage.getItem('sound_agent_out') === 'true') && (_this.autoMusic.root_agent === 'true') && (agentWithdraw > 0)) { // 代理出款
-                                                            audioPlay3.play();
-                                                        }
-                                                    }
+//                                                    audioPlay1.onended = () => {
+//                                                        if ((localStorage.getItem('sound_agent_out') === 'true') && (_this.autoMusic.root_agent === 'true') && (agentWithdraw > 0)) { // 代理出款
+//                                                            audioPlay3.play();
+//                                                        }
+//                                                    }
                                                 }
                                             }
                                         } else if ((localStorage.getItem('sound_out') === 'true') && (withdraws > 0) && (_this.autoMusic.root_withdrawals === 'true')) { // 出款
                                             audioPlay1.play();
                                         }else if ((localStorage.getItem('sound_agent_out') === 'true') && (agentWithdraw > 0) && (_this.autoMusic.root_agent === 'true')) { // 代理出款
-                                            audioPlay3.play();
+//                                            audioPlay3.play();
                                         }
                                     }
                                 } else if ((localStorage.getItem('sound_line') === 'true') && (offlines > 0) && (_this.autoMusic.root_deposit === 'true')) {// 入款
@@ -198,11 +198,11 @@
                                     }
                                 } else if ((localStorage.getItem('sound_out') === 'true') && (withdraws > 0) && (_this.autoMusic.root_withdrawals === 'true')) { // 出款
                                     audioPlay1.play();
-                                    audioPlay1.onended = () => {
-                                        if ((localStorage.getItem('sound_agent_out') === 'true') && (_this.autoMusic.root_agent === 'true') && (agentWithdraw > 0)) { // 代理出款
-                                            audioPlay3.play();
-                                        }
-                                    }
+//                                    audioPlay1.onended = () => {
+//                                        if ((localStorage.getItem('sound_agent_out') === 'true') && (_this.autoMusic.root_agent === 'true') && (agentWithdraw > 0)) { // 代理出款
+//                                            audioPlay3.play();
+//                                        }
+//                                    }
                                 }
                             }
                         }

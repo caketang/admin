@@ -11,7 +11,7 @@
                 :columnsUrl="columnsUrl"
                 :tableUrl="tableUrl"
                 :updated="updated"
-                :isCreated="true"
+                :isCreated="isCreated"
                 :pageSet="false"
                 :showRefresh="true"></tablegrid>
         </el-col>
@@ -73,7 +73,8 @@
                     state: false,
                     msg: "",
                     fn: ""
-                }
+                },
+                isCreated: false,
             }
         },
         components: {
@@ -83,9 +84,10 @@
         },
         methods: {
             init() {
+                this.isCreated = true;
                 this.columnsUrl = "/static/json/agent/agentLink/columns.json"
                 this.baseUrl = URL.api + ROUTES.GET.user.agent.domain;
-                if (this.$route.query == "{}") {
+                if (!this.$route.query) {
                     this.tableUrl = URL.api + ROUTES.GET.user.agent.domain
                 } else {
                     this.tableUrl = URL.api + ROUTES.GET.user.agent.domain + '?name=' + this.$route.query.name
@@ -192,24 +194,23 @@
                 this.confirmConfig.fn = "disabled";
             }
         },
-//        watch: {
-//            $route: {
-//                handler(to, from) {
-//                    console.log(from)
-//                    if(to.query.name){
-//                        this.tableUrl = URL.api + ROUTES.GET.user.agent.domain + '?name=' + to.query.name
-//                        this.name = this.$route.query.name;
-//                    }else{
-//                        this.tableUrl = URL.api + ROUTES.GET.user.agent.domain + '?name=' + from.query.name
-//                        this.name = this.$route.query.name;
-//                    }
-//                },
-//                //是否绑定初始值
-//                immediate: true,
-//                //深度监听
-//                deep: true
-//            },
-//        },
+       // watch: {
+       //     $route: {
+       //         handler(to, from) {
+       //             if(to.query.name){
+       //                 this.tableUrl = URL.api + ROUTES.GET.user.agent.domain + '?name=' + to.query.name
+       //                 this.name = this.$route.query.name;
+       //             }else{
+       //                 this.tableUrl = URL.api + ROUTES.GET.user.agent.domain + '?name=' + from.query.name
+       //                 this.name = this.$route.query.name;
+       //             }
+       //         },
+       //         //是否绑定初始值
+       //         immediate: true,
+       //         //深度监听
+       //         deep: true
+       //     },
+       // },
         computed: {},
         mounted() {
 
@@ -218,10 +219,22 @@
             this.init();
         },
         activated() {
+            this.isCreated = false;
+            this.formType = 'update' + (Math.random() * 9 + 1);
+            this.baseUrl = URL.api + ROUTES.GET.user.agent.domain;
             this.updated = false;
-            setTimeout(() => {
-                this.updated = true;
-            }, 500)
+            if (this.$route.query) {
+                this.tableUrl = URL.api + ROUTES.GET.user.agent.domain + "?name=" + this.$route.query.name;
+                this.name = this.$route.query.name;
+            }  else {
+                this.tableUrl = URL.api + ROUTES.GET.user.agent.domain;
+            }
+        },
+        deactivated(){
+            this.$route.query.name = null;
+            this.$route.query.id = null;
+            this.$route.query.type = null;
+            this.isCreated = false;
         }
     }
 </script>

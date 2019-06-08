@@ -36,27 +36,28 @@
                         <span class="link" v-if="item.type==='user'" @click="showMember">直属会员</span>
                         <span class="link" v-if="item.type==='agent'" @click="showAgent">直属代理</span>
                         <span class="link" v-if="item.type==='level'" @click="showLevelAgent">层级代理</span>
+                        <span class="link" v-if="item.type==='test'" @click="showLevelAgent">测试账号</span>
                     </div>
                 </td>
                 <td colspan="2" class="el-table_1_column_19">
                     <div class="cell tCent">
-                        <span>{{item.bet_times_sum}}</span>
+                        <span>{{item.bet_times_num}}</span>
                     </div>
                 </td>
                 <td colspan="2" class="el-table_1_column_19">
                     <div class="cell tCent">
-                        <span>{{item.bet_money | formatMoney}}</span>
+                        <span>{{item.bet_money_sum | formatMoney}}</span>
                     </div>
                 </td>
                 <td colspan="2" class="el-table_1_column_19">
                     <div class="cell tCent">
-                        <span>{{item.valid_bet | formatMoney}}</span>
+                        <span>{{item.valid_bet_sum | formatMoney}}</span>
                     </div>
                 </td>
                 <td colspan="2" class="el-table_1_column_19">
                     <div class="cell tCent">
                         <span
-                            :class="{state_danger: parseFloat(item.lose_earn) < 0 }">{{item.lose_earn | formatMoney}}</span>
+                            :class="{state_danger: parseFloat(item.profit_loss_sum) < 0 }">{{item.profit_loss_sum | formatMoney}}</span>
                     </div>
                 </td>
                 <td colspan="2" class="el-table_1_column_19">
@@ -83,7 +84,7 @@
                 </td>
                 <td colspan="2" class="el-table_1_column_19">
                     <div class="cell tCent">
-                        <span>{{totalData.bet_times}}</span>
+                        <span>{{totalData.bet_times | formatMoney}}</span>
                     </div>
                 </td>
                 <td colspan="2" class="el-table_1_column_19">
