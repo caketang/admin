@@ -7,6 +7,7 @@
                                 style="font-size:32px;vertical-align: bottom;"></i><span>{{title}}</span></p>
             <el-form-item prop="username" v-if="!validate">
                 <el-input type="text" v-model="loginForm.username" auto-complete="off"
+                          @blur="verifyGoogle(loginForm.username)"
                           :placeholder="LANG['请输入用户名'] || '请输入用户名'"></el-input>
             </el-form-item>
             <el-form-item prop="password" v-if="!validate">
@@ -20,12 +21,32 @@
                           :placeholder="LANG['请输入动态安全码'] || '请输入动态安全码'"></el-input>
             </el-form-item>
             <el-form-item prop="checked" v-if="!validate">
-                <el-checkbox style="color:#fff;" v-model="loginForm.checked">{{LANG['记住密码'] || '记住密码'}}</el-checkbox>
+                <el-checkbox style="color:#fff;" v-model="loginForm.checked" @change="onRember">{{LANG['记住密码'] || '记住密码'}}</el-checkbox>
             </el-form-item>
             <el-button type="primary" round class="formSave" @click="doLogin" v-if="!validate" :loading="loadingOne">
                 {{LANG['登 录'] || '登 录'}}
             </el-button>
         </el-form>
+        <div class="dialog">
+             <el-dialog
+            title="绑定谷歌身份验证器"
+            :visible.sync="dialogVisible"
+            :before-close="handleClose">
+            <div class="login_code_img">
+                <img :src="qcode" alt="二维码飞了">
+            </div>
+            <div class="desc">
+                <p>说明: 使用Google身份验证器'扫描条形码方式', 扫描上图二维码, 在谷歌验证器上添加, 即可添加成功, 并在下方输入谷歌随机码</p>
+            </div>
+            <div class="input_box">
+                <el-input type="text" v-model.number="googleCode" auto-complete="off"
+                          :placeholder="'请输入谷歌验证器上的动态安全码'" :maxlength="6"></el-input>
+            </div>
+            <span slot="footer" class="dialog-footer">
+                <el-button type="primary" @click="onBindGoogle">绑定</el-button>
+            </span>
+            </el-dialog>
+        </div>
         <errorcode></errorcode>
     </div>
 </template>
@@ -43,7 +64,7 @@
                     password: "",
                     gocode: "",
                     code: "",
-                    checked: true,
+                    checked: GETSTORAGE('isRember') === 'true' ? true : false,
                     uid: 0,
                     fid: 0,
                 },
@@ -61,7 +82,6 @@
                 },
                 //是否需要验证
                 validate: false,
-                dialogVisible: false,
                 binding: true,
                 loadingOne: false,
 //                loadingTwo: false,
@@ -70,10 +90,29 @@
                 optStaus: '',
                 sign: "",
                 mac: "",
-                title: URL.title || '厅主后台登录'
+                title: URL.title || '厅主后台登录',
+                hset: 0,
+                uset: 0,
+                qcode: '',
+                dialogVisible: false,
+                googleCode: '',
+            }
+        },
+        created() {
+            if(this.loginForm.checked) {
+                if(localStorage.username) {
+                    this.verifyGoogle(localStorage.username)
+                }
             }
         },
         methods: {
+            onRember() {
+                if(this.loginForm.checked) {
+                    SETSTORAGE('isRember', this.loginForm.checked);
+                } else {
+                    SETSTORAGE('isRember', this.loginForm.checked);
+                }
+            },
             init() {
                 // 千万不能删除下面内容，总平台跳转的。
                 if (typeof(JUMPCONFIG) != "undefined" && JUMPCONFIG.path) {
@@ -86,10 +125,72 @@
                     this.loginForm.username = localStorage.username;
                     this.loginForm.password = localStorage.password;
                 }
-                ;
                 this.validate = false;
                 this.binding = true;
                 $('#Login .longin-box').show(800);
+            },
+            handleClose() {
+                //this.dialogVisible = this.dialogVisible
+            },
+            /**
+             * 绑定谷歌验证器
+             */
+            onBindGoogle() {
+                if(!this.googleCode) {
+                     this.$message.warning((LANG["请输入六位动态验证码"] || "请输入六位动态验证码"));
+                     return
+                }
+                if(typeof this.googleCode !== 'number') {
+                    this.$message.warning((LANG["请输入六位数字验证码"] || "请输入六位数字验证码"));
+                    return
+                }
+                this.$.autoAjax('post', URL.api + ROUTES.POST.system.check, {
+                        username: this.loginForm.username,
+                        gcode: this.googleCode
+                    },
+                    {
+                        ok: (res) => {
+
+                           this.$message.warning((LANG["请输入六位数字验证码"] || "请输入六位数字验证码"));
+                           this.dialogVisible = false
+                        }
+                    })
+            },
+            /**
+             * 查询是否绑定谷歌令牌
+             */
+            verifyGoogle(username) {
+                if(username === '') {
+                    return
+                }
+                let url = `${ URL.api + ROUTES.GET.system.google}?username=${username}`
+                this.$.autoAjax('get',url ,'', {
+                    ok: (res) => {
+                        console.log(res)
+                        this.hset = res.data.hset
+                        this.uset = res.data.uset
+                        if( this.hset === '1' && this.uset === '0' ) {
+                            this.dialogVisible = true
+                            this.getQrcode(username)
+                        }
+                    },
+                    error(e) {
+                        console.log(e)
+                    }
+                })
+            },
+            /**
+             * 获取二维码地址
+             */
+            getQrcode(username) {
+                 this.$.autoAjax('post', URL.api + ROUTES.GET.system.google, {
+                        username
+                    },
+                    {
+                        ok: (res) => {
+                            this.qcode = res.data
+                        }
+                    })
             },
             doLogin() {
                 var _this = this;
@@ -187,7 +288,9 @@
                             p: () => {
                             },
                             error: e => {
-                                console.log(e)
+                                if (e.responseJSON.state === 3 && e.responseJSON.msg == "未绑定验证器") {
+                                    _this.dialogVisible = true
+                                }
                             }
                         })
                     }
@@ -410,6 +513,35 @@
             height: 100%;
             position: absolute
         }
+        .dialog {
+            .el-dialog--small {
+                width: 30%;
+                min-width: 400px;
+            }
+            .el-dialog__headerbtn {
+                display: none;
+            }
+            .login_code_img {
+                min-height: 100px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                img {
+                    width: 200px;
+                    height: 200px;
+                }
+
+            }
+            .desc {
+                margin: 20px 0;
+                p {
+                    text-indent:2em
+                }
+            }
+            .input_box {
+                margin: 20px 0;
+            }
+        }
         .longin-box {
             display: none;
             position: relative;
@@ -419,6 +551,7 @@
             min-width: 300px;
             margin: 0 auto;
             background-clip: padding-box;
+
         }
         .longin-box .el-form-item {
             width: 80%;

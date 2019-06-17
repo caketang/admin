@@ -46,8 +46,8 @@
                         <el-form-item label="VIP等级" v-if="manualAddMoney.status == 2">
                             <el-checkbox-group v-model="manualAddMoney.levels">
                                 <!-- 会员等级 -->
-                                <el-checkbox v-for="(item,index) in levellist" :label="item.label" name="type"
-                                             :key="index">{{item.value}}
+                                <el-checkbox v-for="(item,index) in levellist" :label="item.value" :name="type"
+                                             :key="index"> 等级 {{item.value}}
                                 </el-checkbox>
                             </el-checkbox-group>
                         </el-form-item>
@@ -167,6 +167,7 @@
                         <el-form-item label="VIP等级" v-if="reduceFavorable.status == 2">
                             <el-checkbox-group v-model="reduceFavorable.levels">
                                 <!-- 会员等级 -->
+                                <!--<el-checkbox v-for="(item,index) in levellist" :label="item.label" :key="index"-->
                                 <el-checkbox v-for="(item,index) in levellist" :label="item.label" :key="index"
                                              name="type">{{item.value}}
                                 </el-checkbox>
@@ -361,7 +362,7 @@
                         for (let i in model) {
                             this.levellist.push({
                                 "label": parseInt(model[i].id),
-                                "value": model[i].name
+                                "value": model[i].level
                             })
                         }
                     },

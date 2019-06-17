@@ -897,6 +897,7 @@ global.ROUTES = {
         },
         system: {
             global: '/system/global',
+            check: '/system/google/check',
             htlog: '/system/htlog',
             ip: '/system/ip',
             mail: '/system/mail',
@@ -1835,11 +1836,23 @@ global.ARRAYS = {
     ],
     //
     fileTypeUse: [
-        {"label": "微信存款", "value": "wechat_deposit"},
-        {"label": "公司存款", "value": "company_deposit"},
-        {"label": "第三方网银", "value": "unionpay_deposit"},
-        {"label": "支付宝存款", "value": "alipay_deposit"},
-        {"label": "全局", "value": "global"}
+        { "label": "微信支付", "value": "wechat"},
+        { "label": "支付宝", "value": "alipay" },
+        { "label": "公司入款", "value": "company" },
+        { "label": "云闪付", "value": "quickpay" },
+        { "label": "点卡支付", "value": "kapay" },
+        { "label": "财付通", "value": "tenpay" },
+        { "label": "百度支付", "value": "baidupay" },
+        { "label": "快捷支付", "value": "unionpay" },
+        { "label": "京东支付", "value": "jdpay" },
+        { "label": "网银支付", "value": "cyberbank" },
+        { "label": "QQ钱包", "value": "qqpay" },
+        { "label": "全局设置", "value": "global" }
+        // {"label": "微信存款", "value": "wechat_deposit"},
+        // {"label": "公司存款", "value": "company_deposit"},
+        // {"label": "第三方网银", "value": "unionpay_deposit"},
+        // {"label": "支付宝存款", "value": "alipay_deposit"},
+        // {"label": "全局", "value": "global"}
     ],
     //使用于页面
     position: [

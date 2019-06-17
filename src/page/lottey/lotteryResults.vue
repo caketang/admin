@@ -18,7 +18,7 @@
                 <div class="manualAwardBtn">
                     <el-button type="primary" @click="awardButton">手动派彩</el-button>
                     <el-button type="primary" @click="editButton">修改开奖结果</el-button>
-                    <el-button type="primary" @click="reSettleButton">重置开奖结果</el-button>
+                    <el-button type="primary" @click="reSettleButton">异常订单开奖</el-button>
                 </div>
                 <div>
                     <el-dialog

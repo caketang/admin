@@ -35,7 +35,8 @@
         <!--新增-->
         <el-col>
             <el-dialog :title="settingTitel" v-model="settingVisible" size="tiny">
-                <el-form :model="setForm" ref="setForm" label-width="100px" class="demo-ruleForm" v-loading="loading2">
+                <span class="help_red pleft20">该功能用于升降整条代理线的返点等级,调整范围受系统最高返点等级影响。</span>
+                <el-form :model="setForm" ref="setForm" label-width="100px" class="demo-ruleForm mt10" v-loading="loading2">
                     <el-form-item :label="items.name+'：'" :prop="items.code" v-for="items,index in setFormList"
                                   :key="index">
                         <el-input-number type="number" v-model="setForm[items.code]" auto-complete="on" class="intW"

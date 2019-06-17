@@ -19,8 +19,7 @@
                             </el-col>
                             <el-col :span="24">
                                 <el-form-item label="优惠类型" prop="type_id">
-                                    <checkGroup :checkOptions="type_idList" :sReset="sReset"
-                                                @change-option="changeOption" :checkedval="checkedval"></checkGroup>
+                                    <checkGroup :checkOptions="type_idList" :sReset="sReset" @change-option="changeOption" :checkedval="checkedval"></checkGroup>
                                     <input v-model="modeData.type_id" style="display: none"></input>
                                     <!--<el-select v-model="modeData.type_id" placeholder="请选择类型" class="w80">-->
                                     <!--<el-option :label=item.label :value=item.value :key=item.index v-for="(item,index) in type_idList"></el-option>-->
@@ -69,7 +68,7 @@
                                                     <span>存款金额</span>
                                                     <el-form-item class="to-inline-block"
                                                                   :prop=" 'company.first['+index+'].money'">
-                                                        <el-input v-model="item.money"></el-input>
+                                                        <el-input v-model="item.money" type="number"></el-input>
                                                     </el-form-item>
                                                 </el-col>
                                             </el-col>
@@ -84,7 +83,7 @@
                                                                           :prop=" 'company.first['+index+'].fixedBonus'">
                                                                 <el-input v-model="item.fixedBonus"
                                                                           ref="companyFirstInput"
-                                                                          @blur="companyFirstInputBlur(index)"></el-input>
+                                                                          @blur="companyFirstInputBlur(index)" type="number"></el-input>
                                                             </el-form-item>
                                                         </el-radio>
                                                         <el-radio style="line-height:35px;" class="radio radioGroup"
@@ -94,7 +93,7 @@
                                                                           :prop=" 'company.first['+index+'].percentageOfDeposits'">
                                                                 <el-input v-model="item.percentageOfDeposits"
                                                                           ref="companyFirstInput"
-                                                                          @blur="companyFirstInputBlur(index)"></el-input>
+                                                                          @blur="companyFirstInputBlur(index)" type="number"></el-input>
                                                             </el-form-item>
                                                         </el-radio>
                                                     </el-radio-group>
@@ -104,7 +103,7 @@
                                                     <el-form-item class="to-inline-block"
                                                                   :prop=" 'company.first['+index+'].upper_limit'">
                                                         <el-input v-model="item.upper_limit" ref="companyFirstInput"
-                                                                  @blur="companyFirstInputBlur(index)"></el-input>
+                                                                  @blur="companyFirstInputBlur(index)" type="number"></el-input>
                                                     </el-form-item>
                                                 </el-col>
                                                 <el-col :span="1"
@@ -130,7 +129,7 @@
                                                     <span>存款金额</span>
                                                     <el-form-item class="to-inline-block"
                                                                   :prop=" 'company.again['+index+'].money'">
-                                                        <el-input v-model="item.money"></el-input>
+                                                        <el-input v-model="item.money" type="number"></el-input>
                                                     </el-form-item>
                                                 </el-col>
                                             </el-col>
@@ -145,7 +144,7 @@
                                                                           :prop=" 'company.again['+index+'].fixedBonus'">
                                                                 <el-input v-model="item.fixedBonus"
                                                                           ref="companyAgainInput"
-                                                                          @blur="companyAgainInputBlur(index)"></el-input>
+                                                                          @blur="companyAgainInputBlur(index)" type="number"></el-input>
                                                             </el-form-item>
                                                         </el-radio>
                                                         <el-radio style="line-height:35px;" class="radioGroup"
@@ -155,7 +154,7 @@
                                                                           :prop=" 'company.again['+index+'].percentageOfDeposits'">
                                                                 <el-input v-model="item.percentageOfDeposits"
                                                                           ref="companyAgainInput"
-                                                                          @blur="companyAgainInputBlur(index)"></el-input>
+                                                                          @blur="companyAgainInputBlur(index)" type="number"></el-input>
                                                             </el-form-item>
                                                         </el-radio>
                                                     </el-radio-group>
@@ -165,7 +164,7 @@
                                                     <el-form-item class="to-inline-block"
                                                                   :prop=" 'company.again['+index+'].upper_limit'">
                                                         <el-input v-model="item.upper_limit" ref="companyAgainInput"
-                                                                  @blur="companyAgainInputBlur(index)"></el-input>
+                                                                  @blur="companyAgainInputBlur(index)" type="number"></el-input>
                                                     </el-form-item>
                                                 </el-col>
                                                 <el-col :span="1"
@@ -204,7 +203,7 @@
                                                         <span>存款金额</span>
                                                         <el-form-item class="to-inline-block"
                                                                       :prop=" 'online['+pay.en_name+'].first['+index+'].money'">
-                                                            <el-input v-model="item.money"></el-input>
+                                                            <el-input v-model="item.money" type="number"></el-input>
                                                         </el-form-item>
                                                     </el-col>
                                                 </el-col>
@@ -219,7 +218,7 @@
                                                                               :prop=" 'online['+pay.en_name+'].first['+index+'].fixedBonus'">
                                                                     <el-input v-model="item.fixedBonus"
                                                                               ref="onlineFirstInput"
-                                                                              @blur="onlineFirstInputBlur(index)"></el-input>
+                                                                              @blur="onlineFirstInputBlur(index)" type="number"></el-input>
                                                                 </el-form-item>
                                                             </el-radio>
                                                             <el-radio style="line-height:35px;" class="radio radioGroup"
@@ -229,7 +228,7 @@
                                                                               :prop=" 'online['+pay.en_name+'].first['+index+'].percentageOfDeposits'">
                                                                     <el-input v-model="item.percentageOfDeposits"
                                                                               ref="onlineFirstInput"
-                                                                              @blur="onlineFirstInputBlur(index)"></el-input>
+                                                                              @blur="onlineFirstInputBlur(index)" type="number"></el-input>
                                                                 </el-form-item>
                                                             </el-radio>
                                                         </el-radio-group>
@@ -239,7 +238,7 @@
                                                         <el-form-item class="to-inline-block"
                                                                       :prop=" 'online['+pay.en_name+'].first['+index+'].upper_limit'">
                                                             <el-input v-model="item.upper_limit" ref="onlineFirstInput"
-                                                                      @blur="onlineFirstInputBlur(index)"></el-input>
+                                                                      @blur="onlineFirstInputBlur(index)" type="number"></el-input>
                                                         </el-form-item>
                                                     </el-col>
                                                     <el-col :span="1"
@@ -266,7 +265,7 @@
                                                         <span>存款金额</span>
                                                         <el-form-item class="to-inline-block"
                                                                       :prop=" 'online['+pay.en_name+'].again['+index+'].money'">
-                                                            <el-input v-model="item.money"></el-input>
+                                                            <el-input v-model="item.money" type="number"></el-input>
                                                         </el-form-item>
                                                     </el-col>
                                                 </el-col>
@@ -281,7 +280,7 @@
                                                                               :prop=" 'online['+pay.en_name+'].again['+index+'].fixedBonus'">
                                                                     <el-input v-model="item.fixedBonus"
                                                                               ref="onlineAgainInput"
-                                                                              @blur="onlineAgainInputBlur(index)"></el-input>
+                                                                              @blur="onlineAgainInputBlur(index)" type="number"></el-input>
                                                                 </el-form-item>
                                                             </el-radio>
                                                             <el-radio style="line-height:35px;" class="radio radioGroup"
@@ -291,7 +290,7 @@
                                                                               :prop=" 'online['+pay.en_name+'].again['+index+'].percentageOfDeposits'">
                                                                     <el-input v-model="item.percentageOfDeposits"
                                                                               ref="onlineAgainInput"
-                                                                              @blur="onlineAgainInputBlur(index)"></el-input>
+                                                                              @blur="onlineAgainInputBlur(index)" type="number"></el-input>
                                                                 </el-form-item>
                                                             </el-radio>
                                                         </el-radio-group>
@@ -301,7 +300,7 @@
                                                         <el-form-item class="to-inline-block"
                                                                       :prop=" 'online['+pay.en_name+'].again['+index+'].upper_limit'">
                                                             <el-input v-model="item.upper_limit" ref="onlineAgainInput"
-                                                                      @blur="onlineAgainInputBlur(index)"></el-input>
+                                                                      @blur="onlineAgainInputBlur(index)" type="number"></el-input>
                                                         </el-form-item>
                                                     </el-col>
                                                     <el-col :span="1"
@@ -328,6 +327,7 @@
                             <el-checkbox-group v-model="modeData.checkedDefut" @change="handleCheckedDefutChange">
                                 <el-checkbox v-for="(item,index) in vipList" :label=item.label :key=index
                                              :disabled="item.disable"
+                                             :checked="item.checked"
                                              name="type"></el-checkbox>
                             </el-checkbox-group>
                         </el-form-item>
@@ -335,7 +335,7 @@
                             <!--<span v-text="LANG['(存款+优惠)X'] || '(存款+优惠)X'"></span>-->
                             <el-form-item style="display: inline-block" prop="withdrawRequireVal"
                                           :rules="[{ validator:validatorNumber,trigger:'blur'}]">
-                                <el-input class="intW" v-model="modeData.withdrawRequireVal"></el-input>
+                                <el-input class="intW" v-model="modeData.withdrawRequireVal" type="number"></el-input>
                             </el-form-item>
                             <span v-text="LANG['倍'] || '倍'"></span>
                         </el-form-item>
@@ -360,7 +360,7 @@
                         <el-row>
 
                             <el-form-item label="优惠活动标题" prop="title">
-                                <el-input class="w80" v-model="modeData.title"></el-input>
+                                <el-input class="w80" v-model="modeData.title" :maxlength="15"></el-input>
                             </el-form-item>
                             <el-form-item label="语言" prop="language_id">
                                 <el-select v-model="modeData.language_id" placeholder="请选择类型" class="w80"
@@ -370,15 +370,37 @@
                                 </el-select>
                             </el-form-item>
                             <el-form-item label="优惠活动描述" prop="description">
-                                <el-input class="w80" type="textarea" v-model="modeData.description"></el-input>
+                                <el-input class="w80" type="textarea" :maxlength="2048" v-model="modeData.description"></el-input>
                             </el-form-item>
-                            <el-form-item label="图片上传">
-                                <el-input v-model="modeData.cover" style="display:none;"></el-input>
-                                <upload :uploadUrl="uploadUrl" @response="doSaveFile" :keys="keys" :isInit="imgInit"
-                                        :fileNum="1" :arrList="arrList" :imgResolution="'460*180'"></upload>
+                            <el-form-item label="设备1" prop="coverUse1">
+                                <el-select v-model="modeData.coverUse1" placeholder="请选择">
+                                    <el-option label="手机" value="mobile"></el-option>
+                                    <!--<el-option label="PC" value="pc"></el-option>-->
+                                </el-select>
                             </el-form-item>
+                            <el-form-item label="设备1图片上传" prop="coverPic1">
+                                <el-input v-model="modeData.coverPic1" style="display:none;"></el-input>
+                                <upload :uploadUrl="uploadUrl1" @doUpload="doSaveFile1" :keys="keys1" :isInit="imgInit1"
+                                        :fileNum="2" :arrList="modeData.arrList1" :imgResolution="'460*180'" ></upload>
+                            </el-form-item>
+                            <el-form-item label="设备2" prop="coverUse2">
+                                <el-select v-model="modeData.coverUse2" placeholder="请选择">
+                                    <!--<el-option label="手机" value="mobile"></el-option>-->
+                                    <el-option label="PC" value="pc"></el-option>
+                                </el-select>
+                            </el-form-item>
+                            <el-form-item label="设备2图片上传" prop="coverPic2">
+                                <el-input v-model="modeData.coverPic2" style="display:none;"></el-input>
+                                <upload :uploadUrl="uploadUrl2" @doUpload="doSaveFile2" :keys="keys2" :isInit="imgInit2"
+                                        :fileNum="2" :arrList="modeData.arrList2" :imgResolution="'460*180'"></upload>
+                            </el-form-item>
+                            <!--<el-form-item label="图片上传">-->
+                                <!--<el-input v-model="modeData.cover" style="display:none;"></el-input>-->
+                                <!--<upload :uploadUrl="uploadUrl" @response="doSaveFile" :keys="keys" :isInit="imgInit"-->
+                                        <!--:fileNum="1" :arrList="arrList" :imgResolution="'460*180'"></upload>-->
+                            <!--</el-form-item>-->
                             <el-form-item label="排序" prop="sort">
-                                <el-input v-model="modeData.sort" class="w80"></el-input>
+                                <el-input v-model="modeData.sort" class="w80" type="number"></el-input>
                             </el-form-item>
                             <el-form-item label="打开方式" prop="open_mode">
                                 <el-radio-group v-model="modeData.open_mode" @change="radioChange">
@@ -459,6 +481,35 @@
                     callback(new Error(LANG['请输入合法的网址(格式为http://www.***.com或者https://www.***.com)'] || '请输入合法的网址(格式为http://www.***.com或者https://www.***.com)'));
                 } else {
                     callback()
+                }
+            }
+            //验证活动标题
+            var validateTitle = (rule, value, callback) =>{
+                let reg1 = /[\u4e00-\u9fa5]/g;
+                let reg2 = /[^\u4E00-\u9FFF]/g;
+                let cunt = 0;
+                value = value.replace(/\s+/g,"");
+                cunt = cunt+(value.match(reg1)?value.match(reg1).length*2+cunt:cunt);
+                cunt = cunt+(value.match(reg2)?value.match(reg2).length+cunt:cunt);
+                if(cunt>2048 ||cunt<1){
+                    callback(new Error(LANG['请输入长度1到2048位！'] || '请输入长度1到2048位！'))
+                }else{
+                    callback();
+                }
+            };
+            // 验证活动内容
+            var validateHans = (rule, value, callback) =>{
+                let reg1 = /[\u4e00-\u9fa5]/g;
+                let reg2 = /[^\u4E00-\u9FFF]/g;
+                let cunt = 0;
+                value = value.replace(/\s+/g,"");
+                value = value.replace(/[\r\n]/g, "");
+                cunt = cunt+(value.match(reg1)?value.match(reg1).length*2+cunt:cunt);
+                cunt = cunt+(value.match(reg2)?value.match(reg2).length+cunt:cunt);
+                if(cunt>2048 ||cunt<1){
+                    callback(new Error(LANG['请输入有效内容！'] || '请输入有效内容！'))
+                }else{
+                    callback();
                 }
             }
             const validatorTime = (rule, value, callback) => {
@@ -549,7 +600,12 @@
                     withdrawalsGd: "",//提款要求固定输入金额
                     status: 'enabled',//string #状态 enabled 启用,disabled 停用
                     description: "",//string #描述
-                    cover: "",//string #封面
+                    // cover: "",
+                    cover:[],
+                    coverUse1:'mobile',
+                    coverUse2:'pc',
+                    coverPic1:'',
+                    coverPic2:'',
                     sort: "",//排序
                     language_id: "",//int #语言ID
                     language_name: "",//string #语言名称
@@ -811,7 +867,8 @@
                 onlineAgainType: '',
                 rules: {
                     name: [
-                        {required: true, message: '请填写活动名称', trigger: 'blur'}
+                        {required: true, message: '请填写活动名称', trigger: 'blur'},
+                        {validator: validateTitle,trigger: 'blur'}
                     ],
                     type_id: [
                         {required: true, type: 'array', message: '请选择优惠类型', trigger: 'change'}
@@ -820,7 +877,8 @@
                         {required: true, message: '请选择语言类型', trigger: 'change'}
                     ],
                     description: [
-                        {required: true, validator: validatorTime, trigger: 'blur'}
+                        {required: true, validator: validatorTime, trigger: 'blur'},
+                        {validator: validateHans,trigger: 'blur,change'}
                     ],
                     begin_time: [
                         {required: true, validator: validatorTime, trigger: 'change'}
@@ -843,6 +901,9 @@
                     'rule.withdrawRequire': [
                         {required: true, message: '请选择提款要求', trigger: 'change'}
                     ],
+                    coverPic1: [
+                        {required: true, message: '请上传图片', trigger: 'change'}
+                    ],
                     'extra.visible': [
                         {required: true, message: '请选择可否放弃选择选项', trigger: 'change'}
                     ],
@@ -850,7 +911,9 @@
                         {type: 'array', required: true, message: '请至少选择一个会员等级', trigger: 'change'}
                     ],
                     title: [
-                        {required: true, message: '请输入活动标题', trigger: 'change'}
+                        {required: true, message: '请输入活动标题', trigger: 'change'},
+                        {min: 1, max: 15, message: '请输入 1 到 15 个字符'},
+                        {validator: validateTitle,trigger: 'blur,change'}
                     ],
                     cover: [
                         {required: true, message: '请上传图片', trigger: 'change'}
@@ -933,12 +996,11 @@
                         _this.$.autoAjax('get', alllevel, '', {
                             ok: (res) => {
                                 let model = res.data;
-                                console.log(res)
                                 for (let i in model) {
                                     _this.vipList.push({
                                         "label": "VIP"+model[i].level,
                                         "value": model[i].level.toString(),
-                                        "disable": false
+                                        "disable": false,
                                     })
                                 }
                                 resolve();
@@ -992,7 +1054,9 @@
                                     _this.modeData.content2 = res.data.content2;
                                     _this.modeData.open_mode = res.data.open_mode;
                                     _this.modeData.link = res.data.link;
-                                    _this.modeData.cover = res.data.cover;
+                                    _this.modeData.coverUse1 = 'mobile';
+                                    _this.modeData.coverUse2 = 'pc';
+                                    // _this.modeData.cover = res.data.cover;
                                     _this.modeData.description = res.data.description;
                                     _this.modeData.end_time = res.data.end_time;
                                     _this.modeData.language_id = res.data.language_id;
@@ -1006,20 +1070,20 @@
                                     _this.modeData.issue_mode = res.data.rule.issue_mode;
                                     _this.modeData.extra.visible = res.data.rule.extra.visible;
                                     //活动图片
-                                    _this.arrList.push(res.data.cover);
+                                    // _this.arrList.push(res.data.cover);
                                     const rules = res.data.rule.rule;
                                     rules.company.again.forEach((item, index) => {
                                         if (item.type == 1) {
                                             if (item.prize) {
-                                                item.fixedBonus = item.prize / 100
+                                                item.fixedBonus = item.prize
                                             } else {
                                                 item.fixedBonus = ''
                                             }
                                         } else {
                                             item.percentageOfDeposits = item.prize
-                                            item.upper_limit = item.upper_limit ? item.upper_limit / 100 : '';
+                                            item.upper_limit = item.upper_limit ? item.upper_limit : '';
                                         }
-                                        item.money = item.money ? item.money / 100 : '';
+                                        item.money = item.money ? item.money : '';
                                         if (item.money && _this.modeData.companyCheck.indexOf('again') === -1) {
                                             _this.modeData.companyCheck.push('again');
                                             _this.modeData.checkDeposit.companyCheck.push('again');
@@ -1028,15 +1092,15 @@
                                     rules.company.first.forEach((item, index) => {
                                         if (item.type == 1) {
                                             if (item.prize) {
-                                                item.fixedBonus = item.prize / 100
+                                                item.fixedBonus = item.prize
                                             } else {
                                                 item.fixedBonus = ''
                                             }
                                         } else {
                                             item.percentageOfDeposits = item.prize
-                                            item.upper_limit = item.upper_limit ? item.upper_limit / 100 : '';
+                                            item.upper_limit = item.upper_limit ? item.upper_limit : '';
                                         }
-                                        item.money = item.money ? item.money / 100 : '';
+                                        item.money = item.money ? item.money : '';
                                         if (item.money && _this.modeData.companyCheck.indexOf('first') === -1) {
                                             _this.modeData.companyCheck.push('first');
                                             _this.modeData.checkDeposit.companyCheck.push('first');
@@ -1047,15 +1111,15 @@
                                         rules.online[key].again.forEach((item, index) => {
                                             if (item.type == 1) {
                                                 if (item.prize) {
-                                                    item.fixedBonus = item.prize / 100
+                                                    item.fixedBonus = item.prize
                                                 } else {
                                                     item.fixedBonus = ''
                                                 }
                                             } else {
                                                 item.percentageOfDeposits = item.prize
-                                                item.upper_limit = item.upper_limit ? item.upper_limit / 100 : '';
+                                                item.upper_limit = item.upper_limit ? item.upper_limit : '';
                                             }
-                                            item.money = item.money ? item.money / 100 : '';
+                                            item.money = item.money ? item.money : '';
                                             if (item.money && _this.modeData.onlineCheck[key].indexOf('again') === -1) {
                                                 _this.modeData.onlineCheck[key].push('again')
                                                 _this.modeData.checkDeposit.onlineCheck[key].push('again');
@@ -1064,15 +1128,15 @@
                                         rules.online[key].first.forEach((item, index) => {
                                             if (item.type == 1) {
                                                 if (item.prize) {
-                                                    item.fixedBonus = item.prize / 100
+                                                    item.fixedBonus = item.prize
                                                 } else {
                                                     item.fixedBonus = ''
                                                 }
                                             } else {
                                                 item.percentageOfDeposits = item.prize
-                                                item.upper_limit = item.upper_limit ? item.upper_limit / 100 : '';
+                                                item.upper_limit = item.upper_limit ? item.upper_limit : '';
                                             }
-                                            item.money = item.money ? item.money / 100 : '';
+                                            item.money = item.money ? item.money : '';
                                             if (item.money && _this.modeData.onlineCheck[key].indexOf('first') === -1) {
                                                 _this.modeData.onlineCheck[key].push('first');
                                                 _this.modeData.checkDeposit.onlineCheck[key].push('first');
@@ -1081,15 +1145,28 @@
                                     }
                                     _this.modeData.online = rules.online;
                                     //处理会员层级数据
-                                    let model = res.data.rule.member_level;
-                                    for (let i in model) {
+                                    // let model = res.data.rule.member_level;
+                                    // for (let i in model) {
+                                    //     _this.vipList.forEach(item => {
+                                    //         if (item.value === model[i].id.toString()) {
+                                    //             item.disable = false;
+                                    //         }
+                                    //     })
+                                    //     console.log('activeMode_9.vue ok 1093',model[i].name );
+                                    //     _this.modeData.checkedDefut.push(model[i].name)
+                                    // }
+                                    let model1 = res.data.member_level.split(",");
+                                    for (let i in model1) {
                                         _this.vipList.forEach(item => {
-                                            if (item.value === model[i].id.toString()) {
-                                                item.disable = false;
+                                            if (item.value == model1[i]) {
+                                                _this.$set(item, 'checked', true);
+                                            }else {
+                                                _this.$set(item, 'checked', false)
                                             }
                                         })
-                                        _this.modeData.checkedDefut.push(model[i].name)
+                                        _this.modeData.checkedDefut.push("VIP"+model1[i])
                                     }
+
                                 }
                             },
                             p: () => {
@@ -1098,6 +1175,8 @@
                                 reject(err);
                             }
                         })
+                    }else{
+                        this.checkedval.checked.splice(0, this.checkedval.checked.length);
                     }
                 })
                 let langeUrl = URL.api + ROUTES.GET.langeages;
@@ -1166,15 +1245,15 @@
                         function companyFirstSelected() {
                             if (this.modeData.companyCheck.indexOf('first') !== -1) {
                                 company.first.forEach((item, index) => {
-                                    item.money = item.money * 100
+                                    item.money = item.money
                                     if (item.type == 1) {
-                                        item.prize = item.fixedBonus * 100
+                                        item.prize = item.fixedBonus
                                         delete item.upper_limit
                                         delete item.fixedBonus
                                         delete item.percentageOfDeposits
                                     } else {
                                         item.prize = item.percentageOfDeposits
-                                        item.upper_limit = item.upper_limit * 100
+                                        item.upper_limit = item.upper_limit
                                         delete item.fixedBonus
                                         delete item.percentageOfDeposits
                                     }
@@ -1194,16 +1273,16 @@
                         function companyAgainSelected() {
                             if (this.modeData.companyCheck.indexOf('again') !== -1) {
                                 company.again.forEach((item, index) => {
-                                    item.money = item.money * 100
+                                    item.money = item.money
                                     if (item.type == 1) {
-                                        item.prize = item.fixedBonus * 100
-                                        item.prize = item.fixedBonus * 100
+                                        item.prize = item.fixedBonus
+                                        item.prize = item.fixedBonus
                                         delete item.upper_limit
                                         delete item.fixedBonus
                                         delete item.percentageOfDeposits
                                     } else {
                                         item.prize = item.percentageOfDeposits
-                                        item.upper_limit = item.upper_limit * 100
+                                        item.upper_limit = item.upper_limit
                                         delete item.fixedBonus
                                         delete item.percentageOfDeposits
                                     }
@@ -1224,16 +1303,16 @@
                             for (let key in online) {
                                 if (this.modeData.onlineCheck[key].indexOf('first') !== -1) {
                                     online[key].first.forEach((item, index) => {
-                                        item.money = item.money * 100
+                                        item.money = item.money
                                         if (item.type == 1) {
-                                            item.prize = item.fixedBonus * 100
-                                            item.prize = item.fixedBonus * 100
+                                            item.prize = item.fixedBonus
+                                            item.prize = item.fixedBonus
                                             delete item.upper_limit
                                             delete item.fixedBonus
                                             delete item.percentageOfDeposits
                                         } else {
                                             item.prize = item.percentageOfDeposits
-                                            item.upper_limit = item.upper_limit * 100
+                                            item.upper_limit = item.upper_limit
                                             delete item.fixedBonus
                                             delete item.percentageOfDeposits
                                         }
@@ -1255,16 +1334,16 @@
                             for (let key in online) {
                                 if (this.modeData.onlineCheck[key].indexOf('again') !== -1) {
                                     online[key].again.forEach((item, index) => {
-                                        item.money = item.money * 100
+                                        item.money = item.money
                                         if (item.type == 1) {
-                                            item.prize = item.fixedBonus * 100
-                                            item.prize = item.fixedBonus * 100
+                                            item.prize = item.fixedBonus
+                                            item.prize = item.fixedBonus
                                             delete item.upper_limit
                                             delete item.fixedBonus
                                             delete item.percentageOfDeposits
                                         } else {
                                             item.prize = item.percentageOfDeposits
-                                            item.upper_limit = item.upper_limit * 100
+                                            item.upper_limit = item.upper_limit
                                             delete item.fixedBonus
                                             delete item.percentageOfDeposits
                                         }
@@ -1330,6 +1409,9 @@
                             }
                         }
 
+                        let cover = []
+                        cover.push({"mobile":this.modeData.coverPic1})
+                        cover.push({"pc":this.modeData.coverPic2})
                         let formData = {
                             name: this.modeData.name,
                             types: typeList,
@@ -1337,7 +1419,8 @@
                             begin_time: this.modeData.begin_time,
                             end_time: this.modeData.end_time,
                             description: this.modeData.description,
-                            cover: this.modeData.cover,
+                            // cover: this.modeData.cover,
+                            cover:cover,
                             open_mode: parseInt(this.modeData.open_mode),
                             language_id: parseInt(this.modeData.language_id),
                             language_name: lan ? lan.label : '',
@@ -1436,8 +1519,14 @@
             goBack(type) {
                 type == "add" ? this.$router.push({path: 'addActiveSet'}) : this.$router.push({path: 'activeSet'});
             },
-            doSaveFile(obj) {
-                this.modeData.cover = obj.url[0];
+            // doSaveFile(obj) {
+            //     this.modeData.cover = obj.url[0];
+            // },
+            doSaveFile1(obj1) {
+                this.modeData.coverPic1 = obj1.file;
+            },
+            doSaveFile2(obj2) {
+                this.modeData.coverPic2 = obj2.file;
             },
             changeLanguage(value) {
                 let languageList = this.languageList;
@@ -1753,7 +1842,7 @@
             },
             //  返回上页
             returnPage() {
-                this.$router.replace('/activeSet');
+                this.$router.replace('/addActiveSet');
             }
         },
         computed: {},

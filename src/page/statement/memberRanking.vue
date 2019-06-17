@@ -57,6 +57,10 @@
                         "prop": "agent_level", "value": "", "label": "代理等级", "type": "select",
                         "list": ARRAYS.AGENTLIST
                     },
+                    {
+                        "prop": "role", "value": "", "label": "帐号类型", "type": "select",
+                        "list":[{label:'会员帐号',value:'normal'},{label:'试玩帐号',value:'test'}]
+                    }
                 ],
                 type: "search",
                 labelWidth: "120px",

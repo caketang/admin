@@ -107,16 +107,15 @@
                                 <span class="demonstration">时间区间：</span>
                                 <el-date-picker
                                     v-model="changIndexData"
-                                    type="daterange"
-                                    align="right"
+                                    type="datetimerange"
+                                    align="center"
                                     size="small"
                                     unlink-panels
-                                    range-separator="至"
-                                    start-placeholder="开始日期"
-                                    end-placeholder="结束日期"
+                                    :placeholder="defaultTime"
                                     @change="changIndexFn"
                                     :picker-options="pickerOptions2"
-                                ></el-date-picker>
+                                    >
+                                </el-date-picker>
                             </div>
                         </li>
                         <li class="ml20">{{time}}</li>
@@ -259,8 +258,11 @@
                         }
                     ]
                 },
+                // defaultTime:[new Date(this.sessionStorage.dateTimeStart),new Date(this.sessionStorage.dateTimeEnd)],
                 changIndexData: "",
                 changIndexDataShow:true,
+                defaultTime:sessionStorage.dateTimeStart + '  至  ' + sessionStorage.dateTimeEnd,
+
                 userName: "",
                 navSwitch: false,
                 sysName: "后台管理系统",
@@ -385,6 +387,7 @@
             },
         },
         methods: {
+
             //新增窗口修改窗口title
             addNewWin() {
                 window.localStorage["openNewWindow"] = "openNewWindow";

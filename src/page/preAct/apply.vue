@@ -70,7 +70,7 @@
                     </el-col>
 
                     <el-col :span="6" class="mt10">
-                        <div class="grid-content bg-purple tRight"><span>{{LANG['申请活动'] || '申请活动'}}：</span></div>
+                        <div class="grid-content bg-purple tRight"><span>{{LANG['优惠活动标题'] || '优惠活动标题'}}：</span></div>
                     </el-col>
                     <el-col :span="18" class="mt10">
                         <div class="grid-content bg-purple-light">
@@ -79,7 +79,7 @@
                     </el-col>
 
                     <el-col :span="6" class="mt10">
-                        <div class="grid-content bg-purple tRight"><span>{{LANG['申请内容'] || '申请内容'}}：</span></div>
+                        <div class="grid-content bg-purple tRight"><span>{{LANG['优惠活动描述'] || '优惠活动描述'}}：</span></div>
                     </el-col>
                     <el-col :span="18" class="mt10">
                         <div class="grid-content bg-purple-light">

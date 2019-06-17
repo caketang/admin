@@ -16,7 +16,7 @@
           "disabled":true,
           "width":"150"
       },
-        {	"prop":"created",
+        {	"prop":"begin_time",
             "label":"创建时间",
             "disabled":true,
             "width":"200"

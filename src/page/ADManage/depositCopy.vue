@@ -23,9 +23,9 @@
                     <el-form-item :label="LANG['文案名称:'] || '文案名称:'" :label-width="formLabelWidth">
                         <span>{{details.name}}</span>
                     </el-form-item>
-                    <el-form-item :label="LANG['语言:'] || '语言:'" :label-width="formLabelWidth">
-                        <p style="width: 90%;">{{details['language_name']}}</p>
-                    </el-form-item>
+<!--                    <el-form-item :label="LANG['语言:'] || '语言:'" :label-width="formLabelWidth">-->
+<!--                        <p style="width: 90%;">{{details['language_name']}}</p>-->
+<!--                    </el-form-item>-->
                     <el-form-item :label="LANG['文案内容:'] || '文案内容:'" :label-width="formLabelWidth">
                         <div v-html="details['content']" class="mark_waip"></div>
                     </el-form-item>
@@ -71,12 +71,12 @@
                         "prop": "name", "value": "", "label": "文案名称", "type": "text",
                         "rules": [{"require": true}]
                     },
-                    {
-                        "prop": "language_id", "value": "", "label": "语言", "type": "select",
-                        "list": [],
-                        "propVal": "language_name",
-                        "rules": [{"require": true}]
-                    },
+                    // {
+                    //     "prop": "language_id", "value": "", "label": "语言", "type": "select",
+                    //     "list": [],
+                    //     "propVal": "language_name",
+                    //     "rules": [{"require": true}]
+                    // },
                     {
                         "prop": "content",
                         "value": "",
@@ -148,22 +148,22 @@
                 this.tableUrl = URL.api + ROUTES.GET.copywriter.deposit;
                 this.columnsUrl = "/static/json/ADManage/depositCopy/columns.json";
                 //获取语言列表
-                let langeUrl = URL.api + ROUTES.GET.langeages;
-                this.$.autoAjax('get', langeUrl, '', {
-                    ok: (res) => {
-                        res.data.forEach((item) => {
-                            this.formConfig[1].list.push({
-                                "label": item.name.toString(),
-                                "value": item.id.toString()
-                            })
-                        })
-                    },
-                    p: () => {
-                    },
-                    error: e => {
-                        console.log(e)
-                    }
-                })
+                // let langeUrl = URL.api + ROUTES.GET.langeages;
+                // this.$.autoAjax('get', langeUrl, '', {
+                //     ok: (res) => {
+                //         res.data.forEach((item) => {
+                //             this.formConfig[1].list.push({
+                //                 "label": item.name.toString(),
+                //                 "value": item.id.toString()
+                //             })
+                //         })
+                //     },
+                //     p: () => {
+                //     },
+                //     error: e => {
+                //         console.log(e)
+                //     }
+                // })
             },
             //表格操作点击事件处理
             doHandle(e) {
@@ -206,6 +206,7 @@
                 this.loading = true;
                 this.updated = false;
                 let str = "";
+                console.log('depositCopy.vue getForm 209', obj);
                 if (_this.formType != "edit") {
                     obj.formObj.pf = 'pc';
                     obj.formObj.status = 'disabled';
@@ -384,7 +385,6 @@
                 this.updated = false;
                 let _this = this;
                 let val = this.id;
-
                 this.$.autoAjax('patch',URL.api + ROUTES.PATCH.copywriter.deposit.$(val), {"approve_status": "applying", "language_id": obj.language_id, "pf": obj.pf, "apply_to": obj.apply_to}, {
                     ok: (res) => {
                         if (res.state == 0 && res.data) {

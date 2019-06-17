@@ -186,12 +186,12 @@
                         </el-form>
                     </el-col>
                     <el-col :span="4" class="mt20">
-                        <h1 class="w100">{{LANG['密钥设置'] || '密钥设置'}}</h1>
+                        <!-- <h1 class="w100">{{LANG['密钥设置'] || '密钥设置'}}</h1>
                         <div class="base border w100 tCent">
                             <el-button @click="showKey" size="small">查看密钥</el-button>
                             <el-button @click="createKey" size="small" v-if="create.state">生成密钥</el-button>
                             <img :src="create.url" alt="密钥" v-if="create.showKey">
-                        </div>
+                        </div> -->
                     </el-col>
                 </el-row>
             </el-col>

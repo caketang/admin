@@ -14,9 +14,6 @@
                 myrouters: this.$router.options.routes
             }
         },
-        methods: {
-
-        },
         created() {
             global.LANG = this.languages;
             global.URLROUTERS = this.myrouters;

@@ -22,42 +22,37 @@
                         <span v-text="LANG['注册成功优惠'] || '注册成功优惠'"></span>
                         <el-form-item prop="rule.rule.prize" class="to-inline-block"
                                       :rules="[{ validator:validatorNumber,trigger:'blur'}]">
-                            <el-input v-model="modeData.rule.rule.prize" class="intW"
-                                      :disabled="seachData.type=='edit'"></el-input>
+                            <el-input v-model="modeData.rule.rule.prize" type="number" class="intW"></el-input>
                         </el-form-item>
                         <span v-text="LANG['元'] || '元'"></span>
                     </el-form-item>
                     <el-form-item label="领取限制">
-                        <el-radio-group v-model="get" @change="limitChange()" :disabled="seachData.type=='edit'">
+                        <el-radio-group v-model="get" @change="limitChange()" >
                             <el-radio label="1" class="radio">
                                 <span v-text="LANG['限定次数'] || '限定次数'"></span>
                                 <el-form-item prop="rule.limit_times"
                                               :rules="[{ validator:validatorLimitNumber,trigger:'blur'}]"
                                               style="display: inline-block;">
-                                    <el-input v-model="modeData.rule.limit_times" class="intW"
-                                              :disabled="seachData.type=='edit'"></el-input>
+                                    <el-input v-model="modeData.rule.limit_times" type="number" class="intW"></el-input>
                                 </el-form-item>
                             </el-radio>
                             <el-radio label="2" class="radio"><span v-text="LANG['无限定次数'] || '无限定次数'"></span></el-radio>
                         </el-radio-group>
                     </el-form-item>
                     <el-form-item label="提款要求" prop="rule.withdrawRequire">
-                        <el-radio-group v-model="modeData.rule.withdrawRequire" @change="withdrawRequireChange"
-                                        :disabled="seachData.type=='edit'">
+                        <el-radio-group v-model="modeData.rule.withdrawRequire" @change="withdrawRequireChange">
                             <el-radio label="times" class="radio">
                                 <span v-text="LANG['倍数'] || '倍数'"></span>
                                 <el-form-item style="display: inline-block" prop="rule.withdrawRequireVal"
                                               :rules="[{ validator:validatorTimeNumber,trigger:'blur'}]">
-                                    <el-input class="intW" v-model="modeData.rule.withdrawRequireVal"
-                                              :disabled="seachData.type=='edit'"></el-input>
+                                    <el-input class="intW" v-model="modeData.rule.withdrawRequireVal" type="number"></el-input>
                                 </el-form-item>
                             </el-radio>
                             <el-radio label="bet" class="radio">
                                 <span v-text="LANG['固定投注流水'] || '固定投注流水'"></span>
                                 <el-form-item style="display: inline-block" prop="rule.withdrawRequireVal1"
                                               :rules="[{ validator:validatorBetNumber,trigger:'blur'}]">
-                                    <el-input class="intW" v-model="modeData.rule.withdrawRequireVal1"
-                                              :disabled="seachData.type=='edit'"></el-input>
+                                    <el-input class="intW" v-model="modeData.rule.withdrawRequireVal1" type="number"></el-input>
                                 </el-form-item>
                             </el-radio>
                             <el-radio label="no" class="radio"><span v-text="LANG['无取款要求'] || '无取款要求'"></span>
@@ -76,7 +71,7 @@
                         <span v-text="LANG['同一个IP不同账号可以领取'] || '同一个IP不同账号可以领取'"></span>
                         <el-form-item prop="rule.extra.ip_limit_times" class="to-inline-block"
                                       :rules="[{ validator:validatorNumber,trigger:'blur'}]">
-                            <el-input v-model="modeData.rule.extra.ip_limit_times" class="intW"></el-input>
+                            <el-input v-model="modeData.rule.extra.ip_limit_times" class="intW" type="number"></el-input>
                         </el-form-item>
                         <span v-text="LANG['次'] || '次'"></span>
                     </el-form-item>
@@ -84,7 +79,7 @@
                 <el-col :span="24" class="Layout">
                     <h3 class="tCent" v-text="LANG['内容设置'] || '内容设置'"></h3>
                     <el-form-item label="优惠活动标题" prop="title">
-                        <el-input class="w80" v-model="modeData.title"></el-input>
+                        <el-input class="w80" v-model="modeData.title"  :maxlength="15"></el-input>
                     </el-form-item>
                     <el-form-item label="语言" prop="language_id">
                         <el-select v-model="modeData.language_id" placeholder="请选择类型" class="w80"
@@ -96,13 +91,35 @@
                     <el-form-item label="优惠活动描述" prop="description">
                         <el-input class="w80" type="textarea" v-model="modeData.description"></el-input>
                     </el-form-item>
-                    <el-form-item label="图片上传" prop="cover">
-                        <el-input v-model="modeData.cover" style="display:none;"></el-input>
-                        <upload :uploadUrl="uploadUrl" @response="doSaveFile" :keys="keys" :isInit="imgInit"
-                                :fileNum="1" :arrList="modeData.arrList" :imgResolution="'460*180'"></upload>
+                    <el-form-item label="设备1" prop="coverUse1">
+                        <el-select v-model="modeData.coverUse1" placeholder="请选择">
+                            <el-option label="手机" value="mobile"></el-option>
+                            <!--<el-option label="PC" value="pc"></el-option>-->
+                        </el-select>
                     </el-form-item>
+                    <el-form-item label="设备1图片上传" prop="coverPic1">
+                        <el-input v-model="modeData.coverPic1" style="display:none;"></el-input>
+                        <upload :uploadUrl="uploadUrl1" @doUpload="doSaveFile1" :keys="keys1" :isInit="imgInit1"
+                                :fileNum="2" :arrList="modeData.arrList1" :imgResolution="'460*180'" ></upload>
+                    </el-form-item>
+                    <el-form-item label="设备2" prop="coverUse2">
+                        <el-select v-model="modeData.coverUse2" placeholder="请选择">
+                            <!--<el-option label="手机" value="mobile"></el-option>-->
+                            <el-option label="PC" value="pc"></el-option>
+                        </el-select>
+                    </el-form-item>
+                    <el-form-item label="设备2图片上传" prop="coverPic2">
+                        <el-input v-model="modeData.coverPic2" style="display:none;"></el-input>
+                        <upload :uploadUrl="uploadUrl2" @doUpload="doSaveFile2" :keys="keys2" :isInit="imgInit2"
+                                :fileNum="2" :arrList="modeData.arrList2" :imgResolution="'460*180'"></upload>
+                    </el-form-item>
+                    <!--<el-form-item label="图片上传" prop="cover">-->
+                        <!--<el-input v-model="modeData.cover" style="display:none;"></el-input>-->
+                        <!--<upload :uploadUrl="uploadUrl" @response="doSaveFile" :keys="keys" :isInit="imgInit"-->
+                                <!--:fileNum="1" :arrList="modeData.arrList" :imgResolution="'460*180'"></upload>-->
+                    <!--</el-form-item>-->
                     <el-form-item label="排序" prop="sort">
-                        <el-input v-model="modeData.sort" class="w80"></el-input>
+                        <el-input v-model="modeData.sort" class="w80" type="number"></el-input>
                     </el-form-item>
                     <el-form-item label="打开方式" prop="open_mode">
                         <el-radio-group v-model="modeData.open_mode" @change="radioChange">
@@ -180,6 +197,49 @@
                     callback();
                 }
             };
+            //验证金额输入
+            var validateMoney = (rule, value, callback) =>{
+                let reg1 = /[\u4e00-\u9fa5]/g;
+                let reg2 = /[^\u4E00-\u9FFF]/g;
+                let cunt = 0;
+                value = value.replace(/^[+]{0,1}(\d+)$|^[+]{0,1}(\d+\.\d+)$/,"");
+                cunt = cunt+(value.match(reg1)?value.match(reg1).length*2+cunt:cunt);
+                cunt = cunt+(value.match(reg2)?value.match(reg2).length+cunt:cunt);
+                if(cunt>2048 ||cunt<1){
+                    callback(new Error(LANG['请输入长度1到2048位！'] || '请输入长度1到2048位！'))
+                }else{
+                    callback();
+                }
+            };
+            //验证活动标题
+            var validateTitle = (rule, value, callback) =>{
+                let reg1 = /[\u4e00-\u9fa5]/g;
+                let reg2 = /[^\u4E00-\u9FFF]/g;
+                let cunt = 0;
+                value = value.replace(/\s+/g,"");
+                cunt = cunt+(value.match(reg1)?value.match(reg1).length*2+cunt:cunt);
+                cunt = cunt+(value.match(reg2)?value.match(reg2).length+cunt:cunt);
+                if(cunt>2048 ||cunt<1){
+                    callback(new Error(LANG['请输入长度1到2048位！'] || '请输入长度1到2048位！'))
+                }else{
+                    callback();
+                }
+            };
+            // 验证活动内容
+            var validateHans = (rule, value, callback) =>{
+                let reg1 = /[\u4e00-\u9fa5]/g;
+                let reg2 = /[^\u4E00-\u9FFF]/g;
+                let cunt = 0;
+                value = value.replace(/\s+/g,"");
+                value = value.replace(/[\r\n]/g, "");
+                cunt = cunt+(value.match(reg1)?value.match(reg1).length*2+cunt:cunt);
+                cunt = cunt+(value.match(reg2)?value.match(reg2).length+cunt:cunt);
+                if(cunt>2048 ||cunt<1){
+                    callback(new Error(LANG['请输入有效内容！'] || '请输入有效内容！'))
+                }else{
+                    callback();
+                }
+            };
             const sortValidate = (rule, value, callback) => {
                 if (/^(0|[1-9]\d*)$/.test(value.toString())) {
                     callback();
@@ -198,6 +258,8 @@
             }
             return {
                 LANG,
+                uploadUrl1:'',
+                uploadUrl2:'',
                 pcshow: false,
                 mbshow: false,
                 linkShow: false,
@@ -211,7 +273,11 @@
                     vipType: [],//会员列表
                     status: 'enabled',//string #状态 enabled 启用,disabled 停用
                     description: "",//string #描述
-                    cover: "",//string #封面
+                    cover: [],
+                    coverUse1:'mobile',
+                    coverUse2:'pc',
+                    coverPic1:'',
+                    coverPic2:'',
                     language_id: "",//int #语言ID
                     language_name: "",//string #语言名称
                     sort: "",//排序
@@ -266,9 +332,11 @@
                 // 上传地址
                 uploadUrl: URL.rpi,
                 // 上传字段名
-                keys: "images",
+                keys1: "images",
+                keys2: "images",
                 // 是否初始化
-                imgInit: false,
+                imgInit1: false,
+                imgInit2: false,
                 rules: {
                     name: [
                         {required: true, message: '请填写活动名称', trigger: 'blur'}
@@ -280,7 +348,8 @@
                         {required: true, message: '请选择语言类型', trigger: 'change'}
                     ],
                     description: [
-                        {required: true, message: '请输入活动描述', trigger: 'blur'}
+                        {required: true, message: '请输入活动描述', trigger: 'blur'},
+                        {validator: validateHans,trigger: 'blur,change'}
                     ],
                     cover: [
                         {required: true, message: '', trigger: 'change'}
@@ -294,11 +363,22 @@
                     'rule.issueMode': [
                         {required: true, message: '请选择发放奖金方式', trigger: 'change'}
                     ],
+                    'rule.limit_times': [
+                        {required: true, message: '请正确输入', trigger: 'blur'},
+                        {required: true, validator: validateMoney, trigger: 'blur'}
+                    ],
                     'rule.withdrawRequire': [
                         {required: true, message: '请选择提款要求', trigger: 'change'}
                     ],
-                    'rule.withdrawRequireVal': [{validator: validatePass, trigger: 'blur'}],
-                    'rule.withdrawRequireVal1': [{validator: validatePass1, trigger: 'blur'}],
+                    'rule.withdrawRequireVal': [
+                        {required: true, validator: validatePass, trigger: 'blur'},
+                        {required: true, validator: validateMoney, trigger: 'blur'}
+                    ],
+                    'rule.withdrawRequireVal1': [
+                        {validator: validatePass1, trigger: 'blur'},
+                        {required: true, validator: validateMoney, trigger: 'blur'}
+                    ],
+                    'rule.rule.price': [{required: true, validator: validateMoney, trigger: 'blur'}],
                     checkedDefut: [
                         {required: true, message: '请至少选择一个会员等级', trigger: 'change'}
                     ],
@@ -306,11 +386,13 @@
                     open_mode: [
                         {required: true, message: '请选择打开方式', trigger: 'change'}
                     ],
-                    cover: [
-                        {required: false, message: '请上传图片', trigger: 'change'}
+                    coverPic1: [
+                        {required: true, message: '请上传图片', trigger: 'change'}
                     ],
                     title: [
-                        {required: true, message: '请输入活动标题', trigger: 'change'}
+                        {required: true, message: '请输入活动标题', trigger: 'change'},
+                        {min: 1, max: 15, message: '请输入 1 到 15 个字符'},
+                        {validator: validateTitle,trigger: 'blur,change'}
                     ],
                     content: [
                         {required: true, message: '请输入优惠规则', trigger: 'change'}
@@ -397,14 +479,16 @@
                                         language_id: formData.language_id,
                                         language_name: formData.language_name,
                                         sort: formData.sort,
-                                        cover: formData.cover,
+                                        // cover: formData.cover,
                                         content: formData.content,
                                         content2: formData.content2,
                                         open_mode: formData.open_mode,
                                         link: formData.link,
+                                        coverUse1:'mobile',
+                                        coverUse2:'pc',
                                         rule: {
                                             rule: {
-                                                prize: (formData.rule.rule.prize / 100).toString()
+                                                prize: (formData.rule.rule.prize).toString()
                                             },
                                             limit_times: formData.rule.limit_times,
                                             withdrawRequire: formData.rule.withdraw_require,
@@ -438,7 +522,7 @@
                                     }
                                     //处理提款要求
                                     if (formData.rule.withdraw_require === 'bet') {
-                                        _this.modeData.rule.withdrawRequireVal1 = formData.rule.withdraw_require_val / 100
+                                        _this.modeData.rule.withdrawRequireVal1 = formData.rule.withdraw_require_val
                                     } else if (formData.rule.withdraw_require === 'times') {
                                         _this.modeData.rule.withdrawRequireVal = formData.rule.withdraw_require_val
                                     }
@@ -450,6 +534,8 @@
                                 console.log(e)
                             }
                         })
+                    }else{
+                        _this.checkedval.checked.splice(0, _this.checkedval.checked.length);
                     }
                 });
                 //初始化优惠活动名称
@@ -513,7 +599,7 @@
                         if (this.modeData.rule.withdrawRequire === 'times') {
                             withdraw_require_val = parseInt(this.modeData.rule.withdrawRequireVal)
                         } else if (this.modeData.rule.withdrawRequire === 'bet') {
-                            withdraw_require_val = parseInt(this.modeData.rule.withdrawRequireVal1) * 100
+                            withdraw_require_val = parseInt(this.modeData.rule.withdrawRequireVal1)
                         } else {
                             withdraw_require_val = 0
                         }
@@ -529,6 +615,9 @@
                                 }
                             }
                         }
+                        let cover = []
+                        cover.push({"mobile":this.modeData.coverPic1})
+                        cover.push({"pc":this.modeData.coverPic2})
                         let formData = {
                             name: this.modeData.name,
                             types: typeList,
@@ -536,7 +625,7 @@
                             begin_time: this.modeData.begin_time,
                             end_time: this.modeData.end_time,
                             description: this.modeData.description,
-                            cover: this.modeData.cover,
+                            cover: cover,
                             language_id: parseInt(this.modeData.language_id),
                             language_name: lan ? lan.label : '',
                             sort: parseInt(this.modeData.sort),
@@ -549,7 +638,7 @@
                             rule: {
                                 template_id: this.modeData.rule.template_id ? this.modeData.rule.template_id : 10,
                                 rule: {
-                                    prize: this.modeData.rule.rule.prize * 100
+                                    prize: this.modeData.rule.rule.prize
                                 },
                                 luckydraw_condition: this.modeData.rule.luckydraw_condition,
                                 limit_times: this.modeData.rule.limit_times ? this.modeData.rule.limit_times : 0,
@@ -655,7 +744,7 @@
                     if (isNaN(value) || !!value.replace(/^\s+|\s+$/, '') == false) {
                         callback(new Error(LANG['请输入数字值'] || '请输入数字值'));
                     } else {
-                        callback(new Error(LANG['小数点后不超过两位'] || '小数点后不超过两位'));
+                        callback(new Error(LANG['请正确输入'] || '请正确输入'));
                     }
                 } else {
                     if (value < 0) {
@@ -695,8 +784,14 @@
                 type == "add" ? this.$router.push({path: 'addActiveSet'}) : this.$router.push({path: 'activeSet'});
             },
             //
-            doSaveFile(obj) {
-                this.modeData.cover = obj.url[0];
+            // doSaveFile(obj) {
+            //     this.modeData.cover = obj.url[0];
+            // },
+            doSaveFile1(obj1) {
+                this.modeData.coverPic1 = obj1.file;
+            },
+            doSaveFile2(obj2) {
+                this.modeData.coverPic2 = obj2.file;
             },
             changeLanguage(value) {
                 let languageList = this.languageList;
@@ -713,7 +808,7 @@
             },
             //  返回上页
             returnPage() {
-                this.$router.replace('/activeSet');
+                this.$router.replace('/addActiveSet');
             }
         },
         computed: {},
@@ -724,7 +819,8 @@
             next(true);
             this.$refs.form.resetFields();
             this.modeData.description = '';
-            this.modeData.arrList = [];
+            this.modeData.arrList1 = [];
+            this.modeData.arrList2 = [];
             this.modeData.content = '';
             this.modeData.content2 = '';
             this.pcshow = false;

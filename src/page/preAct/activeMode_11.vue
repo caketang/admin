@@ -11,61 +11,79 @@
                 <el-col :span="24" class="Layout">
                     <h3 class="tCent" v-text="LANG['规则设置'] || '规则设置'"></h3>
                     <el-form-item label="优惠活动名称" prop="name">
-                        <el-input class="w80" v-model="modeData.name" :placeholder="placename"></el-input>
+                        <el-input class="w80" v-model="modeData.name" :placeholder="nameLabel"></el-input>
                     </el-form-item>
                     <el-form-item label="优惠类型" prop="type_id">
-                        <checkGroup :checkOptions="type_idList" :sReset="sReset" @change-option="changeOption"
-                                    :checkedval="checkedval"></checkGroup>
+                        <checkGroup :checkOptions="type_idList" :sReset="sReset" @change-option="changeOption" :checkedval="checkedval"></checkGroup>
                         <input v-model="modeData.type_id" style="display: none">
                     </el-form-item>
                     <el-form-item label="有效投注达到" prop="rule.rule.valid_bet">
-                        <el-input class="w80" v-model="modeData.rule.rule.valid_bet" :placeholder="placename" type="number">
+                        <el-input class="w80" v-model="modeData.rule.rule.valid_bet" :placeholder="betLabel" type="number">
                             <template slot="append">元</template>
                         </el-input>
                     </el-form-item>
                     <el-form-item label="奖金" prop="rule.rule.prize">
-                        <el-input class="w80" v-model="modeData.rule.rule.prize" :placeholder="placename" type="number">
+                        <el-input class="w80" v-model="modeData.rule.rule.prize" :placeholder="prizeLabel" type="number">
                             <template slot="append">元</template>
                         </el-input>
                     </el-form-item>
                     <el-form-item label="提款要求" prop="withdraw_require_val">
-                        <el-input class="w80" v-model="modeData.withdraw_require_val" :placeholder="placename" type="number">
+                        <el-input class="w80" v-model="modeData.withdraw_require_val" :placeholder="requireLabel" type="number">
                             <template slot="append">倍</template>
                         </el-input>
                     </el-form-item>
-                    <el-form-item label="发放方式">
-                        <el-radio-group v-model="get" @change="limitChange()" :disabled="seachData.type=='edit'">
-                            <el-radio label="1" class="radio">
-                                <span v-text="LANG['手动'] || '手动'"></span>
-                            </el-radio>
-                            <el-radio label="2" class="radio">
-                                <span v-text="LANG['自动'] || '自动'"></span>
-                            </el-radio>
-                        </el-radio-group>
+                    <el-form-item label="状态">
+                        <el-radio class="radio" v-model="modeData.rule.issue_mode" label="manual"><span
+                            v-text="LANG['手动'] || '手动'"></span>
+                        </el-radio>
+                        <el-radio class="radio" v-model="modeData.rule.issue_mode" label="auto"><span
+                            v-text="LANG['自动'] || '自动'"></span>
+                        </el-radio>
                     </el-form-item>
+                    <!--<el-form-item label="发放方式">-->
+                        <!--<el-radio-group v-model="get" @change="limitChange()" >-->
+                            <!--<el-radio label="1" class="radio">-->
+                                <!--<span v-text="LANG['手动'] || '手动'"></span>-->
+                            <!--</el-radio>-->
+                            <!--<el-radio label="2" class="radio">-->
+                                <!--<span v-text="LANG['自动'] || '自动'"></span>-->
+                            <!--</el-radio>-->
+                        <!--</el-radio-group>-->
+                    <!--</el-form-item>-->
                     <h3>内容设置</h3>
                     <el-form-item label="优惠活动标题" prop="title">
-                        <el-input class="w80" v-model="modeData.title"  placeholder="请输入优惠活动标题"></el-input>
+                        <el-input class="w80" v-model="modeData.title"  placeholder="请输入优惠活动标题" :maxlength="15"></el-input>
                     </el-form-item>
                     <!--<el-form-item label="优惠规则" prop="discounts_rule">-->
                         <!--<el-input class="w80" v-model="modeData.discounts_rule" placeholder="请输入优惠规则"></el-input>-->
                     <!--</el-form-item>-->
                     <el-form-item label="优惠活动描述" prop="description">
-                        <el-input class="w80" type="textarea" v-model="modeData.description"></el-input>
+                        <el-input class="w80" type="textarea" v-model="modeData.description" placeholder="请输入优惠活动描述"></el-input>
                     </el-form-item>
-                    <el-form-item label="设备" prop="cover">
-                        <el-select v-model="modeData.cover" placeholder="请选择">
+                    <el-form-item label="设备1" prop="coverUse1">
+                        <el-select v-model="modeData.coverUse1" placeholder="请选择">
                             <el-option label="手机" value="mobile"></el-option>
+                            <!--<el-option label="PC" value="pc"></el-option>-->
+                        </el-select>
+                    </el-form-item>
+                    <el-form-item label="设备1图片上传" prop="coverPic1">
+                        <el-input v-model="modeData.coverPic1" style="display:none;"></el-input>
+                        <upload :uploadUrl="uploadUrl1" @doUpload="doSaveFile1" :keys="keys1" :isInit="imgInit1"
+                                :fileNum="2" :arrList="modeData.arrList1" :imgResolution="'460*180'" ></upload>
+                    </el-form-item>
+                    <el-form-item label="设备2" prop="coverUse2">
+                        <el-select v-model="modeData.coverUse2" placeholder="请选择">
+                            <!--<el-option label="手机" value="mobile"></el-option>-->
                             <el-option label="PC" value="pc"></el-option>
                         </el-select>
                     </el-form-item>
-                    <el-form-item label="图片上传" prop="coverPic">
-                        <el-input v-model="modeData.coverPic" style="display:none;"></el-input>
-                        <upload :uploadUrl="uploadUrl" @response="doSaveFile" :keys="keys" :isInit="imgInit"
-                                :fileNum="1" :arrList="modeData.arrList" :imgResolution="'460*180'"></upload>
+                    <el-form-item label="设备2图片上传" prop="coverPic2">
+                        <el-input v-model="modeData.coverPic2" style="display:none;"></el-input>
+                        <upload :uploadUrl="uploadUrl2" @doUpload="doSaveFile2" :keys="keys2" :isInit="imgInit2"
+                                :fileNum="2" :arrList="modeData.arrList2" :imgResolution="'460*180'"></upload>
                     </el-form-item>
                     <el-form-item label="排序" prop="sort">
-                        <el-input v-model="modeData.sort" class="w80"></el-input>
+                        <el-input v-model="modeData.sort" class="w80" type="number"></el-input>
                     </el-form-item>
                 </el-col>
             </el-form>
@@ -114,6 +132,35 @@
                     callback();
                 }
             };
+            //验证活动标题
+            var validateTitle = (rule, value, callback) =>{
+                let reg1 = /[\u4e00-\u9fa5]/g;
+                let reg2 = /[^\u4E00-\u9FFF]/g;
+                let cunt = 0;
+                value = value.replace(/\s+/g,"");
+                cunt = cunt+(value.match(reg1)?value.match(reg1).length*2+cunt:cunt);
+                cunt = cunt+(value.match(reg2)?value.match(reg2).length+cunt:cunt);
+                if(cunt>2048 ||cunt<1){
+                    callback(new Error(LANG['请输入长度1到2048位！'] || '请输入长度1到2048位！'))
+                }else{
+                    callback();
+                }
+            };
+            // 验证活动内容
+            var validateHans = (rule, value, callback) =>{
+                let reg1 = /[\u4e00-\u9fa5]/g;
+                let reg2 = /[^\u4E00-\u9FFF]/g;
+                let cunt = 0;
+                value = value.replace(/\s+/g,"");
+                value = value.replace(/[\r\n]/g, "");
+                cunt = cunt+(value.match(reg1)?value.match(reg1).length*2+cunt:cunt);
+                cunt = cunt+(value.match(reg2)?value.match(reg2).length+cunt:cunt);
+                if(cunt>2048 ||cunt<1){
+                    callback(new Error(LANG['请输入有效内容！'] || '请输入有效内容！'))
+                }else{
+                    callback();
+                }
+            };
             const sortValidate = (rule, value, callback) => {
                 if (/^(0|[1-9]\d*)$/.test(value.toString())) {
                     callback();
@@ -139,12 +186,15 @@
                     name: "",//代理邀请注册
                     types: "",//代理邀请注册
                     cover:[],
+                    coverUse1:'mobile',
+                    coverUse2:'pc',
+                    coverPic1:'',
+                    coverPic2:'',
                     title: "",//
                     discounts_rule:"",
                     begin_time: "",//
                     end_time: "",//
                     description: "",//
-                    coverPic: '',
                     language_id: "",//
                     language_name: "",//
                     sort: "",//
@@ -161,27 +211,29 @@
                             valid_bet:'',
                         },
                         withdraw_require:'',
-                        issue_mode:'',
-                        // send_mode:'',
-//                        luckydraw_condition: [],
-//                        limit_times: '',//领取限制次数
-//                        withdrawRequire: '',//提款要求选择
-//                        withdrawRequireVal: '',//
-//                        withdrawRequireVal1: '',//提款倍数
-//                        member_level: '',
-//                        issueTime: null,//发放时间
-//                        issue_cycle: 'day',
-//                        issueMode: 'auto',//string #发放方式
-//                        game: [],
-//                        extra: {
-//                            ip_limit_times: '',
-//                        }
+                        send_mode:'',
+                       luckydraw_condition: [],
+                       limit_times: '',//领取限制次数
+                       withdrawRequire: '',//提款要求选择
+                       withdrawRequireVal: '',//
+                       withdrawRequireVal1: '',//提款倍数
+                       member_level: '',
+                       issueTime: null,//发放时间
+                       issue_cycle: 'day',
+                       // issue_mode: 'auto',//string #发放方式
+                       game: [],
+                       extra: {
+                           ip_limit_times: '',
+                       }
                     },
                     checkedDefut: [],
                 },
                 pcshow: false,
                 get: "",//领取限制方式
-                placename: '',
+                nameLabel: '请输入优惠活动名称',
+                betLabel: '请输入有效投注金额',
+                prizeLabel: '请输入奖金',
+                requireLabel: '请输入提款要求',
                 //下拉优惠类型列表
                 type_idList: [],
                 //获取有效会员等级
@@ -194,11 +246,14 @@
                 seachData: {},
                 languageList: [],
                 // 上传地址
-                uploadUrl: URL.rpi,
+                uploadUrl1: URL.rpi,
+                uploadUrl2: URL.rpi,
                 // 上传字段名
-                keys: "images",
+                keys1: "images1",
+                keys2: "images2",
                 // 是否初始化
-                imgInit: false,
+                imgInit1: false,
+                imgInit2: false,
                 rules: {
                     name: [
                         {required: true, message: '请填写活动名称', trigger: 'blur'}
@@ -209,20 +264,21 @@
                     // withdraw_require:[
                     //     {required: true, message: '请填写提款要求', trigger: 'blur'}
                     // ],
-                    cover:[
-                        {required: true, message: '请选择设备', trigger: 'change'}
-                    ],
+                    // coverUse:[
+                    //     {required: true, message: '请选择设备', trigger: 'change'}
+                    // ],
                     discounts_rule: [
                         {required: true, message: '请填写优惠规则', trigger: 'blur'}
                     ],
                     type_id: [
-                        {required: true, type: 'array', message: '请选择优惠类型', trigger: 'change'}
+                        {required: true, type: 'array', message: '请选择优惠类型', trigger: 'blur'}
                     ],
                     language_id: [
                         {required: true, message: '请选择语言类型', trigger: 'change'}
                     ],
                     description: [
-                        {required: true, message: '请填写活动描述', trigger: 'blur'}
+                        {required: true, message: '请填写活动描述', trigger: 'blur'},
+                        {validator: validateHans,trigger: 'blur,change'}
                     ],
                     begin_time: [
                         {required: true, validator: validatorTime, trigger: 'change'}
@@ -231,20 +287,24 @@
                         {required: true, validator: validatorTime, trigger: 'change'}
                     ],
                     'rule.rule.valid_bet':[
-                        {required: true, message: '请填写有效投注', trigger: 'blur'}
+                        {required: true, message: '请填写有效投注', trigger: 'blur'},
+                        {validator: sortValidate, trigger: 'blur', required: true}
                     ],
                     'rule.rule.prize':[
-                        {required: true, message: '请填写奖金', trigger: 'blur'}
+                        {required: true, message: '请填写奖金', trigger: 'blur'},
+                        {validator: sortValidate, trigger: 'blur', required: true}
                     ],
-                    // 'rule.issueMode': [
-                    //     {required: true, message: '请选择发放奖金方式', trigger: 'change'}
-                    // ],
+                    'rule.issue_mode': [
+                        {required: true, message: '请选择发放奖金方式', trigger: 'change'}
+                    ],
                     'rule.withdrawRequire': [
-                        {required: true, message: '请选择提款要求', trigger: 'change'}
+                        {required: true, message: '请选择提款要求', trigger: 'change'},
+                        {validator: sortValidate, trigger: 'blur', required: true}
                     ],
                     // 'rule.withdrawRequireVal': [{validator: validatePass, trigger: 'blur'}],
                     withdraw_require_val: [
-                        {required: true, message: '请选择提款要求', trigger: 'blur'}
+                        {required: true, message: '请选择提款要求', trigger: 'blur'},
+                        {validator: sortValidate, trigger: 'blur', required: true}
                     ],
                     checkedDefut: [
                         {required: true, message: '请至少选择一个会员等级', trigger: 'change'}
@@ -253,11 +313,13 @@
                     // open_mode: [
                     //     {required: true, message: '请选择打开方式', trigger: 'change'}
                     // ],
-                    coverPic: [
-                        {required: false, message: '请上传图片', trigger: 'change'}
+                    coverPic1: [
+                        {required: true, message: '请上传图片', trigger: 'change'}
                     ],
                     title: [
-                        {required: true, message: '请输入活动标题', trigger: 'blur'}
+                        {required: true, message: '请输入活动标题', trigger: 'blur'},
+                        {min:1,max:15,message:'请输入1至15 个字符'},
+                        {validator: validateTitle,trigger: 'blur,change'}
                     ],
                     content: [
                         {required: true, message: '请输入优惠规则', trigger: 'change'}
@@ -270,7 +332,7 @@
                     ]
                 },
                 // 类型全选
-                sReset: false,
+                sReset: true,
                 checkedval: {
                     checked: []
                 }
@@ -285,6 +347,7 @@
         methods: {
             init() {
                 let _this = this;
+                this.sReset = true;
                 this.modeData.begin_time = window.sessionStorage.sysTime + ' 00:00:00'//datetime #开始时间
                 this.modeData.end_time = '2118-01-01 23:59:59'//datetime #结束时间
                 let query = this.$route.query;
@@ -317,90 +380,98 @@
                     })
                 }
 
-//                getMeber().then(function () {
-//                    //获取编辑页面数据
-//                    if (_this.seachData.type === 'edit') {
-//                        _this.checkedval.checked.splice(0, _this.checkedval.checked.length);
-//                        let editUrl = URL.api + `/active/template.fix/${_this.seachData.id}`;
-//                        _this.$.autoAjax('get', editUrl, '', {
-//                            ok: (res) => {
-//                                if (res.state === 0 && res.data) {
-//                                    let formData = res.data;
-//                                    let temp = res.data.types || [], typelist = [];
-//                                    temp.forEach((item, key) => {
-//                                        typelist.push(item.id);
-//                                        _this.checkedval.checked.push(item.id.toString());
-//                                    })
-//                                    _this.modeData = {
-//                                        arrList: [],
-//                                        name: formData.name,
-//                                        type_id: typelist,
-//                                        title: formData.title,
-//                                        begin_time: formData.begin_time,
-//                                        end_time: formData.end_time,
-//                                        day: formData.day,
-//                                        vipType: [],//会员列表
-//                                        money: formData.money,
-//                                        status: formData.status,
-//                                        description: formData.description,
-//                                        language_id: formData.language_id,
-//                                        language_name: formData.language_name,
-//                                        sort: formData.sort,
-//                                        cover: formData.cover,
-//                                        content: formData.content,
-//                                        content2: formData.content2,
-//                                        open_mode: formData.open_mode,
-//                                        link: formData.link,
-//                                        rule: {
-//                                            rule: {
-//                                                prize: (formData.rule.rule.prize / 100).toString()
-//                                            },
-//                                            limit_times: formData.rule.limit_times,
-//                                            withdrawRequire: formData.rule.withdraw_require,
-//                                            issueTime: '0',
-//                                            issue_cycle: formData.rule.issue_cycle,
-//                                            issueMode: formData.rule.issue_mode,
-//                                            game: [],
-//                                            extra: {
-//                                                ip_limit_times: formData.rule.extra.ip_limit_times,
-//                                            }
-//                                        },
-//                                    };
-//                                    //处理会员层级数据
-//                                    // let meberList = formData.rule.member_level.split(',');
-//                                    // _this.vipList.forEach(function (item) {
-//                                    //     meberList.forEach(function (meberItem) {
-//                                    //         if(meberItem === item.value){
-//                                    //             _this.modeData.checkedDefut.push(item.label)
-//                                    //             console.log(_this.modeData.checkedDefut)
-//                                    //         }
-//                                    //     })
-//                                    // })
-//                                    //活动图片
-//                                    _this.modeData.arrList.push(formData.cover);
-//                                    //处理领取限制
-//                                    if (formData.rule.limit_times > 0) {
-//                                        _this.get = '1'
-//                                    } else {
-//                                        _this.get = '2';
-//                                        _this.modeData.rule.limit_times = null;
-//                                    }
-//                                    //处理提款要求
-//                                    if (formData.rule.withdraw_require === 'bet') {
-//                                        _this.modeData.rule.withdrawRequireVal1 = formData.rule.withdraw_require_val / 100
-//                                    } else if (formData.rule.withdraw_require === 'times') {
-//                                        _this.modeData.rule.withdrawRequireVal = formData.rule.withdraw_require_val
-//                                    }
-//                                }
-//                            },
-//                            p: () => {
-//                            },
-//                            error: e => {
-//                                console.log(e)
-//                            }
-//                        })
-//                    }
-//                });
+               getMeber().then(function () {
+                   //获取编辑页面数据
+                   if (_this.seachData.type === 'edit') {
+                       _this.checkedval.checked.splice(0, _this.checkedval.checked.length);
+                       let editUrl = URL.api + `/active/template.fix/${_this.seachData.id}`;
+                       _this.$.autoAjax('get', editUrl, '', {
+                           ok: (res) => {
+                               if (res.state === 0 && res.data) {
+                                   let formData = res.data;
+                                   let temp = res.data.types || [], typelist = [];
+                                   temp.forEach((item, key) => {
+                                       typelist.push(item.id);
+                                       _this.checkedval.checked.push(item.id.toString());
+                                   })
+                                   _this.modeData = {
+                                       arrList: [],
+                                       name: formData.name,
+                                       type_id: typelist,
+                                       title: formData.title,
+                                       valid_bet:formData.valid_bet,
+                                       begin_time: formData.begin_time,
+                                       end_time: formData.end_time,
+                                       day: formData.day,
+                                       vipType: [],//会员列表
+                                       money: formData.money,
+                                       status: formData.status,
+                                       description: formData.description,
+                                       language_id: formData.language_id,
+                                       language_name: formData.language_name,
+                                       sort: formData.sort,
+                                       // cover: formData.cover,
+                                       content: formData.content,
+                                       content2: formData.content2,
+                                       open_mode: formData.open_mode,
+                                       link: formData.link,
+                                       coverUse1:'mobile',
+                                       coverUse2:'pc',
+                                       withdraw_require_val:(formData.rule.withdraw_require_val).toString(),
+                                       rule: {
+                                           rule: {
+                                               prize: (formData.rule.rule.prize).toString(),
+                                               valid_bet: (formData.rule.rule.valid_bet).toString()
+                                           },
+                                           limit_times: formData.rule.limit_times,
+                                           withdrawRequire: formData.rule.withdraw_require,
+                                           issueTime: '0',
+                                           issue_cycle: formData.rule.issue_cycle,
+                                           issue_mode: formData.rule.issue_mode,
+                                           game: [],
+                                           extra: {
+                                               ip_limit_times: formData.rule.extra.ip_limit_times,
+                                           }
+                                       },
+                                   };
+                                   //处理会员层级数据
+                                   // let meberList = formData.rule.member_level.split(',');
+                                   // _this.vipList.forEach(function (item) {
+                                   //     meberList.forEach(function (meberItem) {
+                                   //         if(meberItem === item.value){
+                                   //             _this.modeData.checkedDefut.push(item.label)
+                                   //             console.log(_this.modeData.checkedDefut)
+                                   //         }
+                                   //     })
+                                   // })
+                                   //活动图片
+                                   _this.modeData.arrList.push(formData.cover);
+                                   //处理领取限制
+                                   if (formData.rule.limit_times > 0) {
+                                       _this.get = '1'
+                                   } else {
+                                       _this.get = '2';
+                                       _this.modeData.rule.limit_times = null;
+                                   }
+                                   //处理提款要求
+                                   if (formData.rule.withdraw_require === 'bet') {
+                                       _this.modeData.rule.withdrawRequireVal1 = formData.rule.withdraw_require_val
+                                   } else if (formData.rule.withdraw_require === 'times') {
+                                       _this.modeData.rule.withdrawRequireVal = formData.rule.withdraw_require_val
+                                   }
+                               }
+
+                           },
+                           p: () => {
+                           },
+                           error: e => {
+                               console.log(e)
+                           }
+                       })
+                   }else{
+                       _this.checkedval.checked.splice(0, _this.checkedval.checked.length);
+                   }
+               });
                 //初始化优惠活动名称
                 this.placename = this.seachData.label;
 //                获取优惠类型列表
@@ -423,25 +494,25 @@
                         console.log(e)
                     }
                 })
-//                let langeUrl = URL.api + ROUTES.GET.langeages;
-//                this.$.autoAjax('get', langeUrl, '', {
-//                    ok: (res) => {
-//                        this.languageList = [];
-//                        let model = res.data
-//                        for (let i in model) {
-//                            this.languageList.push({
-//                                "label": model[i].name,
-//                                "value": model[i].id.toString()
-//                            })
-//                        }
-//                        this.modeData.language_id = '1';
-//                    },
-//                    p: () => {
-//                    },
-//                    error: e => {
-//                        console.log(e)
-//                    }
-//                })
+               let langeUrl = URL.api + ROUTES.GET.langeages;
+               this.$.autoAjax('get', langeUrl, '', {
+                   ok: (res) => {
+                       this.languageList = [];
+                       let model = res.data
+                       for (let i in model) {
+                           this.languageList.push({
+                               "label": model[i].name,
+                               "value": model[i].id.toString()
+                           })
+                       }
+                       this.modeData.language_id = '1';
+                   },
+                   p: () => {
+                   },
+                   error: e => {
+                       console.log(e)
+                   }
+               })
             },
             // 优惠类型全选
             changeOption(obj) {
@@ -456,15 +527,15 @@
                         let lan = this.languageList.find(function (item) {
                             return item.value = _this.modeData.language_id
                         });
-                        //提款要求数据处理
-                        // let withdraw_require_val = null;
-                        // if (this.modeData.rule.withdrawRequire === 'times') {
-                        //     withdraw_require_val = parseInt(this.modeData.rule.withdraw_require_val)
-                        // } else if (this.modeData.rule.withdrawRequire === 'bet') {
-                        //     withdraw_require_val = parseInt(this.modeData.rule.withdraw_require_val)
-                        // } else {
-                        //     withdraw_require_val = 0
-                        // }
+                        // 提款要求数据处理
+                        let withdraw_require_val = null;
+                        if (this.modeData.rule.withdrawRequire === 'times') {
+                            withdraw_require_val = parseInt(this.modeData.rule.withdraw_require_val)
+                        } else if (this.modeData.rule.withdrawRequire === 'bet') {
+                            withdraw_require_val = parseInt(this.modeData.rule.withdraw_require_val)
+                        } else {
+                            withdraw_require_val = 0
+                        }
                         //  优惠类型多选
                         let type_idList = this.type_idList, typeList = [], type_id = this.modeData.type_id;
                         for (let m = 0; m < type_id.length; m++) {
@@ -477,15 +548,26 @@
                                 }
                             }
                         }
-                        let formData = {
+                        let cover = []
+                            cover.push({"mobile":this.modeData.coverPic1})
+                            cover.push({"pc":this.modeData.coverPic2})
+                        //     cover.push(this.modeData.coverUse1=="mobile"?{
+                        //         "mobile":this.modeData.coverPic1
+                        // }:{"pc":this.modeData.coverPic1})
+                        //     cover.push(this.modeData.coverUse2=="mobile"?{
+                        //     "mobile":this.modeData.coverPic2
+                        // }:{"pc":this.modeData.coverPic2})
+                        let    formData = {
                             name: this.modeData.name,
                             types: typeList,
                             title: this.modeData.title,
-                            discounts_rule:this.modeData.discounts_rule,
+                            // discounts_rule:this.modeData.discounts_rule,
                             begin_time: this.modeData.begin_time,
                             end_time: this.modeData.end_time,
                             description: this.modeData.description,
-                            cover: this.modeData.cover,
+                            cover:cover,
+                            // coverUse: this.modeData.coverUse,
+                            // coverPic: this.modeData.coverPic,
                             // language_id: parseInt(this.modeData.language_id),
                             language_id: 1,
                             // language_name: lan ? lan.label : '',
@@ -498,7 +580,6 @@
                             // status: this.modeData.status,
                             status: 'enabled',
                             rule_type: 'agent_order_prize',
-                            coverPic:this.modeData.coverPic,
                             rule: {
                                 template_id: this.modeData.rule.template_id ? this.modeData.rule.template_id : 11,
                                 rule: {
@@ -510,9 +591,9 @@
                                 limit_times: this.modeData.rule.limit_times ? this.modeData.rule.limit_times : 0,
                                 withdraw_require: 'times',
                                 withdraw_require_val: this.modeData.withdraw_require_val,
-                                member_level: '',
+                                // member_level: '',
                                 // issue_time: '0',
-                                issue_cycle: this.modeData.rule.issue_cycle,
+                                // issue_cycle: this.modeData.rule.issue_cycle,
                                 issue_mode: this.modeData.rule.issue_mode,
                                 game: [],
                                 // extra: {
@@ -524,7 +605,8 @@
                             let url = URL.api + `/active/template.fix`;
                             this.$.autoAjax('put', url, formData, {
                                 ok: (res) => {
-                                    if (res.state === 0 && res.data) {
+                                    // if (res.state === 0 && res.data) {
+                                    if ( res.data) {
                                         let str = LANG['添加成功'] || '添加成功';
                                         this.$message.success(str)
                                         setTimeout(function () {
@@ -547,7 +629,7 @@
                             let url = URL.api + `/active/template.fix/${this.seachData.id}`
                             this.$.autoAjax('put', url, formData, {
                                 ok: (res) => {
-                                    if (res.state === 0 && res.data) {
+                                    if ( res.data) {
                                         let str = LANG['修改成功'] || '修改成功';
                                         this.$message.success(str)
                                         setTimeout(function () {
@@ -652,8 +734,11 @@
                 type == "add" ? this.$router.push({path: 'addActiveSet'}) : this.$router.push({path: 'activeSet'});
             },
             //
-            doSaveFile(obj) {
-                this.modeData.coverPic = obj.url[0];
+            doSaveFile1(obj1) {
+                this.modeData.coverPic1 = obj1.file;
+            },
+            doSaveFile2(obj2) {
+                this.modeData.coverPic2 = obj2.file;
             },
             changeLanguage(value) {
                 let languageList = this.languageList;
@@ -670,7 +755,7 @@
             },
             //  返回上页
             returnPage() {
-                this.$router.replace('/activeSet');
+                this.$router.replace('/addActiveSet');
             }
         },
         computed: {},
@@ -681,7 +766,8 @@
             next(true);
             this.$refs.form.resetFields();
             this.modeData.description = '';
-            this.modeData.arrList = [];
+            this.modeData.arrList1 = [];
+            this.modeData.arrList2 = [];
             this.modeData.content = '';
             this.modeData.content2 = '';
             this.pcshow = false;

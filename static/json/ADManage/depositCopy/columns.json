@@ -25,7 +25,12 @@
         },
         {	"prop":"apply_to",
             "label":"适用于",
-            "filters":[{ "text": "微信存款", "value": "wechat_deposit"}, { "text": "公司存款", "value": "company_deposit" },{ "text": "第三方网银", "value": "unionpay_deposit" },{ "text": "支付宝存款", "value": "alipay_deposit" },{ "text": "全局", "value": "global" }],
+            "filters":[
+                { "text": "微信支付", "value": "wechat"},{ "text": "支付宝", "value": "alipay" },
+                { "text": "公司入款", "value": "company" },{ "text": "云闪付", "value": "quickpay" },{ "text": "点卡支付", "value": "kapay" },{ "text": "财付通", "value": "tenpay" },
+                { "text": "百度支付", "value": "baidupay" },{ "text": "快捷支付", "value": "unionpay" },{ "text": "京东支付", "value": "jdpay" },
+                { "text": "网银支付", "value": "cyberbank" },{ "text": "QQ钱包", "value": "qqpay" },{ "text": "全局设置", "value": "global" }
+            ],
             "width": "160",
             "disabled":true
         },
