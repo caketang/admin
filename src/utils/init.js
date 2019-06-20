@@ -408,6 +408,7 @@ global.ROUTES = {
             service: "/system/service",
             pages: '/system/pages',
             emailSettings: '/system/email.settings',
+            // installApp: '/system/installApp',
             domain: '/system/domain',
             website: {
                 style: '/system/website/style'

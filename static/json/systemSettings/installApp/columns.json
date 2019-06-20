@@ -1,0 +1,38 @@
+{
+    "columns":[
+        { "prop":"id",
+            "label":"ID",
+            "width":"100"
+        },
+        { "prop":"device",
+            "label":"设备",
+            "disabled":true,
+            "width":"100"
+        },
+        { "prop":"version",
+            "label":"版本",
+            "disabled":true,
+            "width":"100"
+        },
+        { "prop":"app_capacity",
+            "label":"安装包大小",
+            "disabled":true,
+            "width":"100"
+        },
+        { "prop":"operation",
+            "label":"操作",
+            "disabled":true,
+            "width":"100"
+        },
+        { "prop":"last_upload",
+            "label":"最后上传时间",
+            "disabled":true,
+            "width":"100"
+        },
+        { "prop":"last_operation",
+            "label":"最近操作",
+            "disabled":true,
+            "width":"100"
+        }
+    ]
+}

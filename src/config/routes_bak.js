@@ -864,6 +864,12 @@ export default [
                 component: resolve => require(['../page/systemSettings/otherGamesAccounts.vue'], resolve),
                 iconCls: '',
                 name: '游戏后台帐号'
+            },
+            {
+                path: '/installApp',
+                component: resolve => require(['../page/systemSettings/installApp.vue'], resolve),
+                iconCls: '',
+                name: '安装包'
             }
         ]
     }

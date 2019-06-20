@@ -349,7 +349,11 @@
         {
           "path": "currencySettings",
           "name": "货币设定"
-        }
+        },
+       {
+          "path": "installApp",
+          "name": "安装包"
+       }
       ]
     }
   ]

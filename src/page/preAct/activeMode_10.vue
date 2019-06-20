@@ -220,7 +220,7 @@
                 cunt = cunt+(value.match(reg1)?value.match(reg1).length*2+cunt:cunt);
                 cunt = cunt+(value.match(reg2)?value.match(reg2).length+cunt:cunt);
                 if(cunt>2048 ||cunt<1){
-                    callback(new Error(LANG['请输入长度1到2048位！'] || '请输入长度1到2048位！'))
+                    callback(new Error(LANG['请输入有效长度'] || '请输入有效长度！'))
                 }else{
                     callback();
                 }
@@ -339,7 +339,9 @@
                 imgInit2: false,
                 rules: {
                     name: [
-                        {required: true, message: '请填写活动名称', trigger: 'blur'}
+                        {required: true, message: '请填写活动名称', trigger: 'blur'},
+                        {min: 1, max: 15, message: '请输入 1 到 15 个字符'},
+                        {validator: validateTitle,trigger: 'blur,change'}
                     ],
                     type_id: [
                         {required: true, type: 'array', message: '请选择优惠类型', trigger: 'change'}

@@ -39,7 +39,7 @@
                 <p>说明: 使用Google身份验证器'扫描条形码方式', 扫描上图二维码, 在谷歌验证器上添加, 即可添加成功, 并在下方输入谷歌随机码</p>
             </div>
             <div class="input_box">
-                <el-input type="text" v-model.number="googleCode" auto-complete="off"
+                <el-input type="text" v-model="googleCode" auto-complete="off"
                           :placeholder="'请输入谷歌验证器上的动态安全码'" :maxlength="6"></el-input>
             </div>
             <span slot="footer" class="dialog-footer">
@@ -140,7 +140,7 @@
                      this.$message.warning((LANG["请输入六位动态验证码"] || "请输入六位动态验证码"));
                      return
                 }
-                if(typeof this.googleCode !== 'number') {
+                if(!(/^\d+$/.test(this.googleCode))) {
                     this.$message.warning((LANG["请输入六位数字验证码"] || "请输入六位数字验证码"));
                     return
                 }

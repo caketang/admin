@@ -40,11 +40,37 @@
       "disabled":true,
       "width": 150
     },
+    {
+      "prop":"withdraw_bet_coupon",
+      "label":"剩余打码量",
+      "sortable":true,
+      "disabled":true,
+      "width": 150
+    },
     { "prop":"pass",
       "label":"是否达到投注",
       "filters":[{ "text": "是", "value": "yes"}, { "text": "否", "value": "no"}],
       "sortable":true,
       "disabled":true,
       "width": 150
-    }]
+    },
+      {
+          "label": "操作",
+          "type": "button",
+          "width": "280",
+          "disabled": true,
+          "btnGroup": [
+              {
+                  "btnType": "text",
+                  "label": "编辑",
+                  "fn": "doAddLabel"
+              },
+              {
+                  "btnType": "text",
+                  "label": "达标",
+                  "fn": "doReachLabels"
+              }
+          ]
+      }
+  ]
 }

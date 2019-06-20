@@ -333,9 +333,8 @@
                         </el-form-item>
                         <el-form-item label="优惠提款要求" required>
                             <!--<span v-text="LANG['(存款+优惠)X'] || '(存款+优惠)X'"></span>-->
-                            <el-form-item style="display: inline-block" prop="withdrawRequireVal"
-                                          :rules="[{ validator:validatorNumber,trigger:'blur'}]">
-                                <el-input class="intW" v-model="modeData.withdrawRequireVal" type="number"></el-input>
+                            <el-form-item style="display: inline-block" prop="withdrawRequireVal">
+                                <el-input class="intW" :maxlength="2" v-model="modeData.withdrawRequireVal" type="number"></el-input>
                             </el-form-item>
                             <span v-text="LANG['倍'] || '倍'"></span>
                         </el-form-item>
@@ -468,13 +467,20 @@
 
     export default {
         data() {
+            let validatePass = (rule, value, callback) => {
+                if (value === '' && this.modeData.withdrawRequire === 'times') {
+                    callback(new Error('请输入倍数'));
+                } else {
+                    callback();
+                }
+            };
             const sortValidate = (rule, value, callback) => {
                 if (/^(0|[1-9]\d*)$/.test(value.toString())) {
                     callback();
                 } else {
                     return callback(new Error('请填写非负整数'));
                 }
-            };
+            }
             //URL验证
             let validatorUrl = (rule, value, callback) => {
                 if (value && !/^((ht|f)tps?):\/\/([\w\-]+(\.[\w\-]+)*\/)*[\w\-]+(\.[\w\-]+)*\/?(\?([\w\-\.,@?^=%&:\/~\+#]*)+)?/.test(value)) {
@@ -521,6 +527,7 @@
                     callback();
                 }
             }
+
             return {
                 LANG,
                 pcshow: false,
@@ -868,7 +875,8 @@
                 rules: {
                     name: [
                         {required: true, message: '请填写活动名称', trigger: 'blur'},
-                        {validator: validateTitle,trigger: 'blur'}
+                        {validator: validateTitle,trigger: 'blur'},
+                        {min:1,max:15,message:'请输入1至15 个字符'},
                     ],
                     type_id: [
                         {required: true, type: 'array', message: '请选择优惠类型', trigger: 'change'}
@@ -898,8 +906,9 @@
                     open_mode: [
                         {required: true, message: '请选择打开方式', trigger: 'change'}
                     ],
-                    'rule.withdrawRequire': [
-                        {required: true, message: '请选择提款要求', trigger: 'change'}
+                    withdrawRequireVal: [
+                        {required: true, message: '请选择提款要求', trigger: 'blur'},
+                        {min: 1, max: 2, message: '请输入 1 到 2 个字符'}
                     ],
                     coverPic1: [
                         {required: true, message: '请上传图片', trigger: 'change'}

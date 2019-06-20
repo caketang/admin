@@ -69,7 +69,7 @@
                     <el-form-item label="设备1图片上传" prop="coverPic1">
                         <el-input v-model="modeData.coverPic1" style="display:none;"></el-input>
                         <upload :uploadUrl="uploadUrl1" @doUpload="doSaveFile1" :keys="keys1" :isInit="imgInit1"
-                                :fileNum="2" :arrList="modeData.arrList1" :imgResolution="'460*180'" ></upload>
+                                :fileNum="1" :arrList="modeData.arrList1" :imgResolution="'460*180'" ></upload>
                     </el-form-item>
                     <el-form-item label="设备2" prop="coverUse2">
                         <el-select v-model="modeData.coverUse2" placeholder="请选择">
@@ -80,7 +80,7 @@
                     <el-form-item label="设备2图片上传" prop="coverPic2">
                         <el-input v-model="modeData.coverPic2" style="display:none;"></el-input>
                         <upload :uploadUrl="uploadUrl2" @doUpload="doSaveFile2" :keys="keys2" :isInit="imgInit2"
-                                :fileNum="2" :arrList="modeData.arrList2" :imgResolution="'460*180'"></upload>
+                                :fileNum="1" :arrList="modeData.arrList2" :imgResolution="'460*180'"></upload>
                     </el-form-item>
                     <el-form-item label="排序" prop="sort">
                         <el-input v-model="modeData.sort" class="w80" type="number"></el-input>
@@ -256,7 +256,9 @@
                 imgInit2: false,
                 rules: {
                     name: [
-                        {required: true, message: '请填写活动名称', trigger: 'blur'}
+                        {required: true, message: '请填写活动名称', trigger: 'blur'},
+                        {min: 1, max: 15, message: '请输入 1 到 15 个字符'},
+                        {validator: validateTitle,trigger: 'blur,change'}
                     ],
                     // title: [
                     //     {required: true, type: 'array', message: '请输入优惠标题', trigger: 'change'}
@@ -288,11 +290,13 @@
                     ],
                     'rule.rule.valid_bet':[
                         {required: true, message: '请填写有效投注', trigger: 'blur'},
-                        {validator: sortValidate, trigger: 'blur', required: true}
+                        {validator: sortValidate, trigger: 'blur', required: true},
+                        {min: 1, max: 15, message: '请输入 1 到 10 个字符'},
                     ],
                     'rule.rule.prize':[
                         {required: true, message: '请填写奖金', trigger: 'blur'},
-                        {validator: sortValidate, trigger: 'blur', required: true}
+                        {validator: sortValidate, trigger: 'blur', required: true},
+                        {min: 1, max: 4, message: '请输入 1 到 4 个字符'},
                     ],
                     'rule.issue_mode': [
                         {required: true, message: '请选择发放奖金方式', trigger: 'change'}
@@ -304,7 +308,8 @@
                     // 'rule.withdrawRequireVal': [{validator: validatePass, trigger: 'blur'}],
                     withdraw_require_val: [
                         {required: true, message: '请选择提款要求', trigger: 'blur'},
-                        {validator: sortValidate, trigger: 'blur', required: true}
+                        {validator: sortValidate, trigger: 'blur', required: true},
+                        {min: 1, max: 2, message: '请输入 1 到 2 个字符'}
                     ],
                     checkedDefut: [
                         {required: true, message: '请至少选择一个会员等级', trigger: 'change'}
@@ -314,7 +319,7 @@
                     //     {required: true, message: '请选择打开方式', trigger: 'change'}
                     // ],
                     coverPic1: [
-                        {required: true, message: '请上传图片', trigger: 'change'}
+                        {required: true, message: '请上传图片', trigger: 'blur'}
                     ],
                     title: [
                         {required: true, message: '请输入活动标题', trigger: 'blur'},
@@ -328,7 +333,8 @@
                         {required: true, message: '请输入优惠规则', trigger: 'change'}
                     ],
                     sort: [
-                        {validator: sortValidate, trigger: 'blur', required: true}
+                        {validator: sortValidate, trigger: 'blur', required: true},
+                        {min: 1, max: 3, message: '请输入 1 到 3 个字符'},
                     ]
                 },
                 // 类型全选
